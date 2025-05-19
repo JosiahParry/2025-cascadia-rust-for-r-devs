@@ -2,18 +2,6 @@ fn hello_world() {
     println!("Hello, world!");
 }
 
-// introduce scalar operators
-fn is_even(x: f64) -> bool {
-    // like tidyverse style guide
-    // returns are implicit in rust
-    // UNLESS exiting early
-    x % 2.0 == 0.0
-}
-
-fn is_odd(x: f64) -> bool {
-    !is_even(x)
-}
-
 // Classic fizz buzz to introduce if else statements
 fn fizz_buzz(i: i32) {
     if (i % 3 == 0) && (i % 5 == 0) {
@@ -23,6 +11,18 @@ fn fizz_buzz(i: i32) {
     } else if i % 5 == 0 {
         println!("Buzz")
     }
+}
+
+// introduce scalar operators
+fn is_even(x: i32) -> bool {
+    // like tidyverse style guide
+    // returns are implicit in rust
+    // UNLESS exiting early
+    x % 2 == 0
+}
+
+fn is_odd(x: i32) -> bool {
+    !is_even(x)
 }
 
 // move on to "real" functions
