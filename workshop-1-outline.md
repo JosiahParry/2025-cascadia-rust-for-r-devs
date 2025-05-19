@@ -8,12 +8,17 @@
   - `cargo run`
 - primitive types
   - scalars
-- vectors
-- iteration with for loops
-- mutable variables
 - logical operators
   - use `&&` and `||` there is no vectorized version
   - we do everything on the primitive types
+- vectors
+- iteration with for loops
+- mutable variables
+
+
+- iterators
+- .iter()
+- .map()
 
 ## Function Ideas:
 
