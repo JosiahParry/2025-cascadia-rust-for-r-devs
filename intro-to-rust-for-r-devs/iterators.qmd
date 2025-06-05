@@ -1,0 +1,48 @@
+# Iterators
+
+## Iterator basics
+
+- `.iter()` vs `.into_iter()`
+- `.len()`
+- `.sum()`
+- `.min()`: not floating point arith issues here
+- `.max()`: note floating point arith issues here
+
+
+
+##  Exercise 1
+
+- Rewrite the `mean()` function to use an iterator instead of a for loop
+
+## Mapping over iterators
+
+- `.map()`
+- closures
+- `.collect()`
+
+##  Exercise 2
+
+- create a function `standardize()` that performs z-score standardization
+
+$$
+z_i = \frac{x_i - \mu}{\sigma}
+$$
+
+### Solution
+
+```rust
+fn standardize(data: Vec<f64>) -> Vec<f64> {
+    let n = data.len() as f64;
+    let mean = data.iter().sum::<f64>() / n;
+
+    let variance = data.iter()
+        .map(|x| (x - mean).powi(2))
+        .sum::<f64>() / n;
+
+    let std_dev = variance.sqrt();
+
+    data.into_iter()
+        .map(|x| (x - mean) / std_dev)
+        .collect()
+}
+```

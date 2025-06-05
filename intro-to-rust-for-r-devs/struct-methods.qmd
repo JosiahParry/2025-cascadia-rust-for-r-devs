@@ -1,0 +1,31 @@
+# Struct Methods
+
+- `&self`
+- `Self`
+
+
+## Exercise
+
+- Define a new method
+
+
+```rust
+impl Struct {
+  fn new(x: f64, y: f64) -> Self {
+    Self { x, y }
+  }
+}
+```
+
+- define a distance method that calculates the euclidean distance between a point and a reference to another
+
+```rust
+impl Point {
+    fn euclidean_distance(&self, destination: &Self) -> f64 {
+        ((self.x - destination.x).powi(2) + (self.y - destination.y).powi(2)).sqrt()
+    }
+}
+
+## Exercise 2
+
+Calculate haversine distance

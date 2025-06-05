@@ -1,0 +1,21 @@
+# Mutability
+
+## Exercise
+
+Create a function called `mean()` that calculates the mean of a `Vec<f64>`
+
+
+## Solution
+
+```rust
+fn mean(x: &[f64]) -> f64 {
+    let n = x.len() as f64;
+    let mut total = 0.0;
+
+    for xi in x {
+        total += xi;
+    }
+
+    total / n
+}
+```

@@ -1,0 +1,24 @@
+# Functions
+
+## `is_even()` & `is_odd()`
+
+- meme about is_odd in javascript
+- we will create our first function with a return type
+- discuss bools
+- first create `is_even()` then use that toe create an `is_odd()`
+
+```rust
+fn is_even(x: i32) -> bool {
+    x % 2 == 0
+}
+
+fn is_odd(x: i32) -> bool {
+    !is_even(x)
+}
+
+fn main() {
+    let x = 3;
+    println!("{x} is even: {}", is_even(x));
+    println!("{x} is odd: {}", is_odd(x));
+}
+```

@@ -1,0 +1,13 @@
+# Defining Struct(ure)s
+
+- PascalCase naming convention
+- deriving traits:
+    - debug, clone
+- destructuring assignment
+
+
+## Exercise
+
+- Define a struct called `Point` which has two fields `x`, and `y`
+- Create a new `Point` struct
+- Destructure the point

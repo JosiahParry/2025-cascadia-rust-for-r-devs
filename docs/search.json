@@ -1,0 +1,284 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Rust for R Developers",
+    "section": "",
+    "text": "0.1 Setting up\nBefore we can start, we need to get our house in order. We need to install:",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#setting-up",
+    "href": "index.html#setting-up",
+    "title": "Rust for R Developers",
+    "section": "",
+    "text": "Positron\nRust\nRust analyzer VS Code extension\nEven Better TOML VS Code extension",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#install-positron",
+    "href": "index.html#install-positron",
+    "title": "Rust for R Developers",
+    "section": "0.2 Install Positron",
+    "text": "0.2 Install Positron\nDownload the appropriate Positron installer from the downloads page.\nOpen the extensions pane (or press shift + cmd + x).\n\nsearch for rust analyzer and install\nsearch for even better toml and install",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#install-rust",
+    "href": "index.html#install-rust",
+    "title": "Rust for R Developers",
+    "section": "0.3 Install rust",
+    "text": "0.3 Install rust\nTo install Rust, please use rustup. If you use a system installation via brew, apt, dnf, etc you will likely run into issues. I will be able to help debug these.\nFor installing Rust on Mac / Unix / Linux please run:\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n\n0.3.1 Windows\nIf using Windows download the appropriate installer. Then, once your installation is complete, from your command prompt run:\nrustup target add x86_64-pc-windows-gnu\nThis is a compilation target that is required for building extendr packages on Windows.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/index.html",
+    "href": "intro-to-rust-for-r-devs/index.html",
+    "title": "2  Overview",
+    "section": "",
+    "text": "2.1 Timeline\nWe’ve got 3 hours to cover a lot of ground!",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/index.html#timeline",
+    "href": "intro-to-rust-for-r-devs/index.html#timeline",
+    "title": "2  Overview",
+    "section": "",
+    "text": "What is rust\nHello, World!\nPrimitive types, logical operators, and control flow\nCreating Functions\nArrays & vectors\nFor loops\nMutability\nIterators\nReferences and Slices\nStructs\n\n\n\n\nStart\nDescription",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html",
+    "href": "intro-to-rust-for-r-devs/hello-world.html",
+    "title": "3  Hello, World!",
+    "section": "",
+    "text": "3.1 Your first crate\nLet’s create your first crate",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#your-first-crate",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#your-first-crate",
+    "title": "3  Hello, World!",
+    "section": "",
+    "text": "cargo new intro-to-rust",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
+    "title": "3  Hello, World!",
+    "section": "3.2 Crate anatomy",
+    "text": "3.2 Crate anatomy\nTwo types of crates: binary, library. This first workshop we will work only with a binary crate.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R\n\nsrc/ where your source code goes\nsrc/main.rs the primary file for your binary\nCargo.toml: like a DESCRIPTION file\nCargo.lock: like an renv.lock file",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#hello-world",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#hello-world",
+    "title": "3  Hello, World!",
+    "section": "3.3 Hello world",
+    "text": "3.3 Hello world\n\nThe hello world is always prepopulated.\nThe main() function is required.\nthe contents of the main() function are what is executed by your binary crate\nto run your binary, from the command line we write cargo run\nthis will compile your code and then run it\n\nfn main() {\n    println!(\"Hello, world!\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#println-macro",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#println-macro",
+    "title": "3  Hello, World!",
+    "section": "3.4 println!() macro",
+    "text": "3.4 println!() macro\n\nmacros are different than functions\nyou can tell them apart by the presence of the !\nprintln! is a handy helper to help us print things out to the terminal, otherwise we wont be able to see output\nin R printing is implicit, rust it is explicit—and kind of confusing to be honest\nuses format strings \"{}\" is a placeholder for something that can be displayed\nnot everything can be displayed, something only have a debug implementation we can use {:?}\n\nrecommend keeping this in mind for later.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html",
+    "href": "intro-to-rust-for-r-devs/fizz-buzz.html",
+    "title": "5  Control Flow",
+    "section": "",
+    "text": "5.1 Exercise",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
+    "href": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
+    "title": "5  Control Flow",
+    "section": "",
+    "text": "Create a FizzBuzz program\n\nfn main() {\n    // let i = 15;\n    // let i = 3;\n    // let i = 5;\n    let i = 47;\n    if (i % 3 == 0) && (i % 5 == 0) {\n        println!(\"FizzBuzz\")\n    } else if i % 3 == 0 {\n        println!(\"Fizz\")\n    } else if i % 5 == 0 {\n        println!(\"Buzz\")\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/collections.html",
+    "href": "intro-to-rust-for-r-devs/collections.html",
+    "title": "6  Basic Collections",
+    "section": "",
+    "text": "6.1 Introduce collections",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Collections</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/collections.html#introduce-collections",
+    "href": "intro-to-rust-for-r-devs/collections.html#introduce-collections",
+    "title": "6  Basic Collections",
+    "section": "",
+    "text": "discuss arrays first\narrays are fixed size\nvectors are not fixed sized\narrays are better for performance but much more difficult to use\ncreating vectors: vec![]\ndebug format for println!();\nR is unique in that most things are vectorized that is not often the case\nin order to use vectors we need to iterate\nprint the vector using debug format\n\nfn main() {\n    let x = vec![3, 6, 9, 12];\n    println!(\"Vector is: {:?}\", x);\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Collections</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutability.html",
+    "href": "intro-to-rust-for-r-devs/mutability.html",
+    "title": "7  Mutability",
+    "section": "",
+    "text": "7.1 Exercise\nCreate a function called mean() that calculates the mean of a Vec&lt;f64&gt;",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutability.html#solution",
+    "href": "intro-to-rust-for-r-devs/mutability.html#solution",
+    "title": "7  Mutability",
+    "section": "7.2 Solution",
+    "text": "7.2 Solution\nfn mean(x: &[f64]) -&gt; f64 {\n    let n = x.len() as f64;\n    let mut total = 0.0;\n\n    for xi in x {\n        total += xi;\n    }\n\n    total / n\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iterators.html",
+    "href": "intro-to-rust-for-r-devs/iterators.html",
+    "title": "8  Iterators",
+    "section": "",
+    "text": "8.1 Iterator basics",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iterators.html#iterator-basics",
+    "href": "intro-to-rust-for-r-devs/iterators.html#iterator-basics",
+    "title": "8  Iterators",
+    "section": "",
+    "text": ".iter() vs .into_iter()\n.len()\n.sum()\n.min(): not floating point arith issues here\n.max(): note floating point arith issues here",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
+    "href": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
+    "title": "8  Iterators",
+    "section": "8.2 Exercise 1",
+    "text": "8.2 Exercise 1\n\nRewrite the mean() function to use an iterator instead of a for loop",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iterators.html#mapping-over-iterators",
+    "href": "intro-to-rust-for-r-devs/iterators.html#mapping-over-iterators",
+    "title": "8  Iterators",
+    "section": "8.3 Mapping over iterators",
+    "text": "8.3 Mapping over iterators\n\n.map()\nclosures\n.collect()",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
+    "href": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
+    "title": "8  Iterators",
+    "section": "8.4 Exercise 2",
+    "text": "8.4 Exercise 2\n\ncreate a function standardize() that performs z-score standardization\n\n\\[\nz_i = \\frac{x_i - \\mu}{\\sigma}\n\\]\n\n8.4.1 Solution\nfn standardize(data: Vec&lt;f64&gt;) -&gt; Vec&lt;f64&gt; {\n    let n = data.len() as f64;\n    let mean = data.iter().sum::&lt;f64&gt;() / n;\n\n    let variance = data.iter()\n        .map(|x| (x - mean).powi(2))\n        .sum::&lt;f64&gt;() / n;\n\n    let std_dev = variance.sqrt();\n\n    data.into_iter()\n        .map(|x| (x - mean) / std_dev)\n        .collect()\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/structs.html",
+    "href": "intro-to-rust-for-r-devs/structs.html",
+    "title": "10  Defining Struct(ure)s",
+    "section": "",
+    "text": "10.1 Exercise",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/structs.html#exercise",
+    "href": "intro-to-rust-for-r-devs/structs.html#exercise",
+    "title": "10  Defining Struct(ure)s",
+    "section": "",
+    "text": "Define a struct called Point which has two fields x, and y\nCreate a new Point struct\nDestructure the point",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html",
+    "href": "intro-to-rust-for-r-devs/enums.html",
+    "title": "11  Enum(eration)s",
+    "section": "",
+    "text": "11.1 Exercise",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#exercise",
+    "href": "intro-to-rust-for-r-devs/enums.html#exercise",
+    "title": "11  Enum(eration)s",
+    "section": "",
+    "text": "Create an enum called Measure\nCreate a new method distance() for our point struct\n\nenum Measure {\n    Euclidean,\n    Haversine,\n}\n\nimpl Point {\n    fn haversine_distance(&self, destination: &Self) -&gt; f64 {\n        let radius = 6_371_008.7714;\n        let theta1 = self.y.to_radians();\n        let theta2 = destination.y.to_radians();\n        let delta_theta = (destination.y - self.y).to_radians();\n        let delta_lambda = (destination.x - self.x).to_radians();\n        let a = (delta_theta / 2f64).sin().powi(2)\n            + theta1.cos() * theta2.cos() * (delta_lambda / 2f64).sin().powi(2);\n        2f64 * a.sqrt().asin() * radius\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  }
+]

@@ -1,0 +1,36 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Rust for R Developers"
+  subtitle: Cascadia R Conference, 2025
+  author: "Josiah Parry"
+  date: "2025-06-20"
+  chapters:
+    - index.qmd
+    - part: Intro to Rust for R Developers
+      chapters:
+        - intro-to-rust-for-r-devs/index.qmd
+        - intro-to-rust-for-r-devs/hello-world.qmd
+        - intro-to-rust-for-r-devs/for-loops.qmd
+        - intro-to-rust-for-r-devs/fizz-buzz.qmd
+        - intro-to-rust-for-r-devs/collections.qmd
+        - intro-to-rust-for-r-devs/mutability.qmd
+        - intro-to-rust-for-r-devs/iterators.qmd
+        - intro-to-rust-for-r-devs/references-slices.qmd
+        - intro-to-rust-for-r-devs/structs.qmd
+        - intro-to-rust-for-r-devs/enums.qmd
+    - part: Building Rust based R Packages
+      chapters:
+        - building-rust-based-r-pkgs/index.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt

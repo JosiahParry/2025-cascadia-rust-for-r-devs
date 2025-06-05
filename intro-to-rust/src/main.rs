@@ -37,7 +37,6 @@ fn sum(x: Vec<f64>) -> f64 {
 
 // introduce the concept of a "slice"
 fn mean(x: &[f64]) -> f64 {
-    // show primitive type casting here
     let n = x.len() as f64;
     let mut total = 0.0;
 
