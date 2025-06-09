@@ -66,7 +66,7 @@
     "href": "intro-to-rust-for-r-devs/hello-world.html",
     "title": "4  Hello, World!",
     "section": "",
-    "text": "Your first crate\nRust uses a tool called cargo for building, checking, and managing dependencies.\nTo create a new Rust crate, use cargo new name-of-crate.",
+    "text": "Crate anatomy\nRust uses a tool called cargo for building, checking, and managing dependencies.\nTo create a new Rust crate, use cargo new name-of-crate.\nTwo types of crates: binary, library.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
@@ -87,8 +87,8 @@
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
     "href": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
     "title": "4  Hello, World!",
-    "section": "Crate anatomy",
-    "text": "Crate anatomy\nTwo types of crates: binary, library.\n\n\nThis first workshop we will work only with a binary crate. We will create a library in the second half of the day.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R",
+    "section": "",
+    "text": "This first workshop we will work only with a binary crate. We will create a library in the second half of the day.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"

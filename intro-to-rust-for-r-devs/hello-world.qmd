@@ -10,7 +10,6 @@
 - Use the `println!()` macro
 :::
 
-## Your first crate
 
 Rust uses a tool called `cargo` for building, checking, and managing dependencies.
 
