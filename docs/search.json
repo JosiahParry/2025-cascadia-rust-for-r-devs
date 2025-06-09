@@ -121,7 +121,7 @@
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html",
     "title": "5  Control Flow",
     "section": "",
-    "text": "Control flow\nRust uses if, else, and else if statements just like R. Where each branch is delimted by curly braces.\nThe key difference is that the use of parentheses is not necessary for the conditional statement.",
+    "text": "Numeric operators",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
@@ -132,7 +132,7 @@
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
     "title": "5  Control Flow",
     "section": "Exercise",
-    "text": "Exercise\n\nCreate a FizzBuzz program\n\nfn main() {\n    // let i = 15;\n    // let i = 3;\n    // let i = 5;\n    let i = 47;\n    if (i % 3 == 0) && (i % 5 == 0) {\n        println!(\"FizzBuzz\");\n    } else if i % 3 == 0 {\n        println!(\"Fizz\");\n    } else if i % 5 == 0 {\n        println!(\"Buzz\");\n    }\n}",
+    "text": "Exercise\nThis exercise you will create the famous FizzBuzz program.\nFor this, create a variable i. The rules are:\n\nwhen i is a multiple of 3, print Fizz\nwhen i is a multiple of 5, print Buzz\nwhen i is a multiple of both 3 and 5, print FizzBuzz\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    // let i = 15; // FizzBuzz\n    // let i = 3; // Fizz\n    // let i = 5; // Buzz\n    let i = 47; // Nothing\n    if (i % 3 == 0) && (i % 5 == 0) {\n        println!(\"FizzBuzz\");\n    } else if i % 3 == 0 {\n        println!(\"Fizz\");\n    } else if i % 5 == 0 {\n        println!(\"Buzz\");\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
@@ -141,122 +141,122 @@
   {
     "objectID": "intro-to-rust-for-r-devs/collections.html",
     "href": "intro-to-rust-for-r-devs/collections.html",
-    "title": "7  Basic Collections",
+    "title": "6  Arrays and Vectors",
     "section": "",
-    "text": "Introduce collections",
+    "text": "Arrays\nArrays in Rust are fixed in size and hold values of the same type. Since the size is known ahead of time, it makes them fast but inflexible.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic Collections</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Arrays and Vectors</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/collections.html#introduce-collections",
     "href": "intro-to-rust-for-r-devs/collections.html#introduce-collections",
-    "title": "7  Basic Collections",
+    "title": "6  Arrays and Vectors",
     "section": "",
     "text": "discuss arrays first\narrays are fixed size\nvectors are not fixed sized\narrays are better for performance but much more difficult to use\ncreating vectors: vec![]\ndebug format for println!();\nR is unique in that most things are vectorized that is not often the case\nin order to use vectors we need to iterate\nprint the vector using debug format\n\nfn main() {\n    let x = vec![3, 6, 9, 12];\n    println!(\"Vector is: {:?}\", x);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic Collections</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Arrays and Vectors</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/mutability.html",
     "href": "intro-to-rust-for-r-devs/mutability.html",
-    "title": "7  Mutability",
+    "title": "8  Mutability",
     "section": "",
-    "text": "7.1 Exercise\nCreate a function called mean() that calculates the mean of a Vec&lt;f64&gt;",
+    "text": "Exercise\nCreate a function called mean() that calculates the mean of a Vec&lt;f64&gt;",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutability</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/mutability.html#solution",
     "href": "intro-to-rust-for-r-devs/mutability.html#solution",
-    "title": "7  Mutability",
-    "section": "7.2 Solution",
-    "text": "7.2 Solution\nfn mean(x: &[f64]) -&gt; f64 {\n    let n = x.len() as f64;\n    let mut total = 0.0;\n\n    for xi in x {\n        total += xi;\n    }\n\n    total / n\n}",
+    "title": "8  Mutability",
+    "section": "Solution",
+    "text": "Solution\nfn mean(x: &[f64]) -&gt; f64 {\n    let n = x.len() as f64;\n    let mut total = 0.0;\n\n    for xi in x {\n        total += xi;\n    }\n\n    total / n\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutability</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html",
     "href": "intro-to-rust-for-r-devs/iterators.html",
-    "title": "8  Iterators",
+    "title": "9  Iterators",
     "section": "",
-    "text": "8.1 Iterator basics",
+    "text": "Iterator basics",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#iterator-basics",
     "href": "intro-to-rust-for-r-devs/iterators.html#iterator-basics",
-    "title": "8  Iterators",
+    "title": "9  Iterators",
     "section": "",
     "text": ".iter() vs .into_iter()\n.len()\n.sum()\n.min(): not floating point arith issues here\n.max(): note floating point arith issues here",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
-    "title": "8  Iterators",
-    "section": "8.2 Exercise 1",
-    "text": "8.2 Exercise 1\n\nRewrite the mean() function to use an iterator instead of a for loop",
+    "title": "9  Iterators",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nRewrite the mean() function to use an iterator instead of a for loop",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#mapping-over-iterators",
     "href": "intro-to-rust-for-r-devs/iterators.html#mapping-over-iterators",
-    "title": "8  Iterators",
-    "section": "8.3 Mapping over iterators",
-    "text": "8.3 Mapping over iterators\n\n.map()\nclosures\n.collect()",
+    "title": "9  Iterators",
+    "section": "Mapping over iterators",
+    "text": "Mapping over iterators\n\n.map() . enumerate()\nclosures\n.collect()\n\nCan do something with FizzBuzz again here",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
-    "title": "8  Iterators",
-    "section": "8.4 Exercise 2",
-    "text": "8.4 Exercise 2\n\ncreate a function standardize() that performs z-score standardization\n\n\\[\nz_i = \\frac{x_i - \\mu}{\\sigma}\n\\]\n\n8.4.1 Solution\nfn standardize(data: Vec&lt;f64&gt;) -&gt; Vec&lt;f64&gt; {\n    let n = data.len() as f64;\n    let mean = data.iter().sum::&lt;f64&gt;() / n;\n\n    let variance = data.iter()\n        .map(|x| (x - mean).powi(2))\n        .sum::&lt;f64&gt;() / n;\n\n    let std_dev = variance.sqrt();\n\n    data.into_iter()\n        .map(|x| (x - mean) / std_dev)\n        .collect()\n}",
+    "title": "9  Iterators",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\ncreate a function standardize() that performs z-score standardization\n\n\\[\nz_i = \\frac{x_i - \\mu}{\\sigma}\n\\]\n\nSolution\nfn standardize(data: Vec&lt;f64&gt;) -&gt; Vec&lt;f64&gt; {\n    let n = data.len() as f64;\n    let mean = data.iter().sum::&lt;f64&gt;() / n;\n\n    let variance = data.iter()\n        .map(|x| (x - mean).powi(2))\n        .sum::&lt;f64&gt;() / n;\n\n    let std_dev = variance.sqrt();\n\n    data.into_iter()\n        .map(|x| (x - mean) / std_dev)\n        .collect()\n}\n\nThings to potentially cover\nchain()\nfn main() {\n    let a1 = [1, 2, 3];\n    let a2 = [4, 5, 6];\n    a1.iter().chain(a2.iter());\n}\n\nany() rust equivalent of any(logical_statment) in R\nfilter()\nfind()\nfold() - our own min/max functions?\nzip()",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/structs.html",
     "href": "intro-to-rust-for-r-devs/structs.html",
-    "title": "10  Defining Struct(ure)s",
+    "title": "11  Defining Struct(ure)s",
     "section": "",
-    "text": "10.1 Exercise",
+    "text": "Exercise",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/structs.html#exercise",
     "href": "intro-to-rust-for-r-devs/structs.html#exercise",
-    "title": "10  Defining Struct(ure)s",
+    "title": "11  Defining Struct(ure)s",
     "section": "",
     "text": "Define a struct called Point which has two fields x, and y\nCreate a new Point struct\nDestructure the point",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
     ]
   },
   {
@@ -472,8 +472,8 @@
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#control-flow",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#control-flow",
     "title": "5  Control Flow",
-    "section": "",
-    "text": "Warning\n\n\n\nEach branch of the if statement must return the same type. For this portion of the workshop, be sure to terminate each statement inside of the if statement so that nothing is returned.",
+    "section": "Control flow",
+    "text": "Control flow\nRust uses if, else, and else if statements just like R. Where each branch is delimted by curly braces.\n\n\n\n\n\n\nWarning\n\n\n\nEach branch of the if statement must return the same type. For this portion of the workshop, be sure to terminate each statement inside of the if statement so that nothing is returned.\n\n\nif x == y {\n  // do something\n} else {\n  // do something else\n}\nThe key difference is that the use of parentheses is not necessary for the conditional statement.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
@@ -484,10 +484,142 @@
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#logical-operators",
     "title": "5  Control Flow",
     "section": "Logical Operators:",
-    "text": "Logical Operators:\n\n==\n!=\n!\n&&\n||",
+    "text": "Logical Operators:\nLogical operators are quite similar to R. The key differe\n\n== check equality\n!= check inequality\n! negate a logical value\n&& logical AND comparison\n|| logical OR comparison",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#numeric-operators",
+    "href": "intro-to-rust-for-r-devs/fizz-buzz.html#numeric-operators",
+    "title": "5  Control Flow",
+    "section": "",
+    "text": "+ addition\n- subtraction\n/ division\n^ exponentiation\n% remainder",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/collections.html#objective",
+    "href": "intro-to-rust-for-r-devs/collections.html#objective",
+    "title": "6  Arrays and Vectors",
+    "section": "",
+    "text": "Create and store many values of the same type.\nUnderstand the difference between arrays and vectors. :::",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Arrays and Vectors</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/collections.html#arrays",
+    "href": "intro-to-rust-for-r-devs/collections.html#arrays",
+    "title": "6  Arrays and Vectors",
+    "section": "",
+    "text": "fn main() {\n    let arr = [10, 20, 30, 40];\n    println!(\"Array: {:?}\", arr);\n}\n\n\n\n\n\n\nNote\n\n\n\nThe {:?} syntax is used for a Debug representation of a variable. Using {} is used for Displaying data.\nMore often than not, using {:?} will be your best option.\n\n\n\nArrays use square brackets: [1, 2, 3]\nTheir size is known at compile time.\nYou can’t add or remove elements.\nMostly used when performance is critical and size is known.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Arrays and Vectors</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/collections.html#vectors",
+    "href": "intro-to-rust-for-r-devs/collections.html#vectors",
+    "title": "6  Arrays and Vectors",
+    "section": "Vectors",
+    "text": "Vectors\nVectors are like growable arrays. They live on the heap and are much more common in everyday Rust code. We’ll explore how to modify them later, but for now, we can define them with values known at the start.\nfn main() {\n    let v = vec![1, 2, 3, 4, 5];\n    println!(\"Vector: {:?}\", v);\n}\n\nCreate vectors using vec![]\nYou don’t need mut if you’re not changing them.\nLike arrays, all values must be the same type.\n\nIn R, most things are vectorized. In Rust, we often iterate over collections to work with them.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Arrays and Vectors</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/collections.html#exercise",
+    "href": "intro-to-rust-for-r-devs/collections.html#exercise",
+    "title": "6  Arrays and Vectors",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate an array of 4 integers and print it.\nCreate a vector with 5 numbers and print it using {:?}.\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let arr = [1, 2, 3, 4];\n    println!(\"Array: {:?}\", arr);\n\n    let v = vec![10, 20, 30, 40, 50];\n    println!(\"Vector: {:?}\", v);\n}\n\n\nNOTES:\nTODO:\nadd a bit on .len() and .is_empty()",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Arrays and Vectors</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutability.html#vector-mutability",
+    "href": "intro-to-rust-for-r-devs/mutability.html#vector-mutability",
+    "title": "8  Mutability",
+    "section": "Vector mutability",
+    "text": "Vector mutability\n\ncover mutable vectors\n.push()",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutability</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutable-vectors.html",
+    "href": "intro-to-rust-for-r-devs/mutable-vectors.html",
+    "title": "9  Mutable Vectors",
+    "section": "",
+    "text": "cover mutable vectors\n.push()\n.clear()\ncreating vectors with Vec::new()",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Mutable Vectors</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/for-loops.html",
+    "href": "intro-to-rust-for-r-devs/for-loops.html",
+    "title": "7  For Loops",
+    "section": "",
+    "text": "for loop syntax\nIn Rust, for loops are the easiest way to go over each item in a vector or array.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>For Loops</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/for-loops.html#exercise-1",
+    "href": "intro-to-rust-for-r-devs/for-loops.html#exercise-1",
+    "title": "7  For loops",
+    "section": "",
+    "text": "fizzbuzz with a vector\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    // for loop here\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>For loops</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/for-loops.html#for-loop-syntax",
+    "href": "intro-to-rust-for-r-devs/for-loops.html#for-loop-syntax",
+    "title": "7  For Loops",
+    "section": "",
+    "text": "for value in collection {\n    // do something with value\n}\n\nfn main() {\n    let nums = vec![1, 2, 3];\n    for n in nums {\n        println!(\"n is: {}\", n);\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>For Loops</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/for-loops.html#exercise",
+    "href": "intro-to-rust-for-r-devs/for-loops.html#exercise",
+    "title": "7  For Loops",
+    "section": "Exercise",
+    "text": "Exercise\nUsing a vector of integers, write a loop that prints:\n\n“Fizz” if divisible by 3\n“Buzz” if divisible by 5\n“FizzBuzz” if divisible by both\nThe number otherwise\n\nUse this vector: vec![1, 2, 3, 4, 5, 15]\n\nSolution\n\n\nView solution\n\nfn main() {\n    let nums = vec![1, 2, 3, 4, 5, 15];\n\n    for n in nums {\n        if n % 15 == 0 {\n            println!(\"FizzBuzz\");\n        } else if n % 3 == 0 {\n            println!(\"Fizz\");\n        } else if n % 5 == 0 {\n            println!(\"Buzz\");\n        } else {\n            println!(\"{}\", n);\n        }\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>For Loops</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/for-loops.html#scope",
+    "href": "intro-to-rust-for-r-devs/for-loops.html#scope",
+    "title": "7  For Loops",
+    "section": "Scope",
+    "text": "Scope\n\nValues outside of the for loop are accessible inside of it.\nValues created inside of the for loop cannot be accessed outside of it.\n\nExample: outer value used inside loop\nfn main() {\n    let greeting = \"Hi\";\n    let names = vec![\"Alice\", \"Bob\"];\n\n    for name in names {\n        println!(\"{} {}!\", greeting, name);\n    }\n}\nExample: inner value not usable outside loop\n\nThis does not compile!\n\nfn main() {\n    let numbers = vec![1, 2, 3];\n\n    for n in numbers {\n        let doubled = n * 2;\n        println!(\"{} doubled is {}\", n, doubled);\n    }\n\n    // println!(\"Last doubled: {}\", doubled); // ❌ `doubled` doesn't exist here\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>For Loops</span>"
     ]
   }
 ]

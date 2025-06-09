@@ -17,8 +17,11 @@
 ## Mapping over iterators
 
 - `.map()`
+. `enumerate()`
 - closures
 - `.collect()`
+
+Can do something with FizzBuzz again here
 
 ##  Exercise 2
 
@@ -46,3 +49,26 @@ fn standardize(data: Vec<f64>) -> Vec<f64> {
         .collect()
 }
 ```
+
+
+----
+
+Things to potentially cover
+
+`chain()`
+
+
+```rust
+fn main() {
+    let a1 = [1, 2, 3];
+    let a2 = [4, 5, 6];
+    a1.iter().chain(a2.iter());
+}
+```
+
+
+- `any()` rust equivalent of any(logical_statment) in R
+- `filter()`
+- `find()`
+- `fold()` - our own min/max functions?
+- `zip()`

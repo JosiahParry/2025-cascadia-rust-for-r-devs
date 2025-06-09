@@ -1,5 +1,28 @@
 # Mutability
 
+::: callout-tip
+Understand the difference between immutable and mutable variables.
+:::
+
+
+- `mut` keyword
+- modifies the object in place don't need to use `let`
+
+```rust
+fn main() {
+    let numbers = vec![1, 2, 3];
+    let mut doubled = 0;
+    for n in numbers {
+        doubled = n * 2;
+        println!("{} doubled is {}", n, doubled);
+    }
+
+    // ✅ compiles because `doubled` was declared
+    // _outside_ of the inner loop scope
+    println!("Last doubled: {}", doubled);
+}
+```
+
 ## Exercise
 
 Create a function called `mean()` that calculates the mean of a `Vec<f64>`

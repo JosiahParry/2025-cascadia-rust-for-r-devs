@@ -1,0 +1,6 @@
+# Mutable Vectors
+
+- cover mutable vectors
+- `.push()`
+- `.clear()`
+- creating vectors with Vec::new()

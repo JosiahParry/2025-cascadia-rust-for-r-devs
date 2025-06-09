@@ -1,1 +1,103 @@
-# For loops
+# For Loops
+
+::: callout-tip
+
+## Objective
+
+* Learn how to loop over a collection of values.
+* Apply logic to each value inside a loop.
+:::
+
+## `for` loop syntax
+
+```rust
+for value in collection {
+    // do something with value
+}
+```
+
+In Rust, `for` loops are the easiest way to go over each item in a vector or array.
+
+```rust
+fn main() {
+    let nums = vec![1, 2, 3];
+    for n in nums {
+        println!("n is: {}", n);
+    }
+}
+```
+
+
+## Scope
+
+* Values *outside* of the for loop are accessible inside of it.
+* Values created *inside* of the for loop cannot be accessed outside of it.
+
+
+**Example**: outer value used inside loop
+
+```rust
+fn main() {
+    let greeting = "Hi";
+    let names = vec!["Alice", "Bob"];
+
+    for name in names {
+        println!("{} {}!", greeting, name);
+    }
+}
+```
+
+**Example**: inner value not usable outside loop
+
+::: callout-danger
+This does not compile!
+:::
+
+```rust
+fn main() {
+    let numbers = vec![1, 2, 3];
+
+    for n in numbers {
+        let doubled = n * 2;
+        println!("{} doubled is {}", n, doubled);
+    }
+
+    // println!("Last doubled: {}", doubled); // ❌ `doubled` doesn't exist here
+}
+```
+
+## Exercise
+
+Using a vector of integers, write a loop that prints:
+
+* "Fizz" if divisible by 3
+* "Buzz" if divisible by 5
+* "FizzBuzz" if divisible by both
+* The number otherwise
+
+Use this vector: `vec![1, 2, 3, 4, 5, 15]`
+
+### Solution
+
+<details>
+<summary>View solution</summary>
+
+```rust
+fn main() {
+    let nums = vec![1, 2, 3, 4, 5, 15];
+
+    for n in nums {
+        if n % 15 == 0 {
+            println!("FizzBuzz");
+        } else if n % 3 == 0 {
+            println!("Fizz");
+        } else if n % 5 == 0 {
+            println!("Buzz");
+        } else {
+            println!("{}", n);
+        }
+    }
+}
+```
+
+</details>

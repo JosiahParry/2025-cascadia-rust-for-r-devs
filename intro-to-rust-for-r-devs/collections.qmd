@@ -1,20 +1,86 @@
-# Basic Collections
+# Arrays and Vectors
 
-## Introduce collections
+::: callout-tip
 
-- discuss arrays first
-- arrays are fixed size
-- vectors are not fixed sized
-- arrays are better for performance but much more difficult to use
-- creating vectors: `vec![]`
-- debug format for println!();
-- R is unique in that most things are vectorized that is not often the case
-- in order to use vectors we need to iterate
-- print the vector using debug format
+## Objective
+
+* Create and store many values of the same type.
+* Understand the difference between arrays and vectors.
+
+:::
+
+
+## Arrays
+
+Arrays in Rust are fixed in size and hold values of the same type. Since the size is known ahead of time, it makes them fast but inflexible.
 
 ```rust
 fn main() {
-    let x = vec![3, 6, 9, 12];
-    println!("Vector is: {:?}", x);
+    let arr = [10, 20, 30, 40];
+    println!("Array: {:?}", arr);
 }
 ```
+
+::: callout-note
+The `{:?}` syntax is used for a [**Debug**](https://doc.rust-lang.org/std/fmt/trait.Debug.html) representation of a variable. Using `{}` is used for [**Displaying**](https://doc.rust-lang.org/std/fmt/trait.Display.html) data.
+
+More often than not, using `{:?}` will be your best option.
+:::
+
+* Arrays use square brackets: `[1, 2, 3]`
+* Their size is known at compile time.
+* You can't add or remove elements.
+* Mostly used when performance is critical and size is known.
+
+
+
+## Vectors
+
+Vectors are like growable arrays. They live on the heap and are much more common in everyday Rust code. We'll explore how to modify them later, but for now, we can define them with values known at the start.
+
+```rust
+fn main() {
+    let v = vec![1, 2, 3, 4, 5];
+    println!("Vector: {:?}", v);
+}
+```
+
+* Create vectors using `vec![]`
+* You don’t need `mut` if you're not changing them.
+* Like arrays, all values must be the same type.
+
+In R, most things are vectorized. In Rust, we often **iterate** over collections to work with them.
+
+
+
+## Exercise
+
+
+* Create an array of 4 integers and print it.
+* Create a vector with 5 numbers and print it using `{:?}`.
+
+### Solution
+
+<details>
+<summary>View solution</summary>
+
+```rust
+fn main() {
+    let arr = [1, 2, 3, 4];
+    println!("Array: {:?}", arr);
+
+    let v = vec![10, 20, 30, 40, 50];
+    println!("Vector: {:?}", v);
+}
+```
+
+</details>
+
+
+----
+
+NOTES:
+
+TODO:
+
+add a bit on `.len()` and `.is_empty()`

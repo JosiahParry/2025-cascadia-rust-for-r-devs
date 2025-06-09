@@ -3,9 +3,29 @@
 ::: callout-tip
 ## Objective
 
-Understand control flow and basic operators in Rust. You will create the FizzBuzz program using Rust!
+Understand control flow and numeric operators in Rust. You will create the FizzBuzz program using Rust!
 
 :::
+
+## Numeric operators
+
+- `+` addition
+- `-` subtraction
+- `/` division
+- `^` exponentiation
+- `%` remainder
+
+
+## Logical Operators:
+
+Logical operators are quite similar to R. The key differe
+
+- `==` check equality
+- `!=` check inequality
+- `!` negate a logical value
+- `&&` logical AND comparison
+- `||` logical OR comparison
+
 
 ## Control flow
 
@@ -16,30 +36,38 @@ Each branch of the `if` statement must return the same type. For this portion of
 :::
 
 
+```rust
+if x == y {
+  // do something
+} else {
+  // do something else
+}
+```
+
 The key difference is that the use of parentheses is not necessary for the conditional statement.
-
-
-## Logical Operators:
-
-- `==`
-- `!=`
-- `!`
-- `&&`
-- `||`
-
-
 
 
 ## Exercise
 
-- Create a FizzBuzz program
+This exercise you will create the famous FizzBuzz program.
 
+For this, create a variable `i`. The rules are:
+
+- when `i` is a multiple of `3`, print `Fizz`
+- when `i` is a multiple of `5`, print `Buzz`
+- when `i` is a multiple of _both_ `3` and `5`, print `FizzBuzz`
+
+
+### Solution
+
+<details>
+<summary>View solution</summary>
 ```rust
 fn main() {
-    // let i = 15;
-    // let i = 3;
-    // let i = 5;
-    let i = 47;
+    // let i = 15; // FizzBuzz
+    // let i = 3; // Fizz
+    // let i = 5; // Buzz
+    let i = 47; // Nothing
     if (i % 3 == 0) && (i % 5 == 0) {
         println!("FizzBuzz");
     } else if i % 3 == 0 {
@@ -49,3 +77,4 @@ fn main() {
     }
 }
 ```
+</details>
