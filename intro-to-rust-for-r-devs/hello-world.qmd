@@ -1,25 +1,55 @@
 # Hello, World!
 
+
+::: callout-tip
+## Objective
+
+- Create a rust crate
+- Understand the structure of a rust crate
+- Use `cargo run` to run a binary
+- Use the `println!()` macro
+:::
+
 ## Your first crate
 
-Let's create your first crate
+Rust uses a tool called `cargo` for building, checking, and managing dependencies.
 
-```shell
+To create a new Rust crate, use `cargo new name-of-crate`.
+
+## Crate anatomy
+
+Two types of crates: binary, library.
+
+::: aside
+This first workshop we will work only with a binary crate. We will create a library in the second half of the day.
+:::
+
+Binary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with `Rscript main.R`
+
+## Exercise
+
+- Create a new Rust crate called `intro-to-rust`
+
+```bash
+#| code-fold: true
+#| code-summary: Show solution
 cargo new intro-to-rust
 ```
 
 ## Crate anatomy
 
-Two types of crates: binary, library. This first workshop we will work only with a binary crate.
+A new crate looks like this:
 
-Binary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with `Rscript main.R`
+```
+intro-to-rust/
+├── Cargo.toml      # Metadata & dependencies (like DESCRIPTION)
+├── Cargo.lock      # Dependency versions (like renv.lock)
+└── src/
+    └── main.rs     # Entry point — like main.R
+```
 
-- `src/` where your source code goes
-- `src/main.rs` the primary file for your binary
-- Cargo.toml: like a `DESCRIPTION` file
-- Cargo.lock: like an `renv.lock` file
 
-## Hello world
+## Hello, world!
 
 - The hello world is always prepopulated.
 - The `main()` function is required.
@@ -42,3 +72,80 @@ fn main() {
 - uses format strings `"{}"` is a placeholder for something that can be _displayed_
 - not everything can be displayed, something only have a **debug** implementation we can use `{:?}`
   - recommend keeping this in mind for later.
+
+----
+
+# Hello, World!
+
+## Objective
+
+Get comfortable with creating and running a basic Rust program. Understand the structure of a binary crate and use `println!()` to print output.
+
+---
+
+## Exercise
+
+> ✅ Create your first Rust project:
+
+```bash
+cargo new intro-to-rust
+cd intro-to-rust
+cargo run
+```
+
+You should see: `Hello, world!`
+
+---
+
+## Solution
+
+Rust projects are called **crates**. By default, `cargo new` creates a **binary crate** — a standalone program (like a script you run with `Rscript`).
+
+
+
+---
+
+## The Hello World Program
+
+Rust adds a working program for you. Open `src/main.rs`:
+
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+* `main()` is required — it’s where execution starts.
+* `println!()` prints to the terminal.
+* To run your program:
+
+```shell
+cargo run
+```
+
+---
+
+## `println!()` is a Macro
+
+* Macros have a `!`, like `println!()`.
+* Think of it like `print()` in R, but explicit.
+* It supports format strings:
+
+```rust
+let name = "Josiah";
+println!("Hello, {}!", name);  // → Hello, Josiah!
+```
+
+* `{}` works if the value can be **displayed**.
+* Use `{:?}` for **debug output** (like `str()` or `dput()` in R):
+
+```rust
+let v = vec![1, 2, 3];
+println!("{:?}", v);  // → [1, 2, 3]
+```
+
+---
+
+## TL;DR
+
+You created a project, ran a binary, and printed output — the Rust way.

@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Rust for R Developers",
     "section": "",
-    "text": "0.1 Setting up\nBefore we can start, we need to get our house in order. We need to install:",
+    "text": "Setting up\nBefore we can start, we need to get our house in order. We need to install:",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
     ]
@@ -23,8 +23,8 @@
     "objectID": "index.html#install-positron",
     "href": "index.html#install-positron",
     "title": "Rust for R Developers",
-    "section": "0.2 Install Positron",
-    "text": "0.2 Install Positron\nDownload the appropriate Positron installer from the downloads page.\nOpen the extensions pane (or press shift + cmd + x).\n\nsearch for rust analyzer and install\nsearch for even better toml and install",
+    "section": "Install Positron",
+    "text": "Install Positron\nDownload the appropriate Positron installer from the downloads page.\nOpen the extensions pane (or press shift + cmd + x).\n\nsearch for rust analyzer and install\nsearch for even better toml and install",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
     ]
@@ -33,8 +33,8 @@
     "objectID": "index.html#install-rust",
     "href": "index.html#install-rust",
     "title": "Rust for R Developers",
-    "section": "0.3 Install rust",
-    "text": "0.3 Install rust\nTo install Rust, please use rustup. If you use a system installation via brew, apt, dnf, etc you will likely run into issues. I will be able to help debug these.\nFor installing Rust on Mac / Unix / Linux please run:\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n\n0.3.1 Windows\nIf using Windows download the appropriate installer. Then, once your installation is complete, from your command prompt run:\nrustup target add x86_64-pc-windows-gnu\nThis is a compilation target that is required for building extendr packages on Windows.",
+    "section": "Install rust",
+    "text": "Install rust\nTo install Rust, please use rustup. If you use a system installation via brew, apt, dnf, etc you will likely run into issues. I will be able to help debug these.\nFor installing Rust on Mac / Unix / Linux please run:\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n\nWindows\nIf using Windows download the appropriate installer. Then, once your installation is complete, from your command prompt run:\nrustup target add x86_64-pc-windows-gnu\nThis is a compilation target that is required for building extendr packages on Windows.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
     ]
@@ -44,7 +44,7 @@
     "href": "intro-to-rust-for-r-devs/index.html",
     "title": "2  Overview",
     "section": "",
-    "text": "2.1 Timeline\nWe’ve got 3 hours to cover a lot of ground!",
+    "text": "Timeline\nWe’ve got 3 hours to cover a lot of ground!",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Overview</span>"
@@ -64,78 +64,78 @@
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html",
     "href": "intro-to-rust-for-r-devs/hello-world.html",
-    "title": "3  Hello, World!",
+    "title": "4  Hello, World!",
     "section": "",
-    "text": "3.1 Your first crate\nLet’s create your first crate",
+    "text": "Your first crate\nRust uses a tool called cargo for building, checking, and managing dependencies.\nTo create a new Rust crate, use cargo new name-of-crate.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#your-first-crate",
     "href": "intro-to-rust-for-r-devs/hello-world.html#your-first-crate",
-    "title": "3  Hello, World!",
-    "section": "",
-    "text": "cargo new intro-to-rust",
+    "title": "4  Hello, World!",
+    "section": "Your first crate",
+    "text": "Your first crate\nLet’s create your first crate\ncargo new intro-to-rust",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
     "href": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
-    "title": "3  Hello, World!",
-    "section": "3.2 Crate anatomy",
-    "text": "3.2 Crate anatomy\nTwo types of crates: binary, library. This first workshop we will work only with a binary crate.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R\n\nsrc/ where your source code goes\nsrc/main.rs the primary file for your binary\nCargo.toml: like a DESCRIPTION file\nCargo.lock: like an renv.lock file",
+    "title": "4  Hello, World!",
+    "section": "Crate anatomy",
+    "text": "Crate anatomy\nTwo types of crates: binary, library.\n\n\nThis first workshop we will work only with a binary crate. We will create a library in the second half of the day.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#hello-world",
     "href": "intro-to-rust-for-r-devs/hello-world.html#hello-world",
-    "title": "3  Hello, World!",
-    "section": "3.3 Hello world",
-    "text": "3.3 Hello world\n\nThe hello world is always prepopulated.\nThe main() function is required.\nthe contents of the main() function are what is executed by your binary crate\nto run your binary, from the command line we write cargo run\nthis will compile your code and then run it\n\nfn main() {\n    println!(\"Hello, world!\");\n}",
+    "title": "4  Hello, World!",
+    "section": "Hello, world!",
+    "text": "Hello, world!\n\nThe hello world is always prepopulated.\nThe main() function is required.\nthe contents of the main() function are what is executed by your binary crate\nto run your binary, from the command line we write cargo run\nthis will compile your code and then run it\n\nfn main() {\n    println!(\"Hello, world!\");\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#println-macro",
     "href": "intro-to-rust-for-r-devs/hello-world.html#println-macro",
-    "title": "3  Hello, World!",
-    "section": "3.4 println!() macro",
-    "text": "3.4 println!() macro\n\nmacros are different than functions\nyou can tell them apart by the presence of the !\nprintln! is a handy helper to help us print things out to the terminal, otherwise we wont be able to see output\nin R printing is implicit, rust it is explicit—and kind of confusing to be honest\nuses format strings \"{}\" is a placeholder for something that can be displayed\nnot everything can be displayed, something only have a debug implementation we can use {:?}\n\nrecommend keeping this in mind for later.",
+    "title": "4  Hello, World!",
+    "section": "println!() macro",
+    "text": "println!() macro\n\nmacros are different than functions\nyou can tell them apart by the presence of the !\nprintln! is a handy helper to help us print things out to the terminal, otherwise we wont be able to see output\nin R printing is implicit, rust it is explicit—and kind of confusing to be honest\nuses format strings \"{}\" is a placeholder for something that can be displayed\nnot everything can be displayed, something only have a debug implementation we can use {:?}\n\nrecommend keeping this in mind for later.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html",
-    "title": "5  Control Flow",
+    "title": "6  Control Flow",
     "section": "",
-    "text": "5.1 Exercise",
+    "text": "Exercise",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
-    "title": "5  Control Flow",
+    "title": "6  Control Flow",
     "section": "",
     "text": "Create a FizzBuzz program\n\nfn main() {\n    // let i = 15;\n    // let i = 3;\n    // let i = 5;\n    let i = 47;\n    if (i % 3 == 0) && (i % 5 == 0) {\n        println!(\"FizzBuzz\")\n    } else if i % 3 == 0 {\n        println!(\"Fizz\")\n    } else if i % 5 == 0 {\n        println!(\"Buzz\")\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
@@ -279,6 +279,171 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#exercise",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#exercise",
+    "title": "4  Hello, World!",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate a new Rust crate called intro-to-rust\n\n#| code-fold: true\n#| code-summary: Show solution\ncargo new intro-to-rust",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#solution",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#solution",
+    "title": "4  Hello, World!",
+    "section": "Solution",
+    "text": "Solution\nRust projects are called crates. By default, cargo new creates a binary crate — a standalone program (like a script you run with Rscript).",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#objective-1",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#objective-1",
+    "title": "4  Hello, World!",
+    "section": "Objective",
+    "text": "Objective\nGet comfortable with creating and running a basic Rust program. Understand the structure of a binary crate and use println!() to print output.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#exercise-1",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#exercise-1",
+    "title": "4  Hello, World!",
+    "section": "Exercise",
+    "text": "Exercise\n\n✅ Create your first Rust project:\n\ncargo new intro-to-rust\ncd intro-to-rust\ncargo run\nYou should see: Hello, world!",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#solution-1",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#solution-1",
+    "title": "4  Hello, World!",
+    "section": "Solution",
+    "text": "Solution\nRust projects are called crates. By default, cargo new creates a binary crate — a standalone program (like a script you run with Rscript).",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy-1",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy-1",
+    "title": "4  Hello, World!",
+    "section": "Crate anatomy",
+    "text": "Crate anatomy\nA new crate looks like this:\nintro-to-rust/\n├── Cargo.toml      # Metadata & dependencies (like DESCRIPTION)\n├── Cargo.lock      # Dependency versions (like renv.lock)\n└── src/\n    └── main.rs     # Entry point — like main.R",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#the-hello-world-program",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#the-hello-world-program",
+    "title": "4  Hello, World!",
+    "section": "The Hello World Program",
+    "text": "The Hello World Program\nRust adds a working program for you. Open src/main.rs:\nfn main() {\n    println!(\"Hello, world!\");\n}\n\nmain() is required — it’s where execution starts.\nprintln!() prints to the terminal.\nTo run your program:\n\ncargo run",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#println-is-a-macro",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#println-is-a-macro",
+    "title": "4  Hello, World!",
+    "section": "println!() is a Macro",
+    "text": "println!() is a Macro\n\nMacros have a !, like println!().\nThink of it like print() in R, but explicit.\nIt supports format strings:\n\nlet name = \"Josiah\";\nprintln!(\"Hello, {}!\", name);  // → Hello, Josiah!\n\n{} works if the value can be displayed.\nUse {:?} for debug output (like str() or dput() in R):\n\nlet v = vec![1, 2, 3];\nprintln!(\"{:?}\", v);  // → [1, 2, 3]",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#tldr",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#tldr",
+    "title": "4  Hello, World!",
+    "section": "TL;DR",
+    "text": "TL;DR\nYou created a project, ran a binary, and printed output — the Rust way.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/why-rust.html",
+    "href": "intro-to-rust-for-r-devs/why-rust.html",
+    "title": "3  Why Rust?",
+    "section": "",
+    "text": "Reasoning\nRust is a programming language that’s fast, safe, and surprisingly friendly to use. Unlike R, which runs code line by line, Rust turns your code into a standalone program that runs directly on your computer. This makes it much faster and more efficient, similar to languages like C or C++. But where those languages can be hard to use and easy to break, Rust was built to be safer and more helpful.\nRust is especially good at preventing bugs related to memory and parallel code — the kind that can be really hard to track down in other languages. And it comes with tools and error messages that make writing and fixing code feel more approachable, even if you’re new to systems programming. Many R users find Rust refreshing: it’s strict, but in a way that teaches you better habits.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Why Rust?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/why-rust.html#objective",
+    "href": "intro-to-rust-for-r-devs/why-rust.html#objective",
+    "title": "3  Why Rust?",
+    "section": "",
+    "text": "Tip\n\n\n\n🧠 Think of Rust as “C for people who like error messages that actually help.”",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Why Rust?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/why-rust.html#concept",
+    "href": "intro-to-rust-for-r-devs/why-rust.html#concept",
+    "title": "3  Why Rust?",
+    "section": "Concept",
+    "text": "Concept\nRust is a programming language that’s fast, safe, and surprisingly friendly to use. Unlike R, which runs code line by line, Rust turns your code into a standalone program that runs directly on your computer. This makes it much faster and more efficient, similar to languages like C or C++. But where those languages can be hard to use and easy to break, Rust was built to be safer and more helpful.\nRust is especially good at preventing bugs related to memory and parallel code — the kind that can be really hard to track down in other languages. And it comes with tools and error messages that make writing and fixing code feel more approachable, even if you’re new to systems programming. Many R users find Rust refreshing: it’s strict, but in a way that teaches you better habits.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Why Rust?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/why-rust.html#tldr",
+    "href": "intro-to-rust-for-r-devs/why-rust.html#tldr",
+    "title": "3  Why Rust?",
+    "section": "TL;DR",
+    "text": "TL;DR\n\nR is interpreted. Code runs line by line.\nR (and Python) are built on C.\nC is compiled — it builds a binary that runs directly on your machine.\nRust is also compiled, like C, C++, Go, Java, and Fortran.\nThese languages are “close to the metal” — fast, efficient, and powerful.\nRust matches C++ in speed, but with some key advantages:\n\nMemory safety without a garbage collector (unlike Go), thanks to the borrow checker.\nFearless concurrency — Rust makes parallelism safer and easier.\nA great developer experience:\n\nHelpful, friendly compiler errors (Tidyverse-level DX).\nModern tooling (cargo, rust-analyzer, etc.).\n\n\nRust is easy to get started with and rewards best practices.\n\nWe won’t go deep into memory safety or concurrency today",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Why Rust?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/why-rust.html#reasoning",
+    "href": "intro-to-rust-for-r-devs/why-rust.html#reasoning",
+    "title": "3  Why Rust?",
+    "section": "Reasoning",
+    "text": "Reasoning\nRust is a programming language that’s fast, safe, and surprisingly friendly to use. Unlike R, which runs code line by line, Rust turns your code into a standalone program that runs directly on your computer. This makes it much faster and more efficient, similar to languages like C or C++. But where those languages can be hard to use and easy to break, Rust was built to be safer and more helpful.\nRust is especially good at preventing bugs related to memory and parallel code — the kind that can be really hard to track down in other languages. And it comes with tools and error messages that make writing and fixing code feel more approachable, even if you’re new to systems programming. Many R users find Rust refreshing: it’s strict, but in a way that teaches you better habits.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Why Rust?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy-2",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy-2",
+    "title": "4  Hello, World!",
+    "section": "Crate Anatomy",
+    "text": "Crate Anatomy\nA new crate looks like this:\nintro-to-rust/\n├── Cargo.toml      # Metadata & dependencies (like DESCRIPTION)\n├── Cargo.lock      # Dependency versions (like renv.lock)\n└── src/\n    └── main.rs     # Entry point — like main.R",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   }
 ]

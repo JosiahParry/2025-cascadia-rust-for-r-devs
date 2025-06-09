@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Hello, World! – Rust for R Developers</title>
+<title>4&nbsp; Hello, World! – Rust for R Developers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,17 +64,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro-to-rust-for-r-devs/for-loops.html" rel="next">
-<link href="../intro-to-rust-for-r-devs/index.html" rel="prev">
+<link href="../intro-to-rust-for-r-devs/fizz-buzz.html" rel="next">
+<link href="../intro-to-rust-for-r-devs/why-rust.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f868c3b369b738ce9afd17f71ee17ec3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/hello-world.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hello, World!</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/hello-world.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hello, World!</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -163,14 +163,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro-to-rust-for-r-devs/hello-world.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hello, World!</span></span></a>
+  <a href="../intro-to-rust-for-r-devs/why-rust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Why Rust?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro-to-rust-for-r-devs/for-loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">For loops</span></span></a>
+  <a href="../intro-to-rust-for-r-devs/hello-world.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hello, World!</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -181,38 +181,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../intro-to-rust-for-r-devs/for-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">For loops</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/collections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Collections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic Collections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/mutability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Mutability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mutability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iterators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iterators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/references-slices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">References and Slices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References and Slices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/structs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Defining Struct(ure)s</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Defining Struct(ure)s</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/enums.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Enum(eration)s</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Enum(eration)s</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Building Rust based R Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Building Rust based R Packages</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,19 +250,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#your-first-crate" id="toc-your-first-crate" class="nav-link active" data-scroll-target="#your-first-crate"><span class="header-section-number">3.1</span> Your first crate</a></li>
-  <li><a href="#crate-anatomy" id="toc-crate-anatomy" class="nav-link" data-scroll-target="#crate-anatomy"><span class="header-section-number">3.2</span> Crate anatomy</a></li>
-  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world"><span class="header-section-number">3.3</span> Hello world</a></li>
-  <li><a href="#println-macro" id="toc-println-macro" class="nav-link" data-scroll-target="#println-macro"><span class="header-section-number">3.4</span> <code>println!()</code> macro</a></li>
+  <li><a href="#your-first-crate" id="toc-your-first-crate" class="nav-link active" data-scroll-target="#your-first-crate">Your first crate</a></li>
+  <li><a href="#crate-anatomy" id="toc-crate-anatomy" class="nav-link" data-scroll-target="#crate-anatomy">Crate anatomy</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#crate-anatomy-1" id="toc-crate-anatomy-1" class="nav-link" data-scroll-target="#crate-anatomy-1">Crate anatomy</a></li>
+  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello, world!</a></li>
+  <li><a href="#println-macro" id="toc-println-macro" class="nav-link" data-scroll-target="#println-macro"><code>println!()</code> macro</a></li>
+  <li><a href="#hello-world-1" id="toc-hello-world-1" class="nav-link" data-scroll-target="#hello-world-1"><span class="header-section-number">5</span> Hello, World!</a>
+  <ul class="collapse">
+  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1">Objective</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#the-hello-world-program" id="toc-the-hello-world-program" class="nav-link" data-scroll-target="#the-hello-world-program">The Hello World Program</a></li>
+  <li><a href="#println-is-a-macro" id="toc-println-is-a-macro" class="nav-link" data-scroll-target="#println-is-a-macro"><code>println!()</code> is a Macro</a></li>
+  <li><a href="#tldr" id="toc-tldr" class="nav-link" data-scroll-target="#tldr">TL;DR</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/hello-world.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hello, World!</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/hello-world.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hello, World!</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hello, World!</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hello, World!</span></h1>
 </div>
 
 
@@ -273,24 +290,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="your-first-crate" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="your-first-crate"><span class="header-section-number">3.1</span> Your first crate</h2>
-<p>Let’s create your first crate</p>
-<pre class="shell"><code>cargo new intro-to-rust</code></pre>
-</section>
-<section id="crate-anatomy" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="crate-anatomy"><span class="header-section-number">3.2</span> Crate anatomy</h2>
-<p>Two types of crates: binary, library. This first workshop we will work only with a binary crate.</p>
-<p>Binary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with <code>Rscript main.R</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objective
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li><code>src/</code> where your source code goes</li>
-<li><code>src/main.rs</code> the primary file for your binary</li>
-<li>Cargo.toml: like a <code>DESCRIPTION</code> file</li>
-<li>Cargo.lock: like an <code>renv.lock</code> file</li>
+<li>Create a rust crate</li>
+<li>Understand the structure of a rust crate</li>
+<li>Use <code>cargo run</code> to run a binary</li>
+<li>Use the <code>println!()</code> macro</li>
 </ul>
+</div>
+</div>
+<section id="your-first-crate" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-crate">Your first crate</h2>
+<p>Rust uses a tool called <code>cargo</code> for building, checking, and managing dependencies.</p>
+<p>To create a new Rust crate, use <code>cargo new name-of-crate</code>.</p>
 </section>
-<section id="hello-world" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="hello-world"><span class="header-section-number">3.3</span> Hello world</h2>
+<section id="crate-anatomy" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="crate-anatomy">Crate anatomy</h2>
+<p>Two types of crates: binary, library.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>This first workshop we will work only with a binary crate. We will create a library in the second half of the day.</p>
+</div></div><p>Binary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with <code>Rscript main.R</code></p>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<ul>
+<li>Create a new Rust crate called <code>intro-to-rust</code></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Show solution</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new intro-to-rust</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="crate-anatomy-1" class="level2">
+<h2 class="anchored" data-anchor-id="crate-anatomy-1">Crate anatomy</h2>
+<p>A new crate looks like this:</p>
+<pre><code>intro-to-rust/
+├── Cargo.toml      # Metadata &amp; dependencies (like DESCRIPTION)
+├── Cargo.lock      # Dependency versions (like renv.lock)
+└── src/
+    └── main.rs     # Entry point — like main.R</code></pre>
+</section>
+<section id="hello-world" class="level2">
+<h2 class="anchored" data-anchor-id="hello-world">Hello, world!</h2>
 <ul>
 <li>The hello world is always prepopulated.</li>
 <li>The <code>main()</code> function is required.</li>
@@ -298,12 +348,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>to run your binary, from the command line we write <code>cargo run</code></li>
 <li>this will compile your code and then run it</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hello, world!"</span>)<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hello, world!"</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="println-macro" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="println-macro"><span class="header-section-number">3.4</span> <code>println!()</code> macro</h2>
+<section id="println-macro" class="level2">
+<h2 class="anchored" data-anchor-id="println-macro"><code>println!()</code> macro</h2>
 <ul>
 <li>macros are different than functions</li>
 <li>you can tell them apart by the presence of the <code>!</code></li>
@@ -315,8 +365,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>recommend keeping this in mind for later.</li>
 </ul></li>
 </ul>
+<hr>
+</section>
+<section id="hello-world-1" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Hello, World!</h1>
+<section id="objective-1" class="level2">
+<h2 class="anchored" data-anchor-id="objective-1">Objective</h2>
+<p>Get comfortable with creating and running a basic Rust program. Understand the structure of a binary crate and use <code>println!()</code> to print output.</p>
+<hr>
+</section>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise</h2>
+<blockquote class="blockquote">
+<p>✅ Create your first Rust project:</p>
+</blockquote>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new intro-to-rust</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> intro-to-rust</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should see: <code>Hello, world!</code></p>
+<hr>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<p>Rust projects are called <strong>crates</strong>. By default, <code>cargo new</code> creates a <strong>binary crate</strong> — a standalone program (like a script you run with <code>Rscript</code>).</p>
+<hr>
+</section>
+<section id="the-hello-world-program" class="level2">
+<h2 class="anchored" data-anchor-id="the-hello-world-program">The Hello World Program</h2>
+<p>Rust adds a working program for you. Open <code>src/main.rs</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hello, world!"</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>main()</code> is required — it’s where execution starts.</li>
+<li><code>println!()</code> prints to the terminal.</li>
+<li>To run your program:</li>
+</ul>
+<pre class="shell"><code>cargo run</code></pre>
+<hr>
+</section>
+<section id="println-is-a-macro" class="level2">
+<h2 class="anchored" data-anchor-id="println-is-a-macro"><code>println!()</code> is a Macro</h2>
+<ul>
+<li>Macros have a <code>!</code>, like <code>println!()</code>.</li>
+<li>Think of it like <code>print()</code> in R, but explicit.</li>
+<li>It supports format strings:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> name <span class="op">=</span> <span class="st">"Josiah"</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">"Hello, {}!"</span><span class="op">,</span> name)<span class="op">;</span>  <span class="co">// → Hello, Josiah!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>{}</code> works if the value can be <strong>displayed</strong>.</li>
+<li>Use <code>{:?}</code> for <strong>debug output</strong> (like <code>str()</code> or <code>dput()</code> in R):</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> v)<span class="op">;</span>  <span class="co">// → [1, 2, 3]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="tldr" class="level2">
+<h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
+<p>You created a project, ran a binary, and printed output — the Rust way.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -739,13 +849,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro-to-rust-for-r-devs/index.html" class="pagination-link" aria-label="Overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></span>
+      <a href="../intro-to-rust-for-r-devs/why-rust.html" class="pagination-link" aria-label="Why Rust?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Why Rust?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro-to-rust-for-r-devs/for-loops.html" class="pagination-link" aria-label="For loops">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">For loops</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../intro-to-rust-for-r-devs/fizz-buzz.html" class="pagination-link" aria-label="Control Flow">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
