@@ -119,45 +119,45 @@
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html",
-    "title": "6  Control Flow",
+    "title": "5  Control Flow",
     "section": "",
-    "text": "Exercise",
+    "text": "Control flow\nRust uses if, else, and else if statements just like R. Where each branch is delimted by curly braces.\nThe key difference is that the use of parentheses is not necessary for the conditional statement.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
-    "title": "6  Control Flow",
-    "section": "",
-    "text": "Create a FizzBuzz program\n\nfn main() {\n    // let i = 15;\n    // let i = 3;\n    // let i = 5;\n    let i = 47;\n    if (i % 3 == 0) && (i % 5 == 0) {\n        println!(\"FizzBuzz\")\n    } else if i % 3 == 0 {\n        println!(\"Fizz\")\n    } else if i % 5 == 0 {\n        println!(\"Buzz\")\n    }\n}",
+    "title": "5  Control Flow",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate a FizzBuzz program\n\nfn main() {\n    // let i = 15;\n    // let i = 3;\n    // let i = 5;\n    let i = 47;\n    if (i % 3 == 0) && (i % 5 == 0) {\n        println!(\"FizzBuzz\");\n    } else if i % 3 == 0 {\n        println!(\"Fizz\");\n    } else if i % 5 == 0 {\n        println!(\"Buzz\");\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/collections.html",
     "href": "intro-to-rust-for-r-devs/collections.html",
-    "title": "6  Basic Collections",
+    "title": "7  Basic Collections",
     "section": "",
-    "text": "6.1 Introduce collections",
+    "text": "Introduce collections",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Collections</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic Collections</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/collections.html#introduce-collections",
     "href": "intro-to-rust-for-r-devs/collections.html#introduce-collections",
-    "title": "6  Basic Collections",
+    "title": "7  Basic Collections",
     "section": "",
     "text": "discuss arrays first\narrays are fixed size\nvectors are not fixed sized\narrays are better for performance but much more difficult to use\ncreating vectors: vec![]\ndebug format for println!();\nR is unique in that most things are vectorized that is not often the case\nin order to use vectors we need to iterate\nprint the vector using debug format\n\nfn main() {\n    let x = vec![3, 6, 9, 12];\n    println!(\"Vector is: {:?}\", x);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Collections</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic Collections</span>"
     ]
   },
   {
@@ -466,6 +466,28 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#control-flow",
+    "href": "intro-to-rust-for-r-devs/fizz-buzz.html#control-flow",
+    "title": "5  Control Flow",
+    "section": "",
+    "text": "Warning\n\n\n\nEach branch of the if statement must return the same type. For this portion of the workshop, be sure to terminate each statement inside of the if statement so that nothing is returned.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#logical-operators",
+    "href": "intro-to-rust-for-r-devs/fizz-buzz.html#logical-operators",
+    "title": "5  Control Flow",
+    "section": "Logical Operators:",
+    "text": "Logical Operators:\n\n==\n!=\n!\n&&\n||",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   }
 ]

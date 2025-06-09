@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Control Flow – Rust for R Developers</title>
+<title>5&nbsp; Control Flow – Rust for R Developers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,17 +64,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro-to-rust-for-r-devs/collections.html" rel="next">
-<link href="../intro-to-rust-for-r-devs/for-loops.html" rel="prev">
+<link href="../intro-to-rust-for-r-devs/for-loops.html" rel="next">
+<link href="../intro-to-rust-for-r-devs/hello-world.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f868c3b369b738ce9afd17f71ee17ec3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,14 +175,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro-to-rust-for-r-devs/for-loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">For loops</span></span></a>
+  <a href="../intro-to-rust-for-r-devs/fizz-buzz.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro-to-rust-for-r-devs/fizz-buzz.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></span></a>
+  <a href="../intro-to-rust-for-r-devs/for-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">For loops</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,16 +250,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link active" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#control-flow" id="toc-control-flow" class="nav-link active" data-scroll-target="#control-flow">Control flow</a></li>
+  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators">Logical Operators:</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></h1>
 </div>
 
 
@@ -276,6 +278,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objective
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Understand control flow and basic operators in Rust. You will create the FizzBuzz program using Rust!</p>
+</div>
+</div>
+<section id="control-flow" class="level2">
+<h2 class="anchored" data-anchor-id="control-flow">Control flow</h2>
+<p>Rust uses <code>if</code>, <code>else</code>, and <code>else if</code> statements just like R. Where each branch is delimted by curly braces.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each branch of the <code>if</code> statement must return the same type. For this portion of the workshop, be sure to <strong>terminate</strong> each statement inside of the <code>if</code> statement so that nothing is returned.</p>
+</div>
+</div>
+<p>The key difference is that the use of parentheses is not necessary for the conditional statement.</p>
+</section>
+<section id="logical-operators" class="level2">
+<h2 class="anchored" data-anchor-id="logical-operators">Logical Operators:</h2>
+<ul>
+<li><code>==</code></li>
+<li><code>!=</code></li>
+<li><code>!</code></li>
+<li><code>&amp;&amp;</code></li>
+<li><code>||</code></li>
+</ul>
+</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ul>
@@ -287,11 +330,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let i = 5;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> i <span class="op">=</span> <span class="dv">47</span><span class="op">;</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;&amp;</span> (i <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>) <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"FizzBuzz"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"FizzBuzz"</span>)<span class="op">;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> i <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Fizz"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Fizz"</span>)<span class="op">;</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> i <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Buzz"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Buzz"</span>)<span class="op">;</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
@@ -718,13 +761,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro-to-rust-for-r-devs/for-loops.html" class="pagination-link" aria-label="For loops">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">For loops</span></span>
+      <a href="../intro-to-rust-for-r-devs/hello-world.html" class="pagination-link" aria-label="Hello, World!">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hello, World!</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro-to-rust-for-r-devs/collections.html" class="pagination-link" aria-label="Basic Collections">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic Collections</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../intro-to-rust-for-r-devs/for-loops.html" class="pagination-link" aria-label="For loops">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">For loops</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

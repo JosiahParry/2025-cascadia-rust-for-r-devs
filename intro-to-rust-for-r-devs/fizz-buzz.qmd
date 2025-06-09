@@ -1,5 +1,35 @@
 # Control Flow
 
+::: callout-tip
+## Objective
+
+Understand control flow and basic operators in Rust. You will create the FizzBuzz program using Rust!
+
+:::
+
+## Control flow
+
+Rust uses `if`, `else`, and `else if` statements just like R. Where each branch is delimted by curly braces.
+
+::: callout-warning
+Each branch of the `if` statement must return the same type. For this portion of the workshop, be sure to **terminate** each statement inside of the `if` statement so that nothing is returned.
+:::
+
+
+The key difference is that the use of parentheses is not necessary for the conditional statement.
+
+
+## Logical Operators:
+
+- `==`
+- `!=`
+- `!`
+- `&&`
+- `||`
+
+
+
+
 ## Exercise
 
 - Create a FizzBuzz program
@@ -11,11 +41,11 @@ fn main() {
     // let i = 5;
     let i = 47;
     if (i % 3 == 0) && (i % 5 == 0) {
-        println!("FizzBuzz")
+        println!("FizzBuzz");
     } else if i % 3 == 0 {
-        println!("Fizz")
+        println!("Fizz");
     } else if i % 5 == 0 {
-        println!("Buzz")
+        println!("Buzz");
     }
 }
 ```
