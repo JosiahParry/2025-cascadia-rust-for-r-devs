@@ -252,18 +252,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#your-first-crate" id="toc-your-first-crate" class="nav-link active" data-scroll-target="#your-first-crate">Your first crate</a></li>
   <li><a href="#crate-anatomy" id="toc-crate-anatomy" class="nav-link" data-scroll-target="#crate-anatomy">Crate anatomy</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#crate-anatomy-1" id="toc-crate-anatomy-1" class="nav-link" data-scroll-target="#crate-anatomy-1">Crate anatomy</a></li>
-  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello, world!</a></li>
-  <li><a href="#println-macro" id="toc-println-macro" class="nav-link" data-scroll-target="#println-macro"><code>println!()</code> macro</a></li>
-  <li><a href="#hello-world-1" id="toc-hello-world-1" class="nav-link" data-scroll-target="#hello-world-1"><span class="header-section-number">5</span> Hello, World!</a>
+  <li><a href="#main.rs" id="toc-main.rs" class="nav-link" data-scroll-target="#main.rs"><code>main.rs</code></a></li>
+  <li><a href="#println" id="toc-println" class="nav-link" data-scroll-target="#println"><code>println!()</code></a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a>
   <ul class="collapse">
-  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1">Objective</a></li>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
-  <li><a href="#the-hello-world-program" id="toc-the-hello-world-program" class="nav-link" data-scroll-target="#the-hello-world-program">The Hello World Program</a></li>
-  <li><a href="#println-is-a-macro" id="toc-println-is-a-macro" class="nav-link" data-scroll-target="#println-is-a-macro"><code>println!()</code> is a Macro</a></li>
-  <li><a href="#tldr" id="toc-tldr" class="nav-link" data-scroll-target="#tldr">TL;DR</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -321,15 +315,6 @@ Objective
 <p>This first workshop we will work only with a binary crate. We will create a library in the second half of the day.</p>
 </div></div><p>Binary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with <code>Rscript main.R</code></p>
 </section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<ul>
-<li>Create a new Rust crate called <code>intro-to-rust</code></li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Show solution</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new intro-to-rust</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
 <section id="crate-anatomy-1" class="level2">
 <h2 class="anchored" data-anchor-id="crate-anatomy-1">Crate anatomy</h2>
 <p>A new crate looks like this:</p>
@@ -339,91 +324,70 @@ Objective
 └── src/
     └── main.rs     # Entry point — like main.R</code></pre>
 </section>
-<section id="hello-world" class="level2">
-<h2 class="anchored" data-anchor-id="hello-world">Hello, world!</h2>
+<section id="main.rs" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="main.rs"><code>main.rs</code></h2>
+<p>When you create a new rust binary the file <code>src/main.rs</code> is prepopulated with:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>src/main.rs</code> defines what is executed when your <em>binary</em> is run.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hello, world!"</span>)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are a few things going on in here:</p>
 <ul>
-<li>The hello world is always prepopulated.</li>
-<li>The <code>main()</code> function is required.</li>
-<li>the contents of the <code>main()</code> function are what is executed by your binary crate</li>
-<li>to run your binary, from the command line we write <code>cargo run</code></li>
-<li>this will compile your code and then run it</li>
+<li>Functions are declared using the <code>fn</code> keyword</li>
+<li>The <code>main()</code> function is the entrypoint of the program (and required)</li>
+<li>Blocks of code are delimted using curly braces (like R &amp; C)</li>
+<li>Statements end with <code>;</code></li>
+<li><code>println!()</code> is a macro (notice the <code>!</code>) which is used to print to <code>stdout</code></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hello, world!"</span>)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="println-macro" class="level2">
-<h2 class="anchored" data-anchor-id="println-macro"><code>println!()</code> macro</h2>
-<ul>
-<li>macros are different than functions</li>
-<li>you can tell them apart by the presence of the <code>!</code></li>
-<li>println! is a handy helper to help us print things out to the terminal, otherwise we wont be able to see output</li>
-<li>in R printing is implicit, rust it is explicit—and kind of confusing to be honest</li>
-<li>uses format strings <code>"{}"</code> is a placeholder for something that can be <em>displayed</em></li>
-<li>not everything can be displayed, something only have a <strong>debug</strong> implementation we can use <code>{:?}</code>
-<ul>
-<li>recommend keeping this in mind for later.</li>
-</ul></li>
-</ul>
-<hr>
-</section>
-<section id="hello-world-1" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Hello, World!</h1>
-<section id="objective-1" class="level2">
-<h2 class="anchored" data-anchor-id="objective-1">Objective</h2>
-<p>Get comfortable with creating and running a basic Rust program. Understand the structure of a binary crate and use <code>println!()</code> to print output.</p>
-<hr>
-</section>
-<section id="exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1">Exercise</h2>
-<blockquote class="blockquote">
-<p>✅ Create your first Rust project:</p>
-</blockquote>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new intro-to-rust</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> intro-to-rust</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should see: <code>Hello, world!</code></p>
-<hr>
-</section>
-<section id="solution" class="level2">
-<h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<p>Rust projects are called <strong>crates</strong>. By default, <code>cargo new</code> creates a <strong>binary crate</strong> — a standalone program (like a script you run with <code>Rscript</code>).</p>
-<hr>
-</section>
-<section id="the-hello-world-program" class="level2">
-<h2 class="anchored" data-anchor-id="the-hello-world-program">The Hello World Program</h2>
-<p>Rust adds a working program for you. Open <code>src/main.rs</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hello, world!"</span>)<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><code>main()</code> is required — it’s where execution starts.</li>
-<li><code>println!()</code> prints to the terminal.</li>
-<li>To run your program:</li>
-</ul>
-<pre class="shell"><code>cargo run</code></pre>
-<hr>
-</section>
-<section id="println-is-a-macro" class="level2">
-<h2 class="anchored" data-anchor-id="println-is-a-macro"><code>println!()</code> is a Macro</h2>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>When a program writes to the console it does so through file connections called standard output (<code>stdout</code>) and standard error (<code>stderr</code>).</p>
+<p>When we print a message with <code>print()</code> or <code>message()</code> in R, we print to stdout. When we make a warning or error using <code>stop()</code> or <code>warning()</code> in R, that is writing to <code>stderr</code>.</p>
+</div></div></section>
+<section id="println" class="level2">
+<h2 class="anchored" data-anchor-id="println"><code>println!()</code></h2>
 <ul>
 <li>Macros have a <code>!</code>, like <code>println!()</code>.</li>
 <li>Think of it like <code>print()</code> in R, but explicit.</li>
 <li>It supports format strings:</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> name <span class="op">=</span> <span class="st">"Josiah"</span><span class="op">;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">"Hello, {}!"</span><span class="op">,</span> name)<span class="op">;</span>  <span class="co">// → Hello, Josiah!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><code>{}</code> works if the value can be <strong>displayed</strong>.</li>
-<li>Use <code>{:?}</code> for <strong>debug output</strong> (like <code>str()</code> or <code>dput()</code> in R):</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> v)<span class="op">;</span>  <span class="co">// → [1, 2, 3]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> name <span class="op">=</span> <span class="st">"Josiah"</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">"Hello, {}!"</span><span class="op">,</span> name)<span class="op">;</span>  <span class="co">// -&gt; Hello, Josiah!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tldr" class="level2">
-<h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
-<p>You created a project, ran a binary, and printed output — the Rust way.</p>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<ul>
+<li>In your terminal, create a new rust crate called <code>intro-to-rust</code></li>
+<li>Open the new rust crate in Positron</li>
+<li>Run the hello world program</li>
+<li>Create variable called <code>name</code> with your name</li>
+<li>Print <code>Hello, {name}!</code> using <code>println!()</code></li>
+</ul>
+<section id="solution" class="level3">
+<h3 class="anchored" data-anchor-id="solution">Solution</h3>
+<details>
+<summary>
+View solution
+</summary>
+<p>In <code>src/main.rs</code></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> name <span class="op">=</span> <span class="st">"Josiah"</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hello, {name}!"</span>)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To run it navigate to your terminal and then run <code>cargo run</code>.</p>
+</details>
 
 
 </section>

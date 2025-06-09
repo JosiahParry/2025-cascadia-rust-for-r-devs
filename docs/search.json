@@ -286,7 +286,7 @@
     "href": "intro-to-rust-for-r-devs/hello-world.html#exercise",
     "title": "4  Hello, World!",
     "section": "Exercise",
-    "text": "Exercise\n\nCreate a new Rust crate called intro-to-rust\n\n#| code-fold: true\n#| code-summary: Show solution\ncargo new intro-to-rust",
+    "text": "Exercise\n\nIn your terminal, create a new rust crate called intro-to-rust\nOpen the new rust crate in Positron\nRun the hello world program\nCreate variable called name with your name\nPrint Hello, {name}! using println!()\n\n\nSolution\n\n\nView solution\n\nIn src/main.rs\nfn main() {\n    let name = \"Josiah\";\n    println!(\"Hello, {name}!\");\n}\nTo run it navigate to your terminal and then run cargo run.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
@@ -441,6 +441,28 @@
     "title": "4  Hello, World!",
     "section": "Crate Anatomy",
     "text": "Crate Anatomy\nA new crate looks like this:\nintro-to-rust/\n├── Cargo.toml      # Metadata & dependencies (like DESCRIPTION)\n├── Cargo.lock      # Dependency versions (like renv.lock)\n└── src/\n    └── main.rs     # Entry point — like main.R",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#main.rs",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#main.rs",
+    "title": "4  Hello, World!",
+    "section": "main.rs",
+    "text": "main.rs\nWhen you create a new rust binary the file src/main.rs is prepopulated with:\n\n\n\n\n\n\nTip\n\n\n\nsrc/main.rs defines what is executed when your binary is run.\n\n\nfn main() {\n    println!(\"Hello, world!\");\n}\nThere are a few things going on in here:\n\nFunctions are declared using the fn keyword\nThe main() function is the entrypoint of the program (and required)\nBlocks of code are delimted using curly braces (like R & C)\nStatements end with ;\nprintln!() is a macro (notice the !) which is used to print to stdout\n\n\n\nWhen a program writes to the console it does so through file connections called standard output (stdout) and standard error (stderr).\nWhen we print a message with print() or message() in R, we print to stdout. When we make a warning or error using stop() or warning() in R, that is writing to stderr.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/hello-world.html#println",
+    "href": "intro-to-rust-for-r-devs/hello-world.html#println",
+    "title": "4  Hello, World!",
+    "section": "println!()",
+    "text": "println!()\n\nMacros have a !, like println!().\nThink of it like print() in R, but explicit.\nIt supports format strings:\n\nlet name = \"Josiah\";\nprintln!(\"Hello, {}!\", name);  // -&gt; Hello, Josiah!",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Hello, World!</span>"
