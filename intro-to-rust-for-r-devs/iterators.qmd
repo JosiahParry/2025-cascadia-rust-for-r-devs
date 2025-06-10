@@ -1,6 +1,10 @@
 # Iterators
 
 - The goal of this section is to go over iterators.
+- `.iter()` does not _move_ (consume) the item `.into_iter()` does
+- each element of `.iter()` is a reference whereas `.into_iter()` gives you the value itself
+- a for loop uses `.into_iter()` (consuming)
+
 - First cover `.into_iter()` to create a consuming iterator this way the inner type is not a reference
 - We can talk about the basic methods for iterators:
     - `.sum()`
@@ -9,16 +13,11 @@
     - `.min()`: not floating point arith issues here
     - `.max()`: note floating point arith issues here
     - `.enumerate()`
-- should we touch on iter() here? we haven't yet talked about references. ideally we will have the students write the mean with `Vec<f64>` here
+
 - then the next section we can
 
 ## Exercises
 
 - calculate the mean using an iterator
 - use an enumerated for loop to sum only even numbers
-
-
-
-##  Exercise 1
-
-- Rewrite the `mean()` function to use an iterator instead of a for loop
+- calculate the standard deviation

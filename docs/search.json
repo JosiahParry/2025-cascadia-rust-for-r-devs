@@ -649,7 +649,7 @@
     "href": "intro-to-rust-for-r-devs/iterators.html#exercises",
     "title": "12  Iterators",
     "section": "",
-    "text": "calculate the mean using an iterator\nuse an enumerated for loop to sum only even numbers",
+    "text": "calculate the mean using an iterator\nuse an enumerated for loop to sum only even numbers\ncalculate the standard deviation",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
