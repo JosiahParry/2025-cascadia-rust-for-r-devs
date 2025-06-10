@@ -185,12 +185,12 @@
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html",
     "href": "intro-to-rust-for-r-devs/iterators.html",
-    "title": "11  Iterators",
+    "title": "12  Iterators",
     "section": "",
     "text": "Exercises",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
@@ -207,12 +207,12 @@
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
-    "title": "11  Iterators",
+    "title": "12  Iterators",
     "section": "Exercise 1",
     "text": "Exercise 1\n\nRewrite the mean() function to use an iterator instead of a for loop",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
@@ -647,12 +647,12 @@
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercises",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercises",
-    "title": "11  Iterators",
+    "title": "12  Iterators",
     "section": "",
     "text": "calculate the mean using an iterator\nuse an enumerated for loop to sum only even numbers",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
@@ -704,7 +704,7 @@
     "href": "intro-to-rust-for-r-devs/references-slices.html",
     "title": "11  Ownership",
     "section": "",
-    "text": "Exercise 1\nrewrite mean() to use a reference to `Vec",
+    "text": "Borrowing",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
@@ -714,8 +714,41 @@
     "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
     "title": "11  Ownership",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nrewrite mean() to use a reference to `Vec\n\nSolution\nfn mean(x: &Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    let n = x.len();\n\n    for xi in x {\n        total += xi;\n    }\n    total / n as f64\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
+    "title": "11  Ownership",
     "section": "",
-    "text": "Solution\nfn mean(x: &Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    let n = x.len();\n\n    for xi in x {\n        total += xi;\n    }\n    total / n as f64\n}\n\n\nreference\nslice\nmutable reference",
+    "text": "however it can be BORROWED many times\nWe want to borrow whenever we can\nborrowing is recognized by the & character in front of a variable\nthis means we can use its value by reference\nwe cannot modify its value nor we can we move it.\nonly borrow it.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#slices",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#slices",
+    "title": "11  Ownership",
+    "section": "Slices",
+    "text": "Slices\n\na contiguous block of the same type\navailable only as references\nwe always know the length of a slice i.e. .len() is available\ndenoted as &[T] (again remember T is a generic type)—e.g. &[f64] or &[i32]\nin general, if we can use a slice we should\nif we cannot use a slice, use a reference\nif we cannot use a reference move it",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#exercise",
+    "title": "11  Ownership",
+    "section": "Exercise",
+    "text": "Exercise\n\nRewrite mean() to use a slice of f64\n\n\nSolution\nfn mean(x: &[f64]) -&gt; f64 {\n    let mut total = 0.0;\n    let n = x.len();\n\n    for xi in x {\n        total += xi;\n    }\n    total / n as f64\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"

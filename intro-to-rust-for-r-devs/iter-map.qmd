@@ -5,7 +5,7 @@ This section we cover:
 - map()
 - closures
 - collect()
-
+- turbofish
 
 ## Mapping over iterators
 

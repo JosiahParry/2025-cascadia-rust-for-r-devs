@@ -5,9 +5,11 @@
 - If we try running this function _twice_ our code wont compile
 - This is because `x` was _moved_.
 - In Rust a variable can be used only ONCE
+
+
+## Borrowing
+
 - however it can be BORROWED many times
-
-
 - We want to borrow whenever we can
 - borrowing is recognized by the `&` character in front of a variable
 - this means we can use its value by _reference_
@@ -31,11 +33,33 @@ fn mean(x: &Vec<f64>) -> f64 {
     }
     total / n as f64
 }
-
-
 ```
 
 
-- reference
-- slice
-- mutable reference
+## Slices
+
+- a contiguous block of the same type
+- available only as references
+- we always know the length of a slice i.e. `.len()` is available
+- denoted as `&[T]` (again remember `T` is a generic type)—e.g. `&[f64]` or `&[i32]`
+- in general, if we can use a slice we should
+- if we cannot use a slice, use a reference
+- if we cannot use a reference move it
+
+## Exercise
+
+- Rewrite `mean()` to use a slice of f64
+
+### Solution
+
+```rust
+fn mean(x: &[f64]) -> f64 {
+    let mut total = 0.0;
+    let n = x.len();
+
+    for xi in x {
+        total += xi;
+    }
+    total / n as f64
+}
+```

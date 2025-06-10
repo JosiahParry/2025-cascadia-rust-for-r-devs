@@ -262,9 +262,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link active" data-scroll-target="#exercise-1">Exercise 1</a>
+  <li><a href="#borrowing" id="toc-borrowing" class="nav-link active" data-scroll-target="#borrowing">Borrowing</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a>
   <ul class="collapse">
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  </ul></li>
+  <li><a href="#slices" id="toc-slices" class="nav-link" data-scroll-target="#slices">Slices</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a>
+  <ul class="collapse">
+  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1">Solution</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -292,18 +298,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <ul>
-<li><p>last exercise we defined a function that takes <code>x: Vec&lt;f64&gt;</code></p></li>
-<li><p>this <em>comsumes</em> the vector</p></li>
-<li><p>If we try running this function <em>twice</em> our code wont compile</p></li>
-<li><p>This is because <code>x</code> was <em>moved</em>.</p></li>
-<li><p>In Rust a variable can be used only ONCE</p></li>
-<li><p>however it can be BORROWED many times</p></li>
-<li><p>We want to borrow whenever we can</p></li>
-<li><p>borrowing is recognized by the <code>&amp;</code> character in front of a variable</p></li>
-<li><p>this means we can use its value by <em>reference</em></p></li>
-<li><p>we cannot modify its value nor we can we move it.</p></li>
-<li><p>only <em>borrow</em> it.</p></li>
+<li>last exercise we defined a function that takes <code>x: Vec&lt;f64&gt;</code></li>
+<li>this <em>comsumes</em> the vector</li>
+<li>If we try running this function <em>twice</em> our code wont compile</li>
+<li>This is because <code>x</code> was <em>moved</em>.</li>
+<li>In Rust a variable can be used only ONCE</li>
 </ul>
+<section id="borrowing" class="level2">
+<h2 class="anchored" data-anchor-id="borrowing">Borrowing</h2>
+<ul>
+<li>however it can be BORROWED many times</li>
+<li>We want to borrow whenever we can</li>
+<li>borrowing is recognized by the <code>&amp;</code> character in front of a variable</li>
+<li>this means we can use its value by <em>reference</em></li>
+<li>we cannot modify its value nor we can we move it.</li>
+<li>only <em>borrow</em> it.</li>
+</ul>
+</section>
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <p>rewrite <code>mean()</code> to use a <em>reference</em> to `Vec<f64></f64></p>
@@ -317,13 +328,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> xi<span class="op">;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    total <span class="op">/</span> n <span class="kw">as</span> <span class="dt">f64</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="slices" class="level2">
+<h2 class="anchored" data-anchor-id="slices">Slices</h2>
 <ul>
-<li>reference</li>
-<li>slice</li>
-<li>mutable reference</li>
+<li>a contiguous block of the same type</li>
+<li>available only as references</li>
+<li>we always know the length of a slice i.e.&nbsp;<code>.len()</code> is available</li>
+<li>denoted as <code>&amp;[T]</code> (again remember <code>T</code> is a generic type)—e.g.&nbsp;<code>&amp;[f64]</code> or <code>&amp;[i32]</code></li>
+<li>in general, if we can use a slice we should</li>
+<li>if we cannot use a slice, use a reference</li>
+<li>if we cannot use a reference move it</li>
 </ul>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<ul>
+<li>Rewrite <code>mean()</code> to use a slice of f64</li>
+</ul>
+<section id="solution-1" class="level3">
+<h3 class="anchored" data-anchor-id="solution-1">Solution</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> mean(x<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">f64</span>]) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> total <span class="op">=</span> <span class="dv">0.0</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> n <span class="op">=</span> x<span class="op">.</span>len()<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xi <span class="kw">in</span> x <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> xi<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    total <span class="op">/</span> n <span class="kw">as</span> <span class="dt">f64</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
