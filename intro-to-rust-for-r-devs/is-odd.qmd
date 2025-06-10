@@ -1,24 +1,75 @@
 # Functions
 
-## `is_even()` & `is_odd()`
+::: callout-tip
+Learn how to define and use your own functions in Rust.
+:::
 
-- meme about is_odd in javascript
-- we will create our first function with a return type
-- discuss bools
-- first create `is_even()` then use that toe create an `is_odd()`
+- Functions in Rust are declared using the `fn` keyword.
+- You specify the name and type like `arg_name: type`
+- Specify the return type using `->`
+- Last object in function body is returned automatically (no `return` keyword)
+
+```rust
+fn name_of_function(arg1: ArgType) -> ReturnType {
+    // function body
+    ReturnType::new() // pseudo-code
+}
+```
+
+## Example
+
+Identifying if a value is odd or even isn't always so easy!
+
+![is-odd npm](/images/is-odd.png){width=70%}
+
+First define a function called `is_even()` that takes an `i32` (integer) and returns a `bool`.
 
 ```rust
 fn is_even(x: i32) -> bool {
     x % 2 == 0
 }
+```
 
+We can use our already defined function inside of another:
+
+```rust
 fn is_odd(x: i32) -> bool {
     !is_even(x)
 }
+```
+
+
+## Exercise
+
+Create a function called `mean()` that calculates the mean of a `Vec<f64>`.
+
+* In `main()`, create a vector `x` with 5 or more `f64` values.
+* Call `mean(x)` and print the result.
+
+::: callout-note
+Use `x.len()` to get the length and `as f64` to convert it to a float.
+:::
+
+### Solution
+
+<details>
+<summary>View solution</summary>
+
+```rust
+fn mean(x: Vec<f64>) -> f64 {
+    let mut total = 0.0;
+    let n = x.len();
+    for xi in x {
+        total += xi;
+    }
+    total / n as f64
+}
 
 fn main() {
-    let x = 3;
-    println!("{x} is even: {}", is_even(x));
-    println!("{x} is odd: {}", is_odd(x));
+    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    let result = mean(x);
+    println!("Mean is: {}", result);
 }
 ```
+
+</details>

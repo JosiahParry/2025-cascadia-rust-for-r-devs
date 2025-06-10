@@ -165,7 +165,7 @@
     "href": "intro-to-rust-for-r-devs/mutability.html",
     "title": "8  Mutability",
     "section": "",
-    "text": "Exercise\nCreate a function called mean() that calculates the mean of a Vec&lt;f64&gt;",
+    "text": "Exercise\nIn Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the mut keyword.\nBy requiring mut, the compiler ensures that accidental mutations are caught at compile time.\nHere’s an example revisiting our loop from earlier:",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutability</span>"
@@ -185,56 +185,56 @@
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html",
     "href": "intro-to-rust-for-r-devs/iterators.html",
-    "title": "9  Iterators",
+    "title": "11  Iterators",
     "section": "",
-    "text": "Iterator basics",
+    "text": "Exercises",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#iterator-basics",
     "href": "intro-to-rust-for-r-devs/iterators.html#iterator-basics",
-    "title": "9  Iterators",
+    "title": "10  Iterators",
     "section": "",
     "text": ".iter() vs .into_iter()\n.len()\n.sum()\n.min(): not floating point arith issues here\n.max(): note floating point arith issues here",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
-    "title": "9  Iterators",
+    "title": "11  Iterators",
     "section": "Exercise 1",
     "text": "Exercise 1\n\nRewrite the mean() function to use an iterator instead of a for loop",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#mapping-over-iterators",
     "href": "intro-to-rust-for-r-devs/iterators.html#mapping-over-iterators",
-    "title": "9  Iterators",
+    "title": "10  Iterators",
     "section": "Mapping over iterators",
     "text": "Mapping over iterators\n\n.map() . enumerate()\nclosures\n.collect()\n\nCan do something with FizzBuzz again here",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
-    "title": "9  Iterators",
+    "title": "10  Iterators",
     "section": "Exercise 2",
     "text": "Exercise 2\n\ncreate a function standardize() that performs z-score standardization\n\n\\[\nz_i = \\frac{x_i - \\mu}{\\sigma}\n\\]\n\nSolution\nfn standardize(data: Vec&lt;f64&gt;) -&gt; Vec&lt;f64&gt; {\n    let n = data.len() as f64;\n    let mean = data.iter().sum::&lt;f64&gt;() / n;\n\n    let variance = data.iter()\n        .map(|x| (x - mean).powi(2))\n        .sum::&lt;f64&gt;() / n;\n\n    let std_dev = variance.sqrt();\n\n    data.into_iter()\n        .map(|x| (x - mean) / std_dev)\n        .collect()\n}\n\nThings to potentially cover\nchain()\nfn main() {\n    let a1 = [1, 2, 3];\n    let a2 = [4, 5, 6];\n    a1.iter().chain(a2.iter());\n}\n\nany() rust equivalent of any(logical_statment) in R\nfilter()\nfind()\nfold() - our own min/max functions?\nzip()",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
@@ -561,7 +561,7 @@
     "href": "intro-to-rust-for-r-devs/mutable-vectors.html",
     "title": "9  Mutable Vectors",
     "section": "",
-    "text": "cover mutable vectors\n.push()\n.clear()\ncreating vectors with Vec::new()",
+    "text": "Creating empty vectors\nIn Rust, vectors (Vec&lt;T&gt;) are growable arrays. To modify a vector after creating it, the vector itself must be declared as mut.\nYou can create an empty vector and let Rust infer the type based on usage:",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Mutable Vectors</span>"
@@ -620,6 +620,105 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>For Loops</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutability.html#exercise",
+    "href": "intro-to-rust-for-r-devs/mutability.html#exercise",
+    "title": "8  Mutability",
+    "section": "",
+    "text": "Create a vector of 5 or more f64 values (Vec&lt;f64&gt;)\nUse a for loop to calculate the mean of the vector\nPrint the result\n\n\n\n\n\n\n\nNote\n\n\n\nWe’ve been working only with integers. To create a float (number with decimals) use 0.0 or specify the type manually e.g. 0f64.\n\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0];\n\n    let n = x.len() as f64;\n    let mut total = 0.0;\n\n    for xi in x {\n        total += xi;\n    }\n\n    println!(\"The mean is: {}\", total / n);\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutability</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutable-vectors.html#exercise",
+    "href": "intro-to-rust-for-r-devs/mutable-vectors.html#exercise",
+    "title": "9  Mutable Vectors",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate an empty vector\nAppend the values 1.0, 2.0, and 3.0 using .push()\nClear the vector to make it empty\nLastly, extend it with another vector e.g. [4.0, 5.0]\nPrint the final result.\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let mut x = Vec::new();\n    x.push(1.0);\n    x.push(2.0);\n    x.push(3.0);\n    x.clear();\n    x.extend(vec![4.0, 5.0]);\n    println!(\"{:?}\", x);\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Mutable Vectors</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iterators.html#exercises",
+    "href": "intro-to-rust-for-r-devs/iterators.html#exercises",
+    "title": "11  Iterators",
+    "section": "",
+    "text": "calculate the mean using an iterator\nuse an enumerated for loop to sum only even numbers",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/is-odd.html",
+    "href": "intro-to-rust-for-r-devs/is-odd.html",
+    "title": "10  Functions",
+    "section": "",
+    "text": "Example\nIdentifying if a value is odd or even isn’t always so easy!\nFirst define a function called is_even() that takes an i32 (integer) and returns a bool.\nWe can use our already defined function inside of another:",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/is-odd.html#is_even-is_odd",
+    "href": "intro-to-rust-for-r-devs/is-odd.html#is_even-is_odd",
+    "title": "10  Functions",
+    "section": "",
+    "text": "meme about is_odd in javascript\nwe will create our first function with a return type\ndiscuss bools\nfirst create is_even() then use that toe create an is_odd()\n\nfn is_even(x: i32) -&gt; bool {\n    x % 2 == 0\n}\n\nfn is_odd(x: i32) -&gt; bool {\n    !is_even(x)\n}\n\nfn main() {\n    let x = 3;\n    println!(\"{x} is even: {}\", is_even(x));\n    println!(\"{x} is odd: {}\", is_odd(x));\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/is-odd.html#exercise",
+    "href": "intro-to-rust-for-r-devs/is-odd.html#exercise",
+    "title": "10  Functions",
+    "section": "Exercise",
+    "text": "Exercise\nCreate a function called mean() that calculates the mean of a Vec&lt;f64&gt;.\n\nIn main(), create a vector x with 5 or more f64 values.\nCall mean(x) and print the result.\n\n\n\n\n\n\n\nNote\n\n\n\nUse x.len() to get the length and as f64 to convert it to a float.\n\n\n\nSolution\n\n\nView solution\n\nfn mean(x: Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    let n = x.len();\n    for xi in x {\n        total += xi;\n    }\n    total / n as f64\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let result = mean(x);\n    println!(\"Mean is: {}\", result);\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/is-odd.html#example",
+    "href": "intro-to-rust-for-r-devs/is-odd.html#example",
+    "title": "10  Functions",
+    "section": "",
+    "text": "is-odd npm\n\n\n\nfn is_even(x: i32) -&gt; bool {\n    x % 2 == 0\n}\n\nfn is_odd(x: i32) -&gt; bool {\n    !is_even(x)\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html",
+    "href": "intro-to-rust-for-r-devs/references-slices.html",
+    "title": "11  Ownership",
+    "section": "",
+    "text": "Exercise 1\nrewrite mean() to use a reference to `Vec",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
+    "title": "11  Ownership",
+    "section": "",
+    "text": "Solution\nfn mean(x: &Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    let n = x.len();\n\n    for xi in x {\n        total += xi;\n    }\n    total / n as f64\n}\n\n\nreference\nslice\nmutable reference",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
     ]
   }
 ]

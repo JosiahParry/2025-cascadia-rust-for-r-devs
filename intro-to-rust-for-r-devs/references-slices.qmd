@@ -1,1 +1,41 @@
-# References and Slices
+# Ownership
+
+- last exercise we defined a function that takes `x: Vec<f64>`
+- this _comsumes_ the vector
+- If we try running this function _twice_ our code wont compile
+- This is because `x` was _moved_.
+- In Rust a variable can be used only ONCE
+- however it can be BORROWED many times
+
+
+- We want to borrow whenever we can
+- borrowing is recognized by the `&` character in front of a variable
+- this means we can use its value by _reference_
+- we cannot modify its value nor we can we move it.
+- only _borrow_ it.
+
+## Exercise 1
+
+rewrite `mean()` to use a _reference_ to `Vec<f64>
+
+
+### Solution
+
+```rust
+fn mean(x: &Vec<f64>) -> f64 {
+    let mut total = 0.0;
+    let n = x.len();
+
+    for xi in x {
+        total += xi;
+    }
+    total / n as f64
+}
+
+
+```
+
+
+- reference
+- slice
+- mutable reference

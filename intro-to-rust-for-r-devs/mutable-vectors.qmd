@@ -1,6 +1,85 @@
 # Mutable Vectors
 
-- cover mutable vectors
-- `.push()`
-- `.clear()`
-- creating vectors with Vec::new()
+::: callout-tip
+## Objective
+Learn how to create and modify vectors with mutable operations.
+:::
+
+In Rust, vectors (`Vec<T>`) are growable arrays. To modify a vector after creating it, the vector itself must be declared as `mut`.
+
+::: callout-note
+You will often see `<T>` in Rust code or documentation. `T` is a way of saying "of any type." Seeing `Vec<T>` can be read as "a vector of any type" or "generic over type `T`."
+:::
+
+### Creating empty vectors
+
+You can create an empty vector and let Rust infer the type based on usage:
+
+```rust
+fn main() {
+    let mut names = Vec::new();
+    names.push("Alice");
+    names.push("Bob");
+    println!("{:?}", names);
+}
+```
+
+- `Vec::new()` creates an empty vector.
+- `.push()` adds an element to the end of a vector.
+
+### Clearing vectors
+
+You can remove all elements from a vector using `.clear()`:
+
+```rust
+fn main() {
+    let mut nums = vec![1, 2, 3];
+    nums.clear();
+    println!("{:?}", nums); // prints []
+}
+```
+
+### Combining vectors
+
+Use `.extend()` to append one vector's contents to another:
+
+```rust
+fn main() {
+    let mut a = vec![1, 2];
+    let b = vec![3, 4];
+    a.extend(b);
+    println!("{:?}", a); // prints [1, 2, 3, 4]
+}
+```
+
+- `.extend()` adds the contents of another vector.
+- The original vector must be `mut`.
+- The second vector is **moved** into the first.
+- `b` can no longer be used.
+
+## Exercise
+
+- Create an empty vector
+- Append the values `1.0`, `2.0`, and `3.0` using `.push()`
+- Clear the vector to make it empty
+- Lastly, extend it with another vector e.g. `[4.0, 5.0]`
+- Print the final result.
+
+### Solution
+
+<details>
+<summary>View solution</summary>
+
+```rust
+fn main() {
+    let mut x = Vec::new();
+    x.push(1.0);
+    x.push(2.0);
+    x.push(3.0);
+    x.clear();
+    x.extend(vec![4.0, 5.0]);
+    println!("{:?}", x);
+}
+```
+
+</details>

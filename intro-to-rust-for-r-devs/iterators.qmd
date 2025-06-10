@@ -1,74 +1,24 @@
 # Iterators
 
-## Iterator basics
+- The goal of this section is to go over iterators.
+- First cover `.into_iter()` to create a consuming iterator this way the inner type is not a reference
+- We can talk about the basic methods for iterators:
+    - `.sum()`
+    - `.min()`
+    - `.max()`
+    - `.min()`: not floating point arith issues here
+    - `.max()`: note floating point arith issues here
+    - `.enumerate()`
+- should we touch on iter() here? we haven't yet talked about references. ideally we will have the students write the mean with `Vec<f64>` here
+- then the next section we can
 
-- `.iter()` vs `.into_iter()`
-- `.len()`
-- `.sum()`
-- `.min()`: not floating point arith issues here
-- `.max()`: note floating point arith issues here
+## Exercises
+
+- calculate the mean using an iterator
+- use an enumerated for loop to sum only even numbers
 
 
 
 ##  Exercise 1
 
 - Rewrite the `mean()` function to use an iterator instead of a for loop
-
-## Mapping over iterators
-
-- `.map()`
-. `enumerate()`
-- closures
-- `.collect()`
-
-Can do something with FizzBuzz again here
-
-##  Exercise 2
-
-- create a function `standardize()` that performs z-score standardization
-
-$$
-z_i = \frac{x_i - \mu}{\sigma}
-$$
-
-### Solution
-
-```rust
-fn standardize(data: Vec<f64>) -> Vec<f64> {
-    let n = data.len() as f64;
-    let mean = data.iter().sum::<f64>() / n;
-
-    let variance = data.iter()
-        .map(|x| (x - mean).powi(2))
-        .sum::<f64>() / n;
-
-    let std_dev = variance.sqrt();
-
-    data.into_iter()
-        .map(|x| (x - mean) / std_dev)
-        .collect()
-}
-```
-
-
-----
-
-Things to potentially cover
-
-`chain()`
-
-
-```rust
-fn main() {
-    let a1 = [1, 2, 3];
-    let a2 = [4, 5, 6];
-    a1.iter().chain(a2.iter());
-}
-```
-
-
-- `any()` rust equivalent of any(logical_statment) in R
-- `filter()`
-- `find()`
-- `fold()` - our own min/max functions?
-- `zip()`

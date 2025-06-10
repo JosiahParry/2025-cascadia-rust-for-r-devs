@@ -19,8 +19,9 @@ book:
         - intro-to-rust-for-r-devs/for-loops.qmd
         - intro-to-rust-for-r-devs/mutability.qmd
         - intro-to-rust-for-r-devs/mutable-vectors.qmd
-        - intro-to-rust-for-r-devs/iterators.qmd
+        - intro-to-rust-for-r-devs/is-odd.qmd
         - intro-to-rust-for-r-devs/references-slices.qmd
+        - intro-to-rust-for-r-devs/iterators.qmd
         - intro-to-rust-for-r-devs/structs.qmd
         - intro-to-rust-for-r-devs/enums.qmd
     - part: Building Rust based R Packages

@@ -4,9 +4,24 @@
 Understand the difference between immutable and mutable variables.
 :::
 
+In Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the `mut` keyword.
 
-- `mut` keyword
-- modifies the object in place don't need to use `let`
+```rust
+let mut x = 5;
+x = 6; // ✅ works because x is mutable
+```
+
+- Use `mut` when you need to change a variable after it is created.
+- You do **not** need to re-bind the variable with `let` when changing its value.
+- This helps catch bugs early by making data changes explicit.
+
+::: aside
+In R, everything is immutable. Whenever you modify a variable, it is copied.
+:::
+
+By requiring `mut`, the compiler ensures that accidental mutations are caught at compile time.
+
+Here's an example revisiting our loop from earlier:
 
 ```rust
 fn main() {
@@ -25,13 +40,23 @@ fn main() {
 
 ## Exercise
 
-Create a function called `mean()` that calculates the mean of a `Vec<f64>`
+- Create a vector of 5 or more f64 values  (`Vec<f64>`)
+- Use a for loop to calculate the mean of the vector
+- Print the result
 
+::: callout-note
+We've been working only with integers. To create a float (number with decimals) use `0.0` or specify the type manually e.g. `0f64`.
+:::
 
-## Solution
+### Solution
+
+<details>
+<summary>View solution</summary>
 
 ```rust
-fn mean(x: &[f64]) -> f64 {
+fn main() {
+    let x = vec![1.0, 2.0, 3.0, 4.0];
+
     let n = x.len() as f64;
     let mut total = 0.0;
 
@@ -39,6 +64,7 @@ fn mean(x: &[f64]) -> f64 {
         total += xi;
     }
 
-    total / n
+    println!("The mean is: {}", total / n);
 }
 ```
+</details>
