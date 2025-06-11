@@ -10,13 +10,35 @@
 
 ## Mapping over iterators
 
+
+
 - `.map()` transforms each item of an iterator by applying a closure (anonymous function)
 - Closures are small functions you can define inline, e.g. `|x| x + 1`
+- akin to `purrr::map(x, ~ .x + 1)` or .`purrr::map(x, \(.x) .x + 1)`
+- mapping only modifies the iterator
+- we need to `collect()` the values into another container if we want them
+
+### Example
+
+TODO!
+
+## Collecting iterators
+
 - `.collect()` gathers the results of an iterator into a collection (like a vector)
-- Turbofish `::<Type>()` is used to explicitly specify generic types when needed
+- we need to specify the type of what we're collecting into.
+- in our case we're always going to collect into a vector
+- two ways of specifying
+    - we can specify the resultant type in the assignment with `let x: Vec<i32>` but this is not as flexible to changing code
+    - Turbofish `::<Type>()` is used to explicitly specify types when needed
+        - its a bit more awkward at first, but it is more flexible and doesn't require modification whenever the inner type changes
+        - additionall we can use rust's iference using `_`
+
+
+
+### Examples
 
 :::{layout-ncol="2"}
-## Explicit typing
+#### Explicit typing
 ```rust
 fn main() {
     let nums = vec![1, 2, 3];
@@ -30,7 +52,7 @@ fn main() {
 }
 ```
 
-## Inference w/ turbofish
+#### Inference w/ turbofish
 ```rust
 fn main() {
     let nums = vec![1, 2, 3];
@@ -45,14 +67,7 @@ fn main() {
 ```
 :::
 
-### Notes:
 
-* `.map()` takes a closure that operates on each element.
-* The closure argument uses vertical bars `| |` to enclose parameters.
-* `.collect()` requires a type annotation if the target type cannot be inferred.
-* Use turbofish syntax when needed, e.g. `.sum::<f64>()`.
-
----
 
 ## Exercise 1
 

@@ -1,10 +1,20 @@
 # Defining Struct(ure)s
 
-- PascalCase naming convention
-- deriving traits:
-    - debug, clone
-- destructuring assignment
+::: callout-tip
+## Objective
 
+TODO
+- create structs
+- access fields
+- destructure them
+- understand partial moves
+:::
+
+- PascalCase naming convention
+- deriving traits debug, clone: we won't discuss this much, but just _trust_ me
+- destructuring assignment
+- access fields of the struct
+- partial moves
 
 ## Exercise
 

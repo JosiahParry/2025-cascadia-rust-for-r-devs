@@ -33,12 +33,6 @@ fn x() {
     println!("{:?}", incremented);
 }
 
-fn x() {
-    let x = vec![0.0, 10.0, 5.0, 11.1];
-    let avg = mean(x);
-    println!("The mean of {x:?} is {avg}");
-}
-
 // Classic fizz buzz to introduce if else statements
 fn fizz_buzz(i: i32) {
     if (i % 3 == 0) && (i % 5 == 0) {
@@ -120,10 +114,13 @@ impl Point {
     }
 
     // Demonstrates using pattern matching an enum
-    fn distance(&self, destination: &Self, measure: &Measure) -> f64 {
+    fn distance(&self, destination: &Self, measure: Option<&Measure>) -> f64 {
         match measure {
-            Measure::Euclidean => self.euclidean_distance(destination),
-            Measure::Haversine => self.haversine_distance(destination),
+            Some(m) => match m {
+                Measure::Euclidean => self.euclidean_distance(destination),
+                Measure::Haversine => self.haversine_distance(destination),
+            },
+            None => self.euclidean_distance(destination),
         }
     }
 
@@ -131,7 +128,7 @@ impl Point {
     fn distances(&self, destinations: &[Point], measure: &Measure) -> Vec<f64> {
         destinations
             .iter()
-            .map(|pi| self.distance(pi, measure))
+            .map(|pi| self.distance(pi, Some(measure)))
             .collect()
     }
 }

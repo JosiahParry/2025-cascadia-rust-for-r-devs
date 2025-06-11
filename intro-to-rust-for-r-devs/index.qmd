@@ -1,5 +1,8 @@
 # Overview
 
+objective go from zero to hero asap
+writing vectorized code as fast as posisble
+
 ## Timeline
 
 We've got 3 hours to cover a lot of ground!

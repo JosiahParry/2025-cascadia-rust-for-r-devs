@@ -14,6 +14,7 @@ book:
         - intro-to-rust-for-r-devs/index.qmd
         - intro-to-rust-for-r-devs/why-rust.qmd
         - intro-to-rust-for-r-devs/hello-world.qmd
+        - intro-to-rust-for-r-devs/types.qmd
         - intro-to-rust-for-r-devs/fizz-buzz.qmd
         - intro-to-rust-for-r-devs/collections.qmd
         - intro-to-rust-for-r-devs/for-loops.qmd
@@ -26,6 +27,7 @@ book:
         - intro-to-rust-for-r-devs/structs.qmd
         - intro-to-rust-for-r-devs/struct-methods.qmd
         - intro-to-rust-for-r-devs/enums.qmd
+        - intro-to-rust-for-r-devs/options.qmd
         - intro-to-rust-for-r-devs/parallelize.qmd
     - part: Building Rust based R Packages
       chapters:

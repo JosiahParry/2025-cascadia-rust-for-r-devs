@@ -1,0 +1,18 @@
+# Basic Types
+
+- much of what we do in rust are done on individual values (scalars)
+- r work is typically done on vectors (collections of like values) and most operations are vectorized
+- in rust we have to perform the vectorized ops our self
+
+
+
+- i32
+- i64 (exists but is incompatible with R, generally don't need it)
+- usize
+- f64
+- f32 (exists don't we don't use it)
+
+- type inference: e.g. `let x = 10;` infers i32
+- explicit typing e.g. `let x = 10usize` or `let x: usize = 10`
+
+`()` unit type - literally nothing

@@ -54,7 +54,7 @@
     "href": "intro-to-rust-for-r-devs/index.html",
     "title": "2  Overview",
     "section": "",
-    "text": "Timeline\nWe’ve got 3 hours to cover a lot of ground!",
+    "text": "Timeline\nobjective go from zero to hero asap writing vectorized code as fast as posisble\nWe’ve got 3 hours to cover a lot of ground!",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Overview</span>"
@@ -503,133 +503,133 @@
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html",
     "href": "intro-to-rust-for-r-devs/iter-map.html",
-    "title": "13  Mapping over Iterators",
+    "title": "14  Mapping over Iterators",
     "section": "",
     "text": "Mapping over iterators",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#mapping-over-iterators",
     "href": "intro-to-rust-for-r-devs/iter-map.html#mapping-over-iterators",
-    "title": "13  Mapping over Iterators",
+    "title": "14  Mapping over Iterators",
     "section": "",
-    "text": ".map() transforms each item of an iterator by applying a closure (anonymous function)\nClosures are small functions you can define inline, e.g. |x| x + 1\n.collect() gathers the results of an iterator into a collection (like a vector)\nTurbofish ::&lt;Type&gt;() is used to explicitly specify generic types when needed",
+    "text": ".map() transforms each item of an iterator by applying a closure (anonymous function)\nClosures are small functions you can define inline, e.g. |x| x + 1\nakin to purrr::map(x, ~ .x + 1) or .purrr::map(x, \\(.x) .x + 1)\nmapping only modifies the iterator\nwe need to collect() the values into another container if we want them\n\n\nExample\nTODO!",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#explicit-typing",
     "href": "intro-to-rust-for-r-devs/iter-map.html#explicit-typing",
-    "title": "13  Mapping over Iterators",
+    "title": "14  Mapping over Iterators",
     "section": "Explicit typing",
     "text": "Explicit typing\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented: Vec&lt;_&gt; = nums.iter()\n        .map(|x| x + 1)\n        .collect();\n\n    println!(\"{:?}\", incremented);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#inference-w-turbofish",
     "href": "intro-to-rust-for-r-devs/iter-map.html#inference-w-turbofish",
-    "title": "13  Mapping over Iterators",
+    "title": "14  Mapping over Iterators",
     "section": "Inference w/ turbofish",
     "text": "Inference w/ turbofish\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented = nums.iter()\n        .map(|x| x + 1)\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    println!(\"{:?}\", incremented);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/iter-map.html#exercise-1",
-    "title": "13  Mapping over Iterators",
+    "title": "14  Mapping over Iterators",
     "section": "Exercise 1",
     "text": "Exercise 1\nCalculate the variance of a slice of f64 values.\n\\[\n\\text{variance} = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n - 1}\n\\]\n\nCreate a function variance() that:\n\nUses .map() to calculate squared differences from the mean\nUses .sum() to add them up\nDivides by n - 1\n\n\n\n\n\n\n\n\nTip\n\n\n\n\nUse .powi(2) to square values.\nUse your previously defined mean() function inside variance().\n\n\n\n\n\nView hint\n\nfn variance(x: &[f64]) -&gt; f64 {\n    let n = x.len() as f64;\n    let avg = mean(x);\n    let sq_diffs: f64 = x\n        .iter()\n        .map(|xi| ___ )  // squared difference here\n        .__();           // sum method here\n\n    sq_diffs / (n - 1.0)\n}\n\n\nSolution\n\n\nView solution\n\nfn variance(x: &[f64]) -&gt; f64 {\n    let n = x.len() as f64;\n    let avg = mean(x);\n    let sq_diffs: f64 = x\n        .iter()\n        .map(|xi| (xi - avg).powi(2))\n        .sum();\n    sq_diffs / (n - 1.0)\n}\n\nfn main() {\n    let x = vec![2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0];\n    println!(\"Variance is: {:.2}\", variance(&x));\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/iter-map.html#exercise-2",
-    "title": "13  Mapping over Iterators",
+    "title": "14  Mapping over Iterators",
     "section": "Exercise 2",
     "text": "Exercise 2\nCreate a function standardize() to perform z-score standardization on a vector of f64.\n\\[\nz_i = \\frac{x_i - \\mu}{\\sigma}\n\\]\n\nUse .iter() and .map() to calculate mean and variance.\nUse .into_iter(), .map(), and .collect() to build the standardized vector.\nReturn a new Vec&lt;f64&gt; of standardized values.\n\n\nSolution\n\n\nView solution\n\nfn standardize(x: &[f64]) -&gt; Vec&lt;f64&gt; {\n    let avg = mean(x);\n    let std_dev = variance(x).sqrt();\n    x.iter().map(|xi| (xi - avg) / std_dev).collect()\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let standardized = standardize(x);\n    println!(\"Standardized: {:?}\", standardized);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/structs.html",
     "href": "intro-to-rust-for-r-devs/structs.html",
-    "title": "14  Defining Struct(ure)s",
+    "title": "15  Defining Struct(ure)s",
     "section": "",
     "text": "Exercise",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/structs.html#exercise",
     "href": "intro-to-rust-for-r-devs/structs.html#exercise",
-    "title": "14  Defining Struct(ure)s",
+    "title": "15  Defining Struct(ure)s",
     "section": "",
     "text": "Define a struct called Point which has two fields x, and y\nCreate a new Point struct\nDestructure the point",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/struct-methods.html",
     "href": "intro-to-rust-for-r-devs/struct-methods.html",
-    "title": "15  Struct Methods",
+    "title": "16  Struct Methods",
     "section": "",
     "text": "Exercise",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Struct Methods</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Struct Methods</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/struct-methods.html#exercise",
     "href": "intro-to-rust-for-r-devs/struct-methods.html#exercise",
-    "title": "15  Struct Methods",
+    "title": "16  Struct Methods",
     "section": "",
     "text": "Define a new method\n\nimpl Struct {\n  fn new(x: f64, y: f64) -&gt; Self {\n    Self { x, y }\n  }\n}\n\ndefine a distance method that calculates the euclidean distance between a point and a reference to another\n\nimpl Point {\n    fn euclidean_distance(&self, destination: &Self) -&gt; f64 {\n        ((self.x - destination.x).powi(2) + (self.y - destination.y).powi(2)).sqrt()\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Struct Methods</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Struct Methods</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/struct-methods.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/struct-methods.html#exercise-2",
-    "title": "15  Struct Methods",
+    "title": "16  Struct Methods",
     "section": "Exercise 2",
-    "text": "Exercise 2\nCalculate haversine distance",
+    "text": "Exercise 2\nCalculate haversine distance\nimpl Point {\n    fn haversine_distance(&self, destination: &Self) -&gt; f64 {\n        let radius = 6_371_008.7714;\n        let theta1 = self.y.to_radians();\n        let theta2 = destination.y.to_radians();\n        let delta_theta = (destination.y - self.y).to_radians();\n        let delta_lambda = (destination.x - self.x).to_radians();\n        let a = (delta_theta / 2f64).sin().powi(2)\n            + theta1.cos() * theta2.cos() * (delta_lambda / 2f64).sin().powi(2);\n        2f64 * a.sqrt().asin() * radius\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Struct Methods</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Struct Methods</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/enums.html",
     "href": "intro-to-rust-for-r-devs/enums.html",
-    "title": "16  Enum(eration)s",
+    "title": "17  Enum(eration)s",
     "section": "",
-    "text": "Exercise",
+    "text": "Enums in R",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Enum(eration)s</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Enum(eration)s</span>"
     ]
   },
   {
@@ -652,6 +652,127 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Parallelizing</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html",
+    "href": "intro-to-rust-for-r-devs/types.html",
+    "title": "5  Basic Types",
+    "section": "",
+    "text": "much of what we do in rust are done on individual values (scalars)\nr work is typically done on vectors (collections of like values) and most operations are vectorized\nin rust we have to perform the vectorized ops our self\ni32\ni64 (exists but is incompatible with R, generally don’t need it)\nusize\nf64\nf32 (exists don’t we don’t use it)\ntype inference: e.g. let x = 10; infers i32\nexplicit typing e.g. let x = 10usize or let x: usize = 10\n\n() unit type - literally nothing",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#exercise-1",
+    "href": "intro-to-rust-for-r-devs/enums.html#exercise-1",
+    "title": "17  Enum(eration)s",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nrecreate the shape enum\ncreate a method called n_vertices() which returns a usize\ncreate two different variants of the Shape enum and print their number of vertices",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#exercise-2",
+    "href": "intro-to-rust-for-r-devs/enums.html#exercise-2",
+    "title": "17  Enum(eration)s",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\nCreate an enum called Measure with two variants Euclidean and Haversine\nCreate a new method distance() for our point struct that takes 3 arguments and returns an f64\n\na reference to self\na reference to another point\na reference to a Measure enum\n\nWhen the variant is Euclidean use the euclidean_distance() method\nWhen the variant is Haversine use the haversine_distance() method\n\nenum Measure {\n    Euclidean,\n    Haversine,\n}\n\nimpl Point {\n    // Demonstrates using pattern matching an enum\n    fn distance(&self, destination: &Self, measure: &Measure) -&gt; f64 {\n        match measure {\n            Measure::Euclidean =&gt; self.euclidean_distance(destination),\n            Measure::Haversine =&gt; self.haversine_distance(destination),\n        }\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/options.html",
+    "href": "intro-to-rust-for-r-devs/options.html",
+    "title": "18  Some() or None?",
+    "section": "",
+    "text": "Danger! .unwrap() & .expect()\nOption is defined as:\nwe can match on these. When we have a some value we can use the inner value when we dont we can perform some fallback operation",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#enums-in-r",
+    "href": "intro-to-rust-for-r-devs/enums.html#enums-in-r",
+    "title": "17  Enum(eration)s",
+    "section": "",
+    "text": "for example the R function stats::cor() has the argument method = c(\"pearson\", \"kendall\", \"spearman\").\n\nmethod can only be pearson kendall or spearman otherwise an error happens\n\nthis is an informal way of specifying an enumeration\n\ni’ve wrtten about this in more detail in R which may be interesting for y’all\n\nhttps://josiahparry.com/posts/2023-11-10-enums-in-r/\n\n\n\n\nExample:\nwe can define an enum called Shape\nenum Shape {\n    Triangle,\n    Rectangle,\n    Pentagon,\n    Hexagon,\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#example",
+    "href": "intro-to-rust-for-r-devs/enums.html#example",
+    "title": "17  Enum(eration)s",
+    "section": "Example:",
+    "text": "Example:\nwe can define an enum called Shape\nenum Shape {\n    Triangle,\n    Rectangle,\n    Pentagon,\n    Hexagon,\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#variant-specific-behavior",
+    "href": "intro-to-rust-for-r-devs/enums.html#variant-specific-behavior",
+    "title": "17  Enum(eration)s",
+    "section": "Variant-specific behavior",
+    "text": "Variant-specific behavior\n\nchoose a variant by EnumName::Variant This means that Shape can take on only one of those 4 variants\nseems kind of confusing at first, how do you actually use this?\nwe perform pattern matching on the enum and perform some action based on the variant\nuse the keyword match to perform an action based on the value\nwe list each variant and define the action that happens using format Enum::Variant =&gt; action\nnote the “fat arrow”\n\nmatch my_shape {\n    Shape::Triangle =&gt; todo!(),\n    Shape::Rectangle =&gt; todo!(),\n    Shape::Pentagon =&gt; todo!(),\n    Shape::Hexagon =&gt; todo!(),\n}\n\n\n\n\n\n\nTip\n\n\n\ntodo!() is a placeholder that can be used to make the compiler happy\n\n\n\nExample\n\nwe print the number of vertices for each shape\n\nlet my_shape = Shape::Triangle;\n\nmatch my_shape {\n    Shape::Triangle =&gt; println!(\"A triangle has 3 vertices\"),\n    Shape::Rectangle =&gt; println!(\"A rectangle has 4 vertices\"),\n    Shape::Pentagon =&gt; println!(\"A pentagon has 5 vertices\"),\n    Shape::Hexagon =&gt; println!(\"A hexagon has 6 vertices\"),\n}\n\nsometimes we only want to customize behavior on only a subset of variants\nwe can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”\n\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons);\n    _ =&gt; println!(\"Every other polygon is mid\");\n}\nEnums can have methods too just like a struct using impl keyword\nimpl Shape {\n    fn is_bestagon(&self) -&gt; bool {\n        match self {\n            Self::Hexagon =&gt; true,\n            _ =&gt; false\n        }\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/options.html#exercise",
+    "href": "intro-to-rust-for-r-devs/options.html#exercise",
+    "title": "18  Some() or None?",
+    "section": "Exercise",
+    "text": "Exercise\n\nmodify the distance() method to take an Option&lt;Measure&gt;\nwhen None use euclidean distance, otherwise use the provided distance measure\n\n\n\nThe exercise does not involve .unwrap() because it’s a bad habbit. Let’s try and form good habbits from the outset if possible.\nimpl Point {\n    fn distance(&self, destination: &Self, measure: Option&lt;&Measure&gt;) -&gt; f64 {\n        match measure {\n            Some(m) =&gt; match m {\n                Measure::Euclidean =&gt; self.euclidean_distance(destination),\n                Measure::Haversine =&gt; self.haversine_distance(destination),\n            },\n            None =&gt; self.euclidean_distance(destination),\n        }\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
+    "href": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
+    "title": "18  Some() or None?",
+    "section": "",
+    "text": "sometimes dealing with options is a headache, particularly when we’re in the early stages of developing\nto get the inner value of an Option&lt;T&gt; without checking we can use .unwrap() or .expect()\nthese both give you the inner value. If the value is not found then the program panics.\n\nthis is very bad\n\nTODO panic screenshot\n.expect() takes a message so that when a panic is encountered the message is more informative.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#bonus-exercise-2",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#bonus-exercise-2",
+    "title": "16  Struct Methods",
+    "section": "Bonus: Exercise 2",
+    "text": "Bonus: Exercise 2\nHaversine distance is a fast way of calculating distances on a sphere. It is not the most accurate method for all cases, but it’s good enough for many common applications like calculating distances between cities!\nIt is defined by the following equation:\nThe Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.\n\\[a = \\sin^2\\left(\\frac{\\Delta\\phi}{2}\\right) + \\cos\\phi_1 \\cdot \\cos\\phi_2 \\cdot \\sin^2\\left(\\frac{\\Delta\\lambda}{2}\\right)\\]\n\\[c = 2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\]\n\\[d = R \\cdot c\\]\nWhere:\n\n\\(\\phi\\) represents latitude (in radians) (use .to_radians())\n\\(\\lambda\\) represents longitude (in radians) (use .to_radians())\n\\(R\\) is the Earth’s radius (you can use 6_371_008_7714f64 meters as a mean radius)\n\\(\\Delta\\phi\\) is the difference in latitude between the two points (\\(\\phi_2 - \\phi_1\\))\n\\(\\Delta\\lambda\\) is the difference in longitude between the two points (\\(\\lambda_2 - \\lambda_1\\))\n\\(\\text{atan2}(y, x)\\) is the arctangent of \\(y/x\\), using the signs of both arguments to determine the correct quadrant.\n\nHints for Implementation:\n\nRemember to convert your latitude and longitude values from degrees to radians using the .to_radians() method on f64.\nThe c part of the formula, \\(2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\), can also be implemented using 2 * a.sqrt().asin() in Rust, which is a common simplification when a is within the valid domain for asin.\n\n\nSolution\nimpl Point {\n    fn haversine_distance(&self, destination: &Self) -&gt; f64 {\n        let radius = 6_371_008.7714; // Earth's mean radius in meters\n        let theta1 = self.y.to_radians(); // Latitude of point 1\n        let theta2 = destination.y.to_radians(); // Latitude of point 2\n        let delta_theta = (destination.y - self.y).to_radians(); // Delta Latitude\n        let delta_lambda = (destination.x - self.x).to_radians(); // Delta Longitude\n\n        let a = (delta_theta / 2f64).sin().powi(2)\n            + theta1.cos() * theta2.cos() * (delta_lambda / 2f64).sin().powi(2);\n\n        2f64 * a.sqrt().asin() * radius\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#collecting-iterators",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#collecting-iterators",
+    "title": "14  Mapping over Iterators",
+    "section": "Collecting iterators",
+    "text": "Collecting iterators\n\n.collect() gathers the results of an iterator into a collection (like a vector)\nwe need to specify the type of what we’re collecting into.\nin our case we’re always going to collect into a vector\ntwo ways of specifying\n\nwe can specify the resultant type in the assignment with let x: Vec&lt;i32&gt; but this is not as flexible to changing code\nTurbofish ::&lt;Type&gt;() is used to explicitly specify types when needed\n\nits a bit more awkward at first, but it is more flexible and doesn’t require modification whenever the inner type changes\nadditionall we can use rust’s iference using _\n\n\n\n\nExamples\n\n\n\n\n\n\nExplicit typing\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented: Vec&lt;_&gt; = nums.iter()\n        .map(|x| x + 1)\n        .collect();\n\n    println!(\"{:?}\", incremented);\n}\n\n\nInference w/ turbofish\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented = nums.iter()\n        .map(|x| x + 1)\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    println!(\"{:?}\", incremented);\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   }
 ]

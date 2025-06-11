@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Struct Methods – Rust for R Developers</title>
+<title>5&nbsp; Basic Types – Rust for R Developers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro-to-rust-for-r-devs/enums.html" rel="next">
-<link href="../intro-to-rust-for-r-devs/structs.html" rel="prev">
+<link href="../intro-to-rust-for-r-devs/fizz-buzz.html" rel="next">
+<link href="../intro-to-rust-for-r-devs/hello-world.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,35 +69,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -144,7 +81,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/struct-methods.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Struct Methods</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/types.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Types</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -204,7 +141,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro-to-rust-for-r-devs/types.html" class="sidebar-item-text sidebar-link">
+  <a href="../intro-to-rust-for-r-devs/types.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Types</span></span></a>
   </div>
 </li>
@@ -270,7 +207,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro-to-rust-for-r-devs/struct-methods.html" class="sidebar-item-text sidebar-link active">
+  <a href="../intro-to-rust-for-r-devs/struct-methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Struct Methods</span></span></a>
   </div>
 </li>
@@ -316,25 +253,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link active" data-scroll-target="#exercise">Exercise</a></li>
-  <li><a href="#bonus-exercise-2" id="toc-bonus-exercise-2" class="nav-link" data-scroll-target="#bonus-exercise-2">Bonus: Exercise 2</a>
-  <ul class="collapse">
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/struct-methods.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Struct Methods</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/types.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Types</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Struct Methods</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Types</span></h1>
 </div>
 
 
@@ -352,70 +279,20 @@ window.Quarto = {
 
 
 <ul>
-<li><code>&amp;self</code></li>
-<li><code>Self</code></li>
+<li><p>much of what we do in rust are done on individual values (scalars)</p></li>
+<li><p>r work is typically done on vectors (collections of like values) and most operations are vectorized</p></li>
+<li><p>in rust we have to perform the vectorized ops our self</p></li>
+<li><p>i32</p></li>
+<li><p>i64 (exists but is incompatible with R, generally don’t need it)</p></li>
+<li><p>usize</p></li>
+<li><p>f64</p></li>
+<li><p>f32 (exists don’t we don’t use it)</p></li>
+<li><p>type inference: e.g.&nbsp;<code>let x = 10;</code> infers i32</p></li>
+<li><p>explicit typing e.g.&nbsp;<code>let x = 10usize</code> or <code>let x: usize = 10</code></p></li>
 </ul>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<ul>
-<li>Define a new method</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Struct <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fn</span> new(x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Self</span> <span class="op">{</span> x<span class="op">,</span> y <span class="op">}</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>define a distance method that calculates the euclidean distance between a point and a reference to another</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> euclidean_distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ((<span class="kw">self</span><span class="op">.</span>x <span class="op">-</span> destination<span class="op">.</span>x)<span class="op">.</span>powi(<span class="dv">2</span>) <span class="op">+</span> (<span class="kw">self</span><span class="op">.</span>y <span class="op">-</span> destination<span class="op">.</span>y)<span class="op">.</span>powi(<span class="dv">2</span>))<span class="op">.</span>sqrt()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="bonus-exercise-2" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-exercise-2">Bonus: Exercise 2</h2>
-<p>Haversine distance is a fast way of calculating distances on a sphere. It is not the most accurate method for all cases, but it’s good enough for many common applications like calculating distances between cities!</p>
-<p>It is defined by the following equation:</p>
-<p>The Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.</p>
-<p><span class="math display">\[a = \sin^2\left(\frac{\Delta\phi}{2}\right) + \cos\phi_1 \cdot \cos\phi_2 \cdot \sin^2\left(\frac{\Delta\lambda}{2}\right)\]</span></p>
-<p><span class="math display">\[c = 2 \cdot \text{atan2}(\sqrt{a}, \sqrt{1-a})\]</span></p>
-<p><span class="math display">\[d = R \cdot c\]</span></p>
-<p>Where:</p>
-<ul>
-<li><span class="math inline">\(\phi\)</span> represents latitude (in radians) (use <code>.to_radians()</code>)</li>
-<li><span class="math inline">\(\lambda\)</span> represents longitude (in radians) (use <code>.to_radians()</code>)</li>
-<li><span class="math inline">\(R\)</span> is the Earth’s radius (you can use <code>6_371_008_7714f64</code> meters as a mean radius)</li>
-<li><span class="math inline">\(\Delta\phi\)</span> is the difference in latitude between the two points (<span class="math inline">\(\phi_2 - \phi_1\)</span>)</li>
-<li><span class="math inline">\(\Delta\lambda\)</span> is the difference in longitude between the two points (<span class="math inline">\(\lambda_2 - \lambda_1\)</span>)</li>
-<li><span class="math inline">\(\text{atan2}(y, x)\)</span> is the <strong>arctangent</strong> of <span class="math inline">\(y/x\)</span>, using the signs of both arguments to determine the correct quadrant.</li>
-</ul>
-<p><strong>Hints for Implementation:</strong></p>
-<ul>
-<li>Remember to convert your latitude and longitude values from degrees to <strong>radians</strong> using the <code>.to_radians()</code> method on <code>f64</code>.</li>
-<li>The <code>c</code> part of the formula, <span class="math inline">\(2 \cdot \text{atan2}(\sqrt{a}, \sqrt{1-a})\)</span>, can also be implemented using <code>2 * a.sqrt().asin()</code> in Rust, which is a common simplification when <code>a</code> is within the valid domain for <code>asin</code>.</li>
-</ul>
-<section id="solution" class="level3">
-<h3 class="anchored" data-anchor-id="solution">Solution</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> haversine_distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> radius <span class="op">=</span> <span class="dv">6_371_008.7714</span><span class="op">;</span> <span class="co">// Earth's mean radius in meters</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta1 <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 1</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta2 <span class="op">=</span> destination<span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 2</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_theta <span class="op">=</span> (destination<span class="op">.</span>y <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>y)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Latitude</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_lambda <span class="op">=</span> (destination<span class="op">.</span>x <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>x)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Longitude</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> a <span class="op">=</span> (delta_theta <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> theta1<span class="op">.</span>cos() <span class="op">*</span> theta2<span class="op">.</span>cos() <span class="op">*</span> (delta_lambda <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2f64</span> <span class="op">*</span> a<span class="op">.</span>sqrt()<span class="op">.</span>asin() <span class="op">*</span> radius</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>()</code> unit type - literally nothing</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -837,13 +714,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro-to-rust-for-r-devs/structs.html" class="pagination-link" aria-label="Defining Struct(ure)s">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Defining Struct(ure)s</span></span>
+      <a href="../intro-to-rust-for-r-devs/hello-world.html" class="pagination-link" aria-label="Hello, World!">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hello, World!</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro-to-rust-for-r-devs/enums.html" class="pagination-link" aria-label="Enum(eration)s">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Enum(eration)s</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../intro-to-rust-for-r-devs/fizz-buzz.html" class="pagination-link" aria-label="Control Flow">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
