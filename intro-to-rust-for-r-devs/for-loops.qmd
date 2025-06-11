@@ -1,4 +1,4 @@
-# For Loops
+# `for`-loops
 
 ::: callout-tip
 

@@ -12,13 +12,13 @@ Understand control flow and numeric operators in Rust. You will create the FizzB
 - `+` addition
 - `-` subtraction
 - `/` division
-- `^` exponentiation
+- ~~`^` exponentiation~~ actually, ^ is a logical operator for XOR
 - `%` remainder
 
 
 ## Logical Operators:
 
-Logical operators are quite similar to R. The key differe
+Logical operators are quite similar to R. The difference is that these operations are not vectorised. Furthermore, in Rust, a logical is called `bool` for boolean.s
 
 - `==` check equality
 - `!=` check inequality

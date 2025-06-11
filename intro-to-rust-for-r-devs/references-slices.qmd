@@ -31,8 +31,8 @@ fn main() {
 }
 ```
 
-- Borrowing uses `&` to pass a *reference*
-- You can borrow values as many times as you want (immutably)
+- Borrowing uses `&` to pass by *reference*
+- You can borrow a value as many times as you want (immutably)
 - You can't mutate or move them while borrowed
 
 ::: callout-note
@@ -78,7 +78,7 @@ let avg = mean(&values[0..3]) // the first 3 elements
 ```
 
 ::: callout-tip
-We won't cover the `[..]` syntax but you should think it similar to R! It uses a [range](https://doc.rust-lang.org/rust-by-example/flow_control/for.html). A range takes the format of `from..to` where `to` is _uninclusive`. So `0..3` would be indices 0, 1, and 2!
+We won't cover the `[..]` syntax but you should think it similar to R! It uses a [range](https://doc.rust-lang.org/rust-by-example/flow_control/for.html). A range takes the format of `from..to` where `to` is _uninclusive_. So `0..3` would be indices 0, 1, and 2!
 :::
 
 - Slices are lighter-weight than borrowing a full vector

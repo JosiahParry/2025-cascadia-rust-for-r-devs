@@ -9,7 +9,7 @@ We've got 3 hours to cover a lot of ground!
 
 - What is rust
 - Hello, World!
-- Primitive types, logical operators, and control flow
+- Primitive types, logical/boolean operators, and control flow
 - Creating Functions
 - Arrays & vectors
 - For loops
