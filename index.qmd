@@ -10,6 +10,7 @@ Before we can start, we need to get our house in order. We need to install:
 - [ ] Rust
 - [ ] [Rust analyzer VS Code extension](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 - [ ] [Even Better TOML VS Code extension](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
+- [ ] [`{rextendr}`](https://github.com/extendr/rextendr)
 
 
 ## Install Positron
@@ -27,7 +28,7 @@ To install Rust, please use [rustup](https://rustup.rs/). If you use a system in
 
 For installing Rust on Mac / Unix / Linux please run:
 
-```shell
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -35,8 +36,38 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 If using Windows download the appropriate installer. Then, once your installation is complete, from your command prompt run:
 
-```shell
+```bash
 rustup target add x86_64-pc-windows-gnu
 ```
 
 This is a compilation target that is required for building extendr packages on Windows.
+
+## Install `{rextendr}`
+
+We will be using the rextendr package to build Rust powerd R-packages.
+
+Install the package using:
+
+```r
+if (!requireNamespace("remotes")) {
+    install.packages("remotes")
+}
+
+remotes::install_github("extendr/rextendr")
+```
+
+Once rextendr is installed, run the below command. You are good to go if:
+
+- ✅ cargo version is printed (should be 1.80 or greater)
+- ✅ rustup has a recent version printed
+- ✅ You have an active default toolchain
+
+::: callout-important
+If you're using windows ensure that `x86_64-pc-windows-gnu` is your default target. See the above command if it is not.
+
+R does not support packages compiled with Microsoft Visual C++ (MSVC) so this is required.
+:::
+
+```{r}
+rextendr::rust_sitrep()
+```

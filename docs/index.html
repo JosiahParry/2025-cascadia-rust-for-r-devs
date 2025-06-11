@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -235,6 +269,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
   </ul></li>
+  <li><a href="#install-rextendr" id="toc-install-rextendr" class="nav-link" data-scroll-target="#install-rextendr">Install <code>{rextendr}</code></a></li>
   </ul>
 </nav>
     </div>
@@ -281,6 +316,7 @@ ul.task-list li input[type="checkbox"] {
 <li><label><input type="checkbox">Rust</label></li>
 <li><label><input type="checkbox"><a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">Rust analyzer VS Code extension</a></label></li>
 <li><label><input type="checkbox"><a href="https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml">Even Better TOML VS Code extension</a></label></li>
+<li><label><input type="checkbox"><a href="https://github.com/extendr/rextendr"><code>{rextendr}</code></a></label></li>
 </ul>
 </section>
 <section id="install-positron" class="level2">
@@ -296,15 +332,65 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="install-rust">Install rust</h2>
 <p>To install Rust, please use <a href="https://rustup.rs/">rustup</a>. If you use a system installation via brew, apt, dnf, etc you will likely run into issues. I will be able to help debug these.</p>
 <p>For installing Rust on Mac / Unix / Linux please run:</p>
-<pre class="shell"><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proto</span> <span class="st">'=https'</span> <span class="at">--tlsv1.2</span> <span class="at">-sSf</span> https://sh.rustup.rs <span class="kw">|</span> <span class="fu">sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="windows" class="level3">
 <h3 class="anchored" data-anchor-id="windows">Windows</h3>
 <p>If using Windows download the appropriate installer. Then, once your installation is complete, from your command prompt run:</p>
-<pre class="shell"><code>rustup target add x86_64-pc-windows-gnu</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rustup</span> target add x86_64-pc-windows-gnu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This is a compilation target that is required for building extendr packages on Windows.</p>
-
-
 </section>
+</section>
+<section id="install-rextendr" class="level2">
+<h2 class="anchored" data-anchor-id="install-rextendr">Install <code>{rextendr}</code></h2>
+<p>We will be using the rextendr package to build Rust powerd R-packages.</p>
+<p>Install the package using:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>)) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"extendr/rextendr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once rextendr is installed, run the below command. You are good to go if:</p>
+<ul>
+<li>✅ cargo version is printed (should be 1.80 or greater)</li>
+<li>✅ rustup has a recent version printed</li>
+<li>✅ You have an active default toolchain</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re using windows ensure that <code>x86_64-pc-windows-gnu</code> is your default target. See the above command if it is not.</p>
+<p>R does not support packages compiled with Microsoft Visual C++ (MSVC) so this is required.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rextendr<span class="sc">::</span><span class="fu">rust_sitrep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rust infrastructure sitrep:
+✔ "rustup": 1.28.2 (e4f3ad6f8 2025-04-28)
+✔ "cargo": 1.85.1 (d73d2caf9 2024-12-31)
+ℹ host: aarch64-apple-darwin
+ℹ toolchains: stable-aarch64-apple-darwin (active, default),
+  nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,
+  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,
+  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and
+  1.80.1-aarch64-apple-darwin
+! One of these toolchains should be default: stable-aarch64-apple-darwin
+  (active, default), nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,
+  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,
+  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and
+  1.80.1-aarch64-apple-darwin
+ℹ Run e.g. `rustup default stable-aarch64-apple-darwin (active, default)`</code></pre>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

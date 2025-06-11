@@ -14,7 +14,7 @@
     "href": "index.html#setting-up",
     "title": "Rust for R Developers",
     "section": "",
-    "text": "Positron\nRust\nRust analyzer VS Code extension\nEven Better TOML VS Code extension",
+    "text": "Positron\nRust\nRust analyzer VS Code extension\nEven Better TOML VS Code extension\n{rextendr}",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
     ]
@@ -488,6 +488,16 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#install-rextendr",
+    "href": "index.html#install-rextendr",
+    "title": "Rust for R Developers",
+    "section": "Install {rextendr}",
+    "text": "Install {rextendr}\nWe will be using the rextendr package to build Rust powerd R-packages.\nInstall the package using:\nif (!requireNamespace(\"remotes\")) {\n    install.packages(\"remotes\")\n}\n\nremotes::install_github(\"extendr/rextendr\")\nOnce rextendr is installed, run the below command. You are good to go if:\n\n✅ cargo version is printed (should be 1.80 or greater)\n✅ rustup has a recent version printed\n✅ You have an active default toolchain\n\n\n\n\n\n\n\nImportant\n\n\n\nIf you’re using windows ensure that x86_64-pc-windows-gnu is your default target. See the above command if it is not.\nR does not support packages compiled with Microsoft Visual C++ (MSVC) so this is required.\n\n\n\nrextendr::rust_sitrep()\n\nRust infrastructure sitrep:\n✔ \"rustup\": 1.28.2 (e4f3ad6f8 2025-04-28)\n✔ \"cargo\": 1.85.1 (d73d2caf9 2024-12-31)\nℹ host: aarch64-apple-darwin\nℹ toolchains: stable-aarch64-apple-darwin (active, default),\n  nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\n! One of these toolchains should be default: stable-aarch64-apple-darwin\n  (active, default), nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\nℹ Run e.g. `rustup default stable-aarch64-apple-darwin (active, default)`",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
     ]
   }
 ]
