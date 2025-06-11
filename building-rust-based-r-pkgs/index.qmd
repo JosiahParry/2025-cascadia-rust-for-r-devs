@@ -1,3 +1,124 @@
 ---
 title: Building Rust based R Packages
 ---
+
+## Objective
+
+In this workshop we will create a Rust-based R package to perform [geohashing](https://www.youtube.com/watch?v=vGKs-c1nQYU) using [`extendr`](https://extendr.github.io/).
+
+## What is a geohash?
+
+- not everyone is a geospatial nerd but i am
+- i have 2 videos on this exact concept
+- a third video that goes through making this package that inspired this workshop
+
+
+## Working outline
+
+- creating a new R package
+    - adding extendr the package
+- package structure
+  - previous workshop used a binary crate, we will be building a library crate
+- hello, world
+- `rextendr::document()`
+- `devtools::load_all()`
+- `#[extendr]` attribute macro
+- `rprintln!()`
+
+## rextendr DX
+
+- show the VS Code settings
+- running `cargo check`
+
+## Adding dependencies
+
+- add geohash dependency
+- `rextendr::use_crate()`
+- import structs and functions
+- import  `Coord` and `encode()`
+
+## A new R function
+
+- create a basic function `gh_encode()` that takes an `x: f64` and a `y: f64` value and prints the coordinate
+- next exercise add 3rd argument for length which is `[1:12]` it's `usize`
+
+## Throwing R errors
+
+- let's add validation with `throw_r_error()`
+- check that the goehash length is appropriate range
+- if not, throw and error
+
+## Calling Rust From R
+
+- add `#[extendr]` macro to the function
+  - this does magic behind the hood to make it _callable_ from R
+- the function _must_ be added to `extendr_module! {}` for it to be available
+- run `rextendr::document()` for the new changes to take place
+- `devtools::load_all()` to make the function available
+
+## Encoding a geohash
+
+- lets finish up our first function which will geohash a single coordinate by calling `encode()`
+- `encode()` returns a `Result<String>`
+- a `Result<>` is a special type of `Option<>`
+- we will talk about handling errors gracefully in R later when we cover NA handling
+- for now we will `.unwrap()` the result right away
+- add the return type as `String`
+  - extendr will handle converting this into a character vector
+
+## Vectorize geohash encoding
+
+- modify `gh_encode()` to take a `Vec<f64>` for both `x` and `y`
+- We will iterate through these _together_
+- review `.zip()` to merge iterators
+- for each element in the iterator we encode the geohash
+- collect to strings
+- rextendr::document()
+- devtools::load_all()
+
+test in R
+
+```r
+x <- rnorm(100, -180, 180)
+y <- rnorm(100, -90, 90)
+gh_len <- 7
+
+gh_encode(x, y, gh_len)
+```
+
+- What about handling errors and NAs?
+- Gonna need to address type mapping first
+
+## Type Mapping
+
+- vecs are fine for basic stuff.
+- R types are more complex and have support for NULL and NA values
+- Scalar types
+- Vector types
+
+## Using extendr types
+
+- rewrite `gh_encode()` to use `Doubles` and `Strings`
+- we can leave length as usize for now as it will always be scalar.
+- to access the inner value of an `Rfloat` use `.inner()`
+
+
+## Error handling in Rust
+
+> "And I think Result can be explained fairly quickly in the following way: Rust does not have exceptions. Errors are data. If a function is falliable, it returns Result, which is a fork between the successful value, and the error-as-data. We may ignore the error-branch entirely with .unwrap." -Mossa
+
+- Handle errors gracefully on the R side by returning a NULL or NA value when it is appropriate
+- describe `Result<>` which is an enum.
+- let's match on the result from `encode()`
+  - when `Ok(gh)` use `Rstr::from(gh)`
+  - when `Err(e)` use `Rstr::na()` to record a missing value
+- when we try to encode data that is not in long lat we will get an error—e.g. if its in meter that wont work
+- for the exercise feed some bad data to the function to see it return an NA
+
+## NA handling
+
+- now what about when the coordinates are NA?
+- how do we handle that?
+- we can check `Rfloat::is_na()`
+  - if either `Rfloat::is_na()` return `Rstr::na()`
+  - else, do the geohash

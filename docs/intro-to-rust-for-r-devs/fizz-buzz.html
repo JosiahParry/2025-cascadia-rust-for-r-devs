@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Control Flow – Rust for R Developers</title>
+<title>6&nbsp; Control Flow – Rust for R Developers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../intro-to-rust-for-r-devs/collections.html" rel="next">
-<link href="../intro-to-rust-for-r-devs/hello-world.html" rel="prev">
+<link href="../intro-to-rust-for-r-devs/types.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,80 +175,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../intro-to-rust-for-r-devs/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/fizz-buzz.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/collections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arrays and Vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Arrays and Vectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/for-loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">For Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>for</code>-loops</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/mutability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mutability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Mutability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/mutable-vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Mutable Vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mutable Vectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/is-odd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/references-slices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Iterators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Iterators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/iter-map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mapping over Iterators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Mapping over Iterators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/structs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Defining Struct(ure)s</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Defining Struct(ure)s</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/struct-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Struct Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Struct Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/enums.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Enum(eration)s</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Enum(eration)s</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro-to-rust-for-r-devs/options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>Some()</code> or <code>None</code>?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro-to-rust-for-r-devs/parallelize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Parallelizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Parallelizing</span></span></a>
   </div>
 </li>
       </ul>
@@ -265,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Building Rust based R Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Building Rust based R Packages</span></span></a>
   </div>
 </li>
       </ul>
@@ -293,9 +305,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/fizz-buzz.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control Flow</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Control Flow</span></h1>
 </div>
 
 
@@ -331,13 +343,13 @@ Objective
 <li><code>+</code> addition</li>
 <li><code>-</code> subtraction</li>
 <li><code>/</code> division</li>
-<li><code>^</code> exponentiation</li>
+<li><del><code>^</code> exponentiation</del> actually, ^ is a logical operator for XOR</li>
 <li><code>%</code> remainder</li>
 </ul>
 </section>
 <section id="logical-operators" class="level2">
 <h2 class="anchored" data-anchor-id="logical-operators">Logical Operators:</h2>
-<p>Logical operators are quite similar to R. The key differe</p>
+<p>Logical operators are quite similar to R. The difference is that these operations are not vectorised. Furthermore, in Rust, a logical is called <code>bool</code> for boolean.s</p>
 <ul>
 <li><code>==</code> check equality</li>
 <li><code>!=</code> check inequality</li>
@@ -823,13 +835,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro-to-rust-for-r-devs/hello-world.html" class="pagination-link" aria-label="Hello, World!">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hello, World!</span></span>
+      <a href="../intro-to-rust-for-r-devs/types.html" class="pagination-link" aria-label="Basic Types">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Types</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../intro-to-rust-for-r-devs/collections.html" class="pagination-link" aria-label="Arrays and Vectors">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arrays and Vectors</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Arrays and Vectors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
