@@ -7,7 +7,7 @@ Learn how to define and use your own functions in Rust.
 - Functions in Rust are declared using the `fn` keyword.
 - You specify the name and type like `arg_name: type`
 - Specify the return type using `->`
-- Last object in function body is returned automatically (no `return` keyword)
+- Last object in function body is returned automatically (no need to use the `return` keyword)
 
 ```rust
 fn name_of_function(arg1: ArgType) -> ReturnType {
@@ -18,7 +18,7 @@ fn name_of_function(arg1: ArgType) -> ReturnType {
 
 ## Example
 
-Identifying if a value is odd or even isn't always so easy!
+Identifying if a number is odd or even isn't always so easy!
 
 ![is-odd npm](/images/is-odd.png){width=70%}
 

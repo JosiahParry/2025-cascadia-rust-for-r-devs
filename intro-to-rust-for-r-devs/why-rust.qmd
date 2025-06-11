@@ -27,6 +27,8 @@ Rust is especially good at preventing bugs related to memory and parallel code �
     - **Fearless concurrency** — Rust makes parallelism safer and easier.
     - A great developer experience:
         - Helpful, friendly compiler errors (Tidyverse-level DX).
-        - Modern tooling (cargo, rust-analyzer, etc.).
+        - Modern tooling (cargo, rustdoc, rustfmt, *rust-analyzer*, etc.).
 - Rust is easy to get started with and rewards best practices.
     - We won’t go deep into memory safety or concurrency today
+- Rust uses errors as data, unlike R and C++, Rust does not support exceptions
+
