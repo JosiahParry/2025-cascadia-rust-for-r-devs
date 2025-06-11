@@ -2,20 +2,73 @@
 
 ::: callout-tip
 ## Objective
-
-TODO:
-
-- create structs
-- access fields
-- destructure them
-- understand partial moves
+- Understand how to define a type as a `struct`
+- adding behavior on plain old data through `derive`-macros
 :::
 
-- PascalCase naming convention
-- deriving traits debug, clone: we won't discuss this much, but just _trust_ me
-- destructuring assignment
-- access fields of the struct
-- partial moves
+You can define a type as being a collection of other types by using the `struct` keyword.
+
+```rust
+struct PlainOldPoint {
+    x: f64,
+    y: f64
+}
+```
+By convention `struct`s are named using PascalCase, as opposed to `fn`s which are named using snake_case convention.
+
+Adding behavior to struct is possible through attributes:
+
+```rust
+#[derive(Debug, Clone)]
+struct Point {
+    x: f64,
+    y: f64
+}
+```
+
+The `Debug` trait allows debug printing of the type `Point` via `dbg!` or `println!("{p:?})`.
+
+```rust
+fn main() {
+    let origin = Point { x: 0.0, y: 0. };
+    println!("{origin:?}");
+}
+```
+
+Fields of a `struct` can be accessed directly, or by reference. If a field is accessed by reference, the `struct` cannot be moved.
+
+```rust
+fn main() {    
+    let origin = Point { x: 0.0, y: 0. };
+    let origin_y = &origin.y;
+    dbg!(origin);
+    dbg!(origin_y);
+}
+```
+
+```rust
+error[E0505]: cannot move out of `origin` because it is borrowed
+  --> src/bin/move_field.rs:10:5
+   |
+8  |     let origin = Point { x: 0.0, y: 0. };
+   |         ------ binding `origin` declared here
+9  |     let origin_y = &origin.y;
+   |                    --------- borrow of `origin.y` occurs here
+10 |     dbg!(origin);
+   |     ^^^^^^^^^^^^ move out of `origin` occurs here
+11 |     dbg!(origin_y);
+   |          -------- borrow later used here
+```
+
+Unpacking a struct entirely is possible
+
+```rust
+fn main() {
+    let origin = Point {x: 0f64, y: 0_f64 };
+    let Point {x, y} = origin;
+    println!("({x}, {y})");
+}
+```
 
 ## Exercise
 
