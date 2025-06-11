@@ -39,6 +39,23 @@ fn main() {
 }
 ```
 
+### Sorting vectors
+
+Use `.sort()` to sort a vector. Important to note that not all types can be sorted.
+
+```rust
+fn main() {
+    let mut x = vec![11, 3, 7, 10, 1];
+    println!("x before sorting: {x:?}");
+    x.sort();
+    println!("x after sorting:  {x:?}");
+}
+```
+```
+x before sorting: [11, 3, 7, 10, 1]
+x after sorting:  [1, 3, 7, 10, 11]
+```
+
 ### Combining vectors
 
 Use `.extend()` to append one vector's contents to another:
@@ -63,6 +80,7 @@ fn main() {
 - Append the values `1.0`, `2.0`, and `3.0` using `.push()`
 - Clear the vector to make it empty
 - Lastly, extend it with another vector e.g. `[4.0, 5.0]`
+- Sort the vector
 - Print the final result.
 
 ### Solution

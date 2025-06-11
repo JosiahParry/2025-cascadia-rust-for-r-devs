@@ -95,3 +95,11 @@ let mut total = 0;
 - euclidean distance
   - use this to demonstrate vectorization
 -
+
+
+Removed from iterators but may be good to cover:
+
+- filter
+- find
+- fold
+- `zip()`

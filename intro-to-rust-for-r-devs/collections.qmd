@@ -33,7 +33,6 @@ More often than not, using `{:?}` will be your best option.
 * Mostly used when performance is critical and size is known.
 
 
-
 ## Vectors
 
 Vectors are like growable arrays. They live on the heap and are much more common in everyday Rust code. We'll explore how to modify them later, but for now, we can define them with values known at the start.
@@ -45,9 +44,9 @@ fn main() {
 }
 ```
 
-* Create vectors using `vec![]`
-* You don’t need `mut` if you're not changing them.
-* Like arrays, all values must be the same type.
+- Create vectors using `vec![]`
+- You don’t need `mut` if you're not changing them.
+- Like arrays, all values must be the same type.
 
 In R, most things are vectorized. In Rust, we often **iterate** over collections to work with them.
 
@@ -55,9 +54,9 @@ In R, most things are vectorized. In Rust, we often **iterate** over collections
 
 ## Exercise
 
-
-* Create an array of 4 integers and print it.
-* Create a vector with 5 numbers and print it using `{:?}`.
+- Create an array of 4 integers and print it.
+- Create a vector with 5 numbers and print it using `{:?}`.
+- Compare the length of the array and the vector.
 
 ### Solution
 

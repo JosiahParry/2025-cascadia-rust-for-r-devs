@@ -2,6 +2,43 @@ fn hello_world() {
     println!("Hello, world!");
 }
 
+fn mean(x: &[f64]) -> f64 {
+    let n = x.len() as f64;
+    let mut total = 0.0;
+    for xi in x {
+        total += xi;
+    }
+    total / n
+}
+
+fn standardize(x: &[f64]) -> Vec<f64> {
+    let avg = mean(x);
+    let std_dev = variance(x).sqrt();
+
+    x.iter().map(|xi| (xi - avg) / std_dev).collect()
+}
+
+fn variance(x: &[f64]) -> f64 {
+    let n = x.len() as f64;
+    let avg = mean(x);
+    let sq_diffs: f64 = x.iter().map(|xi| (xi - avg).powi(2)).sum();
+    sq_diffs / (n - 1.0)
+}
+fn x() {
+    let nums = vec![1, 2, 3];
+
+    // Add 1 to each element
+    let incremented: Vec<_> = nums.iter().map(|x| x + 1).collect();
+
+    println!("{:?}", incremented);
+}
+
+fn x() {
+    let x = vec![0.0, 10.0, 5.0, 11.1];
+    let avg = mean(x);
+    println!("The mean of {x:?} is {avg}");
+}
+
 // Classic fizz buzz to introduce if else statements
 fn fizz_buzz(i: i32) {
     if (i % 3 == 0) && (i % 5 == 0) {

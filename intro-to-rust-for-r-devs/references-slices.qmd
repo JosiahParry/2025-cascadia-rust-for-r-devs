@@ -1,65 +1,107 @@
 # Ownership
 
-- last exercise we defined a function that takes `x: Vec<f64>`
-- this _comsumes_ the vector
-- If we try running this function _twice_ our code wont compile
-- This is because `x` was _moved_.
-- In Rust a variable can be used only ONCE
+::: callout-tip
+## Objective
+- Understand that values in Rust have a single owner.
+- Learn how to avoid ownership errors by borrowing or cloning.
+:::
 
+Rust enforces *ownership* at compile time. This ensures memory safety, but it means variables can only be used once—unless they’re borrowed.
+
+## Moves
+
+```rust
+fn main() {
+    let x = vec![1.0, 2.0, 3.0];
+    let y = x; // 👈 ownership moved
+    println!("{:?}", x); // ❌ error: value used after move
+}
+```
+
+- Ownership of `x` was moved to `y`
+- After a move, the original variable (`x`) can’t be used
 
 ## Borrowing
 
-- however it can be BORROWED many times
-- We want to borrow whenever we can
-- borrowing is recognized by the `&` character in front of a variable
-- this means we can use its value by _reference_
-- we cannot modify its value nor we can we move it.
-- only _borrow_ it.
+```rust
+fn main() {
+    let x = vec![1.0, 2.0, 3.0];
+    let avg = mean(&x); // 👈 borrowing `x`
+    println!("x is still usable: {:?}", x);
+}
+```
+
+- Borrowing uses `&` to pass a *reference*
+- You can borrow values as many times as you want (immutably)
+- You can't mutate or move them while borrowed
+
+::: callout-note
+"When in doubt, clone it out!"
+:::
+
+- `.clone()` makes a full copy of a value—useful when you *need* to keep ownership
 
 ## Exercise 1
 
-rewrite `mean()` to use a _reference_ to `Vec<f64>
-
+Rewrite the `mean()` function to accept a **reference** to a `Vec<f64>` instead of taking ownership. Then call it with a borrowed vector.
 
 ### Solution
+
+<details>
+<summary>View solution</summary>
 
 ```rust
 fn mean(x: &Vec<f64>) -> f64 {
     let mut total = 0.0;
-    let n = x.len();
-
     for xi in x {
         total += xi;
     }
-    total / n as f64
+    total / x.len() as f64
 }
 ```
 
+</details>
+
+---
 
 ## Slices
 
-- a contiguous block of the same type
-- available only as references
-- we always know the length of a slice i.e. `.len()` is available
-- denoted as `&[T]` (again remember `T` is a generic type)—e.g. `&[f64]` or `&[i32]`
-- in general, if we can use a slice we should
-- if we cannot use a slice, use a reference
-- if we cannot use a reference move it
+- A slice is a borrowed section of a collection
+- Always a reference: `&[T]`
+- Has known length with `.len()`
+- Preferred when you don't need the full container
 
-## Exercise
+```rust
+let values = vec![10.0, 20.0, 30.0];
+let avg = mean(&values); // full slice
+let avg = mean(&values[0..3]) // the first 3 elements
+```
 
-- Rewrite `mean()` to use a slice of f64
+::: callout-tip
+We won't cover the `[..]` syntax but you should think it similar to R! It uses a [range](https://doc.rust-lang.org/rust-by-example/flow_control/for.html). A range takes the format of `from..to` where `to` is _uninclusive`. So `0..3` would be indices 0, 1, and 2!
+:::
+
+- Slices are lighter-weight than borrowing a full vector
+- In general: prefer slices → references → moves
+
+## Exercise 2
+
+- Rewrite `mean()` to accept a slice (`&[f64]`) instead of a `Vec<f64>` reference.
+- Try using `mean()` on a subset of values.
 
 ### Solution
+
+<details>
+<summary>View solution</summary>
 
 ```rust
 fn mean(x: &[f64]) -> f64 {
     let mut total = 0.0;
-    let n = x.len();
-
     for xi in x {
         total += xi;
     }
-    total / n as f64
+    total / x.len() as f64
 }
 ```
+
+</details>

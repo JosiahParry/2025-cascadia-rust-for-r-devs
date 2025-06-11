@@ -22,8 +22,11 @@ book:
         - intro-to-rust-for-r-devs/is-odd.qmd
         - intro-to-rust-for-r-devs/references-slices.qmd
         - intro-to-rust-for-r-devs/iterators.qmd
+        - intro-to-rust-for-r-devs/iter-map.qmd
         - intro-to-rust-for-r-devs/structs.qmd
+        - intro-to-rust-for-r-devs/struct-methods.qmd
         - intro-to-rust-for-r-devs/enums.qmd
+        - intro-to-rust-for-r-devs/parallelize.qmd
     - part: Building Rust based R Packages
       chapters:
         - building-rust-based-r-pkgs/index.qmd

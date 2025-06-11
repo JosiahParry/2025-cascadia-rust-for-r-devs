@@ -25,6 +25,7 @@ impl Point {
         ((self.x - destination.x).powi(2) + (self.y - destination.y).powi(2)).sqrt()
     }
 }
+```
 
 ## Exercise 2
 

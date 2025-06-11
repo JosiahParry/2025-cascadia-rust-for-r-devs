@@ -1,67 +1,152 @@
-# Mapping over iterators
+# Mapping over Iterators
 
-This section we cover:
-
-- map()
-- closures
-- collect()
-- turbofish
+::: callout-tip
+## Objective
+- Understand how to transform iterator values using `.map()`
+- Learn closures (anonymous functions) in Rust
+- Collect iterator results back into a collection using `.collect()`
+- Use turbofish syntax for type annotations when needed
+:::
 
 ## Mapping over iterators
 
-- `.map()`
-. `enumerate()`
-- closures
-- `.collect()`
+- `.map()` transforms each item of an iterator by applying a closure (anonymous function)
+- Closures are small functions you can define inline, e.g. `|x| x + 1`
+- `.collect()` gathers the results of an iterator into a collection (like a vector)
+- Turbofish `::<Type>()` is used to explicitly specify generic types when needed
 
-Can do something with FizzBuzz again here
+:::{layout-ncol="2"}
+## Explicit typing
+```rust
+fn main() {
+    let nums = vec![1, 2, 3];
 
-##  Exercise 2
+    // Add 1 to each element
+    let incremented: Vec<_> = nums.iter()
+        .map(|x| x + 1)
+        .collect();
 
-- create a function `standardize()` that performs z-score standardization
+    println!("{:?}", incremented);
+}
+```
+
+## Inference w/ turbofish
+```rust
+fn main() {
+    let nums = vec![1, 2, 3];
+
+    // Add 1 to each element
+    let incremented = nums.iter()
+        .map(|x| x + 1)
+        .collect::<Vec<_>>();
+
+    println!("{:?}", incremented);
+}
+```
+:::
+
+### Notes:
+
+* `.map()` takes a closure that operates on each element.
+* The closure argument uses vertical bars `| |` to enclose parameters.
+* `.collect()` requires a type annotation if the target type cannot be inferred.
+* Use turbofish syntax when needed, e.g. `.sum::<f64>()`.
+
+---
+
+## Exercise 1
+
+Calculate the **variance** of a slice of `f64` values.
+
+$$
+\text{variance} = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}
+$$
+
+* Create a function `variance()` that:
+
+  * Uses `.map()` to calculate squared differences from the mean
+  * Uses `.sum()` to add them up
+  * Divides by `n - 1`
+
+::: callout-tip
+
+* Use `.powi(2)` to square values.
+* Use your previously defined `mean()` function inside `variance()`.
+:::
+
+
+<details>
+<summary>View hint</summary>
+
+```rust
+fn variance(x: &[f64]) -> f64 {
+    let n = x.len() as f64;
+    let avg = mean(x);
+    let sq_diffs: f64 = x
+        .iter()
+        .map(|xi| ___ )  // squared difference here
+        .__();           // sum method here
+
+    sq_diffs / (n - 1.0)
+}
+```
+
+</details>
+
+### Solution
+
+<details>
+<summary>View solution</summary>
+
+```rust
+fn variance(x: &[f64]) -> f64 {
+    let n = x.len() as f64;
+    let avg = mean(x);
+    let sq_diffs: f64 = x
+        .iter()
+        .map(|xi| (xi - avg).powi(2))
+        .sum();
+    sq_diffs / (n - 1.0)
+}
+
+fn main() {
+    let x = vec![2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0];
+    println!("Variance is: {:.2}", variance(&x));
+}
+```
+
+</details>
+
+
+## Exercise 2
+
+Create a function `standardize()` to perform z-score standardization on a vector of `f64`.
 
 $$
 z_i = \frac{x_i - \mu}{\sigma}
 $$
 
+* Use `.iter()` and `.map()` to calculate mean and variance.
+* Use `.into_iter()`, `.map()`, and `.collect()` to build the standardized vector.
+* Return a new `Vec<f64>` of standardized values.
+
 ### Solution
 
+<details>
+<summary>View solution</summary>
+
 ```rust
-fn standardize(data: Vec<f64>) -> Vec<f64> {
-    let n = data.len() as f64;
-    let mean = data.iter().sum::<f64>() / n;
-
-    let variance = data.iter()
-        .map(|x| (x - mean).powi(2))
-        .sum::<f64>() / n;
-
-    let std_dev = variance.sqrt();
-
-    data.into_iter()
-        .map(|x| (x - mean) / std_dev)
-        .collect()
+fn standardize(x: &[f64]) -> Vec<f64> {
+    let avg = mean(x);
+    let std_dev = variance(x).sqrt();
+    x.iter().map(|xi| (xi - avg) / std_dev).collect()
 }
-```
 
-
-----
-
-Things to potentially cover
-
-`chain()`
-
-
-```rust
 fn main() {
-    let a1 = [1, 2, 3];
-    let a2 = [4, 5, 6];
-    a1.iter().chain(a2.iter());
+    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    let standardized = standardize(x);
+    println!("Standardized: {:?}", standardized);
 }
 ```
 
-
-- `any()` rust equivalent of any(logical_statment) in R
-- `filter()`
-- `find()`
-- `fold()` - our own min/max functions?
-- `zip()`
+</details>
