@@ -1,5 +1,6 @@
 project:
   type: book
+
   output-dir: docs
 
 book:
@@ -7,11 +8,15 @@ book:
   subtitle: Cascadia R Conference, 2025
   author: "Josiah Parry"
   date: "2025-06-20"
+  site-url: https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/
+  repo-url: https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/
+  repo-branch: main
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
-    - part: Intro to Rust for R Developers
+    - part: intro-to-rust-for-r-devs/index.qmd
       chapters:
-        - intro-to-rust-for-r-devs/index.qmd
+        # - intro-to-rust-for-r-devs/index.qmd
         - intro-to-rust-for-r-devs/why-rust.qmd
         - intro-to-rust-for-r-devs/hello-world.qmd
         - intro-to-rust-for-r-devs/types.qmd
@@ -29,9 +34,8 @@ book:
         - intro-to-rust-for-r-devs/enums.qmd
         - intro-to-rust-for-r-devs/options.qmd
         - intro-to-rust-for-r-devs/parallelize.qmd
-    - part: Building Rust based R Packages
-      chapters:
-        - building-rust-based-r-pkgs/index.qmd
+    - part: building-rust-based-r-pkgs/index.qmd
+      # chapters:
 
 bibliography: references.bib
 
@@ -42,3 +46,4 @@ format:
     # number-sections: false
     number-depth: 1
     highlight-style: github
+    callout-appearance: simple

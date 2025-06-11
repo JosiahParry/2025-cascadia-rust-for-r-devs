@@ -1,4 +1,4 @@
-# Overview
+# Intro to Rust for R Developers
 
 objective go from zero to hero asap
 writing vectorized code as fast as posisble
