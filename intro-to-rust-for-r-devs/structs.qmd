@@ -4,7 +4,6 @@
 ## Objective
 - Understand how to define a type as a `struct`
 - adding behavior on plain old data through `derive`-macros
-- 
 :::
 
 You can define a type as being a collection of other types by using the `struct` keyword.
