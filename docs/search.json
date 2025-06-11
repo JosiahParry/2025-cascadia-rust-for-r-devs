@@ -646,12 +646,12 @@
   {
     "objectID": "intro-to-rust-for-r-devs/parallelize.html",
     "href": "intro-to-rust-for-r-devs/parallelize.html",
-    "title": "17  Parallelizing",
+    "title": "19  Parallelizing",
     "section": "",
-    "text": "this is a stretch exercise\nBrief intro to rayon\npar_iter()\ninto_par_iter()\nwith_min_len()\nObjective is to calculate the pairwise distances between two vectors of points super fast\nwe want to use .zip() to combine the two vectors\nthis would require using rand to create a vector of random numbers",
+    "text": "TODO: before this we do combining iterators with .zip() and then go over destructuring into tuples there\n\nthis is a stretch exercise\nBrief intro to rayon\npar_iter()\ninto_par_iter()\nwith_min_len()\nObjective is to calculate the pairwise distances between two vectors of points super fast\nwe want to use .zip() to combine the two vectors\nthis would require using rand to create a vector of random numbers",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Parallelizing</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Parallelizing</span>"
     ]
   },
   {

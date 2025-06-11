@@ -3,7 +3,8 @@
 ::: callout-tip
 ## Objective
 
-TODO
+TODO:
+
 - create structs
 - access fields
 - destructure them

@@ -1,5 +1,7 @@
 # Parallelizing
 
+TODO: before this we do combining iterators with .zip() and then go over destructuring into tuples there
+
 - this is a stretch exercise
 
 - Brief intro to rayon
