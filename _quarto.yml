@@ -35,7 +35,8 @@ book:
         - intro-to-rust-for-r-devs/options.qmd
         - intro-to-rust-for-r-devs/parallelize.qmd
     - part: building-rust-based-r-pkgs/index.qmd
-      # chapters:
+      chapters:
+        - building-rust-based-r-pkgs/index.qmd
 
 bibliography: references.bib
 
