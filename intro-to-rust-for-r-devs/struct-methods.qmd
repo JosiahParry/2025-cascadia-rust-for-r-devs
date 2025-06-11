@@ -1,13 +1,16 @@
 # Struct Methods
 
-- `&self`
-- `Self`
+::: callout-tip
+## Objectives
+- Learn about `impl`-blocks
+- Understand the difference between methods that take `self`, `&self`, and `&mut self`!
+- Use and appreciate the `Self` type alias
 
+:::
 
 ## Exercise
 
 - Define a new method
-
 
 ```rust
 impl Struct {
