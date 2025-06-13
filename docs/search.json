@@ -1117,5 +1117,25 @@
     "crumbs": [
       "Building Rust based R Packages"
     ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#you-help-me-choose-what-to-do-next",
+    "href": "building-rust-based-r-pkgs/index.html#you-help-me-choose-what-to-do-next",
+    "title": "Building Rust based R Packages",
+    "section": "You help me choose what to do next",
+    "text": "You help me choose what to do next\n\nQ&A?\nThe last function but independently?\nCRAN compatibility?",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#all-on-your-own-now",
+    "href": "building-rust-based-r-pkgs/index.html#all-on-your-own-now",
+    "title": "Building Rust based R Packages",
+    "section": "All on your own now",
+    "text": "All on your own now\n\nthe decode_bbox() function",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
   }
 ]

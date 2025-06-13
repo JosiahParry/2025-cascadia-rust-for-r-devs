@@ -532,6 +532,17 @@ fn gh_neighbors(geohashes: Strings) -> Robj {
 }
 ```
 
+## You help me choose what to do next
+
+- Q&A?
+- The last function but independently?
+- CRAN compatibility?
+
+
+## All on your own now
+
+- the `decode_bbox()` function
+
 ## CRAN Compatibility
 
 - vendoring
