@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/index.html</loc>
-    <lastmod>2025-06-11T13:34:42.686Z</lastmod>
+    <lastmod>2025-06-13T19:35:29.677Z</lastmod>
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/intro-to-rust-for-r-devs/index.html</loc>
@@ -78,6 +78,6 @@
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/index.html</loc>
-    <lastmod>2025-06-11T22:31:18.778Z</lastmod>
+    <lastmod>2025-06-13T21:48:41.970Z</lastmod>
   </url>
 </urlset>

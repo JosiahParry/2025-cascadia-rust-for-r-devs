@@ -44,7 +44,7 @@
     "href": "index.html#install-rextendr",
     "title": "Rust for R Developers",
     "section": "Install {rextendr}",
-    "text": "Install {rextendr}\nWe will be using the rextendr package to build Rust powerd R-packages.\nInstall the package using:\nif (!requireNamespace(\"remotes\")) {\n    install.packages(\"remotes\")\n}\n\nremotes::install_github(\"extendr/rextendr\")\nOnce rextendr is installed, run the below command. You are good to go if:\n\n✅ cargo version is printed (should be 1.80 or greater)\n✅ rustup has a recent version printed\n✅ You have an active default toolchain\n\n\n\n\n\n\n\nIf you’re using windows ensure that x86_64-pc-windows-gnu is your default target. See the above command if it is not.\nR does not support packages compiled with Microsoft Visual C++ (MSVC) so this is required.\n\n\n\n\nrextendr::rust_sitrep()\n\nRust infrastructure sitrep:\n✔ \"rustup\": 1.28.2 (e4f3ad6f8 2025-04-28)\n✔ \"cargo\": 1.85.1 (d73d2caf9 2024-12-31)\nℹ host: aarch64-apple-darwin\nℹ toolchains: stable-aarch64-apple-darwin (active, default),\n  nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\n! One of these toolchains should be default: stable-aarch64-apple-darwin\n  (active, default), nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\nℹ Run e.g. `rustup default stable-aarch64-apple-darwin (active, default)`",
+    "text": "Install {rextendr}\nWe will be using the rextendr package to build Rust powerd R-packages.\n\n\n\n\n\n\nOther R package dependencies\n\n\n\nWe also will be relying on other packages in the R ecosytem to make developing easier. Please install:\n\ndevtools\nusethis\n\ninstall.packages(c(\"devtools\", \"usethis\"))\n\n\nInstall the package using:\nif (!requireNamespace(\"remotes\")) {\n    install.packages(\"remotes\")\n}\n\nremotes::install_github(\"extendr/rextendr\")\nOnce rextendr is installed, run the below command. You are good to go if:\n\n✅ cargo version is printed (should be 1.80 or greater)\n✅ rustup has a recent version printed\n✅ You have an active default toolchain\n\n\n\n\n\n\n\nIf you’re using windows ensure that x86_64-pc-windows-gnu is your default target. See the above command if it is not.\nR does not support packages compiled with Microsoft Visual C++ (MSVC) so this is required.\n\n\n\n\nrextendr::rust_sitrep()\n\nRust infrastructure sitrep:\n✔ \"rustup\": 1.28.2 (e4f3ad6f8 2025-04-28)\n✔ \"cargo\": 1.85.1 (d73d2caf9 2024-12-31)\nℹ host: aarch64-apple-darwin\nℹ toolchains: stable-aarch64-apple-darwin (active, default),\n  nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\n! One of these toolchains should be default: stable-aarch64-apple-darwin\n  (active, default), nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\nℹ Run e.g. `rustup default stable-aarch64-apple-darwin (active, default)`",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
     ]
@@ -733,7 +733,7 @@
     "href": "building-rust-based-r-pkgs/index.html#what-is-a-geohash",
     "title": "Building Rust based R Packages",
     "section": "What is a geohash?",
-    "text": "What is a geohash?\n\nnot everyone is a geospatial nerd but i am\ni have 2 videos on this exact concept\na third video that goes through making this package that inspired this workshop",
+    "text": "What is a geohash?\n\nnot everyone is a geospatial nerd but i am\ni have 2 videos on this exact concept\na third video that goes through making this package that inspired this workshop\nSuper quick review of what a geohash is",
     "crumbs": [
       "Building Rust based R Packages"
     ]
@@ -823,7 +823,7 @@
     "href": "building-rust-based-r-pkgs/index.html#type-mapping",
     "title": "Building Rust based R Packages",
     "section": "Type Mapping",
-    "text": "Type Mapping\n\nvecs are fine for basic stuff.\nR types are more complex and have support for NULL and NA values\nScalar types\nVector types",
+    "text": "Type Mapping\n\nvecs are fine for basic stuff.\nR types are more complex and have support for NULL and NA values\nScalar types\nVector types\nNULL in R\nRobj\nRust has the unit type (). We can tu",
     "crumbs": [
       "Building Rust based R Packages"
     ]
@@ -853,7 +853,267 @@
     "href": "building-rust-based-r-pkgs/index.html#na-handling",
     "title": "Building Rust based R Packages",
     "section": "NA handling",
-    "text": "NA handling\n\nnow what about when the coordinates are NA?\nhow do we handle that?\nwe can check Rfloat::is_na()\n\nif either Rfloat::is_na() return Rstr::na()\nelse, do the geohash",
+    "text": "NA handling\n\nnow what about when the coordinates are NA?\nhow do we handle that?\nwe can check Rfloat::is_na()\n\nif either Rfloat::is_na() return Rstr::na()\nelse, do the geohash\n\ntest with NA values",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#objective",
+    "href": "building-rust-based-r-pkgs/index.html#objective",
+    "title": "Building Rust based R Packages",
+    "section": "",
+    "text": "Learn how to create Rust based R packages using extendr\nBegin to feel comfortable working with data between R & Rust\nCreate an R package to perform geohashing based on the Rust crate called geohash",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#general-overview",
+    "href": "building-rust-based-r-pkgs/index.html#general-overview",
+    "title": "Building Rust based R Packages",
+    "section": "General Overview",
+    "text": "General Overview\n\nWhat is FFI\nWhat is extendr\n\nwebR support\n\nR’s C API\nextendr-ffi & extendr-api",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#hello-world",
+    "href": "building-rust-based-r-pkgs/index.html#hello-world",
+    "title": "Building Rust based R Packages",
+    "section": "Hello, World!",
+    "text": "Hello, World!\n\nCreating a new package usethis::create_package(rstudio = FALSE)\nAdd extendr rextendr::use_extendr()\npackage structure\n\nprevious workshop used a binary crate, we will be building a library crate\n\nrextendr::document()\ndevtools::load_all()\nhello_world()\nreview the contents\n#[extendr] attribute macro\nrprintln!()",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#rs-type-system",
+    "href": "building-rust-based-r-pkgs/index.html#rs-type-system",
+    "title": "Building Rust based R Packages",
+    "section": "R’s type system",
+    "text": "R’s type system\n\nEverything is an SEXP\nBriefly discuss representations\nI thought really hard on whether or not to discuss this. Initially i thought i wouldnt, but i think it is actually really helpful to understand the fundamental data structures in R. It helps make the mental leaps much easier.\nSo we’re going to spend a few minutes discussing internal representations in R",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#robj-sexp",
+    "href": "building-rust-based-r-pkgs/index.html#robj-sexp",
+    "title": "Building Rust based R Packages",
+    "section": "Robj & SEXP",
+    "text": "Robj & SEXP\n\nin extendr, everything can be represented as an Robj\nRobj is an opaque type: we do not know what type it is, we just know its an Robj\na helpful catch-all\nwe can turn any extendr type into an Robj using the .into_robj() method",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#scalars",
+    "href": "building-rust-based-r-pkgs/index.html#scalars",
+    "title": "Building Rust based R Packages",
+    "section": "Scalars",
+    "text": "Scalars\n\nNA aware types that correspond to R’s type system\nevery scalar has na() method\n\n\nDoubles\n\ninternally represented by f64\naccess the inner f64 value using .inner()\nConvert f64 to an Rfloat using Rfloat::from(x)",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#strings",
+    "href": "building-rust-based-r-pkgs/index.html#strings",
+    "title": "Building Rust based R Packages",
+    "section": "Strings",
+    "text": "Strings\n\nA bit of a nightmare\nCreate Rstr from a String in Rust using Rstr::from(x)",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#geohash-neighbor",
+    "href": "building-rust-based-r-pkgs/index.html#geohash-neighbor",
+    "title": "Building Rust based R Packages",
+    "section": "Geohash Neighbor",
+    "text": "Geohash Neighbor\n\nA geohash is a square grid\neach location has up to 6 neighbors\nto find a specific neighbor we can use the neighbor() function\nthis function takes an enum for direction",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#enums-in-r",
+    "href": "building-rust-based-r-pkgs/index.html#enums-in-r",
+    "title": "Building Rust based R Packages",
+    "section": "Enums in R",
+    "text": "Enums in R\n\nfirst step, lets make a utility function to take a String and convert this to the enum\n\ngh_neighbor &lt;- function(gh, neighbor = c(\"N\",\"NE\",\"E\",\"SE\",\"S\",\"SW\",\"W\",\"NW\")) {\n  arg.match(neighbor)\n  # function body\n}",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#custom-enum-handling",
+    "href": "building-rust-based-r-pkgs/index.html#custom-enum-handling",
+    "title": "Building Rust based R Packages",
+    "section": "Custom Enum handling",
+    "text": "Custom Enum handling\n\nmatch statements can be used on strings too\nthere will be a catch all part of the match\nin the function\n\nfn as_direction(direction: String) -&gt; Direction {\n    match direction.to_lowercase().as_str() {\n        \"n\" =&gt; Direction:N,\n        \"ne\" =&gt; Direction:NE,\n        \"e\" =&gt; Direction:E,\n        \"se\" =&gt; Direction:SE,\n        \"s\" =&gt; Direction:S,\n        \"sw\" =&gt; Direction:SW,\n        \"w\" =&gt; Direction:W,\n        \"nw\" =&gt; Direction:NW,\n        _ =&gt; throw_r_error(\"Invalid geohash neighbor direction\")\n    }\n}",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#single-neighbor-function",
+    "href": "building-rust-based-r-pkgs/index.html#single-neighbor-function",
+    "title": "Building Rust based R Packages",
+    "section": "Single Neighbor function",
+    "text": "Single Neighbor function\nExercise\n\nCreate a function gh_decode()\nreturns Option&lt;String&gt;\ntakes 2 args:\n\ngeohash: String\ndirection: String\n\ncast the direction to the Direction enum\npass into the neighbor() function\nIf there is an error in the result, return None\nIf successful return Some(geohash)\ndocument and run the function in R to see the result\ntest with bad data",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#vectorize-the-neighbor-function",
+    "href": "building-rust-based-r-pkgs/index.html#vectorize-the-neighbor-function",
+    "title": "Building Rust based R Packages",
+    "section": "Vectorize the neighbor function",
+    "text": "Vectorize the neighbor function\n\nModify gh_decode() to take geohash: Strings\nReturns Strings\nUse .into_iter().map().collect::&lt;String&gt;() to return a vector of neighbors\nHandle NA values for geohash, return an Rstr::na()\nHandle errors return Rstr::na()\nOtherwise return Rstr::from()\nCollect into Strings",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#decoding-a-geohash",
+    "href": "building-rust-based-r-pkgs/index.html#decoding-a-geohash",
+    "title": "Building Rust based R Packages",
+    "section": "Decoding a geohash",
+    "text": "Decoding a geohash\n\na geohash isn’t a coordinate, but rather a bounding box\nthe decode() function decodes into a center point and error in two directions\nThe signature is pub fn decode(hash_str: &str) -&gt; Result&lt;(Coord, f64, f64), GeohashError&gt;\nthe Coord is a “generic” struct it has fields x & y and the x & y error\nmost natural way to work with this in R would be to create a data frame\nHow can we create a data frame in extendr?\nthere’s a few ways. We’re going to go ahead and create one from scratch",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#what-is-there-to-a-data.frame",
+    "href": "building-rust-based-r-pkgs/index.html#what-is-there-to-a-data.frame",
+    "title": "Building Rust based R Packages",
+    "section": "What is there to a data.frame?",
+    "text": "What is there to a data.frame?\n\ndata.frames are just lists masquerading as a rectangle\n\n\nnamed vectors\nstructs are record based not column based (this is kinda the whole thing about apache arrow)\nHow can we handle this?\nusing an iterator isn’t the most logical for this. Instead, we can use a for loop\nwe can allocate our own vectors and then fill them in a for loop",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#tuples",
+    "href": "building-rust-based-r-pkgs/index.html#tuples",
+    "title": "Building Rust based R Packages",
+    "section": "Tuples",
+    "text": "Tuples\n\nThe decode function returns a tuple which we haven’t yet covered.\ntuples are the heterogenous collection type in Rust\nif you’ve used tuples in python they’re pretty much the same\nelements in the tuple are not named\ngenerally good for holding only a handful of items, otherwise just define a struct\nwe access elements from the tuple via .0, .1, .2\nWe can perform destructuring assignment of tuples too which will be handy",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#creating-vectors",
+    "href": "building-rust-based-r-pkgs/index.html#creating-vectors",
+    "title": "Building Rust based R Packages",
+    "section": "Creating vectors",
+    "text": "Creating vectors\n\nDoubles, Strings, and Logicals are wrappers around R types\nWe can collect into these types or we can create them\nWe can allocate empty vectors using associated method Doubles::new(usize)\n\nBut filling these is actually somewhat slow due to the FFI boundary\n\nAssociated method Doubles::from_values() to collect values into a vector\n\nStore Vec&lt;Rfloat&gt;\nCollect from the vector",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#creating-data.frames",
+    "href": "building-rust-based-r-pkgs/index.html#creating-data.frames",
+    "title": "Building Rust based R Packages",
+    "section": "Creating data.frames",
+    "text": "Creating data.frames\n\nThere are two primary ways of creating data.frames in extendr\nI recommend using the data_frame!() macro\nthis returns an untyped R object: Robj\n\n\n\nExercise\n\ncreate 4 empty vectors to store:\n\nx, y, x_error, y_error\n\nCreate a for loop on the geohash note you have to call .into_iter() explicitly\n\n\nfn gh_decode(geohash: Strings) -&gt; Robj {\n    let mut x_res = Vec::new();\n    let mut y_res = Vec::new();\n    let mut x_error = Vec::new();\n    let mut y_error = Vec::new();\n\n    for gh in geohash.into_iter() {\n        let resi = decode(gh);\n        match resi {\n            Ok((Coord { x, y }, xe, ye)) =&gt; {\n                x_res.push(Rfloat::from(x));\n                y_res.push(Rfloat::from(y));\n                x_error.push(Rfloat::from(xe));\n                y_error.push(Rfloat::from(ye));\n            }\n            Err(_) =&gt; {\n                x_res.push(Rfloat::na());\n                y_res.push(Rfloat::na());\n                x_error.push(Rfloat::na());\n                y_error.push(Rfloat::na());\n            }\n        }\n    }\n\n    data_frame!(\n        x = Doubles::from_values(x_res),\n        y = Doubles::from_values(y_res),\n        x_error = Doubles::from_values(x_error),\n        y_error = Doubles::from_values(y_error)\n    )\n}",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#geohash-neighbors",
+    "href": "building-rust-based-r-pkgs/index.html#geohash-neighbors",
+    "title": "Building Rust based R Packages",
+    "section": "Geohash Neighbors",
+    "text": "Geohash Neighbors\n\nWe already made a vectorized functioon to find neighbors in a single direction.\nbut there is also a function neighbors() that returns a struct Neighbors that has the geohash for all neighbors\nThis would be a nice function to have access to in R\nhow should we do this?\nwe can take a similar approach we did for gh_decode()\nBut that’s a lot of boiler plate!\nThere’s another approach to this\nIntoDataFrameRow trait which we can derive",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#traits",
+    "href": "building-rust-based-r-pkgs/index.html#traits",
+    "title": "Building Rust based R Packages",
+    "section": "Traits",
+    "text": "Traits\n\nin the previous workhop we used the #[derive()] attribute to be able to have debug printing\nwhat is a trait?\nare similar to object oriented programming\nthey define behaviors that a type can perform\nthey are how we share behavior across rust libraries\nthey’re common methods that can be implemented for any type you own\nmany traits can be “derived” this means you can get them on your type “for free” without doing work",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#deriving-intodataframerow-for-neighbors",
+    "href": "building-rust-based-r-pkgs/index.html#deriving-intodataframerow-for-neighbors",
+    "title": "Building Rust based R Packages",
+    "section": "Deriving IntoDataFrameRow for Neighbors",
+    "text": "Deriving IntoDataFrameRow for Neighbors\n\nlets try deriving it\nlol oops! That sucks! we cant implement traits for types we don’t own.\nthis is called the “orphan rule”",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#work-around-create-your-own-struct",
+    "href": "building-rust-based-r-pkgs/index.html#work-around-create-your-own-struct",
+    "title": "Building Rust based R Packages",
+    "section": "Work-around: create your own struct",
+    "text": "Work-around: create your own struct\n\none way to handle this is to create your own struct that you can implement traits on\nwe can create our own struct GHNeighbors\nSince we own GHNeighbors we can derive IntoDataFrameRow for it\nbut how do we go from Neighbors to GHNeighbors?\nwe can implement a trait From",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#from-trait",
+    "href": "building-rust-based-r-pkgs/index.html#from-trait",
+    "title": "Building Rust based R Packages",
+    "section": "From trait",
+    "text": "From trait\n\npart of the standard library\nthis provides a 0-cost abstraction\nlets us go from T to U without incurring any runtime cost\nuse the impl keyword to implement a trait\nimpl Trait for OurType\nThe From trait requires us to specify a type:\nimpl From&lt;ForeignType&gt; for OurType\n\n\nExample\nimpl From&lt;Coord&lt;f64&gt;&gt; for Point {\n    fn from(value: Coord&lt;f64&gt;) -&gt; Self {\n        Point {\n            x: Rfloat::from(value.x),\n            y: Rfloat::from(value.y),\n        }\n    }\n}\nThis lets us do something like:\nlet coord = Coord::zero();\nlet p = Point::from(coord);\nPro-tip if you write:\nimpl From&lt;T&gt; for U {\n    // have cursor here and type `cmd + .`\n}\n\nThis opens the “Quick fix”\npress “implement missing members” which fills the template:\n\nimpl From&lt;T&gt; for U {\n    fn from(value: T) -&gt; Self {\n        // construct Self / U struct here\n        todo!()\n    }\n}",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#default-trait",
+    "href": "building-rust-based-r-pkgs/index.html#default-trait",
+    "title": "Building Rust based R Packages",
+    "section": "Default trait",
+    "text": "Default trait\n\nwhat happens when we run into an error finding the neighbors?\nwe want to be able to return a row of NAs\nrather than constructing the whole thing from struct each time we want to use a full row of NA\nwe can actually instead, implement a default value\nnote often the default trait can be derived\n\n\nExample\nimpl Default for Point {\n    fn default() -&gt; Self {\n        Self {\n            x: Rfloat::na(),\n            y: Rfloat::na(),\n        }\n    }\n}\n\n\nExercise\nImplement the Default trait for GHNeighbors\nimpl Default for GHNeighbors {\n    fn default() -&gt; Self {\n        Self {\n            sw: Rstr::na(),\n            s: Rstr::na(),\n            se: Rstr::na(),\n            w: Rstr::na(),\n            e: Rstr::na(),\n            nw: Rstr::na(),\n            n: Rstr::na(),\n            ne: Rstr::na(),\n        }\n    }\n}\nThis lets us write GHNeighbors::default()",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#cran-compatibility",
+    "href": "building-rust-based-r-pkgs/index.html#cran-compatibility",
+    "title": "Building Rust based R Packages",
+    "section": "CRAN Compatibility",
+    "text": "CRAN Compatibility\n\nvendoring\nMSRV",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#using-github-actions",
+    "href": "building-rust-based-r-pkgs/index.html#using-github-actions",
+    "title": "Building Rust based R Packages",
+    "section": "Using GitHub Actions",
+    "text": "Using GitHub Actions\n\nR CMD check\nCRAN checks",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#put-it-all-together",
+    "href": "building-rust-based-r-pkgs/index.html#put-it-all-together",
+    "title": "Building Rust based R Packages",
+    "section": "Put it all together",
+    "text": "Put it all together\n\nlets combine the use of our implementations of From, Default, and IntoDataFrameRow row to write gh_neighbors()\n\n\nExercise\n#[extendr]\nfn gh_neighbors(geohashes: Strings) -&gt; Robj {\n    let all_rows = geohashes\n        .into_iter()\n        .map(|gh| match neighbors(gh.as_str()) {\n            Ok(nbs) =&gt; GHNeighbors::from(nbs),\n            Err(_) =&gt; GHNeighbors::default(),\n        })\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    all_rows.into_dataframe().unwrap().into_robj()\n}",
     "crumbs": [
       "Building Rust based R Packages"
     ]

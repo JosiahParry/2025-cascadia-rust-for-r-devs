@@ -46,6 +46,20 @@ This is a compilation target that is required for building extendr packages on W
 
 We will be using the rextendr package to build Rust powerd R-packages.
 
+::: callout-caution
+## Other R package dependencies
+
+We also will be relying on other packages in the R ecosytem to make developing easier. Please install:
+
+- [devtools](https://devtools.r-lib.org/)
+- [usethis](https://usethis.r-lib.org/)
+
+```r
+install.packages(c("devtools", "usethis"))
+```
+
+:::
+
 Install the package using:
 
 ```r

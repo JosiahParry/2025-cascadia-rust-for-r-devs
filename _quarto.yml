@@ -38,8 +38,6 @@ book:
       chapters:
         - building-rust-based-r-pkgs/index.qmd
 
-bibliography: references.bib
-
 format:
   html:
     theme:

@@ -289,8 +289,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#general-overview" id="toc-general-overview" class="nav-link" data-scroll-target="#general-overview">General Overview</a></li>
   <li><a href="#what-is-a-geohash" id="toc-what-is-a-geohash" class="nav-link" data-scroll-target="#what-is-a-geohash">What is a geohash?</a></li>
-  <li><a href="#working-outline" id="toc-working-outline" class="nav-link" data-scroll-target="#working-outline">Working outline</a></li>
+  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello, World!</a></li>
   <li><a href="#rextendr-dx" id="toc-rextendr-dx" class="nav-link" data-scroll-target="#rextendr-dx">rextendr DX</a></li>
   <li><a href="#adding-dependencies" id="toc-adding-dependencies" class="nav-link" data-scroll-target="#adding-dependencies">Adding dependencies</a></li>
   <li><a href="#a-new-r-function" id="toc-a-new-r-function" class="nav-link" data-scroll-target="#a-new-r-function">A new R function</a></li>
@@ -299,9 +300,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#encoding-a-geohash" id="toc-encoding-a-geohash" class="nav-link" data-scroll-target="#encoding-a-geohash">Encoding a geohash</a></li>
   <li><a href="#vectorize-geohash-encoding" id="toc-vectorize-geohash-encoding" class="nav-link" data-scroll-target="#vectorize-geohash-encoding">Vectorize geohash encoding</a></li>
   <li><a href="#type-mapping" id="toc-type-mapping" class="nav-link" data-scroll-target="#type-mapping">Type Mapping</a></li>
+  <li><a href="#rs-type-system" id="toc-rs-type-system" class="nav-link" data-scroll-target="#rs-type-system">R’s type system</a></li>
+  <li><a href="#robj-sexp" id="toc-robj-sexp" class="nav-link" data-scroll-target="#robj-sexp">Robj &amp; SEXP</a></li>
+  <li><a href="#scalars" id="toc-scalars" class="nav-link" data-scroll-target="#scalars">Scalars</a>
+  <ul class="collapse">
+  <li><a href="#doubles" id="toc-doubles" class="nav-link" data-scroll-target="#doubles">Doubles</a></li>
+  </ul></li>
+  <li><a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings">Strings</a></li>
   <li><a href="#using-extendr-types" id="toc-using-extendr-types" class="nav-link" data-scroll-target="#using-extendr-types">Using extendr types</a></li>
   <li><a href="#error-handling-in-rust" id="toc-error-handling-in-rust" class="nav-link" data-scroll-target="#error-handling-in-rust">Error handling in Rust</a></li>
   <li><a href="#na-handling" id="toc-na-handling" class="nav-link" data-scroll-target="#na-handling">NA handling</a></li>
+  <li><a href="#geohash-neighbor" id="toc-geohash-neighbor" class="nav-link" data-scroll-target="#geohash-neighbor">Geohash Neighbor</a></li>
+  <li><a href="#enums-in-r" id="toc-enums-in-r" class="nav-link" data-scroll-target="#enums-in-r">Enums in R</a></li>
+  <li><a href="#custom-enum-handling" id="toc-custom-enum-handling" class="nav-link" data-scroll-target="#custom-enum-handling">Custom Enum handling</a></li>
+  <li><a href="#single-neighbor-function" id="toc-single-neighbor-function" class="nav-link" data-scroll-target="#single-neighbor-function">Single Neighbor function</a></li>
+  <li><a href="#vectorize-the-neighbor-function" id="toc-vectorize-the-neighbor-function" class="nav-link" data-scroll-target="#vectorize-the-neighbor-function">Vectorize the neighbor function</a></li>
+  <li><a href="#decoding-a-geohash" id="toc-decoding-a-geohash" class="nav-link" data-scroll-target="#decoding-a-geohash">Decoding a geohash</a></li>
+  <li><a href="#what-is-there-to-a-data.frame" id="toc-what-is-there-to-a-data.frame" class="nav-link" data-scroll-target="#what-is-there-to-a-data.frame">What is there to a data.frame?</a></li>
+  <li><a href="#tuples" id="toc-tuples" class="nav-link" data-scroll-target="#tuples">Tuples</a></li>
+  <li><a href="#creating-vectors" id="toc-creating-vectors" class="nav-link" data-scroll-target="#creating-vectors">Creating vectors</a></li>
+  <li><a href="#creating-data.frames" id="toc-creating-data.frames" class="nav-link" data-scroll-target="#creating-data.frames">Creating <code>data.frame</code>s</a>
+  <ul class="collapse">
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  </ul></li>
+  <li><a href="#geohash-neighbors" id="toc-geohash-neighbors" class="nav-link" data-scroll-target="#geohash-neighbors">Geohash Neighbors</a></li>
+  <li><a href="#traits" id="toc-traits" class="nav-link" data-scroll-target="#traits">Traits</a></li>
+  <li><a href="#intodataframerow-trait" id="toc-intodataframerow-trait" class="nav-link" data-scroll-target="#intodataframerow-trait"><code>IntoDataFrameRow</code> trait</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#deriving-intodataframerow-for-neighbors" id="toc-deriving-intodataframerow-for-neighbors" class="nav-link" data-scroll-target="#deriving-intodataframerow-for-neighbors">Deriving IntoDataFrameRow for Neighbors</a></li>
+  <li><a href="#work-around-create-your-own-struct" id="toc-work-around-create-your-own-struct" class="nav-link" data-scroll-target="#work-around-create-your-own-struct">Work-around: create your own struct</a></li>
+  <li><a href="#from-trait" id="toc-from-trait" class="nav-link" data-scroll-target="#from-trait"><code>From</code> trait</a>
+  <ul class="collapse">
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
+  </ul></li>
+  <li><a href="#default-trait" id="toc-default-trait" class="nav-link" data-scroll-target="#default-trait">Default trait</a>
+  <ul class="collapse">
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
+  </ul></li>
+  <li><a href="#put-it-all-together" id="toc-put-it-all-together" class="nav-link" data-scroll-target="#put-it-all-together">Put it all together</a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise</a></li>
+  </ul></li>
+  <li><a href="#cran-compatibility" id="toc-cran-compatibility" class="nav-link" data-scroll-target="#cran-compatibility">CRAN Compatibility</a></li>
+  <li><a href="#using-github-actions" id="toc-using-github-actions" class="nav-link" data-scroll-target="#using-github-actions">Using GitHub Actions</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -329,7 +373,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="objective" class="level2">
 <h2 class="anchored" data-anchor-id="objective">Objective</h2>
+<ul>
+<li>Learn how to create Rust based R packages using extendr</li>
+<li>Begin to feel comfortable working with data between R &amp; Rust</li>
+<li>Create an R package to perform geohashing based on the Rust crate called <code>geohash</code></li>
+</ul>
 <p>In this workshop we will create a Rust-based R package to perform <a href="https://www.youtube.com/watch?v=vGKs-c1nQYU">geohashing</a> using <a href="https://extendr.github.io/"><code>extendr</code></a>.</p>
+</section>
+<section id="general-overview" class="level2">
+<h2 class="anchored" data-anchor-id="general-overview">General Overview</h2>
+<ul>
+<li>What is FFI</li>
+<li>What is extendr
+<ul>
+<li>webR support</li>
+</ul></li>
+<li>R’s C API</li>
+<li><code>extendr-ffi</code> &amp; <code>extendr-api</code></li>
+<li></li>
+</ul>
 </section>
 <section id="what-is-a-geohash" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-geohash">What is a geohash?</h2>
@@ -337,22 +399,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>not everyone is a geospatial nerd but i am</li>
 <li>i have 2 videos on this exact concept</li>
 <li>a third video that goes through making this package that inspired this workshop</li>
+<li>Super quick review of what a geohash is</li>
 </ul>
 </section>
-<section id="working-outline" class="level2">
-<h2 class="anchored" data-anchor-id="working-outline">Working outline</h2>
+<section id="hello-world" class="level2">
+<h2 class="anchored" data-anchor-id="hello-world">Hello, World!</h2>
 <ul>
-<li>creating a new R package
-<ul>
-<li>adding extendr the package</li>
-</ul></li>
+<li>Creating a new package <code>usethis::create_package(rstudio = FALSE)</code></li>
+<li>Add extendr <code>rextendr::use_extendr()</code></li>
 <li>package structure
 <ul>
 <li>previous workshop used a binary crate, we will be building a library crate</li>
 </ul></li>
-<li>hello, world</li>
 <li><code>rextendr::document()</code></li>
 <li><code>devtools::load_all()</code></li>
+<li><code>hello_world()</code></li>
+<li>review the contents</li>
 <li><code>#[extendr]</code> attribute macro</li>
 <li><code>rprintln!()</code></li>
 </ul>
@@ -443,6 +505,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>R types are more complex and have support for NULL and NA values</li>
 <li>Scalar types</li>
 <li>Vector types</li>
+<li>NULL in R</li>
+<li>Robj</li>
+<li>Rust has the unit type <code>()</code>. We can tu</li>
+</ul>
+</section>
+<section id="rs-type-system" class="level2">
+<h2 class="anchored" data-anchor-id="rs-type-system">R’s type system</h2>
+<ul>
+<li>Everything is an SEXP</li>
+<li>Briefly discuss representations</li>
+<li>I thought really hard on whether or not to discuss this. Initially i thought i wouldnt, but i think it is actually really helpful to understand the fundamental data structures in R. It helps make the mental leaps much easier.</li>
+<li>So we’re going to spend a few minutes discussing internal representations in R</li>
+</ul>
+</section>
+<section id="robj-sexp" class="level2">
+<h2 class="anchored" data-anchor-id="robj-sexp">Robj &amp; SEXP</h2>
+<ul>
+<li>in extendr, everything can be represented as an Robj</li>
+<li>Robj is an opaque type: we do not know what type it is, we just know its an Robj</li>
+<li>a helpful catch-all</li>
+<li>we can turn any extendr type into an <code>Robj</code> using the <code>.into_robj()</code> method</li>
+</ul>
+</section>
+<section id="scalars" class="level2">
+<h2 class="anchored" data-anchor-id="scalars">Scalars</h2>
+<ul>
+<li>NA aware types that correspond to R’s type system</li>
+<li>every scalar has <code>na()</code> method</li>
+</ul>
+<section id="doubles" class="level3">
+<h3 class="anchored" data-anchor-id="doubles">Doubles</h3>
+<ul>
+<li>internally represented by f64</li>
+<li>access the inner f64 value using <code>.inner()</code></li>
+<li>Convert <code>f64</code> to an <code>Rfloat</code> using <code>Rfloat::from(x)</code></li>
+</ul>
+</section>
+</section>
+<section id="strings" class="level2">
+<h2 class="anchored" data-anchor-id="strings">Strings</h2>
+<ul>
+<li>A bit of a nightmare</li>
+<li>Create <code>Rstr</code> from a <code>String</code> in Rust using <code>Rstr::from(x)</code></li>
 </ul>
 </section>
 <section id="using-extendr-types" class="level2">
@@ -451,6 +556,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>rewrite <code>gh_encode()</code> to use <code>Doubles</code> and <code>Strings</code></li>
 <li>we can leave length as usize for now as it will always be scalar.</li>
 <li>to access the inner value of an <code>Rfloat</code> use <code>.inner()</code></li>
+<li></li>
 </ul>
 </section>
 <section id="error-handling-in-rust" class="level2">
@@ -480,9 +586,392 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>if either <code>Rfloat::is_na()</code> return <code>Rstr::na()</code></li>
 <li>else, do the geohash</li>
 </ul></li>
+<li>test with NA values</li>
+</ul>
+</section>
+<section id="geohash-neighbor" class="level2">
+<h2 class="anchored" data-anchor-id="geohash-neighbor">Geohash Neighbor</h2>
+<ul>
+<li>A geohash is a square grid</li>
+<li>each location has up to 6 neighbors</li>
+<li>to find a specific neighbor we can use the <code>neighbor()</code> function</li>
+<li>this function takes an enum for direction</li>
+</ul>
+</section>
+<section id="enums-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="enums-in-r">Enums in R</h2>
+<ul>
+<li>first step, lets make a utility function to take a <code>String</code> and convert this to the enum</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gh_neighbor <span class="ot">&lt;-</span> <span class="cf">function</span>(gh, <span class="at">neighbor =</span> <span class="fu">c</span>(<span class="st">"N"</span>,<span class="st">"NE"</span>,<span class="st">"E"</span>,<span class="st">"SE"</span>,<span class="st">"S"</span>,<span class="st">"SW"</span>,<span class="st">"W"</span>,<span class="st">"NW"</span>)) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arg.match</span>(neighbor)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function body</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="custom-enum-handling" class="level2">
+<h2 class="anchored" data-anchor-id="custom-enum-handling">Custom Enum handling</h2>
+<ul>
+<li>match statements can be used on strings too</li>
+<li>there will be a catch all part of the match</li>
+<li>in the function</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> as_direction(direction<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> Direction <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> direction<span class="op">.</span>to_lowercase()<span class="op">.</span>as_str() <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"n"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>N<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ne"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>NE<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"e"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>E<span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"se"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>SE<span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"s"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>S<span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sw"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>SW<span class="op">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"w"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>W<span class="op">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nw"</span> <span class="op">=&gt;</span> Direction<span class="op">:</span>NW<span class="op">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        _ <span class="op">=&gt;</span> throw_r_error(<span class="st">"Invalid geohash neighbor direction"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="single-neighbor-function" class="level2">
+<h2 class="anchored" data-anchor-id="single-neighbor-function">Single Neighbor function</h2>
+<p>Exercise</p>
+<ul>
+<li>Create a function <code>gh_decode()</code></li>
+<li>returns <code>Option&lt;String&gt;</code></li>
+<li>takes 2 args:
+<ol type="1">
+<li><code>geohash: String</code></li>
+<li><code>direction: String</code></li>
+</ol></li>
+<li>cast the direction to the <code>Direction</code> enum</li>
+<li>pass into the <code>neighbor()</code> function</li>
+<li>If there is an error in the result, return <code>None</code></li>
+<li>If successful return <code>Some(geohash)</code></li>
+<li>document and run the function in R to see the result</li>
+<li>test with bad data</li>
+</ul>
+</section>
+<section id="vectorize-the-neighbor-function" class="level2">
+<h2 class="anchored" data-anchor-id="vectorize-the-neighbor-function">Vectorize the neighbor function</h2>
+<ul>
+<li>Modify <code>gh_decode()</code> to take <code>geohash: Strings</code></li>
+<li>Returns <code>Strings</code></li>
+<li>Use <code>.into_iter().map().collect::&lt;String&gt;()</code> to return a vector of neighbors</li>
+<li>Handle NA values for geohash, return an <code>Rstr::na()</code></li>
+<li>Handle errors return <code>Rstr::na()</code></li>
+<li>Otherwise return <code>Rstr::from()</code></li>
+<li>Collect into Strings</li>
+</ul>
+</section>
+<section id="decoding-a-geohash" class="level2">
+<h2 class="anchored" data-anchor-id="decoding-a-geohash">Decoding a geohash</h2>
+<ul>
+<li>a geohash isn’t a coordinate, but rather a bounding box</li>
+<li>the <code>decode()</code> function decodes into a center point and error in two directions</li>
+<li>The signature is <code>pub fn decode(hash_str: &amp;str) -&gt; Result&lt;(Coord, f64, f64), GeohashError&gt;</code></li>
+<li>the <code>Coord</code> is a “generic” struct it has fields x &amp; y and the x &amp; y error</li>
+<li>most natural way to work with this in R would be to create a data frame</li>
+<li>How can we create a data frame in extendr?</li>
+<li>there’s a few ways. We’re going to go ahead and create one from scratch</li>
+</ul>
+</section>
+<section id="what-is-there-to-a-data.frame" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-there-to-a-data.frame">What is there to a data.frame?</h2>
+<blockquote class="blockquote">
+<p>data.frames are just lists masquerading as a rectangle</p>
+</blockquote>
+<ul>
+<li>named vectors</li>
+<li>structs are record based not column based (this is kinda the whole thing about apache arrow)</li>
+<li>How can we handle this?</li>
+<li>using an iterator isn’t the most logical for this. Instead, we can use a for loop</li>
+<li>we can allocate our own vectors and then fill them in a for loop</li>
+</ul>
+</section>
+<section id="tuples" class="level2">
+<h2 class="anchored" data-anchor-id="tuples">Tuples</h2>
+<ul>
+<li>The decode function returns a tuple which we haven’t yet covered.</li>
+<li>tuples are the heterogenous collection type in Rust</li>
+<li>if you’ve used tuples in python they’re pretty much the same</li>
+<li>elements in the tuple are not named</li>
+<li>generally good for holding only a handful of items, otherwise just define a struct</li>
+<li>we access elements from the tuple via <code>.0</code>, <code>.1</code>, <code>.2</code></li>
+<li>We can perform destructuring assignment of tuples too which will be handy</li>
+<li></li>
+</ul>
+</section>
+<section id="creating-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="creating-vectors">Creating vectors</h2>
+<ul>
+<li><code>Doubles</code>, <code>Strings</code>, and <code>Logicals</code> are wrappers around R types</li>
+<li>We can collect into these types or we can create them</li>
+<li>We can allocate empty vectors using associated method <code>Doubles::new(usize)</code>
+<ul>
+<li>But filling these is actually somewhat slow due to the FFI boundary</li>
+</ul></li>
+<li>Associated method <code>Doubles::from_values()</code> to collect values into a vector
+<ul>
+<li>Store <code>Vec&lt;Rfloat&gt;</code></li>
+<li>Collect from the vector</li>
+</ul></li>
+</ul>
+</section>
+<section id="creating-data.frames" class="level2">
+<h2 class="anchored" data-anchor-id="creating-data.frames">Creating <code>data.frame</code>s</h2>
+<ul>
+<li>There are two primary ways of creating data.frames in extendr</li>
+<li>I recommend using the <code>data_frame!()</code> macro</li>
+<li>this returns an untyped R object: <code>Robj</code></li>
+<li></li>
+</ul>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<ul>
+<li>create 4 empty vectors to store:
+<ul>
+<li>x, y, x_error, y_error</li>
+</ul></li>
+<li>Create a for loop on the <code>geohash</code> note you have to call <code>.into_iter()</code> explicitly</li>
+<li></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> gh_decode(geohash<span class="op">:</span> Strings) <span class="op">-&gt;</span> Robj <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> x_res <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> y_res <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> x_error <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> y_error <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> gh <span class="kw">in</span> geohash<span class="op">.</span>into_iter() <span class="op">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> resi <span class="op">=</span> decode(gh)<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> resi <span class="op">{</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Ok</span>((Coord <span class="op">{</span> x<span class="op">,</span> y <span class="op">},</span> xe<span class="op">,</span> ye)) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                x_res<span class="op">.</span>push(<span class="pp">Rfloat::</span>from(x))<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                y_res<span class="op">.</span>push(<span class="pp">Rfloat::</span>from(y))<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                x_error<span class="op">.</span>push(<span class="pp">Rfloat::</span>from(xe))<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                y_error<span class="op">.</span>push(<span class="pp">Rfloat::</span>from(ye))<span class="op">;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Err</span>(_) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                x_res<span class="op">.</span>push(<span class="pp">Rfloat::</span>na())<span class="op">;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                y_res<span class="op">.</span>push(<span class="pp">Rfloat::</span>na())<span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                x_error<span class="op">.</span>push(<span class="pp">Rfloat::</span>na())<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                y_error<span class="op">.</span>push(<span class="pp">Rfloat::</span>na())<span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="pp">data_frame!</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="pp">Doubles::</span>from_values(x_res)<span class="op">,</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="pp">Doubles::</span>from_values(y_res)<span class="op">,</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        x_error <span class="op">=</span> <span class="pp">Doubles::</span>from_values(x_error)<span class="op">,</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        y_error <span class="op">=</span> <span class="pp">Doubles::</span>from_values(y_error)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="geohash-neighbors" class="level2">
+<h2 class="anchored" data-anchor-id="geohash-neighbors">Geohash Neighbors</h2>
+<ul>
+<li>We already made a vectorized functioon to find neighbors in a single direction.</li>
+<li>but there is also a function <code>neighbors()</code> that returns a struct <code>Neighbors</code> that has the geohash for <em>all</em> neighbors</li>
+<li>This would be a nice function to have access to in R</li>
+<li>how should we do this?</li>
+<li>we can take a similar approach we did for <code>gh_decode()</code></li>
+<li>But that’s a lot of boiler plate!</li>
+<li>There’s another approach to this</li>
+<li><code>IntoDataFrameRow</code> trait which we can derive</li>
+</ul>
+</section>
+<section id="traits" class="level2">
+<h2 class="anchored" data-anchor-id="traits">Traits</h2>
+<ul>
+<li>in the previous workhop we used the <code>#[derive()]</code> attribute to be able to have debug printing</li>
+<li>what is a trait?</li>
+<li>are similar to object oriented programming</li>
+<li>they define behaviors that a type can perform</li>
+<li>they are how we share behavior across rust libraries</li>
+<li>they’re common methods that can be implemented for any type you own</li>
+<li>many traits can be “derived” this means you can get them on your type “for free” without doing work</li>
+</ul>
+</section>
+<section id="intodataframerow-trait" class="level1">
+<h1><code>IntoDataFrameRow</code> trait</h1>
+<ul>
+<li>the <code>IntoDataFrameRow</code> trait is a helper trait to take a <code>Vec&lt;T&gt;</code> and turn it into a data frame in R</li>
+<li>it is a one-way trait</li>
+<li>since dataframes are column oriented but structs are row-oriented we can only go one way at the moment</li>
+<li>each field in the struct becomes a column in R</li>
+<li>so it would be nice if we can derive this for the Neighbors struct</li>
+</ul>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span>IntoDataFrameRow<span class="at">)]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Point <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">:</span> Rfloat<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">:</span> Rfloat<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>extendr<span class="at">]</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> make_points(x<span class="op">:</span> Doubles<span class="op">,</span> y<span class="op">:</span> Doubles) <span class="op">-&gt;</span> Robj <span class="op">{</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    x<span class="op">.</span>into_iter()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>zip(y<span class="op">.</span>into_iter())</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>(xi<span class="op">,</span> yi)<span class="op">|</span> Point <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            x<span class="op">:</span> xi<span class="op">.</span>clone()<span class="op">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            y<span class="op">:</span> yi<span class="op">.</span>clone()<span class="op">,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">collect::</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;&gt;</span>()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>into_dataframe()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>into_robj()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="sc">-</span><span class="dv">180</span>, <span class="dv">180</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="sc">-</span><span class="dv">90</span>, <span class="dv">90</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">make_points</span>(x, y)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             x          y</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   153.79235  51.577234</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   162.48952 -12.125679</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   145.49589 -51.865901</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  -115.30154 -40.289614</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    66.23683  71.941302</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   163.38766  -9.811993</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   -45.73522 -13.195039</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   -93.75467 -70.093101</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   104.26631 -41.306501</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  -99.78657   8.136069</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="deriving-intodataframerow-for-neighbors" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-intodataframerow-for-neighbors">Deriving IntoDataFrameRow for Neighbors</h2>
+<ul>
+<li>lets try deriving it</li>
+<li>lol oops! That sucks! we cant implement traits for types we don’t own.</li>
+<li>this is called the “orphan rule”</li>
+</ul>
+</section>
+<section id="work-around-create-your-own-struct" class="level2">
+<h2 class="anchored" data-anchor-id="work-around-create-your-own-struct">Work-around: create your own struct</h2>
+<ul>
+<li>one way to handle this is to create your own struct that you can implement traits on</li>
+<li>we can create our own struct <code>GHNeighbors</code></li>
+<li>Since we <strong>own</strong> <code>GHNeighbors</code> we can derive <code>IntoDataFrameRow</code> for it</li>
+<li>but how do we go from <code>Neighbors</code> to <code>GHNeighbors</code>?</li>
+<li>we can implement a trait <code>From</code></li>
+</ul>
+</section>
+<section id="from-trait" class="level2">
+<h2 class="anchored" data-anchor-id="from-trait"><code>From</code> trait</h2>
+<ul>
+<li>part of the standard library</li>
+<li>this provides a 0-cost abstraction</li>
+<li>lets us go from <code>T</code> to <code>U</code> without incurring any runtime cost</li>
+<li>use the <code>impl</code> keyword to implement a trait</li>
+<li><code>impl Trait for OurType</code></li>
+<li>The <code>From</code> trait requires us to specify a type:</li>
+<li><code>impl From&lt;ForeignType&gt; for OurType</code></li>
+</ul>
+<section id="example-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-1">Example</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="bu">From</span><span class="op">&lt;</span>Coord<span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;&gt;</span> <span class="cf">for</span> Point <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> from(value<span class="op">:</span> Coord<span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        Point <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            x<span class="op">:</span> <span class="pp">Rfloat::</span>from(value<span class="op">.</span>x)<span class="op">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            y<span class="op">:</span> <span class="pp">Rfloat::</span>from(value<span class="op">.</span>y)<span class="op">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This lets us do something like:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> coord <span class="op">=</span> <span class="pp">Coord::</span>zero()<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> p <span class="op">=</span> <span class="pp">Point::</span>from(coord)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pro-tip if you write:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="bu">From</span><span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="cf">for</span> U <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// have cursor here and type `cmd + .`</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>This opens the “Quick fix”</li>
+<li>press “implement missing members” which fills the template:</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="bu">From</span><span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="cf">for</span> U <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> from(value<span class="op">:</span> T) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">// construct Self / U struct here</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="pp">todo!</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="default-trait" class="level2">
+<h2 class="anchored" data-anchor-id="default-trait">Default trait</h2>
+<ul>
+<li>what happens when we run into an error finding the neighbors?</li>
+<li>we want to be able to return a row of NAs</li>
+<li>rather than constructing the whole thing from struct each time we want to use a full row of NA</li>
+<li>we can actually instead, implement a default value</li>
+<li>note often the default trait can be derived</li>
+</ul>
+<section id="example-2" class="level3">
+<h3 class="anchored" data-anchor-id="example-2">Example</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="bu">Default</span> <span class="cf">for</span> Point <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> default() <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            x<span class="op">:</span> <span class="pp">Rfloat::</span>na()<span class="op">,</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            y<span class="op">:</span> <span class="pp">Rfloat::</span>na()<span class="op">,</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
+<p>Implement the <code>Default</code> trait for <code>GHNeighbors</code></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="bu">Default</span> <span class="cf">for</span> GHNeighbors <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> default() <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            sw<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            s<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            se<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            w<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            e<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            nw<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            n<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            ne<span class="op">:</span> <span class="pp">Rstr::</span>na()<span class="op">,</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This lets us write <code>GHNeighbors::default()</code></p>
+</section>
+</section>
+<section id="put-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="put-it-all-together">Put it all together</h2>
+<ul>
+<li>lets combine the use of our implementations of <code>From</code>, <code>Default</code>, and <code>IntoDataFrameRow</code> row to write <code>gh_neighbors()</code></li>
+</ul>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>extendr<span class="at">]</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> gh_neighbors(geohashes<span class="op">:</span> Strings) <span class="op">-&gt;</span> Robj <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> all_rows <span class="op">=</span> geohashes</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>into_iter()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>gh<span class="op">|</span> <span class="cf">match</span> neighbors(gh<span class="op">.</span>as_str()) <span class="op">{</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Ok</span>(nbs) <span class="op">=&gt;</span> <span class="pp">GHNeighbors::</span>from(nbs)<span class="op">,</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Err</span>(_) <span class="op">=&gt;</span> <span class="pp">GHNeighbors::</span><span class="kw">default</span>()<span class="op">,</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">collect::</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;&gt;</span>()<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    all_rows<span class="op">.</span>into_dataframe()<span class="op">.</span>unwrap()<span class="op">.</span>into_robj()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="cran-compatibility" class="level2">
+<h2 class="anchored" data-anchor-id="cran-compatibility">CRAN Compatibility</h2>
+<ul>
+<li>vendoring</li>
+<li>MSRV</li>
+</ul>
+</section>
+<section id="using-github-actions" class="level2">
+<h2 class="anchored" data-anchor-id="using-github-actions">Using GitHub Actions</h2>
+<ul>
+<li>R CMD check</li>
+<li>CRAN checks</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
