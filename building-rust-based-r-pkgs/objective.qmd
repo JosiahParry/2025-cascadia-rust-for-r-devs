@@ -1,0 +1,4 @@
+# Workshop Objective
+
+- our objective is to create a geohash package
+- motivation geohashing

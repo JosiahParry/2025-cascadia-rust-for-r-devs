@@ -6,12 +6,24 @@ title: Get set up
 
 Before we can start, we need to get our house in order. We need to install:
 
+- [ ] R 4.5
 - [ ] Positron
 - [ ] Rust
 - [ ] [Rust analyzer VS Code extension](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 - [ ] [Even Better TOML VS Code extension](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
 - [ ] [`{rextendr}`](https://github.com/extendr/rextendr)
 
+## Install R
+
+Please install R version 4.5 to ensure that everyone developing has the same experience.
+
+::: callout-tip
+
+I recommend using `rig` to install a new version of R for you.
+
+[Installation instructions for `rig` here](https://github.com/r-lib/rig/?tab=readme-ov-file#id-installation)
+
+:::
 
 ## Install Positron
 

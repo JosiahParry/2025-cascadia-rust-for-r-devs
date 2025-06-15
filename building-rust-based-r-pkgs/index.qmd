@@ -552,3 +552,9 @@ fn gh_neighbors(geohashes: Strings) -> Robj {
 
 - R CMD check
 - CRAN checks
+
+
+## Thank you
+
+- Join our Discord
+-

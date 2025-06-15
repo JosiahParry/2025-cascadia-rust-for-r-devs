@@ -1,0 +1,4 @@
+# Developer Experience
+
+- settings.json
+- running cargo check

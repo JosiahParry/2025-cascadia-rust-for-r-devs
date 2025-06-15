@@ -1,0 +1,4 @@
+# Using extendr types
+
+- Wrappers to SEXPs
+- cloning is inexpensive, just creates another reference to the pointer

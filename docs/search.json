@@ -14,7 +14,17 @@
     "href": "index.html#setting-up",
     "title": "Rust for R Developers",
     "section": "",
-    "text": "Positron\nRust\nRust analyzer VS Code extension\nEven Better TOML VS Code extension\n{rextendr}",
+    "text": "R 4.5\nPositron\nRust\nRust analyzer VS Code extension\nEven Better TOML VS Code extension\n{rextendr}",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#install-r",
+    "href": "index.html#install-r",
+    "title": "Rust for R Developers",
+    "section": "Install R",
+    "text": "Install R\nPlease install R version 4.5 to ensure that everyone developing has the same experience.\n\n\n\n\n\n\nI recommend using rig to install a new version of R for you.\nInstallation instructions for rig here",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
     ]
@@ -729,6 +739,26 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/index.html#objective",
+    "href": "building-rust-based-r-pkgs/index.html#objective",
+    "title": "Building Rust based R Packages",
+    "section": "",
+    "text": "Learn how to create Rust based R packages using extendr\nBegin to feel comfortable working with data between R & Rust\nCreate an R package to perform geohashing based on the Rust crate called geohash",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#general-overview",
+    "href": "building-rust-based-r-pkgs/index.html#general-overview",
+    "title": "Building Rust based R Packages",
+    "section": "General Overview",
+    "text": "General Overview\n\nWhat is FFI\nWhat is extendr\n\nwebR support\n\nR’s C API\nextendr-ffi & extendr-api",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/index.html#what-is-a-geohash",
     "href": "building-rust-based-r-pkgs/index.html#what-is-a-geohash",
     "title": "Building Rust based R Packages",
@@ -739,11 +769,11 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/index.html#working-outline",
-    "href": "building-rust-based-r-pkgs/index.html#working-outline",
+    "objectID": "building-rust-based-r-pkgs/index.html#hello-world",
+    "href": "building-rust-based-r-pkgs/index.html#hello-world",
     "title": "Building Rust based R Packages",
-    "section": "Working outline",
-    "text": "Working outline\n\ncreating a new R package\n\nadding extendr the package\n\npackage structure\n\nprevious workshop used a binary crate, we will be building a library crate\n\nhello, world\nrextendr::document()\ndevtools::load_all()\n#[extendr] attribute macro\nrprintln!()",
+    "section": "Hello, World!",
+    "text": "Hello, World!\n\nCreating a new package usethis::create_package(rstudio = FALSE)\nAdd extendr rextendr::use_extendr()\npackage structure\n\nprevious workshop used a binary crate, we will be building a library crate\n\nrextendr::document()\ndevtools::load_all()\nhello_world()\nreview the contents\n#[extendr] attribute macro\nrprintln!()",
     "crumbs": [
       "Building Rust based R Packages"
     ]
@@ -829,66 +859,6 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/index.html#using-extendr-types",
-    "href": "building-rust-based-r-pkgs/index.html#using-extendr-types",
-    "title": "Building Rust based R Packages",
-    "section": "Using extendr types",
-    "text": "Using extendr types\n\nrewrite gh_encode() to use Doubles and Strings\nwe can leave length as usize for now as it will always be scalar.\nto access the inner value of an Rfloat use .inner()",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#error-handling-in-rust",
-    "href": "building-rust-based-r-pkgs/index.html#error-handling-in-rust",
-    "title": "Building Rust based R Packages",
-    "section": "Error handling in Rust",
-    "text": "Error handling in Rust\n\n“And I think Result can be explained fairly quickly in the following way: Rust does not have exceptions. Errors are data. If a function is falliable, it returns Result, which is a fork between the successful value, and the error-as-data. We may ignore the error-branch entirely with .unwrap.” -Mossa\n\n\nHandle errors gracefully on the R side by returning a NULL or NA value when it is appropriate\ndescribe Result&lt;&gt; which is an enum.\nlet’s match on the result from encode()\n\nwhen Ok(gh) use Rstr::from(gh)\nwhen Err(e) use Rstr::na() to record a missing value\n\nwhen we try to encode data that is not in long lat we will get an error—e.g. if its in meter that wont work\nfor the exercise feed some bad data to the function to see it return an NA",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#na-handling",
-    "href": "building-rust-based-r-pkgs/index.html#na-handling",
-    "title": "Building Rust based R Packages",
-    "section": "NA handling",
-    "text": "NA handling\n\nnow what about when the coordinates are NA?\nhow do we handle that?\nwe can check Rfloat::is_na()\n\nif either Rfloat::is_na() return Rstr::na()\nelse, do the geohash\n\ntest with NA values",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#objective",
-    "href": "building-rust-based-r-pkgs/index.html#objective",
-    "title": "Building Rust based R Packages",
-    "section": "",
-    "text": "Learn how to create Rust based R packages using extendr\nBegin to feel comfortable working with data between R & Rust\nCreate an R package to perform geohashing based on the Rust crate called geohash",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#general-overview",
-    "href": "building-rust-based-r-pkgs/index.html#general-overview",
-    "title": "Building Rust based R Packages",
-    "section": "General Overview",
-    "text": "General Overview\n\nWhat is FFI\nWhat is extendr\n\nwebR support\n\nR’s C API\nextendr-ffi & extendr-api",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#hello-world",
-    "href": "building-rust-based-r-pkgs/index.html#hello-world",
-    "title": "Building Rust based R Packages",
-    "section": "Hello, World!",
-    "text": "Hello, World!\n\nCreating a new package usethis::create_package(rstudio = FALSE)\nAdd extendr rextendr::use_extendr()\npackage structure\n\nprevious workshop used a binary crate, we will be building a library crate\n\nrextendr::document()\ndevtools::load_all()\nhello_world()\nreview the contents\n#[extendr] attribute macro\nrprintln!()",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
     "objectID": "building-rust-based-r-pkgs/index.html#rs-type-system",
     "href": "building-rust-based-r-pkgs/index.html#rs-type-system",
     "title": "Building Rust based R Packages",
@@ -924,6 +894,36 @@
     "title": "Building Rust based R Packages",
     "section": "Strings",
     "text": "Strings\n\nA bit of a nightmare\nCreate Rstr from a String in Rust using Rstr::from(x)",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#using-extendr-types",
+    "href": "building-rust-based-r-pkgs/index.html#using-extendr-types",
+    "title": "Building Rust based R Packages",
+    "section": "Using extendr types",
+    "text": "Using extendr types\n\nrewrite gh_encode() to use Doubles and Strings\nwe can leave length as usize for now as it will always be scalar.\nto access the inner value of an Rfloat use .inner()",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#error-handling-in-rust",
+    "href": "building-rust-based-r-pkgs/index.html#error-handling-in-rust",
+    "title": "Building Rust based R Packages",
+    "section": "Error handling in Rust",
+    "text": "Error handling in Rust\n\n“And I think Result can be explained fairly quickly in the following way: Rust does not have exceptions. Errors are data. If a function is falliable, it returns Result, which is a fork between the successful value, and the error-as-data. We may ignore the error-branch entirely with .unwrap.” -Mossa\n\n\nHandle errors gracefully on the R side by returning a NULL or NA value when it is appropriate\ndescribe Result&lt;&gt; which is an enum.\nlet’s match on the result from encode()\n\nwhen Ok(gh) use Rstr::from(gh)\nwhen Err(e) use Rstr::na() to record a missing value\n\nwhen we try to encode data that is not in long lat we will get an error—e.g. if its in meter that wont work\nfor the exercise feed some bad data to the function to see it return an NA",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#na-handling",
+    "href": "building-rust-based-r-pkgs/index.html#na-handling",
+    "title": "Building Rust based R Packages",
+    "section": "NA handling",
+    "text": "NA handling\n\nnow what about when the coordinates are NA?\nhow do we handle that?\nwe can check Rfloat::is_na()\n\nif either Rfloat::is_na() return Rstr::na()\nelse, do the geohash\n\ntest with NA values",
     "crumbs": [
       "Building Rust based R Packages"
     ]
@@ -1089,26 +1089,6 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/index.html#cran-compatibility",
-    "href": "building-rust-based-r-pkgs/index.html#cran-compatibility",
-    "title": "Building Rust based R Packages",
-    "section": "CRAN Compatibility",
-    "text": "CRAN Compatibility\n\nvendoring\nMSRV",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#using-github-actions",
-    "href": "building-rust-based-r-pkgs/index.html#using-github-actions",
-    "title": "Building Rust based R Packages",
-    "section": "Using GitHub Actions",
-    "text": "Using GitHub Actions\n\nR CMD check\nCRAN checks",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
     "objectID": "building-rust-based-r-pkgs/index.html#put-it-all-together",
     "href": "building-rust-based-r-pkgs/index.html#put-it-all-together",
     "title": "Building Rust based R Packages",
@@ -1136,6 +1116,102 @@
     "text": "All on your own now\n\nthe decode_bbox() function",
     "crumbs": [
       "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#cran-compatibility",
+    "href": "building-rust-based-r-pkgs/index.html#cran-compatibility",
+    "title": "Building Rust based R Packages",
+    "section": "CRAN Compatibility",
+    "text": "CRAN Compatibility\n\nvendoring\nMSRV",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#using-github-actions",
+    "href": "building-rust-based-r-pkgs/index.html#using-github-actions",
+    "title": "Building Rust based R Packages",
+    "section": "Using GitHub Actions",
+    "text": "Using GitHub Actions\n\nR CMD check\nCRAN checks",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/index.html#thank-you",
+    "href": "building-rust-based-r-pkgs/index.html#thank-you",
+    "title": "Building Rust based R Packages",
+    "section": "Thank you",
+    "text": "Thank you\n\nJoin our Discord",
+    "crumbs": [
+      "Building Rust based R Packages"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/objective.html",
+    "href": "building-rust-based-r-pkgs/objective.html",
+    "title": "23  Workshop Objective",
+    "section": "",
+    "text": "our objective is to create a geohash package\nmotivation geohashing",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Workshop Objective</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr-dx.html",
+    "href": "building-rust-based-r-pkgs/extendr-dx.html",
+    "title": "24  Developer Experience",
+    "section": "",
+    "text": "settings.json\nrunning cargo check",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Developer Experience</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/encode.html",
+    "href": "building-rust-based-r-pkgs/encode.html",
+    "title": "29  Encoding a geohash",
+    "section": "",
+    "text": "results\n.unwrap()\n.expect()",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Encoding a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize.html",
+    "href": "building-rust-based-r-pkgs/vectorize.html",
+    "title": "30  Vectorizing",
+    "section": "",
+    "text": ".zip() iterator",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Vectorizing</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/r-type-system.html",
+    "href": "building-rust-based-r-pkgs/r-type-system.html",
+    "title": "31  R’s Type System",
+    "section": "",
+    "text": "everythign is an sexp",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>R's Type System</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/using-extendr-types.html",
+    "href": "building-rust-based-r-pkgs/using-extendr-types.html",
+    "title": "33  Using extendr types",
+    "section": "",
+    "text": "Wrappers to SEXPs\ncloning is inexpensive, just creates another reference to the pointer",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Using extendr types</span>"
     ]
   }
 ]
