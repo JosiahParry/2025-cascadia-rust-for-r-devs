@@ -384,7 +384,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#extendr-ffi" id="toc-extendr-ffi" class="nav-link active" data-scroll-target="#extendr-ffi"><code>extendr-ffi</code></a></li>
   <li><a href="#extendr-api" id="toc-extendr-api" class="nav-link" data-scroll-target="#extendr-api"><code>extendr-api</code></a></li>
   <li><a href="#extendr-engine" id="toc-extendr-engine" class="nav-link" data-scroll-target="#extendr-engine"><code>extendr-engine</code></a></li>
-  <li><a href="#rextendr" id="toc-rextendr" class="nav-link" data-scroll-target="#rextendr">rextendr</a></li>
+  <li><a href="#rextendr" id="toc-rextendr" class="nav-link" data-scroll-target="#rextendr"><code>{rextendr}</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/extendr.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -455,15 +455,15 @@ Objective
 <p>The <code>extendr-engine</code> is focused on the opposite direction—calling R <em>from</em> Rust. It enables us to start an R process inside of Rust as well as execute R code in that R process. It can be used in creating Rust-based CLI tools that call R or whatever else your imagination can think up.</p>
 </section>
 <section id="rextendr" class="level2">
-<h2 class="anchored" data-anchor-id="rextendr">rextendr</h2>
+<h2 class="anchored" data-anchor-id="rextendr"><code>{rextendr}</code></h2>
+<p>On the R side exists <code>{rextendr}</code>. It is a <code>{usethis}</code>-like package for developing Rust-powered R packages.</p>
+<p>It is primarily used to:</p>
 <ul>
-<li>it is a usethis-like package for Rust and R</li>
-<li>it creates package scaffolding for us</li>
-<li>we document our extendr packages with it</li>
-<li>helps us prepare our packages for CRAN releases</li>
-<li>also has a knitr engine that can be used to compile rust code into an R Markdown document</li>
-<li>we will be using this heavily today.</li>
+<li>scaffold R packages</li>
+<li>document Rust functions</li>
+<li>prepare packages for CRAN release</li>
 </ul>
+<p>It also provide a knitr-engine which lets us include Rust in R Markdown documents.</p>
 
 
 </section>

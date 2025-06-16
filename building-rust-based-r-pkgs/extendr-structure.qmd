@@ -48,3 +48,5 @@ The basic structure of an extendr-based R package is like so:
 inside of rust/ is a Rust library crate. The primary difference is that instead of having a `main.rs` we have also a `lib.rs`.
 
 In the library we do not have any entrypoint that gets executed. It is much like an R package. We define functions aand structs etc that are used by R package.
+
+##

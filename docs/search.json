@@ -1273,8 +1273,8 @@
     "objectID": "building-rust-based-r-pkgs/extendr.html#rextendr",
     "href": "building-rust-based-r-pkgs/extendr.html#rextendr",
     "title": "21  What is extendr?",
-    "section": "rextendr",
-    "text": "rextendr\n\nit is a usethis-like package for Rust and R\nit creates package scaffolding for us\nwe document our extendr packages with it\nhelps us prepare our packages for CRAN releases\nalso has a knitr engine that can be used to compile rust code into an R Markdown document\nwe will be using this heavily today.",
+    "section": "{rextendr}",
+    "text": "{rextendr}\nOn the R side exists {rextendr}. It is a {usethis}-like package for developing Rust-powered R packages.\nIt is primarily used to:\n\nscaffold R packages\ndocument Rust functions\nprepare packages for CRAN release\n\nIt also provide a knitr-engine which lets us include Rust in R Markdown documents.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
