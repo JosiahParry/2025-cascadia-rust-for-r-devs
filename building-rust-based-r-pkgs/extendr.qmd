@@ -33,11 +33,14 @@ We will spend the rest of the workshop using the extendr-api crate.
 
 The `extendr-engine` is focused on the opposite direction—calling R _from_ Rust. It enables us to start an R process inside of Rust as well as execute R code in that R process. It can be used in creating Rust-based CLI tools that call R or whatever else your imagination can think up.
 
-## rextendr
+## `{rextendr}`
 
-- it is a usethis-like package for Rust and R
-- it creates package scaffolding for us
-- we document our extendr packages with it
-- helps us prepare our packages for CRAN releases
-- also has a knitr engine that can be used to compile rust code into an R Markdown document
-- we will be using this heavily today.
+On the R side exists `{rextendr}`. It is a `{usethis}`-like package for developing Rust-powered R packages.
+
+It is primarily used to:
+
+- scaffold R packages
+- document Rust functions
+- prepare packages for CRAN release
+
+It also provide a knitr-engine which lets us include Rust in R Markdown documents.
