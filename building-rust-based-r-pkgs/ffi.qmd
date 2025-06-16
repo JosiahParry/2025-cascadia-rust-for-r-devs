@@ -1,1 +1,12 @@
 # Foreign Function Interfaces (FFI)
+
+- allows us to use other (foreign) languages in our language of choice
+- R's success is in part due to FFI tools in our ecosystem:
+    - Rcpp
+    - cpp11
+    - rJava
+    - V8
+    - etc
+- made possible through R's C API
+- Many low level langauges have the ability to talk to C types
+    - So does Rust and that is where extendr comes in

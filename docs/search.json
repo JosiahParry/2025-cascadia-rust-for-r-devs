@@ -1151,12 +1151,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/objective.html",
     "href": "building-rust-based-r-pkgs/objective.html",
-    "title": "23  Workshop Objective",
+    "title": "22  Workshop Objective",
     "section": "",
-    "text": "our objective is to create a geohash package\nmotivation geohashing",
+    "text": "What is geohashing?",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Workshop Objective</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Objective</span>"
     ]
   },
   {
@@ -1175,7 +1175,7 @@
     "href": "building-rust-based-r-pkgs/encode.html",
     "title": "29  Encoding a geohash",
     "section": "",
-    "text": "results\n.unwrap()\n.expect()",
+    "text": "results\n.unwrap()\n.expect()\n\n\n\nView solution",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>29</span>  <span class='chapter-title'>Encoding a geohash</span>"
@@ -1212,6 +1212,193 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>33</span>  <span class='chapter-title'>Using extendr types</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/ffi.html",
+    "href": "building-rust-based-r-pkgs/ffi.html",
+    "title": "20  Foreign Function Interfaces (FFI)",
+    "section": "",
+    "text": "allows us to use other (foreign) languages in our language of choice\nR’s success is in part due to FFI tools in our ecosystem:\n\nRcpp\ncpp11\nrJava\nV8\netc\n\nmade possible through R’s C API\nMany low level langauges have the ability to talk to C types\n\nSo does Rust and that is where extendr comes in",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Foreign Function Interfaces (FFI)</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr.html",
+    "href": "building-rust-based-r-pkgs/extendr.html",
+    "title": "21  What is extendr?",
+    "section": "",
+    "text": "extendr-ffi",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-ffi",
+    "href": "building-rust-based-r-pkgs/extendr.html#extendr-ffi",
+    "title": "21  What is extendr?",
+    "section": "",
+    "text": "extendr-ffi is a crate that does the translation between R and Rust.\nR has many functions and types that are defined in C\nextendr-ffi provides Rust-compatible type definitions for the low-level C API\nwe will never have to touch this\nbut everything is built upon this layer",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-api",
+    "href": "building-rust-based-r-pkgs/extendr.html#extendr-api",
+    "title": "21  What is extendr?",
+    "section": "extendr-api",
+    "text": "extendr-api\n\nThis is where the magic happens.\nextendr-api has defined types around extendr-ffi to make working with R structures in Rust ergonomic\nit is what we actually import and use when we create our R packages\nthe rest of today will be focused on learning and using extendr-api1",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-engine",
+    "href": "building-rust-based-r-pkgs/extendr.html#extendr-engine",
+    "title": "21  What is extendr?",
+    "section": "extendr-engine",
+    "text": "extendr-engine\n\nextendr-engine gives us a way to start R from inside of Rust\nif R exists on a machine, extendr-engine can access it, start it, and execute R code all from an R binary.\nthis is very powerful for when we wantt to go the otherway Rust -&gt; R\nwe will not be touching it today",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr.html#rextendr",
+    "href": "building-rust-based-r-pkgs/extendr.html#rextendr",
+    "title": "21  What is extendr?",
+    "section": "rextendr",
+    "text": "rextendr\n\nit is a usethis-like package for Rust and R\nit creates package scaffolding for us\nwe document our extendr packages with it\nhelps us prepare our packages for CRAN releases\nalso has a knitr engine that can be used to compile rust code into an R Markdown document\nwe will be using this heavily today.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
+    "href": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
+    "title": "22  Workshop Objective",
+    "section": "",
+    "text": "TL;DR of geohashing\nthink of it as dimensionality reduction but for geography\nwe partition the world into a grid of nested squares\nthese squares are represented by base32 alphabet (most of the alphabet and the numbers 0-9)\nwe can query on geohash prefixes to find nearby locations\nthe more shared digits in a geohash there are, the more close the two places are in space\nthis package we will create will help us:\n\nencode geohashes\ndecoded geohash to x & y plus error terms\ndecode geohash into a bounding box\nfind geohash neighbors",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Objective</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/hello-world.html",
+    "href": "building-rust-based-r-pkgs/hello-world.html",
+    "title": "23  Hello, world!",
+    "section": "",
+    "text": "rextendr developer functions",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/hello-world.html#rextendr-developer-functions",
+    "href": "building-rust-based-r-pkgs/hello-world.html#rextendr-developer-functions",
+    "title": "23  Hello, world!",
+    "section": "",
+    "text": "rextendr::use_extendr() - create the Rust infrastructure\nrextendr::document() - document and update Rust function definitions",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/hello-world.html#developer-workflow",
+    "href": "building-rust-based-r-pkgs/hello-world.html#developer-workflow",
+    "title": "23  Hello, world!",
+    "section": "Developer workflow",
+    "text": "Developer workflow\n\nmodify source\ndocument()\nload_all()\ntest\nrepeat",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/hello-world.html#exercise",
+    "href": "building-rust-based-r-pkgs/hello-world.html#exercise",
+    "title": "23  Hello, world!",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate a new package called {geohash} using {usethis}\nInclude extendr in the new package by running rextendr::use_extendr()\nCompile the package by using rextendr::document()\nLoad the package using devtools::load_all()\nRun hello_world()\n\n\nSolution\n\n\nView solution\n\nusethis::create_package(\"geohash\")\n# in the newly created package\nlibrary(rextendr)\n\n# add extendr scaffolding\nuse_extendr()\n\n# compile and document the Rust functions\ndocument()\n\n# load the R package\ndevtools::load_all()\n\n# run the hello_world()!\nhello_world()",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/export-to-r.html",
+    "href": "building-rust-based-r-pkgs/export-to-r.html",
+    "title": "27  Calling Rust from R",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Calling Rust from R</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/decode.html",
+    "href": "building-rust-based-r-pkgs/decode.html",
+    "title": "39  Decode a geohash",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>39</span>  <span class='chapter-title'>Decode a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize-neighbor.html",
+    "href": "building-rust-based-r-pkgs/vectorize-neighbor.html",
+    "title": "38  Vectorize gh_neighbor()",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>38</span>  <span class='chapter-title'>Vectorize `gh_neighbor()`</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/type-mapping-p1.html",
+    "href": "building-rust-based-r-pkgs/type-mapping-p1.html",
+    "title": "32  Type Mapping",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Type Mapping</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/rust-deps.html",
+    "href": "building-rust-based-r-pkgs/rust-deps.html",
+    "title": "25  Adding dependencies",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Adding dependencies</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/na-handling.html",
+    "href": "building-rust-based-r-pkgs/na-handling.html",
+    "title": "35  Handle NAs gracefully",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
     ]
   }
 ]

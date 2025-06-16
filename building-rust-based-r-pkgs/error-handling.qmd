@@ -1,1 +1,6 @@
 # Handling Errors
+
+
+<details>
+    <summary>View solution</summary>
+</details>

@@ -3,3 +3,8 @@
 - results
 - .unwrap()
 - .expect()
+
+
+<details>
+    <summary>View solution</summary>
+</details>

@@ -1,1 +1,5 @@
 # Adding dependencies
+
+<details>
+    <summary>View solution</summary>
+</details>

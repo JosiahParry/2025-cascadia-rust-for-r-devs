@@ -1,1 +1,61 @@
 # Hello, world!
+
+::: callout-tip
+## Objective
+
+Scaffold an extendr-powered R package using `rextendr` and run the `hello_world()` function.
+:::
+
+- you should already have R 4.5, Positron, and Rust installed
+- we'll now dip our toes into the water and create our new package called `geohash`
+- use `usethis::create_package("path/to/geohash")` to create the R package
+- once inside the new R package, we need to scaffold the Rust interoperability
+- we do this using `rextendr::use_extendr()`
+
+## rextendr developer functions
+
+- `rextendr::use_extendr()` - create the Rust infrastructure
+- `rextendr::document()` - document and update Rust function definitions
+
+## Developer workflow
+
+- modify source
+- document()
+- load_all()
+- test
+- repeat
+
+
+## Exercise
+
+- Create a new package called `{geohash}` using `{usethis}`
+- Include extendr in the new package by running `rextendr::use_extendr()`
+- Compile the package by using `rextendr::document()`
+- Load the package using `devtools::load_all()`
+- Run `hello_world()`
+
+### Solution
+
+<details>
+    <summary>View solution</summary>
+
+```r
+usethis::create_package("geohash")
+# in the newly created package
+library(rextendr)
+
+# add extendr scaffolding
+use_extendr()
+
+# compile and document the Rust functions
+document()
+
+# load the R package
+devtools::load_all()
+
+# run the hello_world()!
+hello_world()
+```
+
+
+</details>

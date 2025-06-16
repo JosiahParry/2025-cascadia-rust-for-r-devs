@@ -1,4 +1,21 @@
 # Workshop Objective
 
-- our objective is to create a geohash package
-- motivation geohashing
+- this workshop will teach us how to create rust based R packages through a worked example.
+- we will create a package called `geohash`
+- this package will provide R bindings to the Rust crate of the same name
+- throughout the workshop we will touch on some advanced R topics along the way.
+- as much as this is about Rust, it is also about R itself and given that this is FFI, the two are inextricably linked
+
+## What is geohashing?
+
+- TL;DR of geohashing
+- think of it as dimensionality reduction but for geography
+- we partition the world into a grid of nested squares
+- these squares are represented by base32 alphabet (most of the alphabet and the numbers 0-9)
+- we can query on geohash prefixes to find nearby locations
+- the more shared digits in a geohash there are, the more close the two places are in space
+- this package we will create will help us:
+    - encode geohashes
+    - decoded geohash to x & y plus error terms
+    - decode geohash into a bounding box
+    - find geohash neighbors

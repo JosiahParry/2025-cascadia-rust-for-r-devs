@@ -1,1 +1,47 @@
 # What is extendr?
+
+
+::: callout-tip
+## Objective
+
+Learn the different components of the extendr ecosystem.
+:::
+
+- extendr is a project that focuses on extending R with Rust
+- there is actually no one library called "extendr"
+- comprised of:
+    - rextendr
+    - extendr-ffi
+    - extendr-api
+    - extendr-engine
+
+## extendr-ffi
+
+- extendr-ffi is a crate that does the translation between R and Rust.
+- R has many functions and types that are defined in C
+- extendr-ffi provides Rust-compatible type definitions for the low-level C API
+- we will never have to touch this
+- but everything is built upon this layer
+
+## extendr-api
+
+- This is where the magic happens.
+- extendr-api has defined types around extendr-ffi to make working with R structures in Rust ergonomic
+- it is what we actually import and use when we create our R packages
+- the rest of today will be focused on learning and using extendr-api1
+
+## extendr-engine
+
+- extendr-engine gives us a way to start R from inside of Rust
+- if R exists on a machine, extendr-engine can access it, start it, and execute R code all from an R binary.
+- this is very powerful for when we wantt to go the otherway Rust -> R
+- we will not be touching it today
+
+## rextendr
+
+- it is a usethis-like package for Rust and R
+- it creates package scaffolding for us
+- we document our extendr packages with it
+- helps us prepare our packages for CRAN releases
+- also has a knitr engine that can be used to compile rust code into an R Markdown document
+- we will be using this heavily today.

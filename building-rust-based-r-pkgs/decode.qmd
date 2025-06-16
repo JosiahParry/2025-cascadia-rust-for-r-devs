@@ -1,1 +1,6 @@
 # Decode a geohash
+
+
+<details>
+    <summary>View solution</summary>
+</details>

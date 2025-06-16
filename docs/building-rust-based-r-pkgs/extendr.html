@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../building-rust-based-r-pkgs/hello-world.html" rel="next">
+<link href="../building-rust-based-r-pkgs/objective.html" rel="next">
 <link href="../building-rust-based-r-pkgs/ffi.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -257,14 +257,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../building-rust-based-r-pkgs/hello-world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hello, world!</span></span></a>
+  <a href="../building-rust-based-r-pkgs/objective.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Workshop Objective</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../building-rust-based-r-pkgs/objective.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Workshop Objective</span></span></a>
+  <a href="../building-rust-based-r-pkgs/hello-world.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hello, world!</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -370,8 +370,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#extendr-ffi" id="toc-extendr-ffi" class="nav-link active" data-scroll-target="#extendr-ffi">extendr-ffi</a></li>
+  <li><a href="#extendr-api" id="toc-extendr-api" class="nav-link" data-scroll-target="#extendr-api">extendr-api</a></li>
+  <li><a href="#extendr-engine" id="toc-extendr-engine" class="nav-link" data-scroll-target="#extendr-engine">extendr-engine</a></li>
+  <li><a href="#rextendr" id="toc-rextendr" class="nav-link" data-scroll-target="#rextendr">rextendr</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/extendr.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -395,8 +404,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objective
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Learn the different components of the extendr ecosystem.</p>
+</div>
+</div>
+<ul>
+<li>extendr is a project that focuses on extending R with Rust</li>
+<li>there is actually no one library called “extendr”</li>
+<li>comprised of:
+<ul>
+<li>rextendr</li>
+<li>extendr-ffi</li>
+<li>extendr-api</li>
+<li>extendr-engine</li>
+</ul></li>
+</ul>
+<section id="extendr-ffi" class="level2">
+<h2 class="anchored" data-anchor-id="extendr-ffi">extendr-ffi</h2>
+<ul>
+<li>extendr-ffi is a crate that does the translation between R and Rust.</li>
+<li>R has many functions and types that are defined in C</li>
+<li>extendr-ffi provides Rust-compatible type definitions for the low-level C API</li>
+<li>we will never have to touch this</li>
+<li>but everything is built upon this layer</li>
+</ul>
+</section>
+<section id="extendr-api" class="level2">
+<h2 class="anchored" data-anchor-id="extendr-api">extendr-api</h2>
+<ul>
+<li>This is where the magic happens.</li>
+<li>extendr-api has defined types around extendr-ffi to make working with R structures in Rust ergonomic</li>
+<li>it is what we actually import and use when we create our R packages</li>
+<li>the rest of today will be focused on learning and using extendr-api1</li>
+</ul>
+</section>
+<section id="extendr-engine" class="level2">
+<h2 class="anchored" data-anchor-id="extendr-engine">extendr-engine</h2>
+<ul>
+<li>extendr-engine gives us a way to start R from inside of Rust</li>
+<li>if R exists on a machine, extendr-engine can access it, start it, and execute R code all from an R binary.</li>
+<li>this is very powerful for when we wantt to go the otherway Rust -&gt; R</li>
+<li>we will not be touching it today</li>
+</ul>
+</section>
+<section id="rextendr" class="level2">
+<h2 class="anchored" data-anchor-id="rextendr">rextendr</h2>
+<ul>
+<li>it is a usethis-like package for Rust and R</li>
+<li>it creates package scaffolding for us</li>
+<li>we document our extendr packages with it</li>
+<li>helps us prepare our packages for CRAN releases</li>
+<li>also has a knitr engine that can be used to compile rust code into an R Markdown document</li>
+<li>we will be using this heavily today.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -823,8 +895,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../building-rust-based-r-pkgs/hello-world.html" class="pagination-link" aria-label="Hello, world!">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Hello, world!</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../building-rust-based-r-pkgs/objective.html" class="pagination-link" aria-label="Workshop Objective">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Workshop Objective</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -833,4 +905,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/extendr.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/extendr.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

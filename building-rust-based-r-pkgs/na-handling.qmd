@@ -1,1 +1,5 @@
 # Handle NAs gracefully
+
+<details>
+    <summary>View solution</summary>
+</details>
