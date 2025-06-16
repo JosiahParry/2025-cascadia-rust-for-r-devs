@@ -35,7 +35,7 @@ The typical workflow for developing an extendr package involves:
 
 ## Exercise
 
-- Create a new package called `{geohash}` using `{usethis}`
+- Create a new package called `{geohashrs}` using `{usethis}`
 - Include extendr in the new package by running `rextendr::use_extendr()`
 - Compile the package by using `rextendr::document()`
 - Load the package using `devtools::load_all()`
@@ -47,7 +47,7 @@ The typical workflow for developing an extendr package involves:
     <summary>View solution</summary>
 
 ```r
-usethis::create_package("geohash")
+usethis::create_package("geohashrs")
 # in the newly created package
 library(rextendr)
 

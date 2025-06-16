@@ -9,7 +9,7 @@ Define the scope and objective of the workshop.
 
 There's no better way to learn than by doing.
 
-In this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called `{geohash}`. The `{geohash}` R package will provide R bindings to the [geohash crate](https://docs.rs/geohash).
+In this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called `{geohashrs}`. The `{geohashrs}` R package will provide R bindings to the [geohash crate](https://docs.rs/geohash).
 
 Throughout the workshop we will touch on:
 
