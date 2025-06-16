@@ -1,9 +1,59 @@
-# Using extendr types
+# Collecting extendr types
 
-- Wrappers to SEXPs
-- cloning is inexpensive, just creates another reference to the pointer
+::: callout-tip
+## Objective
+Learn to collect iterators into extendr types.
+:::
+
+We've been using `.collect()` to create vectors of a return type. However, these are not native R types. Using `Vec<T>` requires allocating a new (R) vector and filling the values.
+
+Instead, we can collect into the wrapper types. To do so, the iterator must be a scalar type—e.g. `Rfloat`, `Rint`, or `Rstr`.
+
+Rather than `.collect::<Vec<_>>()` we specify the wrapper type we want.
+
+
+## Example
+
+Using the previous parallel sum, we can instead return `Doubles` using the turbo-fish syntax
+
+```rust
+#[extendr]
+fn psum(x: Doubles, y: Doubles) -> Doubles {
+    x.into_iter()
+        .zip(y.into_iter())
+        .map(|(xi, yi)| Rfloat::from(xi.inner() + yi.inner()))
+        .collect::<Doubles>()
+}
+```
+
+## Exercise
+
+- Modify `gh_encode()` so that it returns `Strings`
+- Ensure that each iteration returns an `Rstr` instead of `String`
 
 
 <details>
     <summary>View solution</summary>
+
+
+```rust
+#[extendr]
+fn gh_encode(x: Doubles, y: Doubles, length: usize) -> Strings {
+    if length == 0 || length > 12 {
+        throw_r_error("`length` must be between 1 and 12");
+    }
+
+    x.into_iter()
+        .zip(y.into_iter())
+        .map(|(xi, yi)| {
+            let coord = Coord {
+                x: xi.inner(),
+                y: yi.inner(),
+            };
+            let gh = encode(coord, length).unwrap();
+            Rstr::from(gh)
+        })
+        .collect::<Strings>()
+}
+```
 </details>

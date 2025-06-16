@@ -324,23 +324,23 @@
   {
     "objectID": "intro-to-rust-for-r-devs/mutability.html",
     "href": "intro-to-rust-for-r-devs/mutability.html",
-    "title": "8  Mutability",
+    "title": "7  Mutability",
     "section": "",
     "text": "Exercise\nIn Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the mut keyword.\nBy requiring mut, the compiler ensures that accidental mutations are caught at compile time.\nHere’s an example revisiting our loop from earlier:",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutability</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/mutability.html#exercise",
     "href": "intro-to-rust-for-r-devs/mutability.html#exercise",
-    "title": "8  Mutability",
+    "title": "7  Mutability",
     "section": "",
     "text": "Create a vector of 5 or more f64 values (Vec&lt;f64&gt;)\nUse a for loop to calculate the mean of the vector\nPrint the result\n\n\n\n\n\n\n\nWe’ve been working only with integers. To create a float (number with decimals) use 0.0 or specify the type manually e.g. 0f64.\n\n\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0];\n\n    let n = x.len() as f64;\n    let mut total = 0.0;\n\n    for xi in x {\n        total += xi;\n    }\n\n    println!(\"The mean is: {}\", total / n);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutability</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
     ]
   },
   {
@@ -401,122 +401,122 @@
   {
     "objectID": "intro-to-rust-for-r-devs/references-slices.html",
     "href": "intro-to-rust-for-r-devs/references-slices.html",
-    "title": "11  Ownership",
+    "title": "10  Ownership",
     "section": "",
     "text": "Moves\nRust enforces ownership at compile time. This ensures memory safety, but it means variables can only be used once—unless they’re borrowed.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/references-slices.html#moves",
     "href": "intro-to-rust-for-r-devs/references-slices.html#moves",
-    "title": "11  Ownership",
+    "title": "10  Ownership",
     "section": "",
     "text": "fn main() {\n    let x = vec![1.0, 2.0, 3.0];\n    let y = x; // 👈 ownership moved\n    println!(\"{:?}\", x); // ❌ error: value used after move\n}\n\nOwnership of x was moved to y\nAfter a move, the original variable (x) can’t be used",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
     "href": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
-    "title": "11  Ownership",
+    "title": "10  Ownership",
     "section": "Borrowing",
     "text": "Borrowing\nfn main() {\n    let x = vec![1.0, 2.0, 3.0];\n    let avg = mean(&x); // 👈 borrowing `x`\n    println!(\"x is still usable: {:?}\", x);\n}\n\nBorrowing uses & to pass by reference\nYou can borrow a value as many times as you want (immutably)\nYou can’t mutate or move them while borrowed\n\n\n\n\n\n\n\n“When in doubt, clone it out!”\n\n\n\n\n.clone() makes a full copy of a value—useful when you need to keep ownership",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
-    "title": "11  Ownership",
+    "title": "10  Ownership",
     "section": "Exercise 1",
     "text": "Exercise 1\nRewrite the mean() function to accept a reference to a Vec&lt;f64&gt; instead of taking ownership. Then call it with a borrowed vector.\n\nSolution\n\n\nView solution\n\nfn mean(x: &Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    for xi in x {\n        total += xi;\n    }\n    total / x.len() as f64\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/references-slices.html#slices",
     "href": "intro-to-rust-for-r-devs/references-slices.html#slices",
-    "title": "11  Ownership",
+    "title": "10  Ownership",
     "section": "Slices",
     "text": "Slices\n\nA slice is a borrowed section of a collection\nAlways a reference: &[T]\nHas known length with .len()\nPreferred when you don’t need the full container\n\nlet values = vec![10.0, 20.0, 30.0];\nlet avg = mean(&values); // full slice\nlet avg = mean(&values[0..3]) // the first 3 elements\n\n\n\n\n\n\nWe won’t cover the [..] syntax but you should think it similar to R! It uses a range. A range takes the format of from..to where to is uninclusive. So 0..3 would be indices 0, 1, and 2!\n\n\n\n\nSlices are lighter-weight than borrowing a full vector\nIn general: prefer slices → references → moves",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-2",
-    "title": "11  Ownership",
+    "title": "10  Ownership",
     "section": "Exercise 2",
     "text": "Exercise 2\n\nRewrite mean() to accept a slice (&[f64]) instead of a Vec&lt;f64&gt; reference.\nTry using mean() on a subset of values.\n\n\nSolution\n\n\nView solution\n\nfn mean(x: &[f64]) -&gt; f64 {\n    let mut total = 0.0;\n    for xi in x {\n        total += xi;\n    }\n    total / x.len() as f64\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Ownership</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html",
     "href": "intro-to-rust-for-r-devs/iterators.html",
-    "title": "12  Iterators",
+    "title": "11  Iterators",
     "section": "",
     "text": "Consuming vs. Borrowing\nIterators are values that produce a sequence of items, one at a time. They can be created from collections like vectors, arrays, and ranges.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#consuming-vs.-borrowing",
     "href": "intro-to-rust-for-r-devs/iterators.html#consuming-vs.-borrowing",
-    "title": "12  Iterators",
+    "title": "11  Iterators",
     "section": "",
     "text": ".into_iter() consumes the original value, transferring ownership.\n.iter() borrows the collection, producing references to each item.\nA for loop uses .into_iter() under the hood.\n\nfn main() {\n    let nums = vec![3, 6, 9];\n\n    for n in nums.into_iter() {\n        println!(\"Value: {}\", n);\n    }\n    // nums no longer available here ❌\n}\nfn main() {\n    let nums = vec![3, 6, 9];\n\n    for n in nums.iter() {\n        println!(\"Reference to value: {}\", n);\n    }\n    // nums is still usable ✅\n    println!(\"nums: {:?}\", nums);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#basic-iterator-methods",
     "href": "intro-to-rust-for-r-devs/iterators.html#basic-iterator-methods",
-    "title": "12  Iterators",
+    "title": "11  Iterators",
     "section": "Basic Iterator Methods",
     "text": "Basic Iterator Methods\nOnce you have an iterator, you can use built-in methods:\n\n.sum() — Add all the values together.\n.min() — Find the smallest value.\n.max() — Find the largest value.\n.enumerate() — Pairs each value with its index.\n\nfn main() {\n    let nums = vec![2, 4, 8];\n    let total: i32 = nums.iter().sum();\n    println!(\"Sum is: {}\", total);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
-    "title": "12  Iterators",
+    "title": "11  Iterators",
     "section": "Exercise 1",
     "text": "Exercise 1\n\nModify the mean() function to calculate the mean using .iter()\nCreate a vector of 5 or more f64 values\nCalculate the mean and print the result\n\n\nSolution\n\n\nView solution\n\nfn mean(x: &[f64]) -&gt; f64 {\n    let total: f64 = x.iter().sum();\n    total / x.len() as f64\n}\n\nfn main() {\n    let nums = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    println!(\"Mean is: {}\", mean(&nums));\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-2",
-    "title": "12  Iterators",
+    "title": "11  Iterators",
     "section": "Exercise 2",
     "text": "Exercise 2\n\nPrint the index and value for each item in a vector for only even values\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let nums = vec![1, 2, 3, 4, 5, 6];\n\n    for (i, n) in nums.iter().enumerate() {\n        if n % 2 == 0 {\n            println!(\"Index {i}: {n} is even\");\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Iterators</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
     ]
   },
   {
@@ -1195,45 +1195,45 @@
   {
     "objectID": "building-rust-based-r-pkgs/r-type-system.html",
     "href": "building-rust-based-r-pkgs/r-type-system.html",
-    "title": "31  R’s Type System",
+    "title": "29  R’s Type System",
     "section": "",
-    "text": "everythign is an sexp",
+    "text": "Vector SEXP types\nIn R, everything is an SEXP.\nTo extendr, an SEXP is an Robj—it can be anything.\nThere are a subset of SEXP types that we actually care about—the vector kinds. For the sake of simplicity, we’ll only talk about the numeric vector types.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>R's Type System</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>R's Type System</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/using-extendr-types.html",
     "href": "building-rust-based-r-pkgs/using-extendr-types.html",
-    "title": "33  Using extendr types",
+    "title": "30  Collecting extendr types",
     "section": "",
-    "text": "Wrappers to SEXPs\ncloning is inexpensive, just creates another reference to the pointer",
+    "text": "Example\nWe’ve been using .collect() to create vectors of a return type. However, these are not native R types. Using Vec&lt;T&gt; requires allocating a new (R) vector and filling the values.\nInstead, we can collect into the wrapper types. To do so, the iterator must be a scalar type—e.g. Rfloat, Rint, or Rstr.\nRather than .collect::&lt;Vec&lt;_&gt;&gt;() we specify the wrapper type we want.\nUsing the previous parallel sum, we can instead return Doubles using the turbo-fish syntax",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Using extendr types</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Collecting extendr types</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/ffi.html",
     "href": "building-rust-based-r-pkgs/ffi.html",
-    "title": "20  Foreign Function Interfaces (FFI)",
+    "title": "18  Foreign Function Interfaces (FFI)",
     "section": "",
     "text": "R’s C API\nForeign function interfaces (FFI) are mechanisms by which other (foreign) languages can be used in our programming langauge of choice. They are typically used to call compiled languages (like C / Rust) from an interpretted langauge (R).\nMuch of R’s success and power comes from a robust FFI tooling ecosystem. Some of the more prominent FFI libraries are:\nMost langauges have the ability to interact with C and C-types. R is written in C and exposes a C API. Rust is able to work with C and represent C types. This is where extendr comes in.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Foreign Function Interfaces (FFI)</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Foreign Function Interfaces (FFI)</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html",
     "href": "building-rust-based-r-pkgs/extendr.html",
-    "title": "20  What is extendr?",
+    "title": "19  What is extendr?",
     "section": "",
     "text": "extendr-ffi\nextendr is a project that focuses on extending R with Rust. It is comprised of:\nextendr-ffi defines the types and functions in R’s C API using Rust functions and types. As R’s C API changes, extendr-ffi is responsible for ensuring that packages are backwards compatible.\nFortunately, we will never have to touch this layer. Everything is built on top of this crate.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
@@ -1250,34 +1250,34 @@
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-api",
     "href": "building-rust-based-r-pkgs/extendr.html#extendr-api",
-    "title": "20  What is extendr?",
+    "title": "19  What is extendr?",
     "section": "extendr-api",
     "text": "extendr-api\nextendr-api is the high-level crate that is built upon extendr-ffi. It makes working with R types such as vectors feel fairly natural from a Rust perspective. It handles the oddities of garbage collection and everything else related to the FFI boundary.\nWe will spend the rest of the workshop using the extendr-api crate.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-engine",
     "href": "building-rust-based-r-pkgs/extendr.html#extendr-engine",
-    "title": "20  What is extendr?",
+    "title": "19  What is extendr?",
     "section": "extendr-engine",
     "text": "extendr-engine\nThe extendr-engine is focused on the opposite direction—calling R from Rust. It enables us to start an R process inside of Rust as well as execute R code in that R process. It can be used in creating Rust-based CLI tools that call R or whatever else your imagination can think up.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html#rextendr",
     "href": "building-rust-based-r-pkgs/extendr.html#rextendr",
-    "title": "20  What is extendr?",
+    "title": "19  What is extendr?",
     "section": "{rextendr}",
     "text": "{rextendr}\nOn the R side exists {rextendr}. It is a {usethis}-like package for developing Rust-powered R packages.\nIt is primarily used to:\n\nscaffold R packages\ndocument Rust functions\nprepare packages for CRAN release\n\nIt also provide a knitr-engine which lets us include Rust in R Markdown documents.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
@@ -1371,12 +1371,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/type-mapping-p1.html",
     "href": "building-rust-based-r-pkgs/type-mapping-p1.html",
-    "title": "32  Type Mapping",
+    "title": "30  Type Mapping",
     "section": "",
     "text": "View solution",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Type Mapping</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Type Mapping</span>"
     ]
   },
   {
@@ -1674,6 +1674,83 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>28</span>  <span class='chapter-title'>Vectorizing</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/r-type-system.html#vector-sexp-types",
+    "href": "building-rust-based-r-pkgs/r-type-system.html#vector-sexp-types",
+    "title": "29  R’s Type System",
+    "section": "",
+    "text": "SEXP numeric types\n\n\n\nIntegers are represented by 32 bit integers i32 in Rust.\nDoubles are represented by 64 bit floats f64 in Rust.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>R's Type System</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/r-type-system.html#scalar-types",
+    "href": "building-rust-based-r-pkgs/r-type-system.html#scalar-types",
+    "title": "29  R’s Type System",
+    "section": "Scalar types",
+    "text": "Scalar types\ni32 and f64 do not have a concept of NA or missing. How do we address this?\nextendr provides scalar types such as:\n\nRfloat\nRint\nRstr\nRbool\n\nand others.\nThese scalar types are created using ScalarType::from(). For example:\nlet my_float = Rfloat::from(3.14);\nOr, NAs can be created explicitly by using the associated method ScalarType::na()\nlet my_na = Rfloat::na();\n\nMissingness can also be checked by using the my_na.is_na() method.\nTo access the inner type—e.g. f64 or i32 we can use the .inner() method.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>R's Type System</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/r-type-system.html#wrapper-types",
+    "href": "building-rust-based-r-pkgs/r-type-system.html#wrapper-types",
+    "title": "29  R’s Type System",
+    "section": "Wrapper types",
+    "text": "Wrapper types\nTo work with vectors, we work with their wrapper types. These are:\n\nDoubles\nIntegers\nLogicals\nStrings\n\nWe should always prefer these types over using Vec&lt;f64&gt; or Vec&lt;i32&gt;.\n\n\n\n\n\n\nWhen in doubt, clone it out\n\n\n\n\n\nCloning an extendr Robj (or other wrapper type) is quite cheap. When cloning an Robj, we are only incrementing a reference count and not performing a full copy like we do when working in R.\n\n\n\n\n\n\nWrapper types",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>R's Type System</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/r-type-system.html#exercise",
+    "href": "building-rust-based-r-pkgs/r-type-system.html#exercise",
+    "title": "29  R’s Type System",
+    "section": "Exercise",
+    "text": "Exercise\n\nRewrite gh_encode() to use Doubles for both the x and y argument\nStill return Vec&lt;String&gt;\n\n\nSolution\n\n\nView hint\n\nUse .inner() to access the f64 value from xi and yi.\n\n\n\nView solution\n\n#[extendr]\nfn gh_encode(x: Doubles, y: Doubles, length: usize) -&gt; Vec&lt;String&gt; {\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    x.into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| {\n            let coord = Coord {\n                x: xi.inner(),\n                y: yi.inner(),\n            };\n            encode(coord, length).unwrap()\n        })\n        .collect::&lt;Vec&lt;_&gt;&gt;()\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>R's Type System</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/using-extendr-types.html#example",
+    "href": "building-rust-based-r-pkgs/using-extendr-types.html#example",
+    "title": "30  Collecting extendr types",
+    "section": "",
+    "text": "#[extendr]\nfn psum(x: Doubles, y: Doubles) -&gt; Doubles {\n    x.into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| Rfloat::from(xi.inner() + yi.inner()))\n        .collect::&lt;Doubles&gt;()\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Collecting extendr types</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/using-extendr-types.html#exercise",
+    "href": "building-rust-based-r-pkgs/using-extendr-types.html#exercise",
+    "title": "30  Collecting extendr types",
+    "section": "Exercise",
+    "text": "Exercise\n\nModify gh_encode() so that it returns Strings\nEnsure that each iteration returns an Rstr instead of String\n\n\n\nView solution\n\n#[extendr]\nfn gh_encode(x: Doubles, y: Doubles, length: usize) -&gt; Strings {\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    x.into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| {\n            let coord = Coord {\n                x: xi.inner(),\n                y: yi.inner(),\n            };\n            let gh = encode(coord, length).unwrap();\n            Rstr::from(gh)\n        })\n        .collect::&lt;Strings&gt;()\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Collecting extendr types</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/error-handling.html",
+    "href": "building-rust-based-r-pkgs/error-handling.html",
+    "title": "31  Handling Errors",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handling Errors</span>"
     ]
   }
 ]

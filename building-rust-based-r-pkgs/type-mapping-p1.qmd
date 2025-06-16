@@ -1,5 +1,0 @@
-# Type Mapping
-
-<details>
-    <summary>View solution</summary>
-</details>
