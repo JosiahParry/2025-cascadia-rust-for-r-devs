@@ -1,21 +1,39 @@
-# Workshop Objective
+# Workshop Scope
 
-- this workshop will teach us how to create rust based R packages through a worked example.
-- we will create a package called `geohash`
-- this package will provide R bindings to the Rust crate of the same name
-- throughout the workshop we will touch on some advanced R topics along the way.
-- as much as this is about Rust, it is also about R itself and given that this is FFI, the two are inextricably linked
+::: callout-tip
+## Objective
+
+Define the scope and objective of the workshop.
+
+:::
+
+There's no better way to learn than by doing.
+
+In this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called `{geohash}`. The `{geohash}` R package will provide R bindings to the [geohash crate](https://docs.rs/geohash).
+
+Throughout the workshop we will touch on:
+
+- Advanced R topics
+- Rust concepts
+- Techniques for bridging the two
+
+As much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.
 
 ## What is geohashing?
 
-- TL;DR of geohashing
-- think of it as dimensionality reduction but for geography
-- we partition the world into a grid of nested squares
-- these squares are represented by base32 alphabet (most of the alphabet and the numbers 0-9)
-- we can query on geohash prefixes to find nearby locations
-- the more shared digits in a geohash there are, the more close the two places are in space
-- this package we will create will help us:
-    - encode geohashes
-    - decoded geohash to x & y plus error terms
-    - decode geohash into a bounding box
-    - find geohash neighbors
+- Geohashes are a way to encode a location on earth as a string of 1 - 12 characters.
+- The more shared characters there are between two geohashes, the closes in physical space the geohashes are.
+- Used to find approximately near locations.
+- Used frequently in databases and web development to quickly query results.
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vGKs-c1nQYU?si=J-svZEFWWLsTXWmK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## The R package
+
+The R package we will create will help us:
+
+- encode geohashes
+- decoded geohash to x & y plus error terms
+- decode geohash into a bounding box
+- find geohash neighbors

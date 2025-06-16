@@ -1151,12 +1151,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/objective.html",
     "href": "building-rust-based-r-pkgs/objective.html",
-    "title": "22  Workshop Objective",
+    "title": "22  Workshop Scope",
     "section": "",
-    "text": "What is geohashing?",
+    "text": "What is geohashing?\nThere’s no better way to learn than by doing.\nIn this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called {geohash}. The {geohash} R package will provide R bindings to the geohash crate.\nThroughout the workshop we will touch on:\nAs much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Objective</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Scope</span>"
     ]
   },
   {
@@ -1283,12 +1283,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
     "href": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
-    "title": "22  Workshop Objective",
+    "title": "22  Workshop Scope",
     "section": "",
-    "text": "TL;DR of geohashing\nthink of it as dimensionality reduction but for geography\nwe partition the world into a grid of nested squares\nthese squares are represented by base32 alphabet (most of the alphabet and the numbers 0-9)\nwe can query on geohash prefixes to find nearby locations\nthe more shared digits in a geohash there are, the more close the two places are in space\nthis package we will create will help us:\n\nencode geohashes\ndecoded geohash to x & y plus error terms\ndecode geohash into a bounding box\nfind geohash neighbors",
+    "text": "Geohashes are a way to encode a location on earth as a string of 1 - 12 characters.\nThe more shared characters there are between two geohashes, the closes in physical space the geohashes are.\nUsed to find approximately near locations.\nUsed frequently in databases and web development to quickly query results.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Objective</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Scope</span>"
     ]
   },
   {
@@ -1432,6 +1432,17 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>Package structure</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/objective.html#the-r-package",
+    "href": "building-rust-based-r-pkgs/objective.html#the-r-package",
+    "title": "22  Workshop Scope",
+    "section": "The R package",
+    "text": "The R package\nThe R package we will create will help us:\n\nencode geohashes\ndecoded geohash to x & y plus error terms\ndecode geohash into a bounding box\nfind geohash neighbors",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Scope</span>"
     ]
   }
 ]
