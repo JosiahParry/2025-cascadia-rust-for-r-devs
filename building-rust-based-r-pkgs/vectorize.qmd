@@ -1,8 +1,122 @@
 # Vectorizing
 
-- `.zip()` iterator
+::: callout-tip
 
+## Objective
+
+Learn how to vectorize a Rust function and combine iterators.
+:::
+
+R users expect vectorized functions. In a high-level language like R "vectorized" simply means implementing the underlying loop in a compiled language like C/++ or Rust.
+
+In the previous workshop we used `.iter()` and `.into_iter()` to iterate through single vectors. In this case we need to iterate through **two** vectors. How can we accomplish this?
+
+## Combining iterators with `.zip()`
+
+It is possible to combine iterators in Rust using `.zip()`.
+
+We can combine iterators using the following syntax:
+
+```rust
+x.into_iter().zip(y.into_iter())
+```
+
+`.zip()` modifies each element of the iterator to be a tuple with two elements.
+
+## Tuples
+
+Tuples are the fundamental heterogenous data type for Rust. They're much like tuples in Python.
+
+```rust
+let my_tuple = (1.0, "One");
+```
+
+Each element of the tuple can be accessed as if they were fields in a struct. To access the first element of the tuple we can use `my_tuple.0` and the second with `my_tuple.1`.
+
+Tuples can be destructured in assignment too!
+
+```rust
+let my_tuple = (1.0, "One");
+let (one_one, one_two) = my_tuple;
+```
+
+## Destructuring in an iterator
+
+For example to find the parallel sum between two vectors:
+
+```rust
+fn psum(x: Vec<f64>, y: Vec<f64>) -> Vec<f64> {
+    x
+        .into_iter()
+        .zip(y.into_iter())
+        // destructure tuple in the closure
+        .map(|(xi, yi)| {
+            xi + yi
+        })
+        .collect::<Vec<_>>()
+}
+```
+
+## Exercise
+
+- Modify `x` and `y` to be `Vec<f64>`
+- Change the return type to be `Vec<String>`
+- Create a zipped iterator for `x` and `y`
+- Map through the iterator and:
+  - destructure the tuple in the closure (as in the above example)
+  - Create a `Coord` struct in each iteration
+  - `encode()` the coordinate
+  - unwrap the result
+- Collect the iterator into a `Vec<String>`
+- Test this in R
+
+::: callout-note
+## Generating random points
+
+To help you test this function, I recommend using the following code:
+
+```r
+n <- 10
+x <- runif(n, -180, 180)
+y <- runif(n, -90, 90)
+
+gh_encode(x, y, 10L)
+```
+
+:::
 
 <details>
     <summary>View solution</summary>
+
+
+```rust
+#[extendr]
+fn gh_encode(x: Vec<f64>, y: Vec<f64>, length: usize) -> Vec<String> {
+
+    if length == 0 || length > 12 {
+        throw_r_error("`length` must be between 1 and 12");
+    }
+
+    x
+        .into_iter()
+        .zip(y.into_iter())
+        .map(|(xi, yi)| {
+            let coord = Coord { x: xi, y: yi };
+            encode(coord, length)
+                .expect("Failed to encode the geohash")
+        })
+        .collect::<Vec<_>()
+}
+```
+
+Run `rextendr::document()` and `devtools::load_all()` to register the changes to your function.
+
+```r
+n <- 10
+x <- runif(n, -180, 180)
+y <- runif(n, -90, 90)
+
+gh_encode(x, y, 10L)
+```
+
 </details>

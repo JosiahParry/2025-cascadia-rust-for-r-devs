@@ -522,56 +522,56 @@
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html",
     "href": "intro-to-rust-for-r-devs/iter-map.html",
-    "title": "13  Mapping over Iterators",
+    "title": "12  Mapping over Iterators",
     "section": "",
     "text": "Mapping over iterators",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#mapping-over-iterators",
     "href": "intro-to-rust-for-r-devs/iter-map.html#mapping-over-iterators",
-    "title": "13  Mapping over Iterators",
+    "title": "12  Mapping over Iterators",
     "section": "",
     "text": ".map() transforms each item of an iterator by applying a closure (anonymous function)\nClosures are small functions you can define inline, e.g. |x| x + 1\nakin to purrr::map(x, ~ .x + 1) or .purrr::map(x, \\(.x) .x + 1)\nmapping only modifies the iterator\nwe need to collect() the values into another container if we want them\n\n\nExample\nTODO!",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#collecting-iterators",
     "href": "intro-to-rust-for-r-devs/iter-map.html#collecting-iterators",
-    "title": "13  Mapping over Iterators",
+    "title": "12  Mapping over Iterators",
     "section": "Collecting iterators",
     "text": "Collecting iterators\n\n.collect() gathers the results of an iterator into a collection (like a vector)\nwe need to specify the type of what we’re collecting into.\nin our case we’re always going to collect into a vector\ntwo ways of specifying\n\nwe can specify the resultant type in the assignment with let x: Vec&lt;i32&gt; but this is not as flexible to changing code\nTurbofish ::&lt;Type&gt;() is used to explicitly specify types when needed\n\nits a bit more awkward at first, but it is more flexible and doesn’t require modification whenever the inner type changes\nadditionall we can use rust’s iference using _\n\n\n\n\nExamples\n\n\n\n\n\n\nExplicit typing\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented: Vec&lt;_&gt; = nums.iter()\n        .map(|x| x + 1)\n        .collect();\n\n    println!(\"{:?}\", incremented);\n}\n\n\nInference w/ turbofish\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented = nums.iter()\n        .map(|x| x + 1)\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    println!(\"{:?}\", incremented);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/iter-map.html#exercise-1",
-    "title": "13  Mapping over Iterators",
+    "title": "12  Mapping over Iterators",
     "section": "Exercise 1",
     "text": "Exercise 1\nCalculate the variance of a slice of f64 values.\n\\[\n\\text{variance} = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n - 1}\n\\]\n\nCreate a function variance() that:\n\nUses .map() to calculate squared differences from the mean\nUses .sum() to add them up\nDivides by n - 1\n\n\n\n\n\n\n\n\n\nUse .powi(2) to square values.\nUse your previously defined mean() function inside variance().\n\n\n\n\n\n\nView hint\n\nfn variance(x: &[f64]) -&gt; f64 {\n    let n = x.len() as f64;\n    let avg = mean(x);\n    let sq_diffs: f64 = x\n        .iter()\n        .map(|xi| ___ )  // squared difference here\n        .__();           // sum method here\n\n    sq_diffs / (n - 1.0)\n}\n\n\nSolution\n\n\nView solution\n\nfn variance(x: &[f64]) -&gt; f64 {\n    let n = x.len() as f64;\n    let avg = mean(x);\n    let sq_diffs: f64 = x\n        .iter()\n        .map(|xi| (xi - avg).powi(2))\n        .sum();\n    sq_diffs / (n - 1.0)\n}\n\nfn main() {\n    let x = vec![2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0];\n    println!(\"Variance is: {:.2}\", variance(&x));\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/iter-map.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/iter-map.html#exercise-2",
-    "title": "13  Mapping over Iterators",
+    "title": "12  Mapping over Iterators",
     "section": "Exercise 2",
     "text": "Exercise 2\nCreate a function standardize() to perform z-score standardization on a vector of f64.\n\\[\nz_i = \\frac{x_i - \\mu}{\\sigma}\n\\]\n\nUse .iter() and .map() to calculate mean and variance.\nUse .into_iter(), .map(), and .collect() to build the standardized vector.\nReturn a new Vec&lt;f64&gt; of standardized values.\n\n\nSolution\n\n\nView solution\n\nfn standardize(x: &[f64]) -&gt; Vec&lt;f64&gt; {\n    let avg = mean(x);\n    let std_dev = variance(x).sqrt();\n    x.iter().map(|xi| (xi - avg) / std_dev).collect()\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let standardized = standardize(x);\n    println!(\"Standardized: {:?}\", standardized);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
@@ -1184,12 +1184,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/vectorize.html",
     "href": "building-rust-based-r-pkgs/vectorize.html",
-    "title": "30  Vectorizing",
+    "title": "28  Vectorizing",
     "section": "",
-    "text": ".zip() iterator",
+    "text": "Combining iterators with .zip()\nR users expect vectorized functions. In a high-level language like R “vectorized” simply means implementing the underlying loop in a compiled language like C/++ or Rust.\nIn the previous workshop we used .iter() and .into_iter() to iterate through single vectors. In this case we need to iterate through two vectors. How can we accomplish this?\nIt is possible to combine iterators in Rust using .zip().\nWe can combine iterators using the following syntax:\n.zip() modifies each element of the iterator to be a tuple with two elements.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Vectorizing</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Vectorizing</span>"
     ]
   },
   {
@@ -1604,10 +1604,76 @@
     "href": "building-rust-based-r-pkgs/encode.html#exercise",
     "title": "26  Encoding a geohash",
     "section": "Exercise",
-    "text": "Exercise\n\nAdd an argument length: usize to gh_encode()\nSpecify the return type to be String\nUse geohash::encode() on the constructed Coord with the specified length\nUnwrap the result and return the inner String\n\n\n\nView solution\n\nModify your src/lib.rs file to have:\n#[extendr]\nfn gh_encode(x: f64, y: f64, length: usize) -&gt; String {\n    let coord = Coord { x, y };\n    encode(coord, length).unwrap()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nRun gh_encode(3.0, 0.14, 10) with your new function.",
+    "text": "Exercise\n\nAdd an argument length: usize to gh_encode()\nSpecify the return type to be String\nUse geohash::encode() on the constructed Coord with the specified length\nUnwrap the result and return the inner String\n\n\n\nView solution\n\nModify your src/lib.rs file to have:\n#[extendr]\nfn gh_encode(x: f64, y: f64, length: usize) -&gt; String {\n    let coord = Coord { x, y };\n    encode(coord, length).unwrap()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nRun gh_encode(3.0, 0.14, 10L) with your new function.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>26</span>  <span class='chapter-title'>Encoding a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/throwing-errors.html",
+    "href": "building-rust-based-r-pkgs/throwing-errors.html",
+    "title": "27  Throwing errors",
+    "section": "",
+    "text": "Exercise\nSo far we have not been performing any validation of our inputs.\nIf we pass an incorrect value to geohash::encode() we will receive an error. There are 3 ways that we can receive an error:\nIn a moment we will vectorize on x and y but not on length. So, let’s perform some validation.\nWe can use throw_r_error(\"error message\") to emit an error directly from Rust.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Throwing errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/throwing-errors.html#exercise",
+    "href": "building-rust-based-r-pkgs/throwing-errors.html#exercise",
+    "title": "27  Throwing errors",
+    "section": "",
+    "text": "Add a validation step in gh_encode() the ensures length is within the range [1, 12]\nIf length is an invalid value, emit an error using throw_r_error()\n\n\n\nView solution\n\nModify your src/lib.rs file to have:\n#[extendr]\nfn gh_encode(x: f64, y: f64, length: usize) -&gt; String {\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    let coord = Coord { x, y };\n    encode(coord, length).unwrap()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nRun gh_encode(3.0, 0.14, 100L) with your new function.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Throwing errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize.html#combining-iterators-with-.zip",
+    "href": "building-rust-based-r-pkgs/vectorize.html#combining-iterators-with-.zip",
+    "title": "28  Vectorizing",
+    "section": "",
+    "text": "x.into_iter().zip(y.into_iter())",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Vectorizing</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize.html#tuples",
+    "href": "building-rust-based-r-pkgs/vectorize.html#tuples",
+    "title": "28  Vectorizing",
+    "section": "Tuples",
+    "text": "Tuples\nTuples are the fundamental heterogenous data type for Rust. They’re much like tuples in Python.\nlet my_tuple = (1.0, \"One\");\nEach element of the tuple can be accessed as if they were fields in a struct. To access the first element of the tuple we can use my_tuple.0 and the second with my_tuple.1.\nTuples can be destructured in assignment too!\nlet my_tuple = (1.0, \"One\");\nlet (one_one, one_two) = my_tuple;",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Vectorizing</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize.html#destructuring-in-an-iterator",
+    "href": "building-rust-based-r-pkgs/vectorize.html#destructuring-in-an-iterator",
+    "title": "28  Vectorizing",
+    "section": "Destructuring in an iterator",
+    "text": "Destructuring in an iterator\nFor example to find the parallel sum between two vectors:\nfn psum(x: Vec&lt;f64&gt;, y: Vec&lt;f64&gt;) -&gt; Vec&lt;f64&gt; {\n    x\n        .into_iter()\n        .zip(y.into_iter())\n        // destructure tuple in the closure\n        .map(|(xi, yi)| {\n            xi + yi\n        })\n        .collect::&lt;Vec&lt;_&gt;&gt;()\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Vectorizing</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize.html#exercise",
+    "href": "building-rust-based-r-pkgs/vectorize.html#exercise",
+    "title": "28  Vectorizing",
+    "section": "Exercise",
+    "text": "Exercise\n\nModify x and y to be Vec&lt;f64&gt;\nChange the return type to be Vec&lt;String&gt;\nCreate a zipped iterator for x and y\nMap through the iterator and:\n\ndestructure the tuple in the closure (as in the above example)\nCreate a Coord struct in each iteration\nencode() the coordinate\nunwrap the result\n\nCollect the iterator into a Vec&lt;String&gt;\nTest this in R\n\n\n\n\n\n\n\nGenerating random points\n\n\n\nTo help you test this function, I recommend using the following code:\nn &lt;- 10\nx &lt;- runif(n, -180, 180)\ny &lt;- runif(n, -90, 90)\n\ngh_encode(x, y, 10L)\n\n\n\n\nView solution\n\n#[extendr]\nfn gh_encode(x: Vec&lt;f64&gt;, y: Vec&lt;f64&gt;, length: usize) -&gt; Vec&lt;String&gt; {\n\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    x\n        .into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| {\n            let coord = Coord { x: xi, y: yi };\n            encode(coord, length)\n                .expect(\"Failed to encode the geohash\")\n        })\n        .collect::&lt;Vec&lt;_&gt;()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nn &lt;- 10\nx &lt;- runif(n, -180, 180)\ny &lt;- runif(n, -90, 90)\n\ngh_encode(x, y, 10L)",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Vectorizing</span>"
     ]
   }
 ]

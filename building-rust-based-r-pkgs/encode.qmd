@@ -52,5 +52,5 @@ fn gh_encode(x: f64, y: f64, length: usize) -> String {
 
 Run `rextendr::document()` and `devtools::load_all()` to register the changes to your function.
 
-Run `gh_encode(3.0, 0.14, 10)` with your new function.
+Run `gh_encode(3.0, 0.14, 10L)` with your new function.
 </details>
