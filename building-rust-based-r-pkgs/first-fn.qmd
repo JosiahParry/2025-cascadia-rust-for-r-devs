@@ -1,1 +1,46 @@
 # Your first function
+
+::: callout-tip
+## Objective
+
+Familiarize yourself with the `#[extendr]` attribute and `extendr_module! {}` macro. Scaffold a `gh_encode()` function.
+
+:::
+
+Functions that are callable from R are made available via the `lib.rs` file. Let's ensure we understand the general structure of the file before we get started.
+
+## `#[extendr]`
+
+The `hello_world()` function has two important things going on:
+
+1. roxygen2 documentation
+2. `#[extendr]` attribute
+
+```rust
+/// Return string `"Hello world!"` to R.
+/// @export
+#[extendr]
+fn hello_world() -> &'static str {
+    "Hello world!"
+}
+```
+
+In Rust `///` specifies a "doc comment". They are used to generate documentation. extendr permits you to write roxygen documentation on Rust functions. These will be rendered by roxygen and `rextendr::document()`.
+
+Secondly, and most importantly, is the `#[extendr]` attribute. This attribute macro ensures that the function can be exported to R. It also ensures that the inputs and outputs are compatible with R.
+
+## `extendr_module! {}`
+
+Adding `#[extendr]` alone is not sufficient for the function to be made available to R. It needs to be added to the `extendr_module! {}` macro.
+
+This macro (note the `!`) ha the first argument being the `mod geohashrs` which is the name of the R package. Subsequent arguments are functions that are exported.
+
+```rust
+// Macro to generate exports.
+// This ensures exported functions are registered with R.
+// See corresponding C code in `entrypoint.c`.
+extendr_module! {
+    mod geohashrs;
+    fn hello_world;
+}
+```

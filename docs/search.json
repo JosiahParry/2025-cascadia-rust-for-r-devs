@@ -1543,5 +1543,38 @@
       "Building Rust based R Packages",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>Adding dependencies</span>"
     ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/first-fn.html",
+    "href": "building-rust-based-r-pkgs/first-fn.html",
+    "title": "25  Your first function",
+    "section": "",
+    "text": "#[extendr]\nFunctions that are callable from R are made available via the lib.rs file. Let’s ensure we understand the general structure of the file before we get started.\nThe hello_world() function has two important things going on:\nIn Rust /// specifies a “doc comment”. They are used to generate documentation. extendr permits you to write roxygen documentation on Rust functions. These will be rendered by roxygen and rextendr::document().\nSecondly, and most importantly, is the #[extendr] attribute. This attribute macro ensures that the function can be exported to R. It also ensures that the inputs and outputs are compatible with R.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Your first function</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/first-fn.html#extendr",
+    "href": "building-rust-based-r-pkgs/first-fn.html#extendr",
+    "title": "25  Your first function",
+    "section": "",
+    "text": "roxygen2 documentation\n#[extendr] attribute\n\n/// Return string `\"Hello world!\"` to R.\n/// @export\n#[extendr]\nfn hello_world() -&gt; &'static str {\n    \"Hello world!\"\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Your first function</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/first-fn.html#extendr_module",
+    "href": "building-rust-based-r-pkgs/first-fn.html#extendr_module",
+    "title": "25  Your first function",
+    "section": "extendr_module! {}",
+    "text": "extendr_module! {}\nAdding #[extendr] alone is not sufficient for the function to be made available to R. It needs to be added to the extendr_module! {} macro.\nThis macro (note the !) ha the first argument being the mod geohashrs which is the name of the R package. Subsequent arguments are functions that are exported.\n// Macro to generate exports.\n// This ensures exported functions are registered with R.\n// See corresponding C code in `entrypoint.c`.\nextendr_module! {\n    mod geohashrs;\n    fn hello_world;\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Your first function</span>"
+    ]
   }
 ]
