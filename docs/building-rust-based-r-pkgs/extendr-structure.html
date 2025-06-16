@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>26&nbsp; Adding dependencies – Rust for R Developers</title>
+<title>24&nbsp; Package structure – Rust for R Developers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../building-rust-based-r-pkgs/first-fn.html" rel="next">
-<link href="../building-rust-based-r-pkgs/extendr-dx.html" rel="prev">
+<link href="../building-rust-based-r-pkgs/extendr-dx.html" rel="next">
+<link href="../building-rust-based-r-pkgs/hello-world.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/index.html">Building Rust based R Packages</a></li><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/rust-deps.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Adding dependencies</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/index.html">Building Rust based R Packages</a></li><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/extendr-structure.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Package structure</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -269,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../building-rust-based-r-pkgs/extendr-structure.html" class="sidebar-item-text sidebar-link">
+  <a href="../building-rust-based-r-pkgs/extendr-structure.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Package structure</span></span></a>
   </div>
 </li>
@@ -281,7 +281,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../building-rust-based-r-pkgs/rust-deps.html" class="sidebar-item-text sidebar-link active">
+  <a href="../building-rust-based-r-pkgs/rust-deps.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Adding dependencies</span></span></a>
   </div>
 </li>
@@ -376,15 +376,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#using-compiled-code" id="toc-using-compiled-code" class="nav-link active" data-scroll-target="#using-compiled-code">Using compiled code</a></li>
+  <li><a href="#rust-libraries" id="toc-rust-libraries" class="nav-link" data-scroll-target="#rust-libraries">Rust libraries</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/extendr-structure.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/index.html">Building Rust based R Packages</a></li><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/rust-deps.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Adding dependencies</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/index.html">Building Rust based R Packages</a></li><li class="breadcrumb-item"><a href="../building-rust-based-r-pkgs/extendr-structure.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Package structure</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Adding dependencies</span></h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Package structure</span></h1>
 </div>
 
 
@@ -401,13 +408,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<details>
-<summary>
-View solution
-</summary>
-</details>
+<p>The basic structure of an extendr-based R package is like so:</p>
+<pre><code>.
+├── DESCRIPTION
+├── NAMESPACE
+├── R
+├── configure
+├── configure.win
+├── man
+├── src
+└── tools</code></pre>
+<ul>
+<li>This should look fairly familiar to you</li>
+<li>The primary difference is the presence of <code>src</code>, <code>configure</code> and <code>tools</code></li>
+<li>extendr includes Rust into the package source making the package a compiled package which <strong>must</strong> be placed in the <code>src/</code> directory</li>
+<li>the <code>tools/</code>, <code>configure</code>, and <code>configure.win</code> are more for R CMD check and CRAN
+<ul>
+<li>used to check for the presence of Rust at start up to ensure that the package can compile</li>
+</ul></li>
+</ul>
+<section id="using-compiled-code" class="level2">
+<h2 class="anchored" data-anchor-id="using-compiled-code">Using compiled code</h2>
+<ul>
+<li>compiled code has to be placed in the <code>src/</code> directory</li>
+</ul>
+<pre><code>.
+├── Makevars
+├── Makevars.in
+├── Makevars.win.in
+└── rust
+    ├── Cargo.lock
+    ├── Cargo.toml
+    ├── src</code></pre>
+<ul>
+<li>inside of <code>src/</code> there is a directory called <code>rust</code>
+<ul>
+<li>this contains a rust library crate</li>
+<li>previous workshop we create a binary crate—something that can be run right away</li>
+<li>libraries are typically included into other libraries or binaries and compiled together</li>
+<li>in our case, we are building a shared object / dll that is linked to by R</li>
+</ul></li>
+<li>Various <code>Makevars</code> files are used to compile the R package and link to the generated rust library that we develop.</li>
+</ul>
+</section>
+<section id="rust-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="rust-libraries">Rust libraries</h2>
+<p>inside of rust/ is a Rust library crate. The primary difference is that instead of having a <code>main.rs</code> we have also a <code>lib.rs</code>.</p>
+<p>In the library we do not have any entrypoint that gets executed. It is much like an R package. We define functions aand structs etc that are used by R package.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -829,13 +879,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../building-rust-based-r-pkgs/extendr-dx.html" class="pagination-link" aria-label="Developer Experience">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Developer Experience</span></span>
+      <a href="../building-rust-based-r-pkgs/hello-world.html" class="pagination-link" aria-label="Hello, world!">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hello, world!</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../building-rust-based-r-pkgs/first-fn.html" class="pagination-link" aria-label="Your first function">
-        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Your first function</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../building-rust-based-r-pkgs/extendr-dx.html" class="pagination-link" aria-label="Developer Experience">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Developer Experience</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -844,4 +894,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/rust-deps.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/extendr-structure.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -10,6 +10,8 @@ title: Building Rust based R Packages
 
 In this workshop we will create a Rust-based R package to perform [geohashing](https://www.youtube.com/watch?v=vGKs-c1nQYU) using [`extendr`](https://extendr.github.io/).
 
+The first few sections of the workshop may be a litte "lesson" intensive and the latter portion light on it.
+
 ## General Overview
 
 - What is FFI

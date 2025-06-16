@@ -41,6 +41,7 @@ book:
         - building-rust-based-r-pkgs/extendr.qmd
         - building-rust-based-r-pkgs/objective.qmd
         - building-rust-based-r-pkgs/hello-world.qmd
+        - building-rust-based-r-pkgs/extendr-structure.qmd
         - building-rust-based-r-pkgs/extendr-dx.qmd
         - building-rust-based-r-pkgs/rust-deps.qmd
         - building-rust-based-r-pkgs/first-fn.qmd

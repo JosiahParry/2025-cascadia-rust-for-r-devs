@@ -78,15 +78,15 @@
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/index.html</loc>
-    <lastmod>2025-06-13T21:56:21.299Z</lastmod>
+    <lastmod>2025-06-16T15:55:34.806Z</lastmod>
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/ffi.html</loc>
-    <lastmod>2025-06-16T14:00:43.216Z</lastmod>
+    <lastmod>2025-06-16T16:07:22.183Z</lastmod>
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/extendr.html</loc>
-    <lastmod>2025-06-16T14:18:26.014Z</lastmod>
+    <lastmod>2025-06-16T16:18:07.526Z</lastmod>
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/hello-world.html</loc>
@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/extendr-dx.html</loc>
-    <lastmod>2025-06-15T17:41:21.294Z</lastmod>
+    <lastmod>2025-06-16T15:54:02.272Z</lastmod>
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/rust-deps.html</loc>
@@ -159,5 +159,9 @@
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/decode.html</loc>
     <lastmod>2025-06-16T14:22:36.418Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/extendr-structure.html</loc>
+    <lastmod>2025-06-16T15:49:39.033Z</lastmod>
   </url>
 </urlset>

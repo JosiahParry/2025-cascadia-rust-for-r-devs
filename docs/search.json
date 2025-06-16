@@ -733,7 +733,7 @@
     "href": "building-rust-based-r-pkgs/index.html",
     "title": "Building Rust based R Packages",
     "section": "",
-    "text": "Objective\nIn this workshop we will create a Rust-based R package to perform geohashing using extendr.",
+    "text": "Objective\nIn this workshop we will create a Rust-based R package to perform geohashing using extendr.\nThe first few sections of the workshop may be a litte “lesson” intensive and the latter portion light on it.",
     "crumbs": [
       "Building Rust based R Packages"
     ]
@@ -1162,12 +1162,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/extendr-dx.html",
     "href": "building-rust-based-r-pkgs/extendr-dx.html",
-    "title": "24  Developer Experience",
+    "title": "25  Developer Experience",
     "section": "",
-    "text": "settings.json\nrunning cargo check",
+    "text": "Objective\n\n\n\n\n\n\n{\n  \"rust-analyzer.linkedProjects\": [\n    \"${workspaceFolder}/src/rust/Cargo.toml\"\n  ],\n  \"files.associations\": {\n    \"Makevars.in\": \"makefile\",\n    \"Makevars.win\": \"makefile\",\n    \"configure\": \"shellscript\",\n    \"configure.win\": \"shellscript\",\n    \"cleanup\": \"shellscript\",\n    \"cleanup.win\": \"shellscript\"\n  }\n}\n\nsettings.json\nrunning cargo check",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Developer Experience</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Developer Experience</span>"
     ]
   },
   {
@@ -1219,7 +1219,7 @@
     "href": "building-rust-based-r-pkgs/ffi.html",
     "title": "20  Foreign Function Interfaces (FFI)",
     "section": "",
-    "text": "allows us to use other (foreign) languages in our language of choice\nR’s success is in part due to FFI tools in our ecosystem:\n\nRcpp\ncpp11\nrJava\nV8\netc\n\nmade possible through R’s C API\nMany low level langauges have the ability to talk to C types\n\nSo does Rust and that is where extendr comes in",
+    "text": "R’s C API\nForeign function interfaces (FFI) are mechanisms by which other (foreign) languages can be used in our programming langauge of choice. They are typically used to call compiled languages (like C / Rust) from an interpretted langauge (R).\nMuch of R’s success and power comes from a robust FFI tooling ecosystem. Some of the more prominent FFI libraries are:\nMost langauges have the ability to interact with C and C-types. R is written in C and exposes a C API. Rust is able to work with C and represent C types. This is where extendr comes in.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Foreign Function Interfaces (FFI)</span>"
@@ -1230,7 +1230,7 @@
     "href": "building-rust-based-r-pkgs/extendr.html",
     "title": "21  What is extendr?",
     "section": "",
-    "text": "extendr-ffi",
+    "text": "extendr-ffi\nextendr is a project that focuses on extending R with Rust. It is comprised of:\nextendr-ffi defines the types and functions in R’s C API using Rust functions and types. As R’s C API changes, extendr-ffi is responsible for ensuring that packages are backwards compatible.\nFortunately, we will never have to touch this layer. Everything is built on top of this crate.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
@@ -1252,7 +1252,7 @@
     "href": "building-rust-based-r-pkgs/extendr.html#extendr-api",
     "title": "21  What is extendr?",
     "section": "extendr-api",
-    "text": "extendr-api\n\nThis is where the magic happens.\nextendr-api has defined types around extendr-ffi to make working with R structures in Rust ergonomic\nit is what we actually import and use when we create our R packages\nthe rest of today will be focused on learning and using extendr-api1",
+    "text": "extendr-api\nextendr-api is the high-level crate that is built upon extendr-ffi. It makes working with R types such as vectors feel fairly natural from a Rust perspective. It handles the oddities of garbage collection and everything else related to the FFI boundary.\nWe will spend the rest of the workshop using the extendr-api crate.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
@@ -1263,7 +1263,7 @@
     "href": "building-rust-based-r-pkgs/extendr.html#extendr-engine",
     "title": "21  What is extendr?",
     "section": "extendr-engine",
-    "text": "extendr-engine\n\nextendr-engine gives us a way to start R from inside of Rust\nif R exists on a machine, extendr-engine can access it, start it, and execute R code all from an R binary.\nthis is very powerful for when we wantt to go the otherway Rust -&gt; R\nwe will not be touching it today",
+    "text": "extendr-engine\nThe extendr-engine is focused on the opposite direction—calling R from Rust. It enables us to start an R process inside of Rust as well as execute R code in that R process. It can be used in creating Rust-based CLI tools that call R or whatever else your imagination can think up.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
@@ -1382,12 +1382,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/rust-deps.html",
     "href": "building-rust-based-r-pkgs/rust-deps.html",
-    "title": "25  Adding dependencies",
+    "title": "26  Adding dependencies",
     "section": "",
     "text": "View solution",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Adding dependencies</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Adding dependencies</span>"
     ]
   },
   {
@@ -1399,6 +1399,39 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>35</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr-structure.html",
+    "href": "building-rust-based-r-pkgs/extendr-structure.html",
+    "title": "24  Package structure",
+    "section": "",
+    "text": "Using compiled code\nThe basic structure of an extendr-based R package is like so:",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Package structure</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr-structure.html#using-compiled-code",
+    "href": "building-rust-based-r-pkgs/extendr-structure.html#using-compiled-code",
+    "title": "24  Package structure",
+    "section": "",
+    "text": "compiled code has to be placed in the src/ directory\n\n.\n├── Makevars\n├── Makevars.in\n├── Makevars.win.in\n└── rust\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── src\n\ninside of src/ there is a directory called rust\n\nthis contains a rust library crate\nprevious workshop we create a binary crate—something that can be run right away\nlibraries are typically included into other libraries or binaries and compiled together\nin our case, we are building a shared object / dll that is linked to by R\n\nVarious Makevars files are used to compile the R package and link to the generated rust library that we develop.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Package structure</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
+    "href": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
+    "title": "24  Package structure",
+    "section": "Rust libraries",
+    "text": "Rust libraries\ninside of rust/ is a Rust library crate. The primary difference is that instead of having a main.rs we have also a lib.rs.\nIn the library we do not have any entrypoint that gets executed. It is much like an R package. We define functions aand structs etc that are used by R package.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Package structure</span>"
     ]
   }
 ]

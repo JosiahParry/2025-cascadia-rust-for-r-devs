@@ -1,4 +1,26 @@
 # Developer Experience
 
+::: callout-tip
+## Objective
+
+
+:::
+
+
+```json
+{
+  "rust-analyzer.linkedProjects": [
+    "${workspaceFolder}/src/rust/Cargo.toml"
+  ],
+  "files.associations": {
+    "Makevars.in": "makefile",
+    "Makevars.win": "makefile",
+    "configure": "shellscript",
+    "configure.win": "shellscript",
+    "cleanup": "shellscript",
+    "cleanup.win": "shellscript"
+  }
+}
+```
 - settings.json
 - running cargo check

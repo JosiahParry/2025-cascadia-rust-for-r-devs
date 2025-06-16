@@ -1,41 +1,37 @@
 # What is extendr?
 
-
 ::: callout-tip
 ## Objective
 
 Learn the different components of the extendr ecosystem.
 :::
 
-- extendr is a project that focuses on extending R with Rust
-- there is actually no one library called "extendr"
-- comprised of:
-    - rextendr
-    - extendr-ffi
-    - extendr-api
-    - extendr-engine
+`extendr` is a project that focuses on _extending_ R with Rust. It is comprised of:
 
-## extendr-ffi
+- [rextendr](https://extendr.github.io/rextendr/)
+- [extendr-ffi](https://extendr.github.io/extendr/extendr_ffi)
+- [extendr-api](https://extendr.github.io/extendr/extendr_api)
+- [extendr-engine](https://extendr.github.io/extendr/extendr_engine)
 
-- extendr-ffi is a crate that does the translation between R and Rust.
-- R has many functions and types that are defined in C
-- extendr-ffi provides Rust-compatible type definitions for the low-level C API
-- we will never have to touch this
-- but everything is built upon this layer
+::: callout-note
+There is no single "extendr" library. Rather, that is the name of the project.
+:::
 
-## extendr-api
+## `extendr-ffi`
 
-- This is where the magic happens.
-- extendr-api has defined types around extendr-ffi to make working with R structures in Rust ergonomic
-- it is what we actually import and use when we create our R packages
-- the rest of today will be focused on learning and using extendr-api1
+`extendr-ffi` defines the types and functions in R's C API using Rust functions and types. As R's C API changes, `extendr-ffi` is responsible for ensuring that packages are backwards compatible.
 
-## extendr-engine
+Fortunately, we will never have to touch this layer. Everything is built on top of this crate.
 
-- extendr-engine gives us a way to start R from inside of Rust
-- if R exists on a machine, extendr-engine can access it, start it, and execute R code all from an R binary.
-- this is very powerful for when we wantt to go the otherway Rust -> R
-- we will not be touching it today
+## `extendr-api`
+
+`extendr-api` is the high-level crate that is built upon `extendr-ffi`. It makes working with R types such as vectors feel fairly natural from a Rust perspective. It handles the oddities of garbage collection and everything else related to the FFI boundary.
+
+We will spend the rest of the workshop using the extendr-api crate.
+
+## `extendr-engine`
+
+The `extendr-engine` is focused on the opposite direction—calling R _from_ Rust. It enables us to start an R process inside of Rust as well as execute R code in that R process. It can be used in creating Rust-based CLI tools that call R or whatever else your imagination can think up.
 
 ## rextendr
 
