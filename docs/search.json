@@ -1162,12 +1162,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/extendr-dx.html",
     "href": "building-rust-based-r-pkgs/extendr-dx.html",
-    "title": "25  Developer Experience",
+    "title": "24  Developer Experience",
     "section": "",
     "text": "Objective\n\n\n\n\n\n\n{\n  \"rust-analyzer.linkedProjects\": [\n    \"${workspaceFolder}/src/rust/Cargo.toml\"\n  ],\n  \"files.associations\": {\n    \"Makevars.in\": \"makefile\",\n    \"Makevars.win\": \"makefile\",\n    \"configure\": \"shellscript\",\n    \"configure.win\": \"shellscript\",\n    \"cleanup\": \"shellscript\",\n    \"cleanup.win\": \"shellscript\"\n  }\n}\n\nsettings.json\nrunning cargo check",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Developer Experience</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Developer Experience</span>"
     ]
   },
   {
@@ -1404,34 +1404,34 @@
   {
     "objectID": "building-rust-based-r-pkgs/extendr-structure.html",
     "href": "building-rust-based-r-pkgs/extendr-structure.html",
-    "title": "24  Package structure",
+    "title": "22  Package structure",
     "section": "",
-    "text": "Using compiled code\nThe basic structure of an extendr-based R package is like so:",
+    "text": "Compiled Code\nThe basic structure of an extendr-based R package is like so:\nR packages that have compile code must store the source in src/. The src/ directory has the structure:",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Package structure</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Package structure</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/extendr-structure.html#using-compiled-code",
     "href": "building-rust-based-r-pkgs/extendr-structure.html#using-compiled-code",
-    "title": "24  Package structure",
+    "title": "22  Package structure",
     "section": "",
     "text": "compiled code has to be placed in the src/ directory\n\n.\n├── Makevars\n├── Makevars.in\n├── Makevars.win.in\n└── rust\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── src\n\ninside of src/ there is a directory called rust\n\nthis contains a rust library crate\nprevious workshop we create a binary crate—something that can be run right away\nlibraries are typically included into other libraries or binaries and compiled together\nin our case, we are building a shared object / dll that is linked to by R\n\nVarious Makevars files are used to compile the R package and link to the generated rust library that we develop.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Package structure</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Package structure</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
     "href": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
-    "title": "24  Package structure",
+    "title": "22  Package structure",
     "section": "Rust libraries",
-    "text": "Rust libraries\ninside of rust/ is a Rust library crate. The primary difference is that instead of having a main.rs we have also a lib.rs.\nIn the library we do not have any entrypoint that gets executed. It is much like an R package. We define functions aand structs etc that are used by R package.",
+    "text": "Rust libraries\nRust library crates have lib.rs instead of main.rs. There is no entrypoint that gets executed. Instead, we define functions, structs, enums, etc. that are used by the R package.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Package structure</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Package structure</span>"
     ]
   },
   {
@@ -1454,6 +1454,17 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Hello, world!</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr-structure.html#compiled-code",
+    "href": "building-rust-based-r-pkgs/extendr-structure.html#compiled-code",
+    "title": "22  Package structure",
+    "section": "",
+    "text": ".\n├── Makevars\n├── Makevars.in\n├── Makevars.win.in\n└── rust\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── src\n\nrust/ is library crate that is linked to by R\nMakevars files builds the Rust library and links it to R",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Package structure</span>"
     ]
   }
 ]

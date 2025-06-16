@@ -1,5 +1,11 @@
 # Package structure
 
+::: callout-tip
+## Objective
+
+Understand the directory structure of extendr-based R packages.
+
+:::
 
 The basic structure of an extendr-based R package is like so:
 
@@ -15,15 +21,12 @@ The basic structure of an extendr-based R package is like so:
 └── tools
 ```
 
-- This should look fairly familiar to you
-- The primary difference is the presence of `src`, `configure` and `tools`
-- extendr includes Rust into the package source making the package a compiled package which **must** be placed in the `src/` directory
-- the `tools/`, `configure`, and `configure.win` are more for R CMD check and CRAN
-    - used to check for the presence of Rust at start up to ensure that the package can compile
+- `tools/`, `configure`, and `configure.win` are used at package build and install time to ensure that Rust is avaialble.
+  - primarily for `R CMD check` and `CRAN` appeasement
 
-## Using compiled code
+## Compiled Code
 
-- compiled code has to be placed in the `src/` directory
+R packages that have compile code must store the source in `src/`. The `src/` directory has the structure:
 
 ```
 .
@@ -36,17 +39,9 @@ The basic structure of an extendr-based R package is like so:
     ├── src
 ```
 
-- inside of `src/` there is a directory called `rust`
-    - this contains a rust library crate
-    - previous workshop we create a binary crate—something that can be run right away
-    - libraries are typically included into other libraries or binaries and compiled together
-    - in our case, we are building a shared object / dll that is linked to by R
-- Various `Makevars` files are used to compile the R package and link to the generated rust library that we develop.
+- `rust/` is **library** crate that is linked to by R
+- `Makevars` files builds the Rust library and links it to R
 
 ## Rust libraries
 
-inside of rust/ is a Rust library crate. The primary difference is that instead of having a `main.rs` we have also a `lib.rs`.
-
-In the library we do not have any entrypoint that gets executed. It is much like an R package. We define functions aand structs etc that are used by R package.
-
-##
+Rust library crates have `lib.rs` instead of `main.rs`. There is no entrypoint that gets executed. Instead, we define functions, structs, enums, etc.  that are used by the R package.
