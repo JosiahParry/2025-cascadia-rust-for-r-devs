@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "Rust for R Developers",
     "section": "",
-    "text": "Setting up\nBefore we can start, we need to get our house in order. We need to install:",
+    "text": "Get set up\nBefore we can start, we need to get our house in order. We need to install:",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+      "Get set up"
     ]
   },
   {
@@ -26,7 +26,7 @@
     "section": "Install R",
     "text": "Install R\nPlease install R version 4.5 to ensure that everyone developing has the same experience.\n\n\n\n\n\n\nI recommend using rig to install a new version of R for you.\nInstallation instructions for rig here",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+      "Get set up"
     ]
   },
   {
@@ -36,7 +36,7 @@
     "section": "Install Positron",
     "text": "Install Positron\nDownload the appropriate Positron installer from the downloads page.\nOpen the extensions pane (or press shift + cmd + x).\n\nsearch for rust analyzer and install\nsearch for even better toml and install",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+      "Get set up"
     ]
   },
   {
@@ -46,7 +46,7 @@
     "section": "Install rust",
     "text": "Install rust\nTo install Rust, please use rustup. If you use a system installation via brew, apt, dnf, etc you will likely run into issues. I will be able to help debug these.\nFor installing Rust on Mac / Unix / Linux please run:\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n\nWindows\nIf using Windows download the appropriate installer. Then, once your installation is complete, from your command prompt run:\nrustup target add x86_64-pc-windows-gnu\nThis is a compilation target that is required for building extendr packages on Windows.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+      "Get set up"
     ]
   },
   {
@@ -56,7 +56,7 @@
     "section": "Install {rextendr}",
     "text": "Install {rextendr}\nWe will be using the rextendr package to build Rust powerd R-packages.\n\n\n\n\n\n\nOther R package dependencies\n\n\n\nWe also will be relying on other packages in the R ecosytem to make developing easier. Please install:\n\ndevtools\nusethis\n\ninstall.packages(c(\"devtools\", \"usethis\"))\n\n\nInstall the package using:\nif (!requireNamespace(\"remotes\")) {\n    install.packages(\"remotes\")\n}\n\nremotes::install_github(\"extendr/rextendr\")\nOnce rextendr is installed, run the below command. You are good to go if:\n\n✅ cargo version is printed (should be 1.80 or greater)\n✅ rustup has a recent version printed\n✅ You have an active default toolchain\n\n\n\n\n\n\n\nIf you’re using windows ensure that x86_64-pc-windows-gnu is your default target. See the above command if it is not.\nR does not support packages compiled with Microsoft Visual C++ (MSVC) so this is required.\n\n\n\n\nrextendr::rust_sitrep()\n\nRust infrastructure sitrep:\n✔ \"rustup\": 1.28.2 (e4f3ad6f8 2025-04-28)\n✔ \"cargo\": 1.85.1 (d73d2caf9 2024-12-31)\nℹ host: aarch64-apple-darwin\nℹ toolchains: stable-aarch64-apple-darwin (active, default),\n  nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\n! One of these toolchains should be default: stable-aarch64-apple-darwin\n  (active, default), nightly-aarch64-apple-darwin, 1.65.0-aarch64-apple-darwin,\n  1.72.1-aarch64-apple-darwin, 1.74.1-aarch64-apple-darwin,\n  1.75.0-aarch64-apple-darwin, 1.76.0-aarch64-apple-darwin, and\n  1.80.1-aarch64-apple-darwin\nℹ Run e.g. `rustup default stable-aarch64-apple-darwin (active, default)`",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
+      "Get set up"
     ]
   },
   {
@@ -1151,12 +1151,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/objective.html",
     "href": "building-rust-based-r-pkgs/objective.html",
-    "title": "22  Workshop Scope",
+    "title": "21  Workshop Scope",
     "section": "",
     "text": "What is geohashing?\nThere’s no better way to learn than by doing.\nIn this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called {geohash}. The {geohash} R package will provide R bindings to the geohash crate.\nThroughout the workshop we will touch on:\nAs much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Scope</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Workshop Scope</span>"
     ]
   },
   {
@@ -1283,56 +1283,56 @@
   {
     "objectID": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
     "href": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
-    "title": "22  Workshop Scope",
+    "title": "21  Workshop Scope",
     "section": "",
     "text": "Geohashes are a way to encode a location on earth as a string of 1 - 12 characters.\nThe more shared characters there are between two geohashes, the closes in physical space the geohashes are.\nUsed to find approximately near locations.\nUsed frequently in databases and web development to quickly query results.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Scope</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Workshop Scope</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/hello-world.html",
     "href": "building-rust-based-r-pkgs/hello-world.html",
-    "title": "23  Hello, world!",
+    "title": "21  Hello, world!",
     "section": "",
-    "text": "rextendr developer functions",
+    "text": "Developer functions\nWe’re now ready to create our R package.\nTo develop a Rust-based R package, there are a few functions we need to familiarize ourselves with.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Hello, world!</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/hello-world.html#rextendr-developer-functions",
     "href": "building-rust-based-r-pkgs/hello-world.html#rextendr-developer-functions",
-    "title": "23  Hello, world!",
+    "title": "22  Hello, world!",
     "section": "",
     "text": "rextendr::use_extendr() - create the Rust infrastructure\nrextendr::document() - document and update Rust function definitions",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Hello, world!</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/hello-world.html#developer-workflow",
     "href": "building-rust-based-r-pkgs/hello-world.html#developer-workflow",
-    "title": "23  Hello, world!",
+    "title": "21  Hello, world!",
     "section": "Developer workflow",
-    "text": "Developer workflow\n\nmodify source\ndocument()\nload_all()\ntest\nrepeat",
+    "text": "Developer workflow\nThe typical workflow for developing an extendr package involves:\n\nModify the Rust source code\nUpdate the bindings documentation using rextendr::document()\nLoad the package devtools::load_all()\nTest the R functions\nRepeat",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Hello, world!</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/hello-world.html#exercise",
     "href": "building-rust-based-r-pkgs/hello-world.html#exercise",
-    "title": "23  Hello, world!",
+    "title": "21  Hello, world!",
     "section": "Exercise",
     "text": "Exercise\n\nCreate a new package called {geohash} using {usethis}\nInclude extendr in the new package by running rextendr::use_extendr()\nCompile the package by using rextendr::document()\nLoad the package using devtools::load_all()\nRun hello_world()\n\n\nSolution\n\n\nView solution\n\nusethis::create_package(\"geohash\")\n# in the newly created package\nlibrary(rextendr)\n\n# add extendr scaffolding\nuse_extendr()\n\n# compile and document the Rust functions\ndocument()\n\n# load the R package\ndevtools::load_all()\n\n# run the hello_world()!\nhello_world()",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Hello, world!</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Hello, world!</span>"
     ]
   },
   {
@@ -1437,12 +1437,23 @@
   {
     "objectID": "building-rust-based-r-pkgs/objective.html#the-r-package",
     "href": "building-rust-based-r-pkgs/objective.html#the-r-package",
-    "title": "22  Workshop Scope",
+    "title": "21  Workshop Scope",
     "section": "The R package",
     "text": "The R package\nThe R package we will create will help us:\n\nencode geohashes\ndecoded geohash to x & y plus error terms\ndecode geohash into a bounding box\nfind geohash neighbors",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Workshop Scope</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Workshop Scope</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/hello-world.html#developer-functions",
+    "href": "building-rust-based-r-pkgs/hello-world.html#developer-functions",
+    "title": "21  Hello, world!",
+    "section": "",
+    "text": "I don’t use RStudio anymore so I set create_package(rstudio = FALSE) to not have Rproj.user created.\n\nusethos::create_package() creates an R package\nrextendr::use_extendr() creates the Rust infrastructure\nrextendr::document() document and update Rust function definitions",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Hello, world!</span>"
     ]
   }
 ]

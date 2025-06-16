@@ -1,4 +1,4 @@
-# Intro to Rust for R Developers
+# Intro to Rust for R Developers {.unnumbered}
 
 objective go from zero to hero asap
 writing vectorized code as fast as posisble

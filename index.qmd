@@ -1,8 +1,7 @@
----
-title: Get set up
----
+# Get set up {.unnumbered}
 
-## Setting up
+
+
 
 Before we can start, we need to get our house in order. We need to install:
 

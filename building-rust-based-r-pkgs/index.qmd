@@ -2,7 +2,8 @@
 title: Building Rust based R Packages
 ---
 
-## Objective
+## Objective {.unnumbered}
+
 
 - Learn how to create Rust based R packages using extendr
 - Begin to feel comfortable working with data between R & Rust

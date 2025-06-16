@@ -6,24 +6,31 @@
 Scaffold an extendr-powered R package using `rextendr` and run the `hello_world()` function.
 :::
 
-- you should already have R 4.5, Positron, and Rust installed
-- we'll now dip our toes into the water and create our new package called `geohash`
-- use `usethis::create_package("path/to/geohash")` to create the R package
-- once inside the new R package, we need to scaffold the Rust interoperability
-- we do this using `rextendr::use_extendr()`
+We're now ready to create our R package.
 
-## rextendr developer functions
 
-- `rextendr::use_extendr()` - create the Rust infrastructure
-- `rextendr::document()` - document and update Rust function definitions
+## Developer functions
+
+To develop a Rust-based R package, there are a few functions we need to familiarize ourselves with.
+
+::: aside
+I don't use RStudio anymore so I set `create_package(rstudio = FALSE)` to not have `Rproj.user` created.
+:::
+
+- `usethos::create_package()` creates an R package
+- `rextendr::use_extendr()` creates the Rust infrastructure
+- `rextendr::document()` document and update Rust function definitions
+
 
 ## Developer workflow
 
-- modify source
-- document()
-- load_all()
-- test
-- repeat
+The typical workflow for developing an extendr package involves:
+
+1. Modify the Rust source code
+2. Update the bindings documentation using `rextendr::document()`
+3. Load the package `devtools::load_all()`
+4. Test the R functions
+5. Repeat
 
 
 ## Exercise
