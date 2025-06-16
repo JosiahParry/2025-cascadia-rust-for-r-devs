@@ -1,10 +1,56 @@
 # Encoding a geohash
 
-- results
-- .unwrap()
-- .expect()
+::: callout-tip
+## Objective
 
+Modify `gh_encode()` so that it returns a geohash.
+:::
+
+In the previous exercise we printed the `Coord` struct. Now, lets continue the function by calling the `encode()` function from Rust.
+
+## encode()
+
+The `geohash::encode()` function has the following signature:
+
+```rust
+pub fn encode(c: Coord, len: usize) -> Result<String, GeohashError>
+```
+
+Instead of returning a `String` we get a `Result<>`. In Rust, errors are data and should be handled.
+
+For now, we're going to ignore the possibility that an error may ever occur (we're perfect anyways, right? 💅). `Result`s are actually a special type of `enum` with the structure of
+
+```rust
+enum Result {
+    Ok(T),
+    Err(E)
+}
+```
+Each variant of a result holds some data. If the `Result` was okay (meaning no error), it contains the expected type. Otherwise, it returns the specified error type.
+
+In Rust, we can `.unwrap()` or `.expect("Expectation message")` both `Option<T>` and `Result<T>`. So, for this case, we will do just that.
+
+
+## Exercise
+
+- Add an argument `length: usize` to `gh_encode()`
+- Specify the return type to be `String`
+- Use `geohash::encode()` on the constructed `Coord` with the specified length
+- Unwrap the result and return the inner `String`
 
 <details>
     <summary>View solution</summary>
+
+Modify your `src/lib.rs` file to have:
+```rust
+#[extendr]
+fn gh_encode(x: f64, y: f64, length: usize) -> String {
+    let coord = Coord { x, y };
+    encode(coord, length).unwrap()
+}
+```
+
+Run `rextendr::document()` and `devtools::load_all()` to register the changes to your function.
+
+Run `gh_encode(3.0, 0.14, 10)` with your new function.
 </details>

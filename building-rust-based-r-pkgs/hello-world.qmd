@@ -17,7 +17,7 @@ To develop a Rust-based R package, there are a few functions we need to familiar
 I don't use RStudio anymore so I set `create_package(rstudio = FALSE)` to not have `Rproj.user` created.
 :::
 
-- `usethos::create_package()` creates an R package
+- `usethis::create_package()` creates an R package
 - `rextendr::use_extendr()` creates the Rust infrastructure
 - `rextendr::document()` document and update Rust function definitions
 

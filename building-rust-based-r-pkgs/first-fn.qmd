@@ -44,3 +44,47 @@ extendr_module! {
     fn hello_world;
 }
 ```
+
+
+## Exercise
+
+- Delete `hello_world()` from your package
+- Create a new function `gh_encode()` that takes `x: f64` and `y: f64` without a return type
+- Construct a `Coord` struct
+- Use `rprintln!()` to print the debug representation of the `Coord`
+- Add the `gh_encode` function to `extendr_module!` and `rextendr::document()` your package
+- Run `gh_encode()` from R
+
+::: callout-note
+Use `rprintln!()` instead of `println!()` to print to the R console.
+:::
+
+<details>
+    <summary>View solution</summary>
+
+In `src/rust/lib.rs`
+
+```rust
+use extendr_api::prelude::*;
+
+#[extendr]
+fn gh_encode(x: f64, y: f64) {
+    let coord = Coord { x, y };
+    rprintln!("{coord:?}");
+}
+
+extendr_module! {
+    mod geohashrs;
+    fn gh_encode;
+}
+```
+
+After modifying `lib.rs` run `
+
+```r
+rextendr::document()
+devtools::load_all()
+
+gh_encode(3.0, 0.14)
+```
+</details>

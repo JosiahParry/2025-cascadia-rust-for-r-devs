@@ -1,6 +1,0 @@
-# Calling Rust from R
-
-
-<details>
-    <summary>View solution</summary>
-</details>

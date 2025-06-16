@@ -1173,12 +1173,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/encode.html",
     "href": "building-rust-based-r-pkgs/encode.html",
-    "title": "29  Encoding a geohash",
+    "title": "26  Encoding a geohash",
     "section": "",
-    "text": "results\n.unwrap()\n.expect()\n\n\n\nView solution",
+    "text": "encode()\nIn the previous exercise we printed the Coord struct. Now, lets continue the function by calling the encode() function from Rust.\nThe geohash::encode() function has the following signature:\nInstead of returning a String we get a Result&lt;&gt;. In Rust, errors are data and should be handled.\nFor now, we’re going to ignore the possibility that an error may ever occur (we’re perfect anyways, right? 💅). Results are actually a special type of enum with the structure of\nEach variant of a result holds some data. If the Result was okay (meaning no error), it contains the expected type. Otherwise, it returns the specified error type.\nIn Rust, we can .unwrap() or .expect(\"Expectation message\") both Option&lt;T&gt; and Result&lt;T&gt;. So, for this case, we will do just that.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Encoding a geohash</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Encoding a geohash</span>"
     ]
   },
   {
@@ -1228,12 +1228,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html",
     "href": "building-rust-based-r-pkgs/extendr.html",
-    "title": "21  What is extendr?",
+    "title": "20  What is extendr?",
     "section": "",
     "text": "extendr-ffi\nextendr is a project that focuses on extending R with Rust. It is comprised of:\nextendr-ffi defines the types and functions in R’s C API using Rust functions and types. As R’s C API changes, extendr-ffi is responsible for ensuring that packages are backwards compatible.\nFortunately, we will never have to touch this layer. Everything is built on top of this crate.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
@@ -1250,34 +1250,34 @@
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-api",
     "href": "building-rust-based-r-pkgs/extendr.html#extendr-api",
-    "title": "21  What is extendr?",
+    "title": "20  What is extendr?",
     "section": "extendr-api",
     "text": "extendr-api\nextendr-api is the high-level crate that is built upon extendr-ffi. It makes working with R types such as vectors feel fairly natural from a Rust perspective. It handles the oddities of garbage collection and everything else related to the FFI boundary.\nWe will spend the rest of the workshop using the extendr-api crate.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-engine",
     "href": "building-rust-based-r-pkgs/extendr.html#extendr-engine",
-    "title": "21  What is extendr?",
+    "title": "20  What is extendr?",
     "section": "extendr-engine",
     "text": "extendr-engine\nThe extendr-engine is focused on the opposite direction—calling R from Rust. It enables us to start an R process inside of Rust as well as execute R code in that R process. It can be used in creating Rust-based CLI tools that call R or whatever else your imagination can think up.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
     "objectID": "building-rust-based-r-pkgs/extendr.html#rextendr",
     "href": "building-rust-based-r-pkgs/extendr.html#rextendr",
-    "title": "21  What is extendr?",
+    "title": "20  What is extendr?",
     "section": "{rextendr}",
     "text": "{rextendr}\nOn the R side exists {rextendr}. It is a {usethis}-like package for developing Rust-powered R packages.\nIt is primarily used to:\n\nscaffold R packages\ndocument Rust functions\nprepare packages for CRAN release\n\nIt also provide a knitr-engine which lets us include Rust in R Markdown documents.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
@@ -1450,7 +1450,7 @@
     "href": "building-rust-based-r-pkgs/hello-world.html#developer-functions",
     "title": "21  Hello, world!",
     "section": "",
-    "text": "I don’t use RStudio anymore so I set create_package(rstudio = FALSE) to not have Rproj.user created.\n\nusethos::create_package() creates an R package\nrextendr::use_extendr() creates the Rust infrastructure\nrextendr::document() document and update Rust function definitions",
+    "text": "I don’t use RStudio anymore so I set create_package(rstudio = FALSE) to not have Rproj.user created.\n\nusethis::create_package() creates an R package\nrextendr::use_extendr() creates the Rust infrastructure\nrextendr::document() document and update Rust function definitions",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Hello, world!</span>"
@@ -1575,6 +1575,39 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>Your first function</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/first-fn.html#exercise",
+    "href": "building-rust-based-r-pkgs/first-fn.html#exercise",
+    "title": "25  Your first function",
+    "section": "Exercise",
+    "text": "Exercise\n\nDelete hello_world() from your package\nCreate a new function gh_encode() that takes x: f64 and y: f64 without a return type\nConstruct a Coord struct\nUse rprintln!() to print the debug representation of the Coord\nAdd the gh_encode function to extendr_module! and rextendr::document() your package\nRun gh_encode() from R\n\n\n\n\n\n\n\nUse rprintln!() instead of println!() to print to the R console.\n\n\n\n\n\nView solution\n\nIn src/rust/lib.rs\nuse extendr_api::prelude::*;\n\n#[extendr]\nfn gh_encode(x: f64, y: f64) {\n    let coord = Coord { x, y };\n    rprintln!(\"{coord:?}\");\n}\n\nextendr_module! {\n    mod geohashrs;\n    fn gh_encode;\n}\nAfter modifying lib.rs run `\nrextendr::document()\ndevtools::load_all()\n\ngh_encode(3.0, 0.14)",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Your first function</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/encode.html#encode",
+    "href": "building-rust-based-r-pkgs/encode.html#encode",
+    "title": "26  Encoding a geohash",
+    "section": "",
+    "text": "pub fn encode(c: Coord, len: usize) -&gt; Result&lt;String, GeohashError&gt;\n\n\nenum Result {\n    Ok(T),\n    Err(E)\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Encoding a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/encode.html#exercise",
+    "href": "building-rust-based-r-pkgs/encode.html#exercise",
+    "title": "26  Encoding a geohash",
+    "section": "Exercise",
+    "text": "Exercise\n\nAdd an argument length: usize to gh_encode()\nSpecify the return type to be String\nUse geohash::encode() on the constructed Coord with the specified length\nUnwrap the result and return the inner String\n\n\n\nView solution\n\nModify your src/lib.rs file to have:\n#[extendr]\nfn gh_encode(x: f64, y: f64, length: usize) -&gt; String {\n    let coord = Coord { x, y };\n    encode(coord, length).unwrap()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nRun gh_encode(3.0, 0.14, 10) with your new function.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Encoding a geohash</span>"
     ]
   }
 ]

@@ -44,9 +44,8 @@ book:
         - building-rust-based-r-pkgs/extendr-dx.qmd
         - building-rust-based-r-pkgs/rust-deps.qmd
         - building-rust-based-r-pkgs/first-fn.qmd
-        - building-rust-based-r-pkgs/export-to-r.qmd
-        - building-rust-based-r-pkgs/throwing-errors.qmd
         - building-rust-based-r-pkgs/encode.qmd
+        - building-rust-based-r-pkgs/throwing-errors.qmd
         - building-rust-based-r-pkgs/vectorize.qmd
         - building-rust-based-r-pkgs/r-type-system.qmd
         - building-rust-based-r-pkgs/type-mapping-p1.qmd
