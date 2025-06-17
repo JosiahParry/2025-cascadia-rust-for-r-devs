@@ -9,9 +9,9 @@ So far we have not been performing _any_ validation of our inputs.
 
 If we pass an incorrect value to `geohash::encode()` we will receive an error. There are 3 ways that we can receive an error:
 
-- `x` is outside of the range [-180, 180]
-- `y` is outside of the range [-90, 90]
-- `length` is outside of the range [1, 12]
+- `x` is outside of the range $[-180, 180]$
+- `y` is outside of the range $[-90, 90]$
+- `length` is outside of the range $[1, 12]$
 
 In a moment we will vectorize on `x` and `y` but not on `length`. So, let's perform some validation.
 
@@ -19,7 +19,7 @@ We can use `throw_r_error("error message")` to emit an error directly from Rust.
 
 ## Exercise
 
-- Add a validation step in `gh_encode()` the ensures `length` is within the range [1, 12]
+- Add a validation step in `gh_encode()` the ensures `length` is within the range $[1, 12]$
 - If `length` is an invalid value, emit an error using `throw_r_error()`
 
 <details>

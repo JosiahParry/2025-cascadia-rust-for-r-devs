@@ -33,7 +33,7 @@ extendr-api = "*"
 ```
 
 ::: aside
-Rust dependencies use [semantic versionining (semver)](https://semver.org/). The `"*"` is a shorthand for specifying the latest stable release.
+Rust dependencies use [semantic versionining (semver)](https://semver.org/). The `"*"` is a shorthand for specifying the latest stable release available on crates.io.
 :::
 
 
@@ -72,7 +72,7 @@ rextendr::use_crate("geohash")
 
 This will add the geohash dependency.
 
-Open `src/rust/lib.rs` and add the following below `use extendr_api::prelude::*;`
+Open `src/rust/src/lib.rs` and add the following below `use extendr_api::prelude::*;`
 
 ```rust
 use geohash::{Coord, encode};

@@ -45,7 +45,7 @@ We ran into an error! ParseIntError { kind: InvalidDigit }
 
 ## UX for Errors
 
-This is a philisophical conversation, really.
+This is a philosophical conversation, really.
 
 I'm of the mind that, for vectorized functions, we do not give up on everything if an error has occured. Instead, return `NULL` or `NA` wherever an error may have occurred.
 

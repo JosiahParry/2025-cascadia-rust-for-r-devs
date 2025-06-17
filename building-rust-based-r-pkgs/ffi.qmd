@@ -21,4 +21,4 @@ Much of R's success and power comes from a robust FFI tooling ecosystem. Some of
 
 ## R's C API
 
-Most langauges have the ability to interact with C and C-types. R is written in C and exposes a C API. Rust is able to work with C and represent C types. This is where extendr comes in.
+Most languagess have the ability to interact with C and C-types. R is written in C and exposes a C API. Rust is able to work with C and represent C types. This is where extendr comes in.

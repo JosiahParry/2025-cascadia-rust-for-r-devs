@@ -27,7 +27,7 @@ fn hello_world() -> &'static str {
 
 In Rust `///` specifies a "doc comment". They are used to generate documentation. extendr permits you to write roxygen documentation on Rust functions. These will be rendered by roxygen and `rextendr::document()`.
 
-Secondly, and most importantly, is the `#[extendr]` attribute. This attribute macro ensures that the function can be exported to R. It also ensures that the inputs and outputs are compatible with R.
+Secondly, and most importantly, is the `#[extendr]` attribute. This attribute macro ensures that the function is exported to the surrounding R-package. It also ensures that the inputs and outputs are compatible with R. The `@export`-annotation adds the R wrapper of the Rust function to the `NAMESPACE`, making your rust function available to users of your R package.
 
 ## `extendr_module! {}`
 
@@ -62,7 +62,7 @@ Use `rprintln!()` instead of `println!()` to print to the R console.
 <details>
     <summary>View solution</summary>
 
-In `src/rust/lib.rs`
+In `src/rust/src/lib.rs`
 
 ```rust
 use extendr_api::prelude::*;

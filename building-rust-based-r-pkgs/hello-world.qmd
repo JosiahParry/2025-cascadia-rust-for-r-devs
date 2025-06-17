@@ -48,6 +48,9 @@ The typical workflow for developing an extendr package involves:
 
 ```r
 usethis::create_package("geohashrs")
+# creates a file for package wide annotations, 
+# such as loading native code
+usethis::use_package_doc()
 # in the newly created package
 library(rextendr)
 

@@ -9,8 +9,8 @@ Learn the different components of the extendr ecosystem.
 `extendr` is a project that focuses on _extending_ R with Rust. It is comprised of:
 
 - [rextendr](https://extendr.github.io/rextendr/)
-- [extendr-ffi](https://extendr.github.io/extendr/extendr_ffi)
 - [extendr-api](https://extendr.github.io/extendr/extendr_api)
+- [extendr-ffi](https://extendr.github.io/extendr/extendr_ffi)
 - [extendr-engine](https://extendr.github.io/extendr/extendr_engine)
 
 ::: callout-note

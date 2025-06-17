@@ -52,8 +52,8 @@ fn main() {
 }
 ```
 ```
-x before sorting: [11, 3, 7, 10, 1]
-x after sorting:  [1, 3, 7, 10, 11]
+x before sorting: $[11, 3, 7, 10, 1]$
+x after sorting:  $[1, 3, 7, 10, 11]$
 ```
 
 ### Combining vectors

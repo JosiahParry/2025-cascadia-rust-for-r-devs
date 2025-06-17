@@ -3,7 +3,8 @@
 ::: callout-tip
 ## Objective
 
-Define the scope and objective of the workshop.
+- Introduce Rust to R users
+- Provide you a comprehensive view of how Rust-powered R-packages can be developed
 
 :::
 
@@ -17,12 +18,12 @@ Throughout the workshop we will touch on:
 - Rust concepts
 - Techniques for bridging the two
 
-As much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.
+As much as this is about Rust, we are also working within the confines of R and thus, the two are inextricably linked.
 
 ## What is geohashing?
 
-- Geohashes are a way to encode a location on earth as a string of 1 - 12 characters.
-- The more shared characters there are between two geohashes, the closes in physical space the geohashes are.
+- Geohashes are a way to encode a location on earth as a string of 1 -- 12 characters.
+- The more shared characters there are between two geohashes, the closer in physical space the geohashes are.
 - Used to find approximately near locations.
 - Used frequently in databases and web development to quickly query results.
 
@@ -34,6 +35,6 @@ As much as this is about Rust, we are also working within the confines of R and 
 The R package we will create will help us:
 
 - encode geohashes
-- decoded geohash to x & y plus error terms
+- decoded geohash to $x$ & $y$ plus error terms
 - decode geohash into a bounding box
 - find geohash neighbors

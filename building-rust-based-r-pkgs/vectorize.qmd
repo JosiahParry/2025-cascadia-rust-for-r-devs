@@ -25,7 +25,7 @@ x.into_iter().zip(y.into_iter())
 
 ## Tuples
 
-Tuples are the fundamental heterogenous data type for Rust. They're much like tuples in Python.
+Tuples are the fundamental heterogeneous data type for Rust. They're much like tuples in Python.
 
 ```rust
 let my_tuple = (1.0, "One");
@@ -46,20 +46,17 @@ For example to find the parallel sum between two vectors:
 
 ```rust
 fn psum(x: Vec<f64>, y: Vec<f64>) -> Vec<f64> {
-    x
-        .into_iter()
+    x.into_iter()
         .zip(y.into_iter())
         // destructure tuple in the closure
-        .map(|(xi, yi)| {
-            xi + yi
-        })
+        .map(|(xi, yi)| xi + yi)
         .collect::<Vec<_>>()
 }
 ```
 
 ## Exercise
 
-- Modify `x` and `y` to be `Vec<f64>`
+- Modify `x` and `y` to be `&[f64]`
 - Change the return type to be `Vec<String>`
 - Create a zipped iterator for `x` and `y`
 - Map through the iterator and:
@@ -91,7 +88,7 @@ gh_encode(x, y, 10L)
 
 ```rust
 #[extendr]
-fn gh_encode(x: Vec<f64>, y: Vec<f64>, length: usize) -> Vec<String> {
+fn gh_encode(x: &[f64], y: &[f64], length: usize) -> Vec<String> {
 
     if length == 0 || length > 12 {
         throw_r_error("`length` must be between 1 and 12");
