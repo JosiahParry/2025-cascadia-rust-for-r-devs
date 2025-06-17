@@ -1,5 +1,75 @@
 # Handle NAs gracefully
 
+::: callout-tip
+## Objective
+
+Handle NA values in input vectors.
+
+:::
+
+
+We've been using `xi.inner()` to access the `f64` value of an `Rfloat`. This is an **infallible** method. It always provides the inner value of the `Rfloat`. However, we may want to handle NA values differently.
+
+To handle `NA` values _explicitly_ (rather than hoping our `encode()` function returns an error), we can check for the pressence of `NA` in both `xi` and `yi`. We can then `match` on the boolean value and choose what to do!
+
+`match` isn't only for enums! When we `match` on booleans, there are only two variants: `true` or `false`. We can also perform nested match statements!
+
+## Example
+
+Here we perform a nested match statement on the `Result` from parsing a string slice to an integer.
+
+```rust
+let num_parsed = "10".parse::<i32>();
+
+match num_parsed {
+    Ok(num) => {
+        match num > 10 {
+            true => println!("Parsed number is greater than 10!"),
+            false => println!("Parsed number is less than or equal to 10")
+        }
+    },
+    Err(e) => println!("Failed to parse number with error: {e:?}")
+}
+```
+
+## Exercise
+
+- Check if either `xi` or `yi` is an NA (use `xi.is_na()`) and store in a variable `is_missing`
+- Match on `is_missing`:
+  - if `true` return an NA
+  - otherwise attempt to use `encode()` and match on the `Result`
+
 <details>
     <summary>View solution</summary>
+
+```rust
+#[extendr]
+fn gh_encode(x: Doubles, y: Doubles, length: usize) -> Strings {
+    if length == 0 || length > 12 {
+        throw_r_error("`length` must be between 1 and 12");
+    }
+
+    x.into_iter()
+        .zip(y.into_iter())
+        .map(|(xi, yi)| {
+            let is_missing = xi.is_na() || yi.is_na();
+
+            match is_missing {
+                true => Rstr::na(),
+                false => {
+                    let coord = Coord {
+                        x: xi.inner(),
+                        y: yi.inner(),
+                    };
+                    match encode(coord, length) {
+                        Ok(res) => Rstr::from(res),
+                        Err(_) => Rstr::na(),
+                    }
+                }
+            }
+        })
+        .collect::<Strings>()
+}
+```
+
 </details>

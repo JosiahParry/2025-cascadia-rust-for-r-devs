@@ -104,67 +104,67 @@
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html",
     "href": "intro-to-rust-for-r-devs/hello-world.html",
-    "title": "3  Hello, World!",
+    "title": "2  Hello, World!",
     "section": "",
     "text": "Crate anatomy\nRust uses a tool called cargo for building, checking, and managing dependencies.\nTo create a new Rust crate, use cargo new name-of-crate.\nTwo types of crates: binary, library.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
     "href": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy",
-    "title": "3  Hello, World!",
+    "title": "2  Hello, World!",
     "section": "",
     "text": "This first workshop we will work only with a binary crate. We will create a library in the second half of the day.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy-1",
     "href": "intro-to-rust-for-r-devs/hello-world.html#crate-anatomy-1",
-    "title": "3  Hello, World!",
+    "title": "2  Hello, World!",
     "section": "Crate anatomy",
     "text": "Crate anatomy\nA new crate looks like this:\nintro-to-rust/\n├── Cargo.toml      # Metadata & dependencies (like DESCRIPTION)\n├── Cargo.lock      # Dependency versions (like renv.lock)\n└── src/\n    └── main.rs     # Entry point — like main.R",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#main.rs",
     "href": "intro-to-rust-for-r-devs/hello-world.html#main.rs",
-    "title": "3  Hello, World!",
+    "title": "2  Hello, World!",
     "section": "main.rs",
     "text": "main.rs\nWhen you create a new rust binary the file src/main.rs is prepopulated with:\n\n\n\n\n\n\nsrc/main.rs defines what is executed when your binary is run.\n\n\n\nfn main() {\n    println!(\"Hello, world!\");\n}\nThere are a few things going on in here:\n\nFunctions are declared using the fn keyword\nThe main() function is the entrypoint of the program (and required)\nBlocks of code are delimted using curly braces (like R & C)\nStatements end with ;\nprintln!() is a macro (notice the !) which is used to print to stdout\n\n\n\nWhen a program writes to the console it does so through file connections called standard output (stdout) and standard error (stderr).\nWhen we print a message with print() or message() in R, we print to stdout. When we make a warning or error using stop() or warning() in R, that is writing to stderr.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#println",
     "href": "intro-to-rust-for-r-devs/hello-world.html#println",
-    "title": "3  Hello, World!",
+    "title": "2  Hello, World!",
     "section": "println!()",
     "text": "println!()\n\nMacros have a !, like println!().\nThink of it like print() in R, but explicit.\nIt supports format strings:\n\nlet name = \"Josiah\";\nprintln!(\"Hello, {}!\", name);  // -&gt; Hello, Josiah!",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/hello-world.html#exercise",
     "href": "intro-to-rust-for-r-devs/hello-world.html#exercise",
-    "title": "3  Hello, World!",
+    "title": "2  Hello, World!",
     "section": "Exercise",
     "text": "Exercise\n\nIn your terminal, create a new rust crate called intro-to-rust\nOpen the new rust crate in Positron\nRun the hello world program\nCreate variable called name with your name\nPrint Hello, {name}! using println!()\n\n\nSolution\n\n\nView solution\n\nIn src/main.rs\nfn main() {\n    let name = \"Josiah\";\n    println!(\"Hello, {name}!\");\n}\nTo run it navigate to your terminal and then run cargo run.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Hello, World!</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
     ]
   },
   {
@@ -632,89 +632,89 @@
   {
     "objectID": "intro-to-rust-for-r-devs/enums.html",
     "href": "intro-to-rust-for-r-devs/enums.html",
-    "title": "16  Enum(eration)s",
+    "title": "15  Enum(eration)s",
     "section": "",
     "text": "Enums in R",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Enum(eration)s</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/enums.html#enums-in-r",
     "href": "intro-to-rust-for-r-devs/enums.html#enums-in-r",
-    "title": "16  Enum(eration)s",
+    "title": "15  Enum(eration)s",
     "section": "",
     "text": "for example the R function stats::cor() has the argument method = c(\"pearson\", \"kendall\", \"spearman\").\n\nmethod can only be pearson kendall or spearman otherwise an error happens\n\nthis is an informal way of specifying an enumeration\n\ni’ve wrtten about this in more detail in R which may be interesting for y’all\n\nhttps://josiahparry.com/posts/2023-11-10-enums-in-r/\n\n\n\n\nExample:\nwe can define an enum called Shape\nenum Shape {\n    Triangle,\n    Rectangle,\n    Pentagon,\n    Hexagon,\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Enum(eration)s</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/enums.html#variant-specific-behavior",
     "href": "intro-to-rust-for-r-devs/enums.html#variant-specific-behavior",
-    "title": "16  Enum(eration)s",
+    "title": "15  Enum(eration)s",
     "section": "Variant-specific behavior",
     "text": "Variant-specific behavior\n\nchoose a variant by EnumName::Variant This means that Shape can take on only one of those 4 variants\nseems kind of confusing at first, how do you actually use this?\nwe perform pattern matching on the enum and perform some action based on the variant\nuse the keyword match to perform an action based on the value\nwe list each variant and define the action that happens using format Enum::Variant =&gt; action\nnote the “fat arrow”\n\nmatch my_shape {\n    Shape::Triangle =&gt; todo!(),\n    Shape::Rectangle =&gt; todo!(),\n    Shape::Pentagon =&gt; todo!(),\n    Shape::Hexagon =&gt; todo!(),\n}\n\n\n\n\n\n\ntodo!() is a placeholder that can be used to make the compiler happy\n\n\n\n\nExample\n\nwe print the number of vertices for each shape\n\nlet my_shape = Shape::Triangle;\n\nmatch my_shape {\n    Shape::Triangle =&gt; println!(\"A triangle has 3 vertices\"),\n    Shape::Rectangle =&gt; println!(\"A rectangle has 4 vertices\"),\n    Shape::Pentagon =&gt; println!(\"A pentagon has 5 vertices\"),\n    Shape::Hexagon =&gt; println!(\"A hexagon has 6 vertices\"),\n}\n\nsometimes we only want to customize behavior on only a subset of variants\nwe can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”\n\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons);\n    _ =&gt; println!(\"Every other polygon is mid\");\n}\nEnums can have methods too just like a struct using impl keyword\nimpl Shape {\n    fn is_bestagon(&self) -&gt; bool {\n        match self {\n            Self::Hexagon =&gt; true,\n            _ =&gt; false\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Enum(eration)s</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/enums.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/enums.html#exercise-1",
-    "title": "16  Enum(eration)s",
+    "title": "15  Enum(eration)s",
     "section": "Exercise 1",
     "text": "Exercise 1\n\nrecreate the shape enum\ncreate a method called n_vertices() which returns a usize\ncreate two different variants of the Shape enum and print their number of vertices",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Enum(eration)s</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/enums.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/enums.html#exercise-2",
-    "title": "16  Enum(eration)s",
+    "title": "15  Enum(eration)s",
     "section": "Exercise 2",
     "text": "Exercise 2\n\nCreate an enum called Measure with two variants Euclidean and Haversine\nCreate a new method distance() for our point struct that takes 3 arguments and returns an f64\n\na reference to self\na reference to another point\na reference to a Measure enum\n\nWhen the variant is Euclidean use the euclidean_distance() method\nWhen the variant is Haversine use the haversine_distance() method\n\nenum Measure {\n    Euclidean,\n    Haversine,\n}\n\nimpl Point {\n    // Demonstrates using pattern matching an enum\n    fn distance(&self, destination: &Self, measure: &Measure) -&gt; f64 {\n        match measure {\n            Measure::Euclidean =&gt; self.euclidean_distance(destination),\n            Measure::Haversine =&gt; self.haversine_distance(destination),\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Enum(eration)s</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/options.html",
     "href": "intro-to-rust-for-r-devs/options.html",
-    "title": "17  Some() or None?",
+    "title": "16  Some() or None?",
     "section": "",
     "text": "Danger! .unwrap() & .expect()\nOption is defined as:\nwe can match on these. When we have a some value we can use the inner value when we dont we can perform some fallback operation",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
     "href": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
-    "title": "17  Some() or None?",
+    "title": "16  Some() or None?",
     "section": "",
     "text": "sometimes dealing with options is a headache, particularly when we’re in the early stages of developing\nto get the inner value of an Option&lt;T&gt; without checking we can use .unwrap() or .expect()\nthese both give you the inner value. If the value is not found then the program panics.\n\nthis is very bad\n\nTODO panic screenshot\n.expect() takes a message so that when a panic is encountered the message is more informative.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/options.html#exercise",
     "href": "intro-to-rust-for-r-devs/options.html#exercise",
-    "title": "17  Some() or None?",
+    "title": "16  Some() or None?",
     "section": "Exercise",
     "text": "Exercise\n\nmodify the distance() method to take an Option&lt;Measure&gt;\nwhen None use euclidean distance, otherwise use the provided distance measure\n\n\n\nThe exercise does not involve .unwrap() because it’s a bad habbit. Let’s try and form good habbits from the outset if possible.\nimpl Point {\n    fn distance(&self, destination: &Self, measure: Option&lt;&Measure&gt;) -&gt; f64 {\n        match measure {\n            Some(m) =&gt; match m {\n                Measure::Euclidean =&gt; self.euclidean_distance(destination),\n                Measure::Haversine =&gt; self.haversine_distance(destination),\n            },\n            None =&gt; self.euclidean_distance(destination),\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
     ]
   },
   {
@@ -1393,12 +1393,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/na-handling.html",
     "href": "building-rust-based-r-pkgs/na-handling.html",
-    "title": "35  Handle NAs gracefully",
+    "title": "32  Handle NAs gracefully",
     "section": "",
-    "text": "View solution",
+    "text": "Example\nWe’ve been using xi.inner() to access the f64 value of an Rfloat. This is an infallible method. It always provides the inner value of the Rfloat. However, we may want to handle NA values differently.\nTo handle NA values explicitly (rather than hoping our encode() function returns an error), we can check for the pressence of NA in both xi and yi. We can then match on the boolean value and choose what to do!\nmatch isn’t only for enums! When we match on booleans, there are only two variants: true or false. We can also perform nested match statements!\nHere we perform a nested match statement on the Result from parsing a string slice to an integer.",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
     ]
   },
   {
@@ -1747,10 +1747,76 @@
     "href": "building-rust-based-r-pkgs/error-handling.html",
     "title": "31  Handling Errors",
     "section": "",
-    "text": "View solution",
+    "text": "Errors are data\nMany times when we use a function or a method, the result is fallible. A fallible function is one in which an error may occur. An infallible function will always return a valid value for example fn add2(x: f64, y: f64) -&gt; f64.\nErrors cannot happen quietly in Rust. They must be handled. In Rust, errors are data. When an error is possible a function should return a Result.\nA Result, is a special type of enum that has two variants:\nEnums can contain data. In the case of the Result&lt;T, E&gt;, when a function completes successfully, the variant is called Ok(). When an error is occurred the variant is called Err().\nTo access the values of the Result&lt;T, E&gt;, we can match on the enum variants.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handling Errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/error-handling.html#errors-are-data",
+    "href": "building-rust-based-r-pkgs/error-handling.html#errors-are-data",
+    "title": "31  Handling Errors",
+    "section": "",
+    "text": "enum Result {\n    Ok(T),\n    Err(E)\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handling Errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/error-handling.html#example",
+    "href": "building-rust-based-r-pkgs/error-handling.html#example",
+    "title": "31  Handling Errors",
+    "section": "Example",
+    "text": "Example\nfn main() {\n    let number_str = \"10 0 0\";\n    let number = match number_str.parse::&lt;i32&gt;() {\n        Ok(number)  =&gt; println!(\"The number is {number}\"),\n        Err(e) =&gt; println!(\"We ran into an error! {e:?}\"),\n    };\n}\nWe ran into an error! ParseIntError { kind: InvalidDigit }",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handling Errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/error-handling.html#ux-for-errors",
+    "href": "building-rust-based-r-pkgs/error-handling.html#ux-for-errors",
+    "title": "31  Handling Errors",
+    "section": "UX for Errors",
+    "text": "UX for Errors\nThis is a philisophical conversation, really.\nI’m of the mind that, for vectorized functions, we do not give up on everything if an error has occured. Instead, return NULL or NA wherever an error may have occurred.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handling Errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/error-handling.html#exercise",
+    "href": "building-rust-based-r-pkgs/error-handling.html#exercise",
+    "title": "31  Handling Errors",
+    "section": "Exercise",
+    "text": "Exercise\n\nHandle errors from encode():\n\nreturn Rstr::na() when there is an error\notherwise, return Rstr::from(res)\n\n\n\nSolution\n\n\nView hint\n\nPerform a match on the result of encode() e.g.\nlet res = encode(coord, length);\n\nmatch res {\n    Ok(gh) =&gt; todo!(),\n    Err(_) =&gt; todo!()\n}\n\n\n\nView solution\n\n#[extendr]\nfn gh_encode(x: Doubles, y: Doubles, length: usize) -&gt; Strings {\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    x.into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| {\n            let coord = Coord {\n                x: xi.inner(),\n                y: yi.inner(),\n            };\n            match encode(coord, length) {\n                Ok(res) =&gt; Rstr::from(res),\n                Err(_) =&gt; Rstr::na()\n            }\n        })\n        .collect::&lt;Strings&gt;()\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handling Errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/na-handling.html#example",
+    "href": "building-rust-based-r-pkgs/na-handling.html#example",
+    "title": "32  Handle NAs gracefully",
+    "section": "",
+    "text": "let num_parsed = \"10\".parse::&lt;i32&gt;();\n\nmatch num_parsed {\n    Ok(num) =&gt; {\n        match num &gt; 10 {\n            true =&gt; println!(\"Parsed number is greater than 10!\"),\n            false =&gt; println!(\"Parsed number is less than or equal to 10\")\n        }\n    },\n    Err(e) =&gt; println!(\"Failed to parse number with error: {e:?}\")\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/na-handling.html#exercise",
+    "href": "building-rust-based-r-pkgs/na-handling.html#exercise",
+    "title": "32  Handle NAs gracefully",
+    "section": "Exercise",
+    "text": "Exercise\n\nCheck if either xi or yi is an NA (use xi.is_na()) and store in a variable is_missing\nMatch on is_missing:\n\nif true return an NA\notherwise attempt to use encode() and match on the Result\n\n\n\n\nView solution\n\n#[extendr]\nfn gh_encode(x: Doubles, y: Doubles, length: usize) -&gt; Strings {\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    x.into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| {\n            let is_missing = xi.is_na() || yi.is_na();\n\n            match is_missing {\n                true =&gt; Rstr::na(),\n                false =&gt; {\n                    let coord = Coord {\n                        x: xi.inner(),\n                        y: yi.inner(),\n                    };\n                    match encode(coord, length) {\n                        Ok(res) =&gt; Rstr::from(res),\n                        Err(_) =&gt; Rstr::na(),\n                    }\n                }\n            }\n        })\n        .collect::&lt;Strings&gt;()\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
     ]
   }
 ]

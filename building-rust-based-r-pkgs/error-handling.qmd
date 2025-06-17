@@ -1,6 +1,103 @@
 # Handling Errors
 
+::: callout-tip
+## Objective
+
+Be able to `match` on a `Result<T>` and handle errors when they occur.
+:::
+
+Many times when we use a function or a method, the result is **fallible**.
+A fallible function is one in which an error may occur.
+An **infallible** function will _always_ return a valid value for example `fn add2(x: f64, y: f64) -> f64`.
+
+## Errors are data
+
+Errors cannot happen quietly in Rust. They _must_ be handled. In Rust, errors are data. When an error is possible a function _should_ return a **Result**.
+
+A `Result`, is a special type of **enum** that has two variants:
+
+```rust
+enum Result {
+    Ok(T),
+    Err(E)
+}
+```
+
+Enums can contain data. In the case of the `Result<T, E>`, when a function completes successfully, the variant is called `Ok()`. When an error is occurred the variant is called `Err()`.
+
+To access the values of the `Result<T, E>`, we can `match` on the enum variants.
+
+## Example
+
+```rust
+fn main() {
+    let number_str = "10 0 0";
+    let number = match number_str.parse::<i32>() {
+        Ok(number)  => println!("The number is {number}"),
+        Err(e) => println!("We ran into an error! {e:?}"),
+    };
+}
+```
+```
+We ran into an error! ParseIntError { kind: InvalidDigit }
+```
+
+
+## UX for Errors
+
+This is a philisophical conversation, really.
+
+I'm of the mind that, for vectorized functions, we do not give up on everything if an error has occured. Instead, return `NULL` or `NA` wherever an error may have occurred.
+
+
+## Exercise
+
+- Handle errors from `encode()`:
+  - return `Rstr::na()` when there is an error
+  - otherwise, return `Rstr::from(res)`
+
+### Solution
+
+<details>
+    <summary>View hint</summary>
+
+Perform a match on the result of `encode()` e.g.
+
+```rust
+let res = encode(coord, length);
+
+match res {
+    Ok(gh) => todo!(),
+    Err(_) => todo!()
+}
+```
+
+</details>
 
 <details>
     <summary>View solution</summary>
+
+```rust
+#[extendr]
+fn gh_encode(x: Doubles, y: Doubles, length: usize) -> Strings {
+    if length == 0 || length > 12 {
+        throw_r_error("`length` must be between 1 and 12");
+    }
+
+    x.into_iter()
+        .zip(y.into_iter())
+        .map(|(xi, yi)| {
+            let coord = Coord {
+                x: xi.inner(),
+                y: yi.inner(),
+            };
+            match encode(coord, length) {
+                Ok(res) => Rstr::from(res),
+                Err(_) => Rstr::na()
+            }
+        })
+        .collect::<Strings>()
+}
+```
+
 </details>
