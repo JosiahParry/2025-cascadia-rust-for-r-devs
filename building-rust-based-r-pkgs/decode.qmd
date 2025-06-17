@@ -2,7 +2,8 @@
 
 ::: callout-tip
 
-
+- use `Robj`
+- `data_frame!()` macro
 :::
 
 Naturally, if we have _encoded_ a geohash, we should be able to _decode_ the geohash as well. The challenge is that encoding takes an `(x, y)` pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.
@@ -13,10 +14,48 @@ The `decode()` function has the signature:
 fn decode(hash_str: &str) -> Result<(Coord<f64>, f64, f64), GeohashError>
 ```
 
-The return is a tuple with 3 values
+The return is a tuple with 3 values the coordinate, the x error, and y error.
+
+How would a user want to access this information and data? Probably as a `data.frame`.
+
+## What's `data.frame`?
+
+> _It is not vector nor row, but list, in constume, pretending to be square._
+
+A data.frame is a list masquerading as a rectangle. A data.frame consists of:
+
+- vectors of equal length
+- column names
+- row names
+- the data.frame class
+
+Typically, I'd suggest we use a `struct` to represent the result of `decode()`, but this is not compatible with what a data.frame actually is.
+
 
 ## `data_frame!()` macro
 
+A `data.frame` doesn't have a type safe representation in extendr (at this point). Constructing them is a bit awkward too. To help with this, there is a `data_frame!()` macro. It is a thin wrapper to `data.frame()` in R.
+
+It returns an `Robj` which is an opaque type. We can use this to create a data.frame from any wrapper-vector compatible types. For example
+
+### Example
+
+
+```rust
+#[extendr]
+fn xyz(x: Doubles, y: Doubles, z: Doubles) -> Robj {
+    data_frame!(x = x, y = y, z = z)
+}
+```
+```
+xyz(rnorm(5), rnorm(5), rnorm(5))
+#>            x          y          z
+#> 1 -0.2688881  0.2349470  1.3468095
+#> 2 -1.1228202  2.3786258  0.2405386
+#> 3  1.6705694  1.4699630 -0.1370552
+#> 4  3.1485605  0.6131987  0.9025077
+#> 5  0.1374142 -1.5969236 -0.6165083
+```
 
 <details>
     <summary>View solution</summary>

@@ -396,7 +396,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data_frame-macro" id="toc-data_frame-macro" class="nav-link active" data-scroll-target="#data_frame-macro"><code>data_frame!()</code> macro</a></li>
+  <li><a href="#whats-data.frame" id="toc-whats-data.frame" class="nav-link active" data-scroll-target="#whats-data.frame">What’s <code>data.frame</code>?</a></li>
+  <li><a href="#data_frame-macro" id="toc-data_frame-macro" class="nav-link" data-scroll-target="#data_frame-macro"><code>data_frame!()</code> macro</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/decode.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -428,16 +432,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-
+<ul>
+<li>use <code>Robj</code></li>
+<li><code>data_frame!()</code> macro</li>
+</ul>
 </div>
 </div>
 </div>
 <p>Naturally, if we have <em>encoded</em> a geohash, we should be able to <em>decode</em> the geohash as well. The challenge is that encoding takes an <code>(x, y)</code> pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.</p>
 <p>The <code>decode()</code> function has the signature:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> decode(hash_str<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>(Coord<span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;,</span> <span class="dt">f64</span><span class="op">,</span> <span class="dt">f64</span>)<span class="op">,</span> GeohashError<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The return is a tuple with 3 values</p>
+<p>The return is a tuple with 3 values the coordinate, the x error, and y error.</p>
+<p>How would a user want to access this information and data? Probably as a <code>data.frame</code>.</p>
+<section id="whats-data.frame" class="level2">
+<h2 class="anchored" data-anchor-id="whats-data.frame">What’s <code>data.frame</code>?</h2>
+<blockquote class="blockquote">
+<p><em>It is not vector nor row, but list, in constume, pretending to be square.</em></p>
+</blockquote>
+<p>A data.frame is a list masquerading as a rectangle. A data.frame consists of:</p>
+<ul>
+<li>vectors of equal length</li>
+<li>column names</li>
+<li>row names</li>
+<li>the data.frame class</li>
+</ul>
+<p>Typically, I’d suggest we use a <code>struct</code> to represent the result of <code>decode()</code>, but this is not compatible with what a data.frame actually is.</p>
+</section>
 <section id="data_frame-macro" class="level2">
 <h2 class="anchored" data-anchor-id="data_frame-macro"><code>data_frame!()</code> macro</h2>
+<p>A <code>data.frame</code> doesn’t have a type safe representation in extendr (at this point). Constructing them is a bit awkward too. To help with this, there is a <code>data_frame!()</code> macro. It is a thin wrapper to <code>data.frame()</code> in R.</p>
+<p>It returns an <code>Robj</code> which is an opaque type. We can use this to create a data.frame from any wrapper-vector compatible types. For example</p>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>extendr<span class="at">]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> xyz(x<span class="op">:</span> Doubles<span class="op">,</span> y<span class="op">:</span> Doubles<span class="op">,</span> z<span class="op">:</span> Doubles) <span class="op">-&gt;</span> Robj <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">data_frame!</span>(x <span class="op">=</span> x<span class="op">,</span> y <span class="op">=</span> y<span class="op">,</span> z <span class="op">=</span> z)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>xyz(rnorm(5), rnorm(5), rnorm(5))
+#&gt;            x          y          z
+#&gt; 1 -0.2688881  0.2349470  1.3468095
+#&gt; 2 -1.1228202  2.3786258  0.2405386
+#&gt; 3  1.6705694  1.4699630 -0.1370552
+#&gt; 4  3.1485605  0.6131987  0.9025077
+#&gt; 5  0.1374142 -1.5969236 -0.6165083</code></pre>
 <details>
 <summary>
 View solution
@@ -445,6 +482,7 @@ View solution
 </details>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

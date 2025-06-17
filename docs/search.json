@@ -1351,7 +1351,7 @@
     "href": "building-rust-based-r-pkgs/decode.html",
     "title": "36  Decode a geohash",
     "section": "",
-    "text": "data_frame!() macro\nNaturally, if we have encoded a geohash, we should be able to decode the geohash as well. The challenge is that encoding takes an (x, y) pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.\nThe decode() function has the signature:\nThe return is a tuple with 3 values",
+    "text": "What’s data.frame?\nNaturally, if we have encoded a geohash, we should be able to decode the geohash as well. The challenge is that encoding takes an (x, y) pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.\nThe decode() function has the signature:\nThe return is a tuple with 3 values the coordinate, the x error, and y error.\nHow would a user want to access this information and data? Probably as a data.frame.\nA data.frame is a list masquerading as a rectangle. A data.frame consists of:\nTypically, I’d suggest we use a struct to represent the result of decode(), but this is not compatible with what a data.frame actually is.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
@@ -1933,8 +1933,30 @@
     "objectID": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
     "href": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
     "title": "36  Decode a geohash",
+    "section": "data_frame!() macro",
+    "text": "data_frame!() macro\nA data.frame doesn’t have a type safe representation in extendr (at this point). Constructing them is a bit awkward too. To help with this, there is a data_frame!() macro. It is a thin wrapper to data.frame() in R.\nIt returns an Robj which is an opaque type. We can use this to create a data.frame from any wrapper-vector compatible types. For example\n\nExample\n#[extendr]\nfn xyz(x: Doubles, y: Doubles, z: Doubles) -&gt; Robj {\n    data_frame!(x = x, y = y, z = z)\n}\nxyz(rnorm(5), rnorm(5), rnorm(5))\n#&gt;            x          y          z\n#&gt; 1 -0.2688881  0.2349470  1.3468095\n#&gt; 2 -1.1228202  2.3786258  0.2405386\n#&gt; 3  1.6705694  1.4699630 -0.1370552\n#&gt; 4  3.1485605  0.6131987  0.9025077\n#&gt; 5  0.1374142 -1.5969236 -0.6165083\n\n\nView solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/decode.html#whats-a-data.frame",
+    "href": "building-rust-based-r-pkgs/decode.html#whats-a-data.frame",
+    "title": "36  Decode a geohash",
     "section": "",
-    "text": "View solution",
+    "text": "It is not vector nor row, But list, in constume, pretending to be square.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/decode.html#whats-data.frame",
+    "href": "building-rust-based-r-pkgs/decode.html#whats-data.frame",
+    "title": "36  Decode a geohash",
+    "section": "",
+    "text": "It is not vector nor row, but list, in constume, pretending to be square.\n\n\n\nvectors of equal length\ncolumn names\nrow names\nthe data.frame class",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
