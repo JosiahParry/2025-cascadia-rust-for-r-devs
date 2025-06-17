@@ -69,7 +69,8 @@ enum Shape {
 
 we want to parse a `String` to a `Shape` we may want to write:
 
-::: callout-danger
+::: callout-important
+
 ## Cannot compile
 ```rust
 fn as_shape(x: String) -> Shape {

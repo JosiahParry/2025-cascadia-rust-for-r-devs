@@ -399,7 +399,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#matching-strings" id="toc-matching-strings" class="nav-link active" data-scroll-target="#matching-strings">Matching strings</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#cannot-compile" id="toc-cannot-compile" class="nav-link" data-scroll-target="#cannot-compile">Cannot compile</a></li>
   <li><a href="#string-vs-str" id="toc-string-vs-str" class="nav-link" data-scroll-target="#string-vs-str"><code>String</code> vs <code>&amp;str</code></a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul>
@@ -482,9 +481,16 @@ Objective
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    Hexagon<span class="op">,</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>we want to parse a <code>String</code> to a <code>Shape</code> we may want to write:</p>
-</section>
-<section id="cannot-compile" class="level2 callout-danger">
-<h2 class="anchored" data-anchor-id="cannot-compile">Cannot compile</h2>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cannot compile
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> as_shape(x<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> Shape <span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> x <span class="op">{</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"triangle"</span> <span class="op">=&gt;</span> <span class="pp">Shape::</span>Triangle<span class="op">,</span></span>
@@ -494,8 +500,10 @@ Objective
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        _ <span class="op">=&gt;</span> throw_r_error(<span class="st">"Unrecognized shape provided"</span>)<span class="op">,</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+</div>
+</div>
 <p>There’s an issue! Strings in Rust are wonky!</p>
+</section>
 <section id="string-vs-str" class="level2">
 <h2 class="anchored" data-anchor-id="string-vs-str"><code>String</code> vs <code>&amp;str</code></h2>
 <p>I’ve tried to hide this for a while now! But strings in Rust are a bit weird.</p>

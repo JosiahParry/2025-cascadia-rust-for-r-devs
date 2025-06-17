@@ -1824,7 +1824,7 @@
     "href": "building-rust-based-r-pkgs/enums.html",
     "title": "33  Translating Enums",
     "section": "",
-    "text": "Matching strings\nOur next objective is to find the directional neighbor of a geohash using the function geohash::neigbor(). It has the format:\nIn this case direction is an enum that is defined as\nUsing an enum as an argument is a natural thing to do when it can only take on a few values. In R, this would be akin to:\nUsing match.arg() lets us enumerate the possible values the argument can take on. An enum in Rust is a stricter and more formal way of doing this.\nThe natural inclination of an R programmer is to specify a vector of possible values the argument can take on.\nTranslating these to a Rust enum requires us to parse the string into an enum. There are essentially an infinite number of variants a single string can take on, so there must always be a fallback.\nThere’s an issue! Strings in Rust are wonky!",
+    "text": "Matching strings\nOur next objective is to find the directional neighbor of a geohash using the function geohash::neigbor(). It has the format:\nIn this case direction is an enum that is defined as\nUsing an enum as an argument is a natural thing to do when it can only take on a few values. In R, this would be akin to:\nUsing match.arg() lets us enumerate the possible values the argument can take on. An enum in Rust is a stricter and more formal way of doing this.\nThe natural inclination of an R programmer is to specify a vector of possible values the argument can take on.\nTranslating these to a Rust enum requires us to parse the string into an enum. There are essentially an infinite number of variants a single string can take on, so there must always be a fallback.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>33</span>  <span class='chapter-title'>Translating Enums</span>"
@@ -1857,7 +1857,7 @@
     "href": "building-rust-based-r-pkgs/enums.html#example",
     "title": "33  Translating Enums",
     "section": "Example",
-    "text": "Example\nReturning to the Shape example:\nenum Shape {\n    Triangle,\n    Square,\n    Pentagon,\n    Hexagon,\n}\nwe want to parse a String to a Shape we may want to write:",
+    "text": "Example\nReturning to the Shape example:\nenum Shape {\n    Triangle,\n    Square,\n    Pentagon,\n    Hexagon,\n}\nwe want to parse a String to a Shape we may want to write:\n\n\n\n\n\n\nCannot compile\n\n\n\nfn as_shape(x: String) -&gt; Shape {\n    match x {\n        \"triangle\" =&gt; Shape::Triangle,\n        \"square\" =&gt; Shape::Square,\n        \"pentagon\" =&gt; Shape::Pentagon,\n        \"hexagon\" =&gt; Shape::Hexagon,\n        _ =&gt; throw_r_error(\"Unrecognized shape provided\"),\n    }\n}\n\n\nThere’s an issue! Strings in Rust are wonky!",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>33</span>  <span class='chapter-title'>Translating Enums</span>"
