@@ -57,6 +57,29 @@ xyz(rnorm(5), rnorm(5), rnorm(5))
 #> 5  0.1374142 -1.5969236 -0.6165083
 ```
 
+
+## Exercise
+
+Create a new function called `gh_decode()` which has one argument `geohash: String` and returns a data.frame as an `Robj`.
+
+- Import `decode()` from `geohash`
+- Decode the input `geohash` and unwrap the result.
+  - Bonus points for using destructured assignment of the tuple
+- Create a data.frame with 4 columns `x`, `y`, `x_err`, and `y_err` using `data_frame!()`
+- Add the function to `extendr_module! {}`
+- Run `rextendr::document()` to update the package
+- Test the function locally on the geohash `"q8nb00j"`
+
+### Solution
+
 <details>
     <summary>View solution</summary>
+
+```rust
+#[extendr]
+fn gh_decode(geohash: String) -> Robj {
+    let (coord, x_err, y_err) = decode(&geohash).unwrap();
+    data_frame!(x = coord.x, y = coord.y, x_err = x_err, y_err = y_err)
+}
+```
 </details>

@@ -599,34 +599,34 @@
   {
     "objectID": "intro-to-rust-for-r-devs/struct-methods.html",
     "href": "intro-to-rust-for-r-devs/struct-methods.html",
-    "title": "15  Struct Methods",
+    "title": "14  Struct Methods",
     "section": "",
     "text": "Exercise",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Struct Methods</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/struct-methods.html#exercise",
     "href": "intro-to-rust-for-r-devs/struct-methods.html#exercise",
-    "title": "15  Struct Methods",
+    "title": "14  Struct Methods",
     "section": "",
     "text": "Define a new method\n\nimpl Struct {\n  fn new(x: f64, y: f64) -&gt; Self {\n    Self { x, y }\n  }\n}\n\ndefine a distance method that calculates the euclidean distance between a point and a reference to another\n\nimpl Point {\n    fn euclidean_distance(&self, destination: &Self) -&gt; f64 {\n        ((self.x - destination.x).powi(2) + (self.y - destination.y).powi(2)).sqrt()\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Struct Methods</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/struct-methods.html#bonus-exercise-2",
     "href": "intro-to-rust-for-r-devs/struct-methods.html#bonus-exercise-2",
-    "title": "15  Struct Methods",
+    "title": "14  Struct Methods",
     "section": "Bonus: Exercise 2",
     "text": "Bonus: Exercise 2\nHaversine distance is a fast way of calculating distances on a sphere. It is not the most accurate method for all cases, but it’s good enough for many common applications like calculating distances between cities!\nIt is defined by the following equation:\nThe Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.\n\\[a = \\sin^2\\left(\\frac{\\Delta\\phi}{2}\\right) + \\cos\\phi_1 \\cdot \\cos\\phi_2 \\cdot \\sin^2\\left(\\frac{\\Delta\\lambda}{2}\\right)\\]\n\\[c = 2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\]\n\\[d = R \\cdot c\\]\nWhere:\n\n\\(\\phi\\) represents latitude (in radians) (use .to_radians())\n\\(\\lambda\\) represents longitude (in radians) (use .to_radians())\n\\(R\\) is the Earth’s radius (you can use 6_371_008_7714f64 meters as a mean radius)\n\\(\\Delta\\phi\\) is the difference in latitude between the two points (\\(\\phi_2 - \\phi_1\\))\n\\(\\Delta\\lambda\\) is the difference in longitude between the two points (\\(\\lambda_2 - \\lambda_1\\))\n\\(\\text{atan2}(y, x)\\) is the arctangent of \\(y/x\\), using the signs of both arguments to determine the correct quadrant.\n\nHints for Implementation:\n\nRemember to convert your latitude and longitude values from degrees to radians using the .to_radians() method on f64.\nThe c part of the formula, \\(2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\), can also be implemented using 2 * a.sqrt().asin() in Rust, which is a common simplification when a is within the valid domain for asin.\n\n\nSolution\nimpl Point {\n    fn haversine_distance(&self, destination: &Self) -&gt; f64 {\n        let radius = 6_371_008.7714; // Earth's mean radius in meters\n        let theta1 = self.y.to_radians(); // Latitude of point 1\n        let theta2 = destination.y.to_radians(); // Latitude of point 2\n        let delta_theta = (destination.y - self.y).to_radians(); // Delta Latitude\n        let delta_lambda = (destination.x - self.x).to_radians(); // Delta Longitude\n\n        let a = (delta_theta / 2f64).sin().powi(2)\n            + theta1.cos() * theta2.cos() * (delta_lambda / 2f64).sin().powi(2);\n\n        2f64 * a.sqrt().asin() * radius\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Struct Methods</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
     ]
   },
   {
@@ -1934,7 +1934,7 @@
     "href": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
     "title": "36  Decode a geohash",
     "section": "data_frame!() macro",
-    "text": "data_frame!() macro\nA data.frame doesn’t have a type safe representation in extendr (at this point). Constructing them is a bit awkward too. To help with this, there is a data_frame!() macro. It is a thin wrapper to data.frame() in R.\nIt returns an Robj which is an opaque type. We can use this to create a data.frame from any wrapper-vector compatible types. For example\n\nExample\n#[extendr]\nfn xyz(x: Doubles, y: Doubles, z: Doubles) -&gt; Robj {\n    data_frame!(x = x, y = y, z = z)\n}\nxyz(rnorm(5), rnorm(5), rnorm(5))\n#&gt;            x          y          z\n#&gt; 1 -0.2688881  0.2349470  1.3468095\n#&gt; 2 -1.1228202  2.3786258  0.2405386\n#&gt; 3  1.6705694  1.4699630 -0.1370552\n#&gt; 4  3.1485605  0.6131987  0.9025077\n#&gt; 5  0.1374142 -1.5969236 -0.6165083\n\n\nView solution",
+    "text": "data_frame!() macro\nA data.frame doesn’t have a type safe representation in extendr (at this point). Constructing them is a bit awkward too. To help with this, there is a data_frame!() macro. It is a thin wrapper to data.frame() in R.\nIt returns an Robj which is an opaque type. We can use this to create a data.frame from any wrapper-vector compatible types. For example\n\nExample\n#[extendr]\nfn xyz(x: Doubles, y: Doubles, z: Doubles) -&gt; Robj {\n    data_frame!(x = x, y = y, z = z)\n}\nxyz(rnorm(5), rnorm(5), rnorm(5))\n#&gt;            x          y          z\n#&gt; 1 -0.2688881  0.2349470  1.3468095\n#&gt; 2 -1.1228202  2.3786258  0.2405386\n#&gt; 3  1.6705694  1.4699630 -0.1370552\n#&gt; 4  3.1485605  0.6131987  0.9025077\n#&gt; 5  0.1374142 -1.5969236 -0.6165083",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
@@ -1957,6 +1957,17 @@
     "title": "36  Decode a geohash",
     "section": "",
     "text": "It is not vector nor row, but list, in constume, pretending to be square.\n\n\n\nvectors of equal length\ncolumn names\nrow names\nthe data.frame class",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/decode.html#exercise",
+    "href": "building-rust-based-r-pkgs/decode.html#exercise",
+    "title": "36  Decode a geohash",
+    "section": "Exercise",
+    "text": "Exercise\nCreate a new function called gh_decode() which has one argument geohash: String and returns a data.frame as an Robj.\n\nImport decode() from geohash\nDecode the input geohash and unwrap the result.\n\nBonus points for using destructured assignment of the tuple\n\nCreate a data.frame with 4 columns x, y, x_err, and y_err using data_frame!()\nAdd the function to extendr_module! {}\nRun rextendr::document() to update the package\nTest the function locally on the geohash \"q8nb00j\"\n\n\nSolution\n\n\nView solution\n\n#[extendr]\nfn gh_decode(geohash: String) -&gt; Robj {\n    let (coord, x_err, y_err) = decode(&geohash).unwrap();\n    data_frame!(x = coord.x, y = coord.y, x_err = x_err, y_err = y_err)\n}",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"

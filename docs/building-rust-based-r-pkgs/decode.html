@@ -401,6 +401,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   </ul></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a>
+  <ul class="collapse">
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/decode.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -475,10 +479,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #&gt; 3  1.6705694  1.4699630 -0.1370552
 #&gt; 4  3.1485605  0.6131987  0.9025077
 #&gt; 5  0.1374142 -1.5969236 -0.6165083</code></pre>
+</section>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Create a new function called <code>gh_decode()</code> which has one argument <code>geohash: String</code> and returns a data.frame as an <code>Robj</code>.</p>
+<ul>
+<li>Import <code>decode()</code> from <code>geohash</code></li>
+<li>Decode the input <code>geohash</code> and unwrap the result.
+<ul>
+<li>Bonus points for using destructured assignment of the tuple</li>
+</ul></li>
+<li>Create a data.frame with 4 columns <code>x</code>, <code>y</code>, <code>x_err</code>, and <code>y_err</code> using <code>data_frame!()</code></li>
+<li>Add the function to <code>extendr_module! {}</code></li>
+<li>Run <code>rextendr::document()</code> to update the package</li>
+<li>Test the function locally on the geohash <code>"q8nb00j"</code></li>
+</ul>
+<section id="solution" class="level3">
+<h3 class="anchored" data-anchor-id="solution">Solution</h3>
 <details>
 <summary>
 View solution
 </summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>extendr<span class="at">]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> gh_decode(geohash<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> Robj <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> (coord<span class="op">,</span> x_err<span class="op">,</span> y_err) <span class="op">=</span> decode(<span class="op">&amp;</span>geohash)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">data_frame!</span>(x <span class="op">=</span> coord<span class="op">.</span>x<span class="op">,</span> y <span class="op">=</span> coord<span class="op">.</span>y<span class="op">,</span> x_err <span class="op">=</span> x_err<span class="op">,</span> y_err <span class="op">=</span> y_err)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 
