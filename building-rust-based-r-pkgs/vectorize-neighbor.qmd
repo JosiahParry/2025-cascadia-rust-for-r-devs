@@ -1,6 +1,69 @@
 # Vectorize `gh_neighbor()`
 
+::: callout-tip
+## Objective
+Vectorize the `gh_neighbor()` function and make it robust to errors.
+:::
+
+We'll now focus on vectorizing the `gh_neighbor()` function using the same approach we took for `gh_encode()`.
+
+## Exercise 1
+
+The objective of this exercise is to vectorize the `gh_neighbor()` function. You an do this by:
+
+- Change the argument `geohash` to take a character vector via `geohash: Strings`
+- Return a character vector using `-> Strings`
+- Add the function to `extendr_module! { }`
+- Test the function on new data in R
 
 <details>
     <summary>View solution</summary>
+
+```rust
+#[extendr]
+fn gh_neighbor(geohash: Strings, direction: String) -> Strings {
+    let dir = as_direction(direction);
+    geohash
+        .into_iter()
+        .map(|gh| neighbor(&gh, dir).unwrap())
+        .collect::<Strings>()
+}
+```
+
+In R test your function with:
+
+```r
+n <- 1000
+x <- runif(n, -180, 180)
+y <- runif(n, -90, 90)
+
+geohashes <- gh_encode(x, y, 8)
+
+gh_neighbor(geohashes, "e")
+```
+
+</details>
+
+## Exercise 2
+
+Make this function robust to errors by returning an `NA` when an error is encountered.
+
+<details>
+    <summary>View solution</summary>
+```rust
+#[extendr]
+fn gh_neighbor(geohash: Strings, direction: String) -> Strings {
+    let dir = as_direction(direction);
+    geohash
+        .into_iter()
+        .map(|gh| {
+            let nb = neighbor(&gh, dir);
+            match nb {
+                Ok(res) => Rstr::from(res),
+                Err(_) => Rstr::na(),
+            }
+        })
+        .collect::<Strings>()
+}
+```
 </details>

@@ -1,1 +1,43 @@
 # Geohash Neighbor
+
+::: callout-tip
+## Objective
+
+Create an R function that finds a directional neighbor for a geohash.
+
+:::
+
+We now know how to take a string in R and convert it into an `enum` and what a `&str` is.
+
+
+We're going to begin building up a `gh_neighbor()` function which takes two arguments:
+
+```rust
+pub fn neighbor(
+    hash_str: &str,
+    direction: Direction,
+) -> Result<String, GeohashError>
+```
+
+and returns a geohash as a string. We're going to create an R wrapper to this function.
+
+## Exercise
+
+- Create a new function `gh_encode()` which has two arguments: `geohash: String`, and `direction: String` and returns a `String`
+- Import `neighbor()` from `geohash`
+- Use `as_direction()` to process the `direction` arguments
+- Use `neighbor()` to return the resultant geohash (you can unwrap for now)
+  - **Note**: borrow `geohash` as `neighbor()` expects a `&str`—i.e. `neighbor(&geohash, ...)`
+
+<details>
+    <summary>View solution</summary>
+
+```rust
+#[extendr]
+fn gh_neighbor(geohash: String, direction: String) -> String {
+    let dir = as_direction(direction);
+    neighbor(&geohash, dir).unwrap()
+}
+```
+
+</details>
