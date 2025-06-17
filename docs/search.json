@@ -1351,7 +1351,7 @@
     "href": "building-rust-based-r-pkgs/decode.html",
     "title": "36  Decode a geohash",
     "section": "",
-    "text": "View solution",
+    "text": "data_frame!() macro\nNaturally, if we have encoded a geohash, we should be able to decode the geohash as well. The challenge is that encoding takes an (x, y) pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.\nThe decode() function has the signature:\nThe return is a tuple with 3 values",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
@@ -1927,6 +1927,17 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>35</span>  <span class='chapter-title'>Vectorize `gh_neighbor()`</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
+    "href": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
+    "title": "36  Decode a geohash",
+    "section": "",
+    "text": "View solution",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
     ]
   }
 ]

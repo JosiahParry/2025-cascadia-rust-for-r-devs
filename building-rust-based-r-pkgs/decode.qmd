@@ -1,5 +1,22 @@
 # Decode a geohash
 
+::: callout-tip
+
+
+:::
+
+Naturally, if we have _encoded_ a geohash, we should be able to _decode_ the geohash as well. The challenge is that encoding takes an `(x, y)` pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.
+
+The `decode()` function has the signature:
+
+```rust
+fn decode(hash_str: &str) -> Result<(Coord<f64>, f64, f64), GeohashError>
+```
+
+The return is a tuple with 3 values
+
+## `data_frame!()` macro
+
 
 <details>
     <summary>View solution</summary>
