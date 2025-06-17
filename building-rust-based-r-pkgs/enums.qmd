@@ -1,6 +1,134 @@
 # Translating Enums
 
+::: callout-tip
+## Objective
+
+Be able to parse a string into an enum variant.
+:::
+
+Our next objective is to find the directional neighbor of a geohash using the function `geohash::neigbor()`. It has the format:
+
+```rust
+pub fn neighbor(
+    hash_str: &str,
+    direction: Direction,
+) -> Result<String, GeohashError>
+```
+
+In this case `direction` is an enum that is defined as
+
+```rust
+enum Direction {
+    N,
+    NE,
+    E,
+    SE,
+    S,
+    SW,
+    W,
+    NW,
+}
+```
+
+Using an `enum` as an argument is a natural thing to do when it can only take on a few values. In R, this would be akin to:
+
+```r
+neighbor <- function(
+    hash_str,
+    direction = c("n", "ne", "e", "se", "s", "sw", "w", "nm")
+) {
+  match.arg(direction)
+}
+```
+
+Using `match.arg()` lets us **enumerate** the possible values the argument can take on. An `enum` in Rust is a stricter and more formal way of doing this.
+
+## Matching strings
+
+The natural inclination of an R programmer is to specify a vector of possible values the argument can take on.
+
+::: aside
+A more modern approach would be to use `{S7}` to formalize an enum. See [my blog post](https://josiahparry.com/posts/2023-11-10-enums-in-r/) on this subject for more.
+:::
+
+Translating these to a Rust enum requires us to parse the string into an enum. There are essentially an infinite number of variants a single string can take on, so there must _always be a fallback_.
+
+
+## Example
+
+Returning to the `Shape` example:
+
+```rust
+enum Shape {
+    Triangle,
+    Square,
+    Pentagon,
+    Hexagon,
+}
+```
+
+we want to parse a `String` to a `Shape` we may want to write:
+
+::: callout-danger
+## Cannot compile
+```rust
+fn as_shape(x: String) -> Shape {
+    match x {
+        "triangle" => Shape::Triangle,
+        "square" => Shape::Square,
+        "pentagon" => Shape::Pentagon,
+        "hexagon" => Shape::Hexagon,
+        _ => throw_r_error("Unrecognized shape provided"),
+    }
+}
+```
+:::
+
+There's an issue! Strings in Rust are wonky!
+
+## `String` vs `&str`
+
+I've tried to hide this for a while now! But strings in Rust are a bit weird.
+
+The type `String` can be thought of as an **owned** container for a string. Whereas when we write a string like `"hello, world!"` this is creates a temporary _reference_ to a value as a `&str` (note the `&`). Since the two are distinctly different types to Rust, they **cannot be compared** directly.
+
+Instead we must convert our `String` to a `&str`. We can do this using `.as_str()` method on a string.
+
+
+```rust
+fn as_shape(x: String) -> Shape {
+    match x.as_str() {
+        "triangle" => Shape::Triangle,
+        "square" => Shape::Square,
+        "pentagon" => Shape::Pentagon,
+        "hexagon" => Shape::Hexagon,
+        _ => throw_r_error("Unrecognized shape provided"),
+    }
+}
+```
+
+## Exercise
+
+
+- Create a function `as_direction()` that converts a `String` to a `Direction`
+- Optionally, convert the `String` to lowercase using `.to_lowercase()` first for a more robust check
 
 <details>
     <summary>View solution</summary>
+
+```rust
+fn as_direction(direction: String) -> Direction {
+    match direction.to_lowercase().as_str() {
+        "n" => Direction::N,
+        "ne" => Direction::NE,
+        "e" => Direction::E,
+        "se" => Direction::SE,
+        "s" => Direction::S,
+        "sw" => Direction::SW,
+        "w" => Direction::W,
+        "nw" => Direction::NW,
+        _ => throw_r_error("Invalid geohash neighbor direction"),
+    }
+}
+```
 </details>
