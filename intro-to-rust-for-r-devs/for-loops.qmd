@@ -4,6 +4,7 @@
 
 ## Objective
 
+Be able to iterate over a collection of values.
 * Learn how to loop over a collection of values.
 * Apply logic to each value inside a loop.
 :::

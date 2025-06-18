@@ -4,9 +4,7 @@
 
 ## Objective
 
-* Create and store many values of the same type.
-* Understand the difference between arrays and vectors.
-
+Learn how to store multiple values of the same type in arrays and vectors. Understand the difference between arrays and vectors.
 :::
 
 
@@ -32,10 +30,12 @@ More often than not, using `{:?}` will be your best option.
 * You can't add or remove elements.
 * Mostly used when performance is critical and size is known.
 
+The type of an array is specified as `[type; length]`.
+
 
 ## Vectors
 
-Vectors are like growable arrays. They live on the heap and are much more common in everyday Rust code. We'll explore how to modify them later, but for now, we can define them with values known at the start.
+Vectors are like growable arrays. They are much more common in everyday Rust code. To create an array with known values, use the `vec![]` macro. Like an array, they must all be the same type.
 
 ```rust
 fn main() {
@@ -44,12 +44,30 @@ fn main() {
 }
 ```
 
-- Create vectors using `vec![]`
-- You don’t need `mut` if you're not changing them.
-- Like arrays, all values must be the same type.
+The type of a vector is specified using `Vec<T>` where `T` is shorthand for any type.
 
-In R, most things are vectorized. In Rust, we often **iterate** over collections to work with them.
+An empty vector can be created using `Vec::new()` or `vec![]`. If creating an empty vector, the type must be inferred or made explicit. Vectors also have **methods**. Two handy ones are `.len()` and `.is_empty()` (equivalent of `.len() == 0`)
 
+
+
+::: callout-important
+## Cannot compile
+```rust
+fn main() {
+    let x = Vec::new();
+    println!("x is empty: {}", x.is_empty();
+}
+```
+:::
+
+This cannot compile because the type of `x` is not known. Rust can infer the type if the vector is used elsewhere where the type is known. To make it compile we must specify the type.
+
+```rust
+fn main() {
+    let x: Vec<f64> = Vec::new();
+    println!("x is empty: {}", x.is_empty();
+}
+````
 
 
 ## Exercise
@@ -57,6 +75,7 @@ In R, most things are vectorized. In Rust, we often **iterate** over collections
 - Create an array of 4 integers and print it.
 - Create a vector with 5 numbers and print it using `{:?}`.
 - Compare the length of the array and the vector.
+- Bonus: create an empty i32 vector.
 
 ### Solution
 
@@ -74,12 +93,3 @@ fn main() {
 ```
 
 </details>
-
-
-----
-
-NOTES:
-
-TODO:
-
-add a bit on `.len()` and `.is_empty()`

@@ -385,6 +385,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Decode a geohash</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vectorize-decode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Vectorize <code>decode()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vibe-check.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Vibe check</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -448,13 +460,12 @@ Objective
 <li><code>+</code> addition</li>
 <li><code>-</code> subtraction</li>
 <li><code>/</code> division</li>
-<li><del><code>^</code> exponentiation</del> actually, ^ is a logical operator for XOR</li>
 <li><code>%</code> remainder</li>
 </ul>
 </section>
 <section id="logical-operators" class="level2">
 <h2 class="anchored" data-anchor-id="logical-operators">Logical Operators:</h2>
-<p>Logical operators are quite similar to R. The difference is that these operations are not vectorised. Furthermore, in Rust, a logical is called <code>bool</code> for boolean.s</p>
+<p>Logical operators are quite similar to R. The difference is that these operations are not vectorised. Furthermore, in Rust, a logical is called <code>bool</code> for booleans. <code>bool</code>s can take on only two values: <code>true</code> or <code>false</code>.</p>
 <ul>
 <li><code>==</code> check equality</li>
 <li><code>!=</code> check inequality</li>
@@ -472,7 +483,7 @@ Objective
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Each branch of the <code>if</code> statement must return the same type. For this portion of the workshop, be sure to <strong>terminate</strong> each statement inside of the <code>if</code> statement so that nothing is returned.</p>
+<p>Each branch of the <code>if</code> statement must return the same type. For this portion of the workshop, be sure to <strong>terminate</strong> each statement with <code>;</code> inside of the <code>if</code> statement so that nothing (unit type) is returned.</p>
 </div>
 </div>
 </div>

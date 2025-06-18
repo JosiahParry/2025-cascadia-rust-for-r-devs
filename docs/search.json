@@ -194,7 +194,7 @@
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#numeric-operators",
     "title": "4  Control Flow",
     "section": "",
-    "text": "+ addition\n- subtraction\n/ division\n^ exponentiation actually, ^ is a logical operator for XOR\n% remainder",
+    "text": "+ addition\n- subtraction\n/ division\n% remainder",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
@@ -205,7 +205,7 @@
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#logical-operators",
     "title": "4  Control Flow",
     "section": "Logical Operators:",
-    "text": "Logical Operators:\nLogical operators are quite similar to R. The difference is that these operations are not vectorised. Furthermore, in Rust, a logical is called bool for boolean.s\n\n== check equality\n!= check inequality\n! negate a logical value\n&& logical AND comparison\n|| logical OR comparison",
+    "text": "Logical Operators:\nLogical operators are quite similar to R. The difference is that these operations are not vectorised. Furthermore, in Rust, a logical is called bool for booleans. bools can take on only two values: true or false.\n\n== check equality\n!= check inequality\n! negate a logical value\n&& logical AND comparison\n|| logical OR comparison",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
@@ -216,7 +216,7 @@
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#control-flow",
     "title": "4  Control Flow",
     "section": "Control flow",
-    "text": "Control flow\nRust uses if, else, and else if statements just like R. Where each branch is delimted by curly braces.\n\n\n\n\n\n\nEach branch of the if statement must return the same type. For this portion of the workshop, be sure to terminate each statement inside of the if statement so that nothing is returned.\n\n\n\nif x == y {\n  // do something\n} else {\n  // do something else\n}\nThe key difference is that the use of parentheses is not necessary for the conditional statement.",
+    "text": "Control flow\nRust uses if, else, and else if statements just like R. Where each branch is delimted by curly braces.\n\n\n\n\n\n\nEach branch of the if statement must return the same type. For this portion of the workshop, be sure to terminate each statement with ; inside of the if statement so that nothing (unit type) is returned.\n\n\n\nif x == y {\n  // do something\n} else {\n  // do something else\n}\nThe key difference is that the use of parentheses is not necessary for the conditional statement.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
@@ -238,7 +238,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html",
     "title": "5  Arrays and Vectors",
     "section": "",
-    "text": "Arrays\nArrays in Rust are fixed in size and hold values of the same type. Since the size is known ahead of time, it makes them fast but inflexible.",
+    "text": "Arrays\nArrays in Rust are fixed in size and hold values of the same type. Since the size is known ahead of time, it makes them fast but inflexible.\nThe type of an array is specified as [type; length].",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -260,7 +260,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html#vectors",
     "title": "5  Arrays and Vectors",
     "section": "Vectors",
-    "text": "Vectors\nVectors are like growable arrays. They live on the heap and are much more common in everyday Rust code. We’ll explore how to modify them later, but for now, we can define them with values known at the start.\nfn main() {\n    let v = vec![1, 2, 3, 4, 5];\n    println!(\"Vector: {:?}\", v);\n}\n\nCreate vectors using vec![]\nYou don’t need mut if you’re not changing them.\nLike arrays, all values must be the same type.\n\nIn R, most things are vectorized. In Rust, we often iterate over collections to work with them.",
+    "text": "Vectors\nVectors are like growable arrays. They are much more common in everyday Rust code. To create an array with known values, use the vec![] macro. Like an array, they must all be the same type.\nfn main() {\n    let v = vec![1, 2, 3, 4, 5];\n    println!(\"Vector: {:?}\", v);\n}\nThe type of a vector is specified using Vec&lt;T&gt; where T is shorthand for any type.\nAn empty vector can be created using Vec::new() or vec![]. If creating an empty vector, the type must be inferred or made explicit. Vectors also have methods. Two handy ones are .len() and .is_empty() (equivalent of .len() == 0)\n\n\n\n\n\n\nCannot compile\n\n\n\nfn main() {\n    let x = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}\n\n\nThis cannot compile because the type of x is not known. Rust can infer the type if the vector is used elsewhere where the type is known. To make it compile we must specify the type.\nfn main() {\n    let x: Vec&lt;f64&gt; = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -271,7 +271,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html#exercise",
     "title": "5  Arrays and Vectors",
     "section": "Exercise",
-    "text": "Exercise\n\nCreate an array of 4 integers and print it.\nCreate a vector with 5 numbers and print it using {:?}.\nCompare the length of the array and the vector.\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let arr = [1, 2, 3, 4];\n    println!(\"Array: {:?}\", arr);\n\n    let v = vec![10, 20, 30, 40, 50];\n    println!(\"Vector: {:?}\", v);\n}\n\n\nNOTES:\nTODO:\nadd a bit on .len() and .is_empty()",
+    "text": "Exercise\n\nCreate an array of 4 integers and print it.\nCreate a vector with 5 numbers and print it using {:?}.\nCompare the length of the array and the vector.\nBonus: create an empty i32 vector.\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let arr = [1, 2, 3, 4];\n    println!(\"Array: {:?}\", arr);\n\n    let v = vec![10, 20, 30, 40, 50];\n    println!(\"Vector: {:?}\", v);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -280,45 +280,45 @@
   {
     "objectID": "intro-to-rust-for-r-devs/for-loops.html",
     "href": "intro-to-rust-for-r-devs/for-loops.html",
-    "title": "7  for-loops",
+    "title": "6  for-loops",
     "section": "",
     "text": "for loop syntax\nIn Rust, for loops are the easiest way to go over each item in a vector or array.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`for`-loops</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>`for`-loops</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/for-loops.html#for-loop-syntax",
     "href": "intro-to-rust-for-r-devs/for-loops.html#for-loop-syntax",
-    "title": "7  for-loops",
+    "title": "6  for-loops",
     "section": "",
     "text": "for value in collection {\n    // do something with value\n}\n\nfn main() {\n    let nums = vec![1, 2, 3];\n    for n in nums {\n        println!(\"n is: {}\", n);\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`for`-loops</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>`for`-loops</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/for-loops.html#scope",
     "href": "intro-to-rust-for-r-devs/for-loops.html#scope",
-    "title": "7  for-loops",
+    "title": "6  for-loops",
     "section": "Scope",
     "text": "Scope\n\nValues outside of the for loop are accessible inside of it.\nValues created inside of the for loop cannot be accessed outside of it.\n\nExample: outer value used inside loop\nfn main() {\n    let greeting = \"Hi\";\n    let names = vec![\"Alice\", \"Bob\"];\n\n    for name in names {\n        println!(\"{} {}!\", greeting, name);\n    }\n}\nExample: inner value not usable outside loop\n\nThis does not compile!\n\nfn main() {\n    let numbers = vec![1, 2, 3];\n\n    for n in numbers {\n        let doubled = n * 2;\n        println!(\"{} doubled is {}\", n, doubled);\n    }\n\n    // println!(\"Last doubled: {}\", doubled); // ❌ `doubled` doesn't exist here\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`for`-loops</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>`for`-loops</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/for-loops.html#exercise",
     "href": "intro-to-rust-for-r-devs/for-loops.html#exercise",
-    "title": "7  for-loops",
+    "title": "6  for-loops",
     "section": "Exercise",
     "text": "Exercise\nUsing a vector of integers, write a loop that prints:\n\n“Fizz” if divisible by 3\n“Buzz” if divisible by 5\n“FizzBuzz” if divisible by both\nThe number otherwise\n\nUse this vector: vec![1, 2, 3, 4, 5, 15]\n\nSolution\n\n\nView solution\n\nfn main() {\n    let nums = vec![1, 2, 3, 4, 5, 15];\n\n    for n in nums {\n        if n % 15 == 0 {\n            println!(\"FizzBuzz\");\n        } else if n % 3 == 0 {\n            println!(\"Fizz\");\n        } else if n % 5 == 0 {\n            println!(\"Buzz\");\n        } else {\n            println!(\"{}\", n);\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`for`-loops</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>`for`-loops</span>"
     ]
   },
   {
@@ -2022,7 +2022,7 @@
     "href": "intro-to-rust-for-r-devs/types.html#unit-type",
     "title": "3  Basic Types",
     "section": "Unit type",
-    "text": "Unit type\nIn Rust there is no concept of NULL. Instead there is the unit type which is represented as ().\n\n\nThe unit type is technically a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory. ::\nFunctions that do not return anything technically return ().\n\nExercise\nModify src/main.rs to add two or more incompatible types.\n\nDefine a variable x to be an f64 value\nDefine y to be an i32 value\nAdd them up and store them in the variable z\nUse println!() to print the value of z\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = 3.14;\n    let y = 47_i32;\n    let z = x + y as f64;\n    println!(\" The vlaue of z is {z}\");\n}",
+    "text": "Unit type\nIn Rust there is no concept of NULL. Instead there is the unit type which is represented as ().\n\n\nThe unit type is technically a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory.\nFunctions that do not return anything technically return ().",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"

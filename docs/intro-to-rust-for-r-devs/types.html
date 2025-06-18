@@ -414,6 +414,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#strong-typing" id="toc-strong-typing" class="nav-link" data-scroll-target="#strong-typing">Strong typing</a></li>
   <li><a href="#type-casting" id="toc-type-casting" class="nav-link" data-scroll-target="#type-casting">Type casting</a></li>
   <li><a href="#unit-type" id="toc-unit-type" class="nav-link" data-scroll-target="#unit-type">Unit type</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a>
+  <ul class="collapse">
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/types.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -524,8 +528,9 @@ Objective
 <p>In Rust there is no concept of <code>NULL</code>. Instead there is the <strong>unit type</strong> which is represented as <code>()</code>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>The unit type is <em>technically</em> a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory. ::</p>
-<p>Functions that do not return anything <em>technically</em> return <code>()</code>.</p>
+<p>The unit type is <em>technically</em> a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory.</p>
+</div></div><p>Functions that do not return anything <em>technically</em> return <code>()</code>.</p>
+</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p>Modify <code>src/main.rs</code> to add two or more incompatible types.</p>
@@ -552,7 +557,6 @@ View solution
 
 </section>
 </section>
-</div></div></section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -78,7 +78,7 @@ In Rust there is no concept of `NULL`. Instead there is the **unit type** which 
 
 ::: aside
 The unit type is _technically_ a tuple without any fields. If the internet is to be believed it is called "unit" becaue it can only have one value and is related to the "singleton" or unit set in set theory.
-::
+:::
 
 Functions that do not return anything _technically_ return `()`.
 
