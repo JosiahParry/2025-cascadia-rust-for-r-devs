@@ -4,15 +4,24 @@
 Learn how to define and use your own functions in Rust.
 :::
 
+We've already been modifying the `main()` function this whole time. We can create and use additional functions too.
+
+In R, functions are yet another type of object that we create using `<- function()`. In Rust, they are declared using `fn` keyword. Just like everything else in Rust, arguments are typed. Arguments take the structure of `arg: type`.
+
+Much like R, the last object in a function body is return automatically. You do not need to use the `return` keyword unless you are performing an early return.
+
+<!--
 - Functions in Rust are declared using the `fn` keyword.
-- You specify the name and type like `arg_name: type`
+- Arguments `arg_name: type`
 - Specify the return type using `->`
 - Last object in function body is returned automatically (no need to use the `return` keyword)
+
+-->
 
 ```rust
 fn name_of_function(arg1: ArgType) -> ReturnType {
     // function body
-    ReturnType::new() // pseudo-code
+    my_return_object
 }
 ```
 
@@ -23,6 +32,10 @@ Identifying if a number is odd or even isn't always so easy!
 ![is-odd npm](/images/is-odd.png){width=70%}
 
 First define a function called `is_even()` that takes an `i32` (integer) and returns a `bool`.
+
+::: aside
+It may not be entirely obvious, but functions can be declared outside of the `main()` function.
+:::
 
 ```rust
 fn is_even(x: i32) -> bool {

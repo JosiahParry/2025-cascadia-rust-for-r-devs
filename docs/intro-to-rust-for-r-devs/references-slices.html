@@ -385,6 +385,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Decode a geohash</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vectorize-decode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Vectorize <code>decode()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vibe-check.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Vibe check</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -398,6 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#moves" id="toc-moves" class="nav-link active" data-scroll-target="#moves">Moves</a></li>
+  <li><a href="#cloning" id="toc-cloning" class="nav-link" data-scroll-target="#cloning">Cloning</a></li>
   <li><a href="#borrowing" id="toc-borrowing" class="nav-link" data-scroll-target="#borrowing">Borrowing</a></li>
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a>
   <ul class="collapse">
@@ -443,32 +456,67 @@ Objective
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>Understand that values in Rust have a single owner.</li>
-<li>Learn how to avoid ownership errors by borrowing or cloning.</li>
-</ul>
+<p>Understand the how Rust ensures memory safety through the borrow checker and be able to avoid issues by borrowing, using a slice, or cloning.</p>
 </div>
 </div>
-<p>Rust enforces <em>ownership</em> at compile time. This ensures memory safety, but it means variables can only be used once—unless they’re borrowed.</p>
+<p>Rust is notorious for its <strong>borrow checker</strong>. The borrow check is Rust’s secret sauce which helps ensure memory safety. At compile time, Rust looks through all of your code to enforce <strong>ownership</strong>. The key is that</p>
+<blockquote class="blockquote">
+<h3 id="variables-can-be-used-only-once" class="anchored">variables can be used only once!</h3>
+</blockquote>
+<p>If a variable has been used it has been <strong>moved</strong>. There are a number of ways to reuse variables.</p>
 <section id="moves" class="level2">
 <h2 class="anchored" data-anchor-id="moves">Moves</h2>
+<p>A move occurs whenever a variable is used by a function or a method.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1.0</span><span class="op">,</span> <span class="dv">2.0</span><span class="op">,</span> <span class="dv">3.0</span>]<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y <span class="op">=</span> x<span class="op">;</span> <span class="co">// 👈 ownership moved</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y <span class="op">=</span> x<span class="op">;</span> <span class="co">// ⬅️ ownership moved</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> x)<span class="op">;</span> <span class="co">// ❌ error: value used after move</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Ownership of <code>x</code> was moved to <code>y</code></li>
-<li>After a move, the original variable (<code>x</code>) can’t be used</li>
-</ul>
+<p>Since <code>x</code> was moved (used) by assigning it to <code>y</code>, the original value cannot be used.</p>
+</section>
+<section id="cloning" class="level2">
+<h2 class="anchored" data-anchor-id="cloning">Cloning</h2>
+<p>The simplest but least efficient way to reuse a variable is to clone it. This is what R does.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Remember: when in doubt, clone it out!</p>
+</div>
+</div>
+</div>
+<p>Almost everything in Rust can be cloned by using the <code>.clone()</code> method.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cannot compile
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x  <span class="op">=</span> <span class="pp">v!</span>[<span class="dv">0.0</span><span class="op">,</span> <span class="dv">3.14</span><span class="op">,</span> <span class="dv">10.1</span><span class="op">,</span> <span class="dv">44.8</span>]<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg1 <span class="op">=</span> mean(x)<span class="op">;</span> <span class="co">// ⬅️ x moved here!</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg2 <span class="op">=</span> mean(x)<span class="op">;</span> <span class="co">// ❌ compiler error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>If we first clone <code>x</code> before using <code>mean()</code> we can use <code>x</code> again.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x  <span class="op">=</span> <span class="pp">v!</span>[<span class="dv">0.0</span><span class="op">,</span> <span class="dv">3.14</span><span class="op">,</span> <span class="dv">10.1</span><span class="op">,</span> <span class="dv">44.8</span>]<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg1 <span class="op">=</span> mean(x<span class="op">.</span>clone())<span class="op">;</span> <span class="co">// ⬅️ x cloned here!</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg2 <span class="op">=</span> mean(x)<span class="op">;</span> <span class="co">// ✅ compiler happy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="borrowing" class="level2">
 <h2 class="anchored" data-anchor-id="borrowing">Borrowing</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1.0</span><span class="op">,</span> <span class="dv">2.0</span><span class="op">,</span> <span class="dv">3.0</span>]<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> avg <span class="op">=</span> mean(<span class="op">&amp;</span>x)<span class="op">;</span> <span class="co">// 👈 borrowing `x`</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"x is still usable: {:?}"</span><span class="op">,</span> x)<span class="op">;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1.0</span><span class="op">,</span> <span class="dv">2.0</span><span class="op">,</span> <span class="dv">3.0</span>]<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> avg <span class="op">=</span> mean(<span class="op">&amp;</span>x)<span class="op">;</span> <span class="co">// 👈 borrowing `x`</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"x is still usable: {:?}"</span><span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Borrowing uses <code>&amp;</code> to pass by <em>reference</em></li>
 <li>You can borrow a value as many times as you want (immutably)</li>
@@ -497,13 +545,13 @@ Objective
 <summary>
 View solution
 </summary>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> mean(x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> total <span class="op">=</span> <span class="dv">0.0</span><span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xi <span class="kw">in</span> x <span class="op">{</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> xi<span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    total <span class="op">/</span> x<span class="op">.</span>len() <span class="kw">as</span> <span class="dt">f64</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> mean(x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> total <span class="op">=</span> <span class="dv">0.0</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xi <span class="kw">in</span> x <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> xi<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    total <span class="op">/</span> x<span class="op">.</span>len() <span class="kw">as</span> <span class="dt">f64</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <hr>
 </section>
@@ -516,9 +564,9 @@ View solution
 <li>Has known length with <code>.len()</code></li>
 <li>Preferred when you don’t need the full container</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> values <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">10.0</span><span class="op">,</span> <span class="dv">20.0</span><span class="op">,</span> <span class="dv">30.0</span>]<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg <span class="op">=</span> mean(<span class="op">&amp;</span>values)<span class="op">;</span> <span class="co">// full slice</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg <span class="op">=</span> mean(<span class="op">&amp;</span>values[<span class="dv">0</span><span class="op">..</span><span class="dv">3</span>]) <span class="co">// the first 3 elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> values <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">10.0</span><span class="op">,</span> <span class="dv">20.0</span><span class="op">,</span> <span class="dv">30.0</span>]<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg <span class="op">=</span> mean(<span class="op">&amp;</span>values)<span class="op">;</span> <span class="co">// full slice</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> avg <span class="op">=</span> mean(<span class="op">&amp;</span>values[<span class="dv">0</span><span class="op">..</span><span class="dv">3</span>]) <span class="co">// the first 3 elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -546,13 +594,13 @@ View solution
 <summary>
 View solution
 </summary>
-<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> mean(x<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">f64</span>]) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> total <span class="op">=</span> <span class="dv">0.0</span><span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xi <span class="kw">in</span> x <span class="op">{</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> xi<span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    total <span class="op">/</span> x<span class="op">.</span>len() <span class="kw">as</span> <span class="dt">f64</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> mean(x<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">f64</span>]) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> total <span class="op">=</span> <span class="dv">0.0</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xi <span class="kw">in</span> x <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> xi<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    total <span class="op">/</span> x<span class="op">.</span>len() <span class="kw">as</span> <span class="dt">f64</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 

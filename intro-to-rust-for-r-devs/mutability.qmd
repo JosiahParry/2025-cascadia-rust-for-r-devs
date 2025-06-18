@@ -4,6 +4,14 @@
 Understand the difference between immutable and mutable variables.
 :::
 
+In R everything is immutable (except environments). Immutable objects _cannot be altered_.
+
+::: aside
+
+Instead, when they are modified, they are copied. This is called copy-on-write (often referred to as **cow**).
+
+:::
+
 In Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the `mut` keyword.
 
 ```rust
@@ -12,21 +20,24 @@ x = 6; // ✅ works because x is mutable
 ```
 
 - Use `mut` when you need to change a variable after it is created.
-- You do **not** need to re-bind the variable with `let` when changing its value.
+- You do **not** re-bind the variable with `let` when changing its value.
 - This helps catch bugs early by making data changes explicit.
 
-::: aside
-In R, everything is immutable. Whenever you modify a variable, it is copied.
-:::
 
 By requiring `mut`, the compiler ensures that accidental mutations are caught at compile time.
 
-Here's an example revisiting our loop from earlier:
+## Example
+
+Revisiting our loop from earlier:
 
 ```rust
 fn main() {
+    // create a vector
     let numbers = vec![1, 2, 3];
+    // create a mutable value
     let mut doubled = 0;
+
+    // iterate through numbers to update doubled
     for n in numbers {
         doubled = n * 2;
         println!("{} doubled is {}", n, doubled);
@@ -41,11 +52,12 @@ fn main() {
 ## Exercise
 
 - Create a vector of 5 or more f64 values  (`Vec<f64>`)
-- Use a for loop to calculate the mean of the vector
+- Use a for loop to calculate the sum of the vector
+- Calculate the mean from the sum of the vector and the length of the vector
 - Print the result
 
-::: callout-note
-We've been working only with integers. To create a float (number with decimals) use `0.0` or specify the type manually e.g. `0f64`.
+::: callout-tip
+You can use `+=` shorthand to add and assign all at the same time. For example `x += 10` is equivalent to `x = x + 10`.
 :::
 
 ### Solution

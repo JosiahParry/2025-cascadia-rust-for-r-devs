@@ -282,7 +282,7 @@
     "href": "intro-to-rust-for-r-devs/for-loops.html",
     "title": "6  for-loops",
     "section": "",
-    "text": "for loop syntax\nIn Rust, for loops are the easiest way to go over each item in a vector or array.",
+    "text": "for loop syntax\nIn Rust, for loops are the easiest way to go over each item in a vector or array.\nWhen we iterate through a collection, each item takes on the value of the name you provide before in. For example for x in my_vec creates a binding to x at each iteration.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>`for`-loops</span>"
@@ -304,7 +304,7 @@
     "href": "intro-to-rust-for-r-devs/for-loops.html#scope",
     "title": "6  for-loops",
     "section": "Scope",
-    "text": "Scope\n\nValues outside of the for loop are accessible inside of it.\nValues created inside of the for loop cannot be accessed outside of it.\n\nExample: outer value used inside loop\nfn main() {\n    let greeting = \"Hi\";\n    let names = vec![\"Alice\", \"Bob\"];\n\n    for name in names {\n        println!(\"{} {}!\", greeting, name);\n    }\n}\nExample: inner value not usable outside loop\n\nThis does not compile!\n\nfn main() {\n    let numbers = vec![1, 2, 3];\n\n    for n in numbers {\n        let doubled = n * 2;\n        println!(\"{} doubled is {}\", n, doubled);\n    }\n\n    // println!(\"Last doubled: {}\", doubled); // ❌ `doubled` doesn't exist here\n}",
+    "text": "Scope\nR has some of the most flexible and unique scoping rules. Rust isn’t as kind. The rules are essentially:\n\nValues outside of the for loop are accessible inside of it.\nValues created inside of the for loop cannot be accessed outside of it.\n\n\nExample: Outer value used inside loop\n\n\n\n\n\n\nThis does compile\n\n\n\nfn main() {\n    let greeting = \"Hi\";\n    let names = vec![\"Alice\", \"Bob\"];\n\n    for name in names {\n        println!(\"{greeting}, {name}!\");\n    }\n}\n\n\n\n\nExample: Inner value not usable outside loop\n\n\n\n\n\n\nThis does not compile!\n\n\n\nfn main() {\n    let numbers = vec![1, 2, 3];\n\n    for n in numbers {\n        let doubled = n * 2;\n        println!(\"{n} doubled is {doubled}\");\n    }\n\n    // ❌ `doubled` doesn't exist here\n    // println!(\"Last doubled: {}\", doubled);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>`for`-loops</span>"
@@ -315,7 +315,7 @@
     "href": "intro-to-rust-for-r-devs/for-loops.html#exercise",
     "title": "6  for-loops",
     "section": "Exercise",
-    "text": "Exercise\nUsing a vector of integers, write a loop that prints:\n\n“Fizz” if divisible by 3\n“Buzz” if divisible by 5\n“FizzBuzz” if divisible by both\nThe number otherwise\n\nUse this vector: vec![1, 2, 3, 4, 5, 15]\n\nSolution\n\n\nView solution\n\nfn main() {\n    let nums = vec![1, 2, 3, 4, 5, 15];\n\n    for n in nums {\n        if n % 15 == 0 {\n            println!(\"FizzBuzz\");\n        } else if n % 3 == 0 {\n            println!(\"Fizz\");\n        } else if n % 5 == 0 {\n            println!(\"Buzz\");\n        } else {\n            println!(\"{}\", n);\n        }\n    }\n}",
+    "text": "Exercise\nUsing a vector of integers, write a loop that prints:\n\n“Fizz” if divisible by 3\n“Buzz” if divisible by 5\n“FizzBuzz” if divisible by both\nThe number otherwise\n\nUse this vector: vec![1, 2, 3, 4, 5, 15]\n\nSolution\n\n\nView hint\n\nfn main() {\n    let nums = vec![1, 2, 3, 4, 5, 15];\n\n    for n in nums {\n       // add fizz-buzz logic here referring to `n`\n    }\n}\n\n\n\nView solution\n\nfn main() {\n    let nums = vec![1, 2, 3, 4, 5, 15];\n\n    for n in nums {\n        if n % 15 == 0 {\n            println!(\"FizzBuzz\");\n        } else if n % 3 == 0 {\n            println!(\"Fizz\");\n        } else if n % 5 == 0 {\n            println!(\"Buzz\");\n        } else {\n            println!(\"{}\", n);\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>`for`-loops</span>"
@@ -326,7 +326,7 @@
     "href": "intro-to-rust-for-r-devs/mutability.html",
     "title": "7  Mutability",
     "section": "",
-    "text": "Exercise\nIn Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the mut keyword.\nBy requiring mut, the compiler ensures that accidental mutations are caught at compile time.\nHere’s an example revisiting our loop from earlier:",
+    "text": "Example\nIn R everything is immutable (except environments). Immutable objects cannot be altered.\nIn Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the mut keyword.\nBy requiring mut, the compiler ensures that accidental mutations are caught at compile time.\nRevisiting our loop from earlier:",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
@@ -336,8 +336,8 @@
     "objectID": "intro-to-rust-for-r-devs/mutability.html#exercise",
     "href": "intro-to-rust-for-r-devs/mutability.html#exercise",
     "title": "7  Mutability",
-    "section": "",
-    "text": "Create a vector of 5 or more f64 values (Vec&lt;f64&gt;)\nUse a for loop to calculate the mean of the vector\nPrint the result\n\n\n\n\n\n\n\nWe’ve been working only with integers. To create a float (number with decimals) use 0.0 or specify the type manually e.g. 0f64.\n\n\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0];\n\n    let n = x.len() as f64;\n    let mut total = 0.0;\n\n    for xi in x {\n        total += xi;\n    }\n\n    println!(\"The mean is: {}\", total / n);\n}",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate a vector of 5 or more f64 values (Vec&lt;f64&gt;)\nUse a for loop to calculate the sum of the vector\nCalculate the mean from the sum of the vector and the length of the vector\nPrint the result\n\n\n\n\n\n\n\nYou can use += shorthand to add and assign all at the same time. For example x += 10 is equivalent to x = x + 10.\n\n\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0];\n\n    let n = x.len() as f64;\n    let mut total = 0.0;\n\n    for xi in x {\n        total += xi;\n    }\n\n    println!(\"The mean is: {}\", total / n);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
@@ -346,56 +346,56 @@
   {
     "objectID": "intro-to-rust-for-r-devs/mutable-vectors.html",
     "href": "intro-to-rust-for-r-devs/mutable-vectors.html",
-    "title": "9  Mutable Vectors",
+    "title": "8  Mutable Vectors",
     "section": "",
     "text": "Creating empty vectors\nIn Rust, vectors (Vec&lt;T&gt;) are growable arrays. To modify a vector after creating it, the vector itself must be declared as mut.\nYou can create an empty vector and let Rust infer the type based on usage:",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Mutable Vectors</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutable Vectors</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/mutable-vectors.html#exercise",
     "href": "intro-to-rust-for-r-devs/mutable-vectors.html#exercise",
-    "title": "9  Mutable Vectors",
+    "title": "8  Mutable Vectors",
     "section": "Exercise",
     "text": "Exercise\n\nCreate an empty vector\nAppend the values 1.0, 2.0, and 3.0 using .push()\nClear the vector to make it empty\nLastly, extend it with another vector e.g. [4.0, 5.0]\nSort the vector\nPrint the final result.\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let mut x = Vec::new();\n    x.push(1.0);\n    x.push(2.0);\n    x.push(3.0);\n    x.clear();\n    x.extend(vec![4.0, 5.0]);\n    println!(\"{:?}\", x);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Mutable Vectors</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mutable Vectors</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/is-odd.html",
     "href": "intro-to-rust-for-r-devs/is-odd.html",
-    "title": "10  Functions",
+    "title": "9  Functions",
     "section": "",
-    "text": "Example\nIdentifying if a number is odd or even isn’t always so easy!\nFirst define a function called is_even() that takes an i32 (integer) and returns a bool.\nWe can use our already defined function inside of another:",
+    "text": "Example\nWe’ve already been modifying the main() function this whole time. We can create and use additional functions too.\nIn R, functions are yet another type of object that we create using &lt;- function(). In Rust, they are declared using fn keyword. Just like everything else in Rust, arguments are typed. Arguments take the structure of arg: type.\nMuch like R, the last object in a function body is return automatically. You do not need to use the return keyword unless you are performing an early return.\nIdentifying if a number is odd or even isn’t always so easy!\nFirst define a function called is_even() that takes an i32 (integer) and returns a bool.\nWe can use our already defined function inside of another:",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functions</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Functions</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/is-odd.html#example",
     "href": "intro-to-rust-for-r-devs/is-odd.html#example",
-    "title": "10  Functions",
+    "title": "9  Functions",
     "section": "",
-    "text": "is-odd npm\n\n\n\nfn is_even(x: i32) -&gt; bool {\n    x % 2 == 0\n}\n\nfn is_odd(x: i32) -&gt; bool {\n    !is_even(x)\n}",
+    "text": "is-odd npm\n\n\n\n\n\nIt may not be entirely obvious, but functions can be declared outside of the main() function.\nfn is_even(x: i32) -&gt; bool {\n    x % 2 == 0\n}\n\nfn is_odd(x: i32) -&gt; bool {\n    !is_even(x)\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functions</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Functions</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/is-odd.html#exercise",
     "href": "intro-to-rust-for-r-devs/is-odd.html#exercise",
-    "title": "10  Functions",
+    "title": "9  Functions",
     "section": "Exercise",
     "text": "Exercise\nCreate a function called mean() that calculates the mean of a Vec&lt;f64&gt;.\n\nIn main(), create a vector x with 5 or more f64 values.\nCall mean(x) and print the result.\n\n\n\n\n\n\n\nUse x.len() to get the length and as f64 to convert it to a float.\n\n\n\n\nSolution\n\n\nView solution\n\nfn mean(x: Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    let n = x.len();\n    for xi in x {\n        total += xi;\n    }\n    total / n as f64\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let result = mean(x);\n    println!(\"Mean is: {}\", result);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functions</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Functions</span>"
     ]
   },
   {
@@ -403,7 +403,7 @@
     "href": "intro-to-rust-for-r-devs/references-slices.html",
     "title": "10  Ownership",
     "section": "",
-    "text": "Moves\nRust enforces ownership at compile time. This ensures memory safety, but it means variables can only be used once—unless they’re borrowed.",
+    "text": "Moves\nRust is notorious for its borrow checker. The borrow check is Rust’s secret sauce which helps ensure memory safety. At compile time, Rust looks through all of your code to enforce ownership. The key is that\nIf a variable has been used it has been moved. There are a number of ways to reuse variables.\nA move occurs whenever a variable is used by a function or a method.\nSince x was moved (used) by assigning it to y, the original value cannot be used.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
@@ -414,7 +414,7 @@
     "href": "intro-to-rust-for-r-devs/references-slices.html#moves",
     "title": "10  Ownership",
     "section": "",
-    "text": "fn main() {\n    let x = vec![1.0, 2.0, 3.0];\n    let y = x; // 👈 ownership moved\n    println!(\"{:?}\", x); // ❌ error: value used after move\n}\n\nOwnership of x was moved to y\nAfter a move, the original variable (x) can’t be used",
+    "text": "fn main() {\n    let x = vec![1.0, 2.0, 3.0];\n    let y = x; // ⬅️ ownership moved\n    println!(\"{:?}\", x); // ❌ error: value used after move\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
@@ -2037,6 +2037,28 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutability.html#example",
+    "href": "intro-to-rust-for-r-devs/mutability.html#example",
+    "title": "7  Mutability",
+    "section": "",
+    "text": "fn main() {\n    // create a vector\n    let numbers = vec![1, 2, 3];\n    // create a mutable value\n    let mut doubled = 0;\n\n    // iterate through numbers to update doubled\n    for n in numbers {\n        doubled = n * 2;\n        println!(\"{} doubled is {}\", n, doubled);\n    }\n\n    // ✅ compiles because `doubled` was declared\n    // _outside_ of the inner loop scope\n    println!(\"Last doubled: {}\", doubled);\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#cloning",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#cloning",
+    "title": "10  Ownership",
+    "section": "Cloning",
+    "text": "Cloning\nThe simplest but least efficient way to reuse a variable is to clone it. This is what R does.\n\n\n\n\n\n\nRemember: when in doubt, clone it out!\n\n\n\nAlmost everything in Rust can be cloned by using the .clone() method.\n\n\n\n\n\n\nCannot compile\n\n\n\nlet x  = v![0.0, 3.14, 10.1, 44.8];\n\nlet avg1 = mean(x); // ⬅️ x moved here!\nlet avg2 = mean(x); // ❌ compiler error\n\n\nIf we first clone x before using mean() we can use x again.\nlet x  = v![0.0, 3.14, 10.1, 44.8];\n\nlet avg1 = mean(x.clone()); // ⬅️ x cloned here!\nlet avg2 = mean(x); // ✅ compiler happy",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   }
 ]

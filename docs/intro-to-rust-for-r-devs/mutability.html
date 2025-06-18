@@ -385,6 +385,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Decode a geohash</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vectorize-decode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Vectorize <code>decode()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vibe-check.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Vibe check</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -397,7 +409,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link active" data-scroll-target="#exercise">Exercise</a>
+  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example">Example</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a>
   <ul class="collapse">
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
   </ul></li>
@@ -436,45 +449,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>In Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the <code>mut</code> keyword.</p>
+<p>In R everything is immutable (except environments). Immutable objects <em>cannot be altered</em>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Instead, when they are modified, they are copied. This is called copy-on-write (often referred to as <strong>cow</strong>).</p>
+</div></div><p>In Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the <code>mut</code> keyword.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">6</span><span class="op">;</span> <span class="co">// ✅ works because x is mutable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Use <code>mut</code> when you need to change a variable after it is created.</li>
-<li>You do <strong>not</strong> need to re-bind the variable with <code>let</code> when changing its value.</li>
+<li>You do <strong>not</strong> re-bind the variable with <code>let</code> when changing its value.</li>
 <li>This helps catch bugs early by making data changes explicit.</li>
 </ul>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>In R, everything is immutable. Whenever you modify a variable, it is copied.</p>
-</div></div><p>By requiring <code>mut</code>, the compiler ensures that accidental mutations are caught at compile time.</p>
-<p>Here’s an example revisiting our loop from earlier:</p>
+<p>By requiring <code>mut</code>, the compiler ensures that accidental mutations are caught at compile time.</p>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>Revisiting our loop from earlier:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numbers <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> doubled <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> numbers <span class="op">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        doubled <span class="op">=</span> n <span class="op">*</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{} doubled is {}"</span><span class="op">,</span> n<span class="op">,</span> doubled)<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ✅ compiles because `doubled` was declared</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _outside_ of the inner loop scope</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Last doubled: {}"</span><span class="op">,</span> doubled)<span class="op">;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// create a vector</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numbers <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// create a mutable value</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> doubled <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// iterate through numbers to update doubled</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> numbers <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        doubled <span class="op">=</span> n <span class="op">*</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{} doubled is {}"</span><span class="op">,</span> n<span class="op">,</span> doubled)<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ✅ compiles because `doubled` was declared</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _outside_ of the inner loop scope</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Last doubled: {}"</span><span class="op">,</span> doubled)<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ul>
 <li>Create a vector of 5 or more f64 values (<code>Vec&lt;f64&gt;</code>)</li>
-<li>Use a for loop to calculate the mean of the vector</li>
+<li>Use a for loop to calculate the sum of the vector</li>
+<li>Calculate the mean from the sum of the vector and the length of the vector</li>
 <li>Print the result</li>
 </ul>
-<div class="callout callout-style-simple callout-note">
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>We’ve been working only with integers. To create a float (number with decimals) use <code>0.0</code> or specify the type manually e.g.&nbsp;<code>0f64</code>.</p>
+<p>You can use <code>+=</code> shorthand to add and assign all at the same time. For example <code>x += 10</code> is equivalent to <code>x = x + 10</code>.</p>
 </div>
 </div>
 </div>

@@ -410,7 +410,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#for-loop-syntax" id="toc-for-loop-syntax" class="nav-link active" data-scroll-target="#for-loop-syntax"><code>for</code> loop syntax</a></li>
-  <li><a href="#scope" id="toc-scope" class="nav-link" data-scroll-target="#scope">Scope</a></li>
+  <li><a href="#scope" id="toc-scope" class="nav-link" data-scroll-target="#scope">Scope</a>
+  <ul class="collapse">
+  <li><a href="#example-outer-value-used-inside-loop" id="toc-example-outer-value-used-inside-loop" class="nav-link" data-scroll-target="#example-outer-value-used-inside-loop">Example: Outer value used inside loop</a></li>
+  <li><a href="#example-inner-value-not-usable-outside-loop" id="toc-example-inner-value-not-usable-outside-loop" class="nav-link" data-scroll-target="#example-inner-value-not-usable-outside-loop">Example: Inner value not usable outside loop</a></li>
+  </ul></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a>
   <ul class="collapse">
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
@@ -450,15 +454,16 @@ Objective
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Be able to iterate over a collection of values. * Learn how to loop over a collection of values. * Apply logic to each value inside a loop.</p>
+<p>Be able to iterate over a collection of values. Apply logic inside of the for loop.</p>
 </div>
 </div>
 <section id="for-loop-syntax" class="level2">
 <h2 class="anchored" data-anchor-id="for-loop-syntax"><code>for</code> loop syntax</h2>
+<p>In Rust, <code>for</code> loops are the easiest way to go over each item in a vector or array.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> value <span class="kw">in</span> collection <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with value</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In Rust, <code>for</code> loops are the easiest way to go over each item in a vector or array.</p>
+<p>When we iterate through a collection, each item takes on the value of the name you provide before <code>in</code>. For example <code>for x in my_vec</code> creates a binding to <code>x</code> at each iteration.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nums <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> nums <span class="op">{</span></span>
@@ -468,33 +473,60 @@ Objective
 </section>
 <section id="scope" class="level2">
 <h2 class="anchored" data-anchor-id="scope">Scope</h2>
+<p>R has some of the most flexible and unique scoping rules. Rust isn’t as kind. The rules are essentially:</p>
 <ul>
 <li>Values <em>outside</em> of the for loop are accessible inside of it.</li>
 <li>Values created <em>inside</em> of the for loop cannot be accessed outside of it.</li>
 </ul>
-<p><strong>Example</strong>: outer value used inside loop</p>
+<section id="example-outer-value-used-inside-loop" class="level3">
+<h3 class="anchored" data-anchor-id="example-outer-value-used-inside-loop">Example: Outer value used inside loop</h3>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="This does compile">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This does compile
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> greeting <span class="op">=</span> <span class="st">"Hi"</span><span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> names <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">"Alice"</span><span class="op">,</span> <span class="st">"Bob"</span>]<span class="op">;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name <span class="kw">in</span> names <span class="op">{</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{} {}!"</span><span class="op">,</span> greeting<span class="op">,</span> name)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{greeting}, {name}!"</span>)<span class="op">;</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Example</strong>: inner value not usable outside loop</p>
-<div class="callout-danger">
-<p>This does not compile!</p>
 </div>
+</div>
+</section>
+<section id="example-inner-value-not-usable-outside-loop" class="level3">
+<h3 class="anchored" data-anchor-id="example-inner-value-not-usable-outside-loop">Example: Inner value not usable outside loop</h3>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This does not compile!
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numbers <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> numbers <span class="op">{</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> doubled <span class="op">=</span> n <span class="op">*</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{} doubled is {}"</span><span class="op">,</span> n<span class="op">,</span> doubled)<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{n} doubled is {doubled}"</span>)<span class="op">;</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// println!("Last doubled: {}", doubled); // ❌ `doubled` doesn't exist here</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ❌ `doubled` doesn't exist here</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// println!("Last doubled: {}", doubled);</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -510,23 +542,35 @@ Objective
 <h3 class="anchored" data-anchor-id="solution">Solution</h3>
 <details>
 <summary>
-View solution
+View hint
 </summary>
 <div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nums <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> nums <span class="op">{</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n <span class="op">%</span> <span class="dv">15</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"FizzBuzz"</span>)<span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> n <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"Fizz"</span>)<span class="op">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> n <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"Buzz"</span>)<span class="op">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> n)<span class="op">;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="co">// add fizz-buzz logic here referring to `n`</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nums <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> nums <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n <span class="op">%</span> <span class="dv">15</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"FizzBuzz"</span>)<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> n <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"Fizz"</span>)<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> n <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"Buzz"</span>)<span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> n)<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 

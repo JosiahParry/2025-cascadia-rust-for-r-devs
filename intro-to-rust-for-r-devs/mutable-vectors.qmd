@@ -64,6 +64,8 @@ Use `.extend()` to append one vector's contents to another:
 fn main() {
     let mut a = vec![1, 2];
     let b = vec![3, 4];
+    // note that we don't assign.
+    // Instead, `a` is modified in place
     a.extend(b);
     println!("{:?}", a); // prints [1, 2, 3, 4]
 }

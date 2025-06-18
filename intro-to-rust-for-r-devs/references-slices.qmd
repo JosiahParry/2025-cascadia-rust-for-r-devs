@@ -2,24 +2,63 @@
 
 ::: callout-tip
 ## Objective
-- Understand that values in Rust have a single owner.
-- Learn how to avoid ownership errors by borrowing or cloning.
+
+Understand the how Rust ensures memory safety through the borrow checker and be able to avoid issues by borrowing, using a slice, or cloning.
 :::
 
-Rust enforces *ownership* at compile time. This ensures memory safety, but it means variables can only be used once—unless they’re borrowed.
+
+Rust is notorious for its **borrow checker**. The borrow check is Rust's secret sauce which helps ensure memory safety. At compile time, Rust looks through all of your code to enforce **ownership**. The key is that
+
+> ### variables can be used only once!
+
+If a variable has been used it has been **moved**. There are a number of ways to reuse variables.
 
 ## Moves
+
+A move occurs whenever a variable is used by a function or a method.
 
 ```rust
 fn main() {
     let x = vec![1.0, 2.0, 3.0];
-    let y = x; // 👈 ownership moved
+    let y = x; // ⬅️ ownership moved
     println!("{:?}", x); // ❌ error: value used after move
 }
 ```
 
-- Ownership of `x` was moved to `y`
-- After a move, the original variable (`x`) can’t be used
+Since `x` was moved (used) by assigning it to `y`, the original value cannot be used.
+
+
+## Cloning
+
+The simplest but least efficient way to reuse a variable is to clone it. This is what R does.
+
+::: callout-tip
+Remember: when in doubt, clone it out!
+:::
+
+Almost everything in Rust can be cloned by using the `.clone()` method.
+
+::: callout-important
+
+#### Cannot compile
+
+```rust
+let x  = v![0.0, 3.14, 10.1, 44.8];
+
+let avg1 = mean(x); // ⬅️ x moved here!
+let avg2 = mean(x); // ❌ compiler error
+```
+:::
+
+If we first clone `x` before using `mean()` we can use `x` again.
+
+```rust
+let x  = v![0.0, 3.14, 10.1, 44.8];
+
+let avg1 = mean(x.clone()); // ⬅️ x cloned here!
+let avg2 = mean(x); // ✅ compiler happy
+```
+
 
 ## Borrowing
 
