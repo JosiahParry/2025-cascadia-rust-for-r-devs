@@ -92,6 +92,10 @@ let avg_x = mean(&x)
 let avg_y = mean(&y);
 ```
 
+Slices are more flexible and more light-weight than borrowing a full vector and should be preferred whenever possible.
+
+In general: slice > reference > owned
+
 <!--
 - A slice is a borrowed section of a collection
 - Always a reference: `&[T]`
@@ -100,25 +104,39 @@ let avg_y = mean(&y);
 
 -->
 
-```rust
-let values = vec![10.0, 20.0, 30.0];
-let avg = mean(&values); // full slice
-let avg = mean(&values[0..3]) // the first 3 elements
-```
-
-::: callout-tip
-We won't cover the `[..]` syntax but you should think it similar to R! It uses a [range](https://doc.rust-lang.org/rust-by-example/flow_control/for.html). A range takes the format of `from..to` where `to` is _uninclusive_. So `0..3` would be indices 0, 1, and 2!
-:::
-
-- Slices are lighter-weight than borrowing a full vector
-- In general: prefer slices → references → moves
-
 
 ## Exercise 1
 
-Rewrite the `mean()` function to accept a **reference** to a `Vec<f64>` instead of taking ownership. Then call it with a borrowed vector.
+- Calculate the mean of the same `Vec<f64>` twice
+- Print the vector at the end
 
-### Solution
+<details>
+<summary>View solution</summary>
+
+```rust
+fn mean(x: Vec<f64>) -> f64 {
+    let mut total = 0.0;
+    for xi in x {
+        total += xi;
+    }
+    total / x.len() as f64
+}
+
+fn main() {
+    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    let result = mean(x.clone());
+    let result2 = mean(x.clone())
+    println!("The vector is still {:?}", x);
+}
+```
+
+</details>
+
+## Exercise 2
+
+- Rewrite the `mean()` function to accept a **reference** to a `Vec<f64>` instead of taking ownership
+- Then call it with a borrowed vector.
+
 
 <details>
 <summary>View solution</summary>
@@ -131,19 +149,24 @@ fn mean(x: &Vec<f64>) -> f64 {
     }
     total / x.len() as f64
 }
+
+fn main() {
+    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    let result = mean(&x);
+    println!("The mean of x is {result}");
+}
 ```
 
 </details>
 
----
 
-
-## Exercise 2
+## Exercise 3
 
 - Rewrite `mean()` to accept a slice (`&[f64]`) instead of a `Vec<f64>` reference.
-- Try using `mean()` on a subset of values.
+- Create an array of `f64` values called `y`
+- Calculate the mean on both `x` and `y`
+- Print both averages
 
-### Solution
 
 <details>
 <summary>View solution</summary>
@@ -155,6 +178,12 @@ fn mean(x: &[f64]) -> f64 {
         total += xi;
     }
     total / x.len() as f64
+}
+
+fn main() {
+    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    let y = [0.0, 9.5, 3.3, 11.78, 3.14159];
+    println!("The mean of x is {}.\nThe mean of y is {}", mean(&x), mean(&y));
 }
 ```
 
