@@ -82,23 +82,23 @@
   {
     "objectID": "intro-to-rust-for-r-devs/why-rust.html",
     "href": "intro-to-rust-for-r-devs/why-rust.html",
-    "title": "2  Why Rust?",
+    "title": "1  Why Rust?",
     "section": "",
-    "text": "Reasoning\nRust is a programming language that’s fast, safe, and surprisingly friendly to use. Unlike R, which runs code line by line, Rust turns your code into a standalone program that runs directly on your computer. This makes it much faster and more efficient, similar to languages like C or C++. But where those languages can be hard to use and easy to break, Rust was built to be safer and more helpful.\nRust is especially good at preventing bugs related to memory and parallel code — the kind that can be really hard to track down in other languages. And it comes with tools and error messages that make writing and fixing code feel more approachable, even if you’re new to systems programming. Many R users find Rust refreshing: it’s strict, but in a way that teaches you better habits.",
+    "text": "Reasoning\nRust is a programming language that’s fast, safe, and surprisingly friendly to use. Rust turns your code into a standalone program that runs directly on your computer. This makes it much faster and more efficient, similar to languages like C or C++. But where those languages can be hard to use and easy to break, Rust was built to be safer and more helpful.\nRust is especially good at preventing bugs related to memory. There’s no garbage collector in Rust so it is quite memory efficient. Moreover, Rust is designed with the developer in mind. The rust compiler provides error messages that rival—or maybe even surpass—the quality of tidyverse error messaging.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Why Rust?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Why Rust?</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/why-rust.html#tldr",
     "href": "intro-to-rust-for-r-devs/why-rust.html#tldr",
-    "title": "2  Why Rust?",
+    "title": "1  Why Rust?",
     "section": "TL;DR",
-    "text": "TL;DR\n\nR is interpreted. Code runs line by line.\nR (and Python) are built on C.\nC is compiled — it builds a binary that runs directly on your machine.\nRust is also compiled, like C, C++, Go, Java, and Fortran.\nThese languages are “close to the metal” — fast, efficient, and powerful.\nRust matches C++ in speed, but with some key advantages:\n\nMemory safety without a garbage collector (unlike Go), thanks to the borrow checker.\nFearless concurrency — Rust makes parallelism safer and easier.\nA great developer experience:\n\nHelpful, friendly compiler errors (Tidyverse-level DX).\nModern tooling (cargo, rustdoc, rustfmt, rust-analyzer, etc.).\n\n\nRust is easy to get started with and rewards best practices.\n\nWe won’t go deep into memory safety or concurrency today\n\nRust uses errors as data, unlike R and C++, Rust does not support exceptions",
+    "text": "TL;DR\n\nR is interpreted. Code runs line by line.\nR (and Python) are built on C.\nC is compiled — it builds a binary that runs directly on your machine.\nRust is also compiled, like C, C++, Go, Java, and Fortran.\nThese languages are “close to the metal” — fast, efficient, and powerful.\nRust matches C++ in speed, but with some key advantages:\n\nMemory safety without a garbage collector (unlike Go), thanks to the borrow checker.\nA great developer experience:\n\nHelpful, friendly compiler errors (Tidyverse-level DX).\nModern tooling (cargo, rustdoc, rustfmt, rust-analyzer, etc.).\n\n\nRust is easy to get started with and rewards best practices.\n\nWe won’t go deep into memory safety or concurrency today\n\nRust uses errors as data, unlike R and C++, Rust does not support exceptions",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Why Rust?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Why Rust?</span>"
     ]
   },
   {
@@ -106,7 +106,7 @@
     "href": "intro-to-rust-for-r-devs/hello-world.html",
     "title": "2  Hello, World!",
     "section": "",
-    "text": "Crate anatomy\nRust uses a tool called cargo for building, checking, and managing dependencies.\nTo create a new Rust crate, use cargo new name-of-crate.\nTwo types of crates: binary, library.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R",
+    "text": "Crate anatomy\nRust uses a tool called cargo for building, checking, and managing dependencies. This is installed for you when you used rustup to install Rust.\nTo create a new Rust crate, use cargo new name-of-crate. This creates a new directory called name-of-crate. Be sure to cd into that directory.\nTwo types of crates: binary, library.\nBinary crates are standalone applications like command line tools, or things that run once—simiar to a script that you run with Rscript main.R",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
@@ -139,7 +139,7 @@
     "href": "intro-to-rust-for-r-devs/hello-world.html#main.rs",
     "title": "2  Hello, World!",
     "section": "main.rs",
-    "text": "main.rs\nWhen you create a new rust binary the file src/main.rs is prepopulated with:\n\n\n\n\n\n\nsrc/main.rs defines what is executed when your binary is run.\n\n\n\nfn main() {\n    println!(\"Hello, world!\");\n}\nThere are a few things going on in here:\n\nFunctions are declared using the fn keyword\nThe main() function is the entrypoint of the program (and required)\nBlocks of code are delimted using curly braces (like R & C)\nStatements end with ;\nprintln!() is a macro (notice the !) which is used to print to stdout\n\n\n\nWhen a program writes to the console it does so through file connections called standard output (stdout) and standard error (stderr).\nWhen we print a message with print() or message() in R, we print to stdout. When we make a warning or error using stop() or warning() in R, that is writing to stderr.",
+    "text": "main.rs\nWhen you create a new rust binary the file src/main.rs is prepopulated with:\n\n\n\n\n\n\nsrc/main.rs\n\n\n\nThe main() function defines what is executed when your binary is run.\nfn main() {\n    println!(\"Hello, world!\");\n}\n\n\nThere are a few things going on in here:\n\nFunctions are declared using the fn keyword\nThe main() function is the entrypoint of the program (and required)\nBlocks of code are delimted using curly braces (like R & C)\nStatements end with ;\nprintln!() is a macro (notice the !) which is used to print to stdout\n\n\n\nWhen a program writes to the console it does so through file connections called standard output (stdout) and standard error (stderr).\nWhen we print a message with print() or message() in R, we print to stdout. When we make a warning or error using stop() or warning() in R, that is writing to stderr.\n\n\n\n\n\n\nVariables can only be defined inside of the main() function.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
@@ -150,7 +150,7 @@
     "href": "intro-to-rust-for-r-devs/hello-world.html#println",
     "title": "2  Hello, World!",
     "section": "println!()",
-    "text": "println!()\n\nMacros have a !, like println!().\nThink of it like print() in R, but explicit.\nIt supports format strings:\n\nlet name = \"Josiah\";\nprintln!(\"Hello, {}!\", name);  // -&gt; Hello, Josiah!",
+    "text": "println!()\n\nMacros have a !, like println!().\nThink of it like print() in R, but explicit.\nIt supports format strings:\n\n\n\n\n\n\n\nUsing placeholder\nlet name = \"Josiah\";\nprintln!(\"Hello, {}!\", name);\n\n\nDirect interpolation\nlet name = \"Josiah\";\nprintln!(\"Hello, {name}!\");",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
@@ -161,7 +161,7 @@
     "href": "intro-to-rust-for-r-devs/hello-world.html#exercise",
     "title": "2  Hello, World!",
     "section": "Exercise",
-    "text": "Exercise\n\nIn your terminal, create a new rust crate called intro-to-rust\nOpen the new rust crate in Positron\nRun the hello world program\nCreate variable called name with your name\nPrint Hello, {name}! using println!()\n\n\nSolution\n\n\nView solution\n\nIn src/main.rs\nfn main() {\n    let name = \"Josiah\";\n    println!(\"Hello, {name}!\");\n}\nTo run it navigate to your terminal and then run cargo run.",
+    "text": "Exercise\n\nIn your terminal, create a new rust crate called intro-to-rust\nOpen the new Rust crate’s folder in Positron\nRun the hello world program using cargo run\nCreate a variable called name inside of the main() function with your name\nPrint Hello, {name}! using println!()\n\n\nSolution\n\n\nView solution\n\nIn src/main.rs\nfn main() {\n    let name = \"Josiah\";\n    println!(\"Hello, {name}!\");\n}\nTo run it navigate to your terminal and then run cargo run.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
@@ -172,7 +172,7 @@
     "href": "intro-to-rust-for-r-devs/types.html",
     "title": "3  Basic Types",
     "section": "",
-    "text": "much of what we do in rust are done on individual values (scalars)\nr work is typically done on vectors (collections of like values) and most operations are vectorized\nin rust we have to perform the vectorized ops our self\ni32\ni64 (exists but is incompatible with R, generally don’t need it)\nusize\nf64\nf32 (exists don’t we don’t use it)\ntype inference: e.g. let x = 10; infers i32\nexplicit typing e.g. let x = 10usize or let x: usize = 10\n\n() unit type - literally nothing",
+    "text": "Integers\nIn R everything is a vector. A vector is a collection of values. There is no scalar type for a double/ character / integer / logical vector. Those are just length 1 vectors.\nIn Rust, however, scalars are the building blocks of everything. When a collection is needed those are made directly from scalars. You will often hear of these as primitives.\nToday we will only be using a handful of these primitives but it is important to understand what they are—in general.\nIntegers are either signed or unsigned.\nA signed integer can contain a negative value. Whereas an unsigned integer can contain only positive numbers.\nThe letter prefix is the type of primitive. The following number indicates how many bits can be used to store the values. Unsigned integers can contain more possible values because they do not have to support negative numbers.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
@@ -181,56 +181,56 @@
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html",
-    "title": "5  Control Flow",
+    "title": "4  Control Flow",
     "section": "",
     "text": "Numeric operators",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#numeric-operators",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#numeric-operators",
-    "title": "5  Control Flow",
+    "title": "4  Control Flow",
     "section": "",
     "text": "+ addition\n- subtraction\n/ division\n^ exponentiation actually, ^ is a logical operator for XOR\n% remainder",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#logical-operators",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#logical-operators",
-    "title": "5  Control Flow",
+    "title": "4  Control Flow",
     "section": "Logical Operators:",
     "text": "Logical Operators:\nLogical operators are quite similar to R. The difference is that these operations are not vectorised. Furthermore, in Rust, a logical is called bool for boolean.s\n\n== check equality\n!= check inequality\n! negate a logical value\n&& logical AND comparison\n|| logical OR comparison",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#control-flow",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#control-flow",
-    "title": "5  Control Flow",
+    "title": "4  Control Flow",
     "section": "Control flow",
     "text": "Control flow\nRust uses if, else, and else if statements just like R. Where each branch is delimted by curly braces.\n\n\n\n\n\n\nEach branch of the if statement must return the same type. For this portion of the workshop, be sure to terminate each statement inside of the if statement so that nothing is returned.\n\n\n\nif x == y {\n  // do something\n} else {\n  // do something else\n}\nThe key difference is that the use of parentheses is not necessary for the conditional statement.",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html#exercise",
-    "title": "5  Control Flow",
+    "title": "4  Control Flow",
     "section": "Exercise",
     "text": "Exercise\nThis exercise you will create the famous FizzBuzz program.\nFor this, create a variable i. The rules are:\n\nwhen i is a multiple of 3, print Fizz\nwhen i is a multiple of 5, print Buzz\nwhen i is a multiple of both 3 and 5, print FizzBuzz\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    // let i = 15; // FizzBuzz\n    // let i = 3; // Fizz\n    // let i = 5; // Buzz\n    let i = 47; // Nothing\n    if (i % 3 == 0) && (i % 5 == 0) {\n        println!(\"FizzBuzz\");\n    } else if i % 3 == 0 {\n        println!(\"Fizz\");\n    } else if i % 5 == 0 {\n        println!(\"Buzz\");\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control Flow</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Control Flow</span>"
     ]
   },
   {
@@ -1351,7 +1351,7 @@
     "href": "building-rust-based-r-pkgs/decode.html",
     "title": "36  Decode a geohash",
     "section": "",
-    "text": "What’s data.frame?\nNaturally, if we have encoded a geohash, we should be able to decode the geohash as well. The challenge is that encoding takes an (x, y) pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.\nThe decode() function has the signature:\nThe return is a tuple with 3 values the coordinate, the x error, and y error.\nHow would a user want to access this information and data? Probably as a data.frame.\nA data.frame is a list masquerading as a rectangle. A data.frame consists of:\nTypically, I’d suggest we use a struct to represent the result of decode(), but this is not compatible with what a data.frame actually is.",
+    "text": "View solution",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
@@ -1971,6 +1971,72 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#integers",
+    "href": "intro-to-rust-for-r-devs/types.html#integers",
+    "title": "3  Basic Types",
+    "section": "",
+    "text": "Signed Integers: i8, i16, i32, i64, i128\nUnsigned Integers: u8, u16, u32, u64, u128\n\n\n\n\n\n\n\nIn R, an integer vector is comprised of i32 values.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#floating-point",
+    "href": "intro-to-rust-for-r-devs/types.html#floating-point",
+    "title": "3  Basic Types",
+    "section": "Floating point",
+    "text": "Floating point\nIn many cases where we need to do math we will use a floating point number. Floating points are signed and allow for decimal values.\nThere are two types: f32 and f64.\n\n\n\n\n\n\nIn R, a double vector is comprised of f64 values.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#strong-typing",
+    "href": "intro-to-rust-for-r-devs/types.html#strong-typing",
+    "title": "3  Basic Types",
+    "section": "Strong typing",
+    "text": "Strong typing\nRust will infer a value’s type exceptionally well! However, we may want to specify the type manually as well. We can do this 2 primary ways:\n\nIn assignment using : for example let x: f64 = 10;\nOr by specifying the suffix e.g. 10f64 or 10_i32\n\n\n\n\n\n\n\nYou can use _ as a visual separator when specifying numbers in Rust. The following are all identical values:\nlet x: i32 = 1000;\nlet x = 1000i32;\nlet x = 1_000_i32;",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#type-casting",
+    "href": "intro-to-rust-for-r-devs/types.html#type-casting",
+    "title": "3  Basic Types",
+    "section": "Type casting",
+    "text": "Type casting\nIn Rust, math expressions can only be performed between like-types. You cannot add 2.0 + 3_f64. To accomplish this we must cast to the same types.\nPrimitive types can be cast into one another using the as keyword. To add an f64 to an i32 we should ensure they’re the same type.\nfn add2(x: f64, y: i32) -&gt; f64 {\n   x + y as f64\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#unit-type",
+    "href": "intro-to-rust-for-r-devs/types.html#unit-type",
+    "title": "3  Basic Types",
+    "section": "Unit type",
+    "text": "Unit type\nIn Rust there is no concept of NULL. Instead there is the unit type which is represented as ().\n\n\nThe unit type is technically a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory. ::\nFunctions that do not return anything technically return ().\n\nExercise\nModify src/main.rs to add two or more incompatible types.\n\nDefine a variable x to be an f64 value\nDefine y to be an i32 value\nAdd them up and store them in the variable z\nUse println!() to print the value of z\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = 3.14;\n    let y = 47_i32;\n    let z = x + y as f64;\n    println!(\" The vlaue of z is {z}\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#exercise",
+    "href": "intro-to-rust-for-r-devs/types.html#exercise",
+    "title": "3  Basic Types",
+    "section": "Exercise",
+    "text": "Exercise\nModify src/main.rs to add two or more incompatible types.\n\nDefine a variable x to be an f64 value\nDefine y to be an i32 value\nAdd them up and store them in the variable z\nUse println!() to print the value of z\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = 3.14;\n    let y = 47_i32;\n    let z = x + y as f64;\n    println!(\" The vlaue of z is {z}\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
     ]
   }
 ]

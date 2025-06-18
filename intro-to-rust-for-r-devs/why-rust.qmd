@@ -10,9 +10,9 @@ Provide motivation for _why_ learning Rust is a use of our time. Discuss _what_ 
 
 ## Reasoning
 
-Rust is a programming language that’s fast, safe, and surprisingly friendly to use. Unlike R, which runs code line by line, Rust turns your code into a standalone program that runs directly on your computer. This makes it much faster and more efficient, similar to languages like C or C++. But where those languages can be hard to use and easy to break, Rust was built to be safer and more helpful.
+Rust is a programming language that’s fast, safe, and surprisingly friendly to use. Rust turns your code into a standalone program that runs directly on your computer. This makes it much faster and more efficient, similar to languages like C or C++. But where those languages can be hard to use and easy to break, Rust was built to be safer and more helpful.
 
-Rust is especially good at preventing bugs related to memory and parallel code — the kind that can be really hard to track down in other languages. And it comes with tools and error messages that make writing and fixing code feel more approachable, even if you’re new to systems programming. Many R users find Rust refreshing: it’s strict, but in a way that teaches you better habits.
+Rust is especially good at preventing bugs related to memory. There's no garbage collector in Rust so it is quite memory efficient. Moreover, Rust is designed with the developer in mind. The rust compiler provides error messages that rival—or maybe even surpass—the quality of tidyverse error messaging.
 
 
 ## TL;DR
@@ -24,11 +24,9 @@ Rust is especially good at preventing bugs related to memory and parallel code �
 - These languages are "close to the metal" — fast, efficient, and powerful.
 - Rust matches C++ in speed, but with some key advantages:
     - **Memory safety** without a garbage collector (unlike Go), thanks to the borrow checker.
-    - **Fearless concurrency** — Rust makes parallelism safer and easier.
     - A great developer experience:
         - Helpful, friendly compiler errors (Tidyverse-level DX).
         - Modern tooling (cargo, rustdoc, rustfmt, *rust-analyzer*, etc.).
 - Rust is easy to get started with and rewards best practices.
     - We won’t go deep into memory safety or concurrency today
 - Rust uses errors as data, unlike R and C++, Rust does not support exceptions
-

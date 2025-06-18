@@ -55,6 +55,8 @@ book:
         - building-rust-based-r-pkgs/geohash-nb.qmd
         - building-rust-based-r-pkgs/vectorize-neighbor.qmd
         - building-rust-based-r-pkgs/decode.qmd
+        - building-rust-based-r-pkgs/vectorize-decode.qmd
+        - building-rust-based-r-pkgs/vibe-check.qmd
 
 format:
   html:

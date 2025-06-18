@@ -1,0 +1,3 @@
+# Vectorize `decode()`
+
+- `from_values()`

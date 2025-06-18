@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -72,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -287,8 +321,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../building-rust-based-r-pkgs/export-to-r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Calling Rust from R</span></span></a>
+  <a href="../building-rust-based-r-pkgs/encode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Encoding a geohash</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -299,68 +333,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../building-rust-based-r-pkgs/encode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Encoding a geohash</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/vectorize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Vectorizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Vectorizing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/r-type-system.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">R’s Type System</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../building-rust-based-r-pkgs/type-mapping-p1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Type Mapping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">R’s Type System</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/using-extendr-types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Using extendr types</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Collecting extendr types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/error-handling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Handling Errors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Handling Errors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/na-handling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Handle NAs gracefully</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Handle NAs gracefully</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/enums.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Translating Enums</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Translating Enums</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/geohash-nb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Geohash Neighbor</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Geohash Neighbor</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/vectorize-neighbor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Vectorize <code>gh_neighbor()</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Vectorize <code>gh_neighbor()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../building-rust-based-r-pkgs/decode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Decode a geohash</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Decode a geohash</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vectorize-decode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Vectorize <code>decode()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../building-rust-based-r-pkgs/vibe-check.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Vibe check</span></span></a>
   </div>
 </li>
       </ul>
@@ -370,11 +404,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#integers" id="toc-integers" class="nav-link active" data-scroll-target="#integers">Integers</a></li>
+  <li><a href="#floating-point" id="toc-floating-point" class="nav-link" data-scroll-target="#floating-point">Floating point</a></li>
+  <li><a href="#strong-typing" id="toc-strong-typing" class="nav-link" data-scroll-target="#strong-typing">Strong typing</a></li>
+  <li><a href="#type-casting" id="toc-type-casting" class="nav-link" data-scroll-target="#type-casting">Type casting</a></li>
+  <li><a href="#unit-type" id="toc-unit-type" class="nav-link" data-scroll-target="#unit-type">Unit type</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/types.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/types.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basic Types</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -395,21 +439,120 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objective
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Familiarize yourself with basic types in Rust and when they may be used.</p>
+</div>
+</div>
+<p>In R everything is a vector. A vector is a <strong>collection</strong> of values. There is no <strong>scalar</strong> type for a double/ character / integer / logical vector. Those are just length 1 vectors.</p>
+<p>In Rust, however, scalars are the building blocks of everything. When a collection is needed those are made directly from scalars. You will often hear of these as <strong>primitives</strong>.</p>
+<p>Today we will only be using a handful of these primitives but it is important to understand what they are—in general.</p>
+<section id="integers" class="level2">
+<h2 class="anchored" data-anchor-id="integers">Integers</h2>
+<p>Integers are either <strong>signed</strong> or <strong>unsigned</strong>.</p>
+<p>A signed integer can contain a <em>negative</em> value. Whereas an unsigned integer can contain only positive numbers.</p>
 <ul>
-<li><p>much of what we do in rust are done on individual values (scalars)</p></li>
-<li><p>r work is typically done on vectors (collections of like values) and most operations are vectorized</p></li>
-<li><p>in rust we have to perform the vectorized ops our self</p></li>
-<li><p>i32</p></li>
-<li><p>i64 (exists but is incompatible with R, generally don’t need it)</p></li>
-<li><p>usize</p></li>
-<li><p>f64</p></li>
-<li><p>f32 (exists don’t we don’t use it)</p></li>
-<li><p>type inference: e.g.&nbsp;<code>let x = 10;</code> infers i32</p></li>
-<li><p>explicit typing e.g.&nbsp;<code>let x = 10usize</code> or <code>let x: usize = 10</code></p></li>
+<li>Signed Integers: <code>i8</code>, <code>i16</code>, <code>i32</code>, <code>i64</code>, <code>i128</code></li>
+<li>Unsigned Integers: <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code></li>
 </ul>
-<p><code>()</code> unit type - literally nothing</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In R, an integer vector is comprised of <code>i32</code> values.</p>
+</div>
+</div>
+</div>
+<p>The letter prefix is the type of primitive. The following number indicates how many bits can be used to store the values. Unsigned integers can contain more possible values because they do not have to support negative numbers.</p>
+</section>
+<section id="floating-point" class="level2">
+<h2 class="anchored" data-anchor-id="floating-point">Floating point</h2>
+<p>In many cases where we need to do math we will use a floating point number. Floating points are <strong>signed</strong> and allow for decimal values.</p>
+<p>There are two types: <code>f32</code> and <code>f64</code>.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In R, a double vector is comprised of <code>f64</code> values.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="strong-typing" class="level2">
+<h2 class="anchored" data-anchor-id="strong-typing">Strong typing</h2>
+<p>Rust will infer a value’s type exceptionally well! However, we may want to specify the type manually as well. We can do this 2 primary ways:</p>
+<ul>
+<li>In assignment using <code>:</code> for example <code>let x: f64 = 10;</code></li>
+<li>Or by specifying the suffix e.g.&nbsp;<code>10f64</code> or <code>10_i32</code></li>
+</ul>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You can use <code>_</code> as a visual separator when specifying numbers in Rust. The following are all identical values:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x<span class="op">:</span> <span class="dt">i32</span> <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x <span class="op">=</span> <span class="dv">1000i32</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x <span class="op">=</span> <span class="dv">1_000_i32</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="type-casting" class="level2">
+<h2 class="anchored" data-anchor-id="type-casting">Type casting</h2>
+<p>In Rust, math expressions can only be performed between like-types. You <strong>cannot</strong> add <code>2.0 + 3_f64</code>. To accomplish this we must <strong>cast</strong> to the same types.</p>
+<p>Primitive types can be cast into one another using the <code>as</code> keyword. To add an <code>f64</code> to an <code>i32</code> we should ensure they’re the same type.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> add2(x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   x <span class="op">+</span> y <span class="kw">as</span> <span class="dt">f64</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="unit-type" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="unit-type">Unit type</h2>
+<p>In Rust there is no concept of <code>NULL</code>. Instead there is the <strong>unit type</strong> which is represented as <code>()</code>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>The unit type is <em>technically</em> a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory. ::</p>
+<p>Functions that do not return anything <em>technically</em> return <code>()</code>.</p>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Modify <code>src/main.rs</code> to add two or more incompatible types.</p>
+<ul>
+<li>Define a variable <code>x</code> to be an <code>f64</code> value</li>
+<li>Define <code>y</code> to be an <code>i32</code> value</li>
+<li>Add them up and store them in the variable <code>z</code></li>
+<li>Use <code>println!()</code> to print the value of <code>z</code></li>
+</ul>
+<section id="solution" class="level3">
+<h3 class="anchored" data-anchor-id="solution">Solution</h3>
+<details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">3.14</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y <span class="op">=</span> <span class="dv">47_i32</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> z <span class="op">=</span> x <span class="op">+</span> y <span class="kw">as</span> <span class="dt">f64</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">" The vlaue of z is {z}"</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
 
+</section>
+</section>
+</div></div></section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -846,4 +989,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/types.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/types.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

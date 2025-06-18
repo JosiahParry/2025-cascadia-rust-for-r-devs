@@ -4,16 +4,17 @@
 ::: callout-tip
 ## Objective
 
-- Create a rust crate
-- Understand the structure of a rust crate
-- Use `cargo run` to run a binary
-- Use the `println!()` macro
+Learn how to create a new Rust crate and understand its file structure. You will know how to use `cargo run` and the `println!()` macro.
 :::
 
 
-Rust uses a tool called `cargo` for building, checking, and managing dependencies.
+Rust uses a tool called `cargo` for building, checking, and managing dependencies. This is installed for you when you used `rustup` to install Rust.
 
-To create a new Rust crate, use `cargo new name-of-crate`.
+To create a new Rust crate, use `cargo new name-of-crate`. This creates a new directory called `name-of-crate`. Be sure to `cd` into that directory.
+
+::: aside
+`cd` is short for change directory. We use this to...yup...change the directory from the terminal.
+:::
 
 ## Crate anatomy
 
@@ -44,14 +45,18 @@ intro-to-rust/
 When you create a new rust binary the file `src/main.rs` is prepopulated with:
 
 ::: callout-tip
-`src/main.rs` defines what is executed when your _binary_ is run.
-:::
+## `src/main.rs`
+
+The `main()` function defines what is executed when your _binary_ is run.
+
 
 ```rust
 fn main() {
     println!("Hello, world!");
 }
 ```
+
+:::
 
 There are a few things going on in here:
 
@@ -68,24 +73,41 @@ When we print a message with `print()` or `message()` in R, we print to stdout. 
 :::
 
 
+::: callout-important
+
+Variables can only be defined inside of the `main()` function.
+
+:::
+
 ## `println!()`
 
 * Macros have a `!`, like `println!()`.
 * Think of it like `print()` in R, but explicit.
 * It supports format strings:
 
+
+:::{layout-ncol=2}
+#### Using placeholder
 ```rust
 let name = "Josiah";
-println!("Hello, {}!", name);  // -> Hello, Josiah!
+println!("Hello, {}!", name);
 ```
+
+#### Direct interpolation
+```rust
+let name = "Josiah";
+println!("Hello, {name}!");
+```
+
+:::
 
 
 ## Exercise
 
 - In your terminal, create a new rust crate called `intro-to-rust`
-- Open the new rust crate in Positron
-- Run the hello world program
-- Create variable called `name` with your name
+- Open the new Rust crate's folder in Positron
+- Run the hello world program using `cargo run`
+- Create a variable called `name` inside of the `main()` function with your name
 - Print `Hello, {name}!` using `println!()`
 
 
