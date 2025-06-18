@@ -62,6 +62,8 @@ let avg2 = mean(x); // ✅ compiler happy
 
 ## Borrowing
 
+While variables may only be used once, they can be **borrowed** infinitely (until they go out of scope). A variable can be used by **reference** when the `&` symbol is placed in front of it—e.g. `arg: &Vec<f64>`.
+
 ```rust
 fn main() {
     let x = vec![1.0, 2.0, 3.0];
@@ -70,15 +72,47 @@ fn main() {
 }
 ```
 
-- Borrowing uses `&` to pass by *reference*
-- You can borrow a value as many times as you want (immutably)
-- You can't mutate or move them while borrowed
+If you borrow a variable you cannot mutate it or move it.
 
-::: callout-note
-"When in doubt, clone it out!"
+## Slices
+
+Slices are a special type of borrowing. Slices are a reference to contiguous section of the same type. They're recognized by the syntax `&[T]`.
+
+Slices always have a known length (accessed via `.len()`) and can be used from more than one type.
+
+### Example
+
+Both an array `[f64; N]` and a `Vec<f64>` can be turned into a `&[f64]`
+
+```rust
+let x = [0.0, 20.0, 742.3];
+let y = vec![1.0, 2.0, 3.0];
+
+let avg_x = mean(&x)
+let avg_y = mean(&y);
+```
+
+<!--
+- A slice is a borrowed section of a collection
+- Always a reference: `&[T]`
+- Has known length with `.len()`
+- Preferred when you don't need the full container
+
+-->
+
+```rust
+let values = vec![10.0, 20.0, 30.0];
+let avg = mean(&values); // full slice
+let avg = mean(&values[0..3]) // the first 3 elements
+```
+
+::: callout-tip
+We won't cover the `[..]` syntax but you should think it similar to R! It uses a [range](https://doc.rust-lang.org/rust-by-example/flow_control/for.html). A range takes the format of `from..to` where `to` is _uninclusive_. So `0..3` would be indices 0, 1, and 2!
 :::
 
-- `.clone()` makes a full copy of a value—useful when you *need* to keep ownership
+- Slices are lighter-weight than borrowing a full vector
+- In general: prefer slices → references → moves
+
 
 ## Exercise 1
 
@@ -103,25 +137,6 @@ fn mean(x: &Vec<f64>) -> f64 {
 
 ---
 
-## Slices
-
-- A slice is a borrowed section of a collection
-- Always a reference: `&[T]`
-- Has known length with `.len()`
-- Preferred when you don't need the full container
-
-```rust
-let values = vec![10.0, 20.0, 30.0];
-let avg = mean(&values); // full slice
-let avg = mean(&values[0..3]) // the first 3 elements
-```
-
-::: callout-tip
-We won't cover the `[..]` syntax but you should think it similar to R! It uses a [range](https://doc.rust-lang.org/rust-by-example/flow_control/for.html). A range takes the format of `from..to` where `to` is _uninclusive_. So `0..3` would be indices 0, 1, and 2!
-:::
-
-- Slices are lighter-weight than borrowing a full vector
-- In general: prefer slices → references → moves
 
 ## Exercise 2
 
