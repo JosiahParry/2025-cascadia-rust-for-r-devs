@@ -64,7 +64,7 @@
     "href": "intro-to-rust-for-r-devs/index.html",
     "title": "Intro to Rust for R Developers",
     "section": "",
-    "text": "Timeline\nobjective go from zero to hero asap writing vectorized code as fast as posisble\nWe’ve got 3 hours to cover a lot of ground!",
+    "text": "Timeline\nWe’ve got 3 hours to cover a lot of ground! My goal is to get you all to a place where you can begin to write vectorized code by the end of the day.\nI’ve prepared more content than I think we can actually cover—let’s prove me wrong!\nThis is the conservative timeline for the workshop. So long as we make it to “Mapping over iterators” we will be in good shape for the next workshop!",
     "crumbs": [
       "Intro to Rust for R Developers"
     ]
@@ -74,7 +74,7 @@
     "href": "intro-to-rust-for-r-devs/index.html#timeline",
     "title": "Intro to Rust for R Developers",
     "section": "",
-    "text": "What is rust\nHello, World!\nPrimitive types, logical/boolean operators, and control flow\nCreating Functions\nArrays & vectors\nFor loops\nMutability\nIterators\nReferences and Slices\nStructs\n\n\n\n\nStart\nDescription",
+    "text": "Section\nDuration\nEnd time\n\n\n\n\nIntro & Why Rust\n0:15\n9:15 AM\n\n\nHello, world!\n0:10\n9:25 AM\n\n\nPrimitive Types\n0:10\n9:35 AM\n\n\nControl Flow\n0:10\n9:45 AM\n\n\nBreak\n0:05\n9:50 AM\n\n\nArrays & Vectors\n0:10\n9:55 AM\n\n\nfor loops\n0:10\n10:05 AM\n\n\nMutability\n0:10\n10:15 AM\n\n\nMutable Vectors\n0:10\n10:25 AM\n\n\nFunctions\n0:10\n10:35 AM\n\n\nOwnership\n0:10\n10:45 AM\n\n\nBreak\n0:10\n10:55 AM\n\n\nIterators\n0:15\n11:10 AM\n\n\nMapping over Iterators\n0:15\n11:25 AM\n\n\nDefining Structs\n0:10\n11:35 AM\n\n\nStruct Methods\n0:10\n11:45 AM\n\n\nEnumerations\n0:10\n11:55 AM\n\n\nOptions\n0:10\n12:05 PM\n\n\nClosing\n0:05\n12:10 PM",
     "crumbs": [
       "Intro to Rust for R Developers"
     ]
@@ -524,7 +524,7 @@
     "href": "intro-to-rust-for-r-devs/iter-map.html",
     "title": "12  Mapping over Iterators",
     "section": "",
-    "text": "Mapping over iterators",
+    "text": "Using .map()\nOften we want to transform the values in a vector. To do this in Rust, we can use the .map() method. .map() lets us apply an operation on each element of the iterator.\nIn R, we often use the purrr::map() function or the apply() family of functions to do this.\nWe apply .map() to an iterator. For example, to square each element in a vector we can write:\nUsing .map() returns another iterator. We can chain operations over iterators by using multiple .map() statements.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
@@ -535,7 +535,7 @@
     "href": "intro-to-rust-for-r-devs/iter-map.html#mapping-over-iterators",
     "title": "12  Mapping over Iterators",
     "section": "",
-    "text": ".map() transforms each item of an iterator by applying a closure (anonymous function)\nClosures are small functions you can define inline, e.g. |x| x + 1\nakin to purrr::map(x, ~ .x + 1) or .purrr::map(x, \\(.x) .x + 1)\nmapping only modifies the iterator\nwe need to collect() the values into another container if we want them\n\n\nExample\nTODO!",
+    "text": "each item in the iterator must end up being the same type\nin R when we use map it automatically returns the result as a vector\nin rust, we can map over the iterator many times\nwe have to explicitly collect the result into our own type\n\nuse the .collect() method\n\ntypically this is a Vec&lt;T&gt; that we want to collect to.\nwe can specify the type explicitly by using let x: Vec&lt;f64&gt; = x.iter().map().collect()\n.map() transforms each item of an iterator by applying a closure (anonymous function)\nClosures are small functions you can define inline, e.g. |x| x + 1\nakin to purrr::map(x, ~ .x + 1) or .purrr::map(x, \\(.x) .x + 1)\nmapping only modifies the iterator\nwe need to collect() the values into another container if we want them\n\n\nExample\nTODO!",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
@@ -2081,6 +2081,61 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize-decode.html",
+    "href": "building-rust-based-r-pkgs/vectorize-decode.html",
+    "title": "37  Vectorize decode()",
+    "section": "",
+    "text": "from_values()",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>37</span>  <span class='chapter-title'>Vectorize `decode()`</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vibe-check.html",
+    "href": "building-rust-based-r-pkgs/vibe-check.html",
+    "title": "38  Vibe check",
+    "section": "",
+    "text": "At this point, we may or may not have spare time - what we do next is up to you all",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>38</span>  <span class='chapter-title'>Vibe check</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#using-.map",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#using-.map",
+    "title": "12  Mapping over Iterators",
+    "section": "",
+    "text": "// providing explicit type annotation in one\n// value so the compiler knows its f64 and not f32\nlet x = vec![5.9_f64, 6.8, 4.5, 7.3, 6.2];\n\nx.iter().map(|xi| xi.powi(2))",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#closures",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#closures",
+    "title": "12  Mapping over Iterators",
+    "section": "Closures",
+    "text": "Closures\nIn the above example we used a closure to modify each element of the iterator. Closures are Rust’s version of an anonymous function.\n\n\nThese closures, too, are not subsettable.\nA closure takes the structure |arg| expression. They can also be multiple lines by wrapping the expression in a braces:\nx\n    .iter()\n    .map(|xi| {\n        let squared = xi.powi(2);\n        xi.sqrt()\n    })\nSince iterators only contain one item, the closure only has one argument. However, you can use destructuring in the closure. For example if using .enumerate() we want to access i we can do so:\nx\n    .iter()\n    .enumerate()\n    .map(|(i, xi)| {\n        // do stuff here\n    })",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#collecting-results",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#collecting-results",
+    "title": "12  Mapping over Iterators",
+    "section": "Collecting results",
+    "text": "Collecting results\nIn R when we use map() the results are always returned as a vector. In Rust, we have to explcitly collect the iterator into our own type using .collect().\nTypically iterators are collected into a Vec&lt;T&gt;. Rust cant always infer the type that you want to collect into so we must tell the compiler what type we want.\nWe can do this during assignment:\nlet x_squared: Vec&lt;f64&gt; = x.iter().map(|xi| xi.powi(2)).collect();\nOr, we can specify it in - we have to explicitly collect the result into our own type - use the .collect() method - typically this is a Vec&lt;T&gt; that we want to collect to. - we can specify the type explicitly by using let x: Vec&lt;f64&gt; = x.iter().map().collect()\n\nmapping only modifies the iterator\nwe need to collect() the values into another container if we want them\n\n\nExample\nTODO!",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   }
 ]

@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/intro-to-rust-for-r-devs/index.html</loc>
-    <lastmod>2025-06-16T16:47:33.376Z</lastmod>
+    <lastmod>2025-06-18T22:23:54.154Z</lastmod>
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/intro-to-rust-for-r-devs/why-rust.html</loc>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/intro-to-rust-for-r-devs/iter-map.html</loc>
-    <lastmod>2025-06-11T18:18:52.251Z</lastmod>
+    <lastmod>2025-06-18T21:37:10.412Z</lastmod>
   </url>
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/intro-to-rust-for-r-devs/structs.html</loc>
@@ -163,5 +163,13 @@
   <url>
     <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/extendr-structure.html</loc>
     <lastmod>2025-06-16T17:18:46.277Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/vectorize-decode.html</loc>
+    <lastmod>2025-06-17T20:06:01.966Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josiahparry.github.io/2025-cascadia-rust-for-r-devs/building-rust-based-r-pkgs/vibe-check.html</loc>
+    <lastmod>2025-06-18T14:41:50.897Z</lastmod>
   </url>
 </urlset>

@@ -1,3 +1,7 @@
+fn square(x: &[f64]) -> Vec<f64> {
+    x.iter().map(|xi| xi.powi(2)).collect::<Vec<f64>>()
+}
+
 fn hello_world() {
     println!("Hello, world!");
 }
@@ -67,16 +71,6 @@ fn sum(x: Vec<f64>) -> f64 {
 }
 
 // introduce the concept of a "slice"
-fn mean(x: &[f64]) -> f64 {
-    let n = x.len() as f64;
-    let mut total = 0.0;
-
-    for xi in x {
-        total += xi;
-    }
-
-    total / n
-}
 
 // introduce the concept of struct
 // strong typing—closest analog in R is S7
@@ -150,25 +144,16 @@ fn centroid(points: &[Point]) -> Point {
     }
 }
 
-fn distance_pairwise(origin: &[Point], destination: &[Point], measure: &Measure) -> Vec<f64> {
-    origin
-        .iter()
-        .zip(destination)
-        .map(|(oi, di)| oi.distance(di, measure))
-        .collect::<Vec<f64>>()
-}
+// fn distance_pairwise(origin: &[Point], destination: &[Point], measure: &Measure) -> Vec<f64> {
+//     origin
+//         .iter()
+//         .zip(destination)
+//         .map(|(oi, di)| oi.distance(di, measure))
+//         .collect::<Vec<f64>>()
+// }
 
 fn main() {
     println!("Hello, world!");
 }
 
-fn standardize(data: Vec<f64>) -> Vec<f64> {
-    let n = data.len() as f64;
-    let mean = data.iter().sum::<f64>() / n;
-
-    let variance = data.iter().map(|x| (x - mean).powi(2)).sum::<f64>() / n;
-
-    let std_dev = variance.sqrt();
-
-    data.into_iter().map(|x| (x - mean) / std_dev).collect()
-}
+use std::collections::HashSet;

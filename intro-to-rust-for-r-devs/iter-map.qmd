@@ -3,18 +3,82 @@
 ::: callout-tip
 ## Objective
 - Understand how to transform iterator values using `.map()`
-- Learn closures (anonymous functions) in Rust
+- Learn how to use closures (anonymous functions) in Rust
 - Collect iterator results back into a collection using `.collect()`
-- Use turbofish syntax for type annotations when needed
+- Use turbofish 🐠💨 syntax for type annotations when needed
 :::
 
-## Mapping over iterators
+Often we want to transform the values in a vector. To do this in Rust, we can use the `.map()` method. `.map()` lets us apply an operation on each element of the iterator.
+
+In R, we often use the `purrr::map()` function or the `apply()` family of functions to do this.
+
+## Using `.map()`
+
+We apply `.map()` to an iterator. For example, to square each element in a vector we can write:
+
+```rust
+// providing explicit type annotation in one
+// value so the compiler knows its f64 and not f32
+let x = vec![5.9_f64, 6.8, 4.5, 7.3, 6.2];
+
+x.iter().map(|xi| xi.powi(2))
+```
+
+Using `.map()` returns another iterator. We can chain operations over iterators by using multiple `.map()` statements.
+
+
+## Closures
+
+In the above example we used a **closure** to modify each element of the iterator. Closures are Rust's version of an anonymous function.
+
+::: aside
+These closures, too, are not subsettable.
+:::
+
+A closure takes the structure `|arg| expression`. They can also be multiple lines by wrapping the expression in a braces:
+
+```rust
+x
+    .iter()
+    .map(|xi| {
+        let squared = xi.powi(2);
+        xi.sqrt()
+    })
+```
+
+Since iterators only contain one item, the closure only has one argument. However, you can use **destructuring** in the closure. For example if using `.enumerate()` we want to access `i` we can do so:
+
+```rust
+x
+    .iter()
+    .enumerate()
+    .map(|(i, xi)| {
+        // do stuff here
+    })
+```
+
+## Collecting results
+
+In R when we use `map()` the results are always returned as a vector. In Rust, we have to explcitly **collect** the iterator into our own type using `.collect()`.
+
+Typically iterators are collected into a `Vec<T>`. Rust cant always infer the type that you want to collect into so we must tell the compiler what type we want.
+
+We can do this during assignment:
+
+```rust
+let x_squared: Vec<f64> = x.iter().map(|xi| xi.powi(2)).collect();
+```
+
+Or, we can specify it in
+- we have to explicitly **collect** the result into our own type
+  - use the `.collect()` method
+- typically this is a `Vec<T>` that we want to collect to.
+- we can specify the type explicitly by using `let x: Vec<f64> = x.iter().map().collect()`
 
 
 
-- `.map()` transforms each item of an iterator by applying a closure (anonymous function)
-- Closures are small functions you can define inline, e.g. `|x| x + 1`
-- akin to `purrr::map(x, ~ .x + 1)` or .`purrr::map(x, \(.x) .x + 1)`
+
+
 - mapping only modifies the iterator
 - we need to `collect()` the values into another container if we want them
 

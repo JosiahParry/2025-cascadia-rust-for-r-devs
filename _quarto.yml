@@ -33,7 +33,7 @@ book:
         - intro-to-rust-for-r-devs/struct-methods.qmd
         - intro-to-rust-for-r-devs/enums.qmd
         - intro-to-rust-for-r-devs/options.qmd
-        - intro-to-rust-for-r-devs/parallelize.qmd
+        # - intro-to-rust-for-r-devs/parallelize.qmd
     - part: building-rust-based-r-pkgs/index.qmd
       chapters:
         - building-rust-based-r-pkgs/ffi.qmd

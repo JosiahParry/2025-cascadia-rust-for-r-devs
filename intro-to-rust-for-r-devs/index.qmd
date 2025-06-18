@@ -1,22 +1,38 @@
 # Intro to Rust for R Developers {.unnumbered}
 
-objective go from zero to hero asap
-writing vectorized code as fast as posisble
+We've got 3 hours to cover a lot of ground! My goal is to get you all to a place where you can begin to *write vectorized code* by the end of the day.
+
+I've prepared more content than I think we can actually cover—let's prove me wrong!
+
+::: aside
+
+I'm going to skip a bunch of content that would be considered "foundational" Rust like `HashMap`s and traits. My goal is to get you to write usable code without having to feel like you're getting a CS degree.
+
+:::
 
 ## Timeline
 
-We've got 3 hours to cover a lot of ground!
+This is the conservative timeline for the workshop. So long as we make it to "Mapping over iterators" we will be in good shape for the next workshop!
 
-- What is rust
-- Hello, World!
-- Primitive types, logical/boolean operators, and control flow
-- Creating Functions
-- Arrays & vectors
-- For loops
-- Mutability
-- Iterators
-- References and Slices
-- Structs
 
-| Start | Description |
-| ----  | ----------- |
+|Section                |Duration | End time |
+|:----------------------|:--------|:--------|
+|Intro & Why Rust       |0:15     |9:15 AM  |
+|Hello, world!          |0:10     |9:25 AM  |
+|Primitive Types        |0:10     |9:35 AM  |
+|Control Flow           |0:10     |9:45 AM  |
+|Break                  |0:05     |9:50 AM  |
+|Arrays & Vectors       |0:10     |9:55 AM  |
+|for loops              |0:10     |10:05 AM |
+|Mutability             |0:10     |10:15 AM |
+|Mutable Vectors        |0:10     |10:25 AM |
+|Functions              |0:10     |10:35 AM |
+|Ownership              |0:10     |10:45 AM |
+|Break                  |0:10     |10:55 AM |
+|Iterators              |0:15     |11:10 AM |
+|Mapping over Iterators |0:15     |11:25 AM |
+|Defining Structs       |0:10     |11:35 AM |
+|Struct Methods         |0:10     |11:45 AM |
+|Enumerations           |0:10     |11:55 AM |
+|Options                |0:10     |12:05 PM |
+|Closing                |0:05     |12:10 PM |
