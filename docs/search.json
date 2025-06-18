@@ -577,23 +577,23 @@
   {
     "objectID": "intro-to-rust-for-r-devs/structs.html",
     "href": "intro-to-rust-for-r-devs/structs.html",
-    "title": "14  Defining Struct(ure)s",
+    "title": "13  Defining Struct(ure)s",
     "section": "",
     "text": "Exercise\nYou can define a type as being a collection of other types by using the struct keyword.\nBy convention structs are named using PascalCase, as opposed to fns which are named using snake_case convention.\nAdding behavior to struct is possible through attributes:\nThe Debug trait allows debug printing of the type Point via dbg! or println!(\"{p:?}).\nFields of a struct can be accessed directly, or by reference. If a field is accessed by reference, the struct cannot be moved.\nUnpacking a struct entirely is possible",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
     ]
   },
   {
     "objectID": "intro-to-rust-for-r-devs/structs.html#exercise",
     "href": "intro-to-rust-for-r-devs/structs.html#exercise",
-    "title": "14  Defining Struct(ure)s",
+    "title": "13  Defining Struct(ure)s",
     "section": "",
     "text": "Define a struct called Point which has two fields x, and y\nCreate a new Point struct\nDestructure the point",
     "crumbs": [
       "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
     ]
   },
   {
