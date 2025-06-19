@@ -13,8 +13,6 @@ In Rust, however, scalars are the building blocks of everything. When a collecti
 
 Today we will only be using a handful of these primitives but it is important to understand what they are—in general.
 
-
-
 ## Integers
 
 Integers are either **signed** or **unsigned**.
@@ -32,6 +30,15 @@ In R, an integer vector is comprised of `i32` values.
 
 The letter prefix is the type of primitive. The following number indicates how many bits can be used to store the values. Unsigned integers can contain more possible values because they do not have to support negative numbers.
 
+
+```rust
+>> i32::MAX
+2147483647
+>> u32::MAX
+4294967295
+>> 
+```
+
 ## Floating point
 
 In many cases where we need to do math we will use a floating point number. Floating points are **signed** and allow for decimal values.
@@ -39,11 +46,10 @@ In many cases where we need to do math we will use a floating point number. Floa
 There are two types: `f32` and `f64`.
 
 ::: callout-note
-In R, a double vector is comprised of `f64` values.
+In R, a `numeric` vector is comprised of `f64` values.
 :::
 
 ## Strong typing
-
 
 Rust will infer a value's type exceptionally well! However, we may want to specify the type manually as well. We can do this 2 primary ways:
 
@@ -102,7 +108,7 @@ fn main() {
     let x = 3.14;
     let y = 47_i32;
     let z = x + y as f64;
-    println!(" The vlaue of z is {z}");
+    println!(" The value of z is {z}");
 }
 ```
 

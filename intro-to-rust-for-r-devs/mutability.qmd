@@ -8,7 +8,7 @@ In R everything is immutable (except environments). Immutable objects _cannot be
 
 ::: aside
 
-Instead, when they are modified, they are copied. This is called copy-on-write (often referred to as **cow**).
+Instead, when they are modified, they are copied. This is called copy-on-write (often referred to as **cow** semantics).
 
 :::
 

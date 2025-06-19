@@ -101,7 +101,11 @@ fn main() {
     }
 }
 ```
-
+Outputs
+```
+i is even with value 2
+i is even with value 8
+```
 
 ## Exercise 1
 

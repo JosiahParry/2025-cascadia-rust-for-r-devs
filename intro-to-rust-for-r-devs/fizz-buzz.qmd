@@ -23,6 +23,7 @@ Logical operators are quite similar to R. The difference is that these operation
 - `!` negate a logical value
 - `&&` logical AND comparison
 - `||` logical OR comparison
+- `^` logical XOR comparison (exclusive `OR`)
 
 
 ## Control flow
@@ -63,9 +64,9 @@ For this, create a variable `i`. The rules are:
 ```rust
 fn main() {
     // let i = 15; // FizzBuzz
-    // let i = 3; // Fizz
-    // let i = 5; // Buzz
-    let i = 47; // Nothing
+    // let i = 3;  // Fizz
+    // let i = 5;  // Buzz
+    let i = 47;    // Nothing
     if (i % 3 == 0) && (i % 5 == 0) {
         println!("FizzBuzz");
     } else if i % 3 == 0 {

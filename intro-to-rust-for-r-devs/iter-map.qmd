@@ -76,7 +76,7 @@ Alternatively, we can use "turbofish" syntax. We can specify the type directly i
 
 > "Because `collect()` is so general, it **can cause problems with type inference**. As such, `collect()` is one of the few times you’ll see the syntax affectionately known as the ‘turbofish’: `::<>`. This helps the inference algorithm understand specifically which collection you’re trying to collect into."
 
-Turbofish takes the structure of `.collect::<TYPE>()`.
+Turbofish takes the structure of `.collect::<COLLECTION_TYPE>()`.
 
 
 
