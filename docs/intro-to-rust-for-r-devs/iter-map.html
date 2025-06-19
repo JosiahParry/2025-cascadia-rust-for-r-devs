@@ -434,11 +434,8 @@ window.Quarto = {
   <ul>
   <li><a href="#using-.map" id="toc-using-.map" class="nav-link active" data-scroll-target="#using-.map">Using <code>.map()</code></a></li>
   <li><a href="#closures" id="toc-closures" class="nav-link" data-scroll-target="#closures">Closures</a></li>
-  <li><a href="#collecting-results" id="toc-collecting-results" class="nav-link" data-scroll-target="#collecting-results">Collecting results</a>
-  <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  </ul></li>
-  <li><a href="#collecting-iterators" id="toc-collecting-iterators" class="nav-link" data-scroll-target="#collecting-iterators">Collecting iterators</a>
+  <li><a href="#collecting-results" id="toc-collecting-results" class="nav-link" data-scroll-target="#collecting-results">Collecting results</a></li>
+  <li><a href="#turbofish" id="toc-turbofish" class="nav-link" data-scroll-target="#turbofish">Turbofish 🐠💨</a>
   <ul class="collapse">
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
@@ -532,32 +529,14 @@ Objective
 <p>Typically iterators are collected into a <code>Vec&lt;T&gt;</code>. Rust cant always infer the type that you want to collect into so we must tell the compiler what type we want.</p>
 <p>We can do this during assignment:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x_squared<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">=</span> x<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|</span>xi<span class="op">|</span> xi<span class="op">.</span>powi(<span class="dv">2</span>))<span class="op">.</span>collect()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Or, we can specify it in - we have to explicitly <strong>collect</strong> the result into our own type - use the <code>.collect()</code> method - typically this is a <code>Vec&lt;T&gt;</code> that we want to collect to. - we can specify the type explicitly by using <code>let x: Vec&lt;f64&gt; = x.iter().map().collect()</code></p>
-<ul>
-<li>mapping only modifies the iterator</li>
-<li>we need to <code>collect()</code> the values into another container if we want them</li>
-</ul>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
-<p>TODO!</p>
 </section>
-</section>
-<section id="collecting-iterators" class="level2">
-<h2 class="anchored" data-anchor-id="collecting-iterators">Collecting iterators</h2>
-<ul>
-<li><code>.collect()</code> gathers the results of an iterator into a collection (like a vector)</li>
-<li>we need to specify the type of what we’re collecting into.</li>
-<li>in our case we’re always going to collect into a vector</li>
-<li>two ways of specifying
-<ul>
-<li>we can specify the resultant type in the assignment with <code>let x: Vec&lt;i32&gt;</code> but this is not as flexible to changing code</li>
-<li>Turbofish <code>::&lt;Type&gt;()</code> is used to explicitly specify types when needed
-<ul>
-<li>its a bit more awkward at first, but it is more flexible and doesn’t require modification whenever the inner type changes</li>
-<li>additionall we can use rust’s iference using <code>_</code></li>
-</ul></li>
-</ul></li>
-</ul>
+<section id="turbofish" class="level2">
+<h2 class="anchored" data-anchor-id="turbofish">Turbofish 🐠💨</h2>
+<p>Alternatively, we can use “turbofish” syntax. We can specify the type directly in the <code>.collect()</code> function. <code>.collect()</code> is a <strong>generic</strong> method. And in the words of the Rust standard library documentation (emphasis mine)</p>
+<blockquote class="blockquote">
+<p>“Because <code>collect()</code> is so general, it <strong>can cause problems with type inference</strong>. As such, <code>collect()</code> is one of the few times you’ll see the syntax affectionately known as the ‘turbofish’: <code>::&lt;&gt;</code>. This helps the inference algorithm understand specifically which collection you’re trying to collect into.”</p>
+</blockquote>
+<p>Turbofish takes the structure of <code>.collect::&lt;TYPE&gt;()</code>.</p>
 <section id="examples" class="level3">
 <h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <div>
@@ -593,6 +572,7 @@ Objective
 </section>
 </div>
 </div>
+<p>Turbofish is a bit more awkward at first, but it is more flexible and doesn’t require modification whenever the inner type changes.</p>
 </section>
 </section>
 <section id="exercise-1" class="level2">

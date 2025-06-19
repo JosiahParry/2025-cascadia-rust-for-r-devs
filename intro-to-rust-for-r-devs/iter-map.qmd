@@ -69,33 +69,14 @@ We can do this during assignment:
 let x_squared: Vec<f64> = x.iter().map(|xi| xi.powi(2)).collect();
 ```
 
-Or, we can specify it in
-- we have to explicitly **collect** the result into our own type
-  - use the `.collect()` method
-- typically this is a `Vec<T>` that we want to collect to.
-- we can specify the type explicitly by using `let x: Vec<f64> = x.iter().map().collect()`
 
+## Turbofish 🐠💨
 
+Alternatively, we can use "turbofish" syntax. We can specify the type directly in the `.collect()` function. `.collect()` is a **generic** method. And in the words of the Rust standard library documentation (emphasis mine)
 
+> "Because `collect()` is so general, it **can cause problems with type inference**. As such, `collect()` is one of the few times you’ll see the syntax affectionately known as the ‘turbofish’: `::<>`. This helps the inference algorithm understand specifically which collection you’re trying to collect into."
 
-
-- mapping only modifies the iterator
-- we need to `collect()` the values into another container if we want them
-
-### Example
-
-TODO!
-
-## Collecting iterators
-
-- `.collect()` gathers the results of an iterator into a collection (like a vector)
-- we need to specify the type of what we're collecting into.
-- in our case we're always going to collect into a vector
-- two ways of specifying
-    - we can specify the resultant type in the assignment with `let x: Vec<i32>` but this is not as flexible to changing code
-    - Turbofish `::<Type>()` is used to explicitly specify types when needed
-        - its a bit more awkward at first, but it is more flexible and doesn't require modification whenever the inner type changes
-        - additionall we can use rust's iference using `_`
+Turbofish takes the structure of `.collect::<TYPE>()`.
 
 
 
@@ -131,7 +112,7 @@ fn main() {
 ```
 :::
 
-
+Turbofish is a bit more awkward at first, but it is more flexible and doesn't require modification whenever the inner type changes.
 
 ## Exercise 1
 
