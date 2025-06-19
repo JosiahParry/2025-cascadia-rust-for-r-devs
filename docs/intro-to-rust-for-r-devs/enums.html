@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -405,19 +405,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#enums-in-r" id="toc-enums-in-r" class="nav-link active" data-scroll-target="#enums-in-r">Enums in R</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example:</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   </ul></li>
   <li><a href="#variant-specific-behavior" id="toc-variant-specific-behavior" class="nav-link" data-scroll-target="#variant-specific-behavior">Variant-specific behavior</a>
   <ul class="collapse">
   <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
   </ul></li>
+  <li><a href="#wildcard-matching" id="toc-wildcard-matching" class="nav-link" data-scroll-target="#wildcard-matching">Wildcard matching</a></li>
+  <li><a href="#enums-can-impl-too" id="toc-enums-can-impl-too" class="nav-link" data-scroll-target="#enums-can-impl-too">Enums can <code>impl</code>, too</a></li>
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/enums.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/index.html">Intro to Rust for R Developers</a></li><li class="breadcrumb-item"><a href="../intro-to-rust-for-r-devs/enums.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Enum(eration)s</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -438,54 +440,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<ul>
-<li>enums are values that can take on only a number of specific values</li>
-<li>the values that enums can take are called variants</li>
-<li>define enums with the keyword <code>enum</code></li>
-<li>think of these as the equivalent of R when we define possible values an argument can take</li>
-</ul>
-<section id="enums-in-r" class="level2">
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objective
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Understand what <code>enum</code>s are and when you may want to use one.</p>
+</div>
+</div>
+<p>Oftentimes a variable can only take on a small number of values. This is when an <strong>enumeration</strong> (enum) would be useful.</p>
+<p><code>enum</code>s are values that can only take on a select few <strong>variants</strong>. They are defined using the <code>enum</code> keyword.</p>
+<section id="enums-in-r" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="enums-in-r">Enums in R</h2>
-<ul>
-<li>for example the R function <code>stats::cor()</code> has the argument <code>method = c("pearson", "kendall", "spearman")</code>.
-<ul>
-<li>method can only be pearson kendall or spearman otherwise an error happens</li>
-</ul></li>
-<li>this is an informal way of specifying an enumeration
-<ul>
-<li>i’ve wrtten about this in more detail in R which may be interesting for y’all
-<ul>
-<li>https://josiahparry.com/posts/2023-11-10-enums-in-r/</li>
-</ul></li>
-</ul></li>
-</ul>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example:</h3>
-<p>we can define an enum called <code>Shape</code></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Shape <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Triangle<span class="op">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    Rectangle<span class="op">,</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Pentagon<span class="op">,</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Hexagon<span class="op">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We use enums <em>all the time</em> in R and almost exclusively as function arguments.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>The tidyverse design style guide has a great section on enums. See <a href="https://design.tidyverse.org/enumerate-options.html#whats-the-pattern">enumerate options</a>.</p>
+</div></div><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  x, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">use =</span> <span class="st">"everything"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>, <span class="st">"kendall"</span>, <span class="st">"spearman"</span>) <span class="co"># 👈🏼 enum!</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>I’ve written about this in more detail in my blog post <a href="https://josiahparry.com/posts/2023-11-10-enums-in-r/">Enums in R: towards type safe R</a></p>
+</div></div><section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>For example, it may make sense to create an <code>enum</code> that specifies a possible shape.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Shape <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Triangle<span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Rectangle<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    Pentagon<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    Hexagon<span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="variant-specific-behavior" class="level2">
+<section id="variant-specific-behavior" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="variant-specific-behavior">Variant-specific behavior</h2>
-<ul>
-<li><p>choose a variant by <code>EnumName::Variant</code> This means that <code>Shape</code> can take on only one of those 4 <strong>variants</strong></p></li>
-<li><p>seems kind of confusing at first, how do you actually use this?</p></li>
-<li><p>we perform pattern matching on the enum and perform some action based on the variant</p></li>
-<li><p>use the keyword <code>match</code> to perform an action based on the value</p></li>
-<li><p>we list each variant and define the action that happens using format <code>Enum::Variant =&gt; action</code></p></li>
-<li><p>note the “fat arrow”</p></li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Triangle <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Rectangle <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Pentagon <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>Shape</code> enum can take on only one of those 4 <strong>variants</strong>. An enum is created using the format <code>EnumName::Variant</code>.</p>
+<p>How do we actually determine behavior based on a variant? This is done using <strong>pattern matching</strong>.</p>
+<p>The keyword <code>match</code> lets us perform an action based on an enum’s variant. It works by listing each variant and the behavior to that happens when that variant is matched.</p>
+<p>The pattern match format uses the syntax <code>Enum::Variant =&gt; action</code>. When using <code>match</code> each variant much be <em>enumerated</em>:</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><code>=&gt;</code> is often referred to as “fat arrow.” But if you say “chompky” I’ll also get it.</p>
+</div></div><div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Triangle <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Rectangle <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Pentagon <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -498,74 +507,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="example-1" class="level3">
 <h3 class="anchored" data-anchor-id="example-1">Example</h3>
-<ul>
-<li>we print the number of vertices for each shape</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> my_shape <span class="op">=</span> <span class="pp">Shape::</span>Triangle<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Triangle <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A triangle has 3 vertices"</span>)<span class="op">,</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Rectangle <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A rectangle has 4 vertices"</span>)<span class="op">,</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Pentagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A pentagon has 5 vertices"</span>)<span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A hexagon has 6 vertices"</span>)<span class="op">,</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>sometimes we only want to customize behavior on only a subset of variants</li>
-<li>we can use a catch all in the match statement <code>_ =&gt;</code> use the underscore to signify “everything else”</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Hexagons are the bestagons);</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">    _ =&gt; println!("</span>Every other polygon is mid<span class="st">");</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Enums can have methods too just like a struct using <code>impl</code> keyword</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Shape <span class="op">{</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> is_bestagon(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> <span class="kw">self</span> <span class="op">{</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="dt">Self</span><span class="pp">::</span>Hexagon <span class="op">=&gt;</span> <span class="cn">true</span><span class="op">,</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            _ <span class="op">=&gt;</span> <span class="cn">false</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<p>For example we may want to print the number of verticies of a shape:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> my_shape <span class="op">=</span> <span class="pp">Shape::</span>Triangle<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Triangle <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A triangle has 3 vertices"</span>)<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Rectangle <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A rectangle has 4 vertices"</span>)<span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Pentagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A pentagon has 5 vertices"</span>)<span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A hexagon has 6 vertices"</span>)<span class="op">,</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+</section>
+<section id="wildcard-matching" class="level2">
+<h2 class="anchored" data-anchor-id="wildcard-matching">Wildcard matching</h2>
+<p>Sometimes we want to customize behavior on only a subset of variants. We can use a catch all in the match statement <code>_ =&gt;</code> use the underscore to signify “everything else”.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Hexagons are the bestagons"</span>)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Every other polygon is mid"</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="enums-can-impl-too" class="level2">
+<h2 class="anchored" data-anchor-id="enums-can-impl-too">Enums can <code>impl</code>, too</h2>
+<p>Enums can have methods too just like a struct using <code>impl</code> keyword</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Shape <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> is_bestagon(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> <span class="kw">self</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="dt">Self</span><span class="pp">::</span>Hexagon <span class="op">=&gt;</span> <span class="cn">true</span><span class="op">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            _ <span class="op">=&gt;</span> <span class="cn">false</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <ul>
-<li>recreate the shape enum</li>
-<li>create a method called <code>n_vertices()</code> which returns a <code>usize</code></li>
-<li>create two different variants of the Shape enum and print their number of vertices</li>
+<li>Create an enum called <code>Measure</code> with two variants <code>Euclidean</code> and <code>Haversine</code></li>
+<li>Create a method called <code>ndim()</code> which returns <code>2</code> for <code>Euclidean</code> and <code>3</code> for <code>Haversine</code></li>
 </ul>
+<details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Measure <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    Euclidean<span class="op">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    Haversine<span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Measure <span class="op">{</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> ndim(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> <span class="kw">self</span> <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">Self</span><span class="pp">::</span>Euclidean <span class="op">=&gt;</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">Self</span><span class="pp">::</span>Haversine <span class="op">=&gt;</span> <span class="dv">3</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
 <ul>
-<li>Create an enum called <code>Measure</code> with two variants <code>Euclidean</code> and <code>Haversine</code></li>
-<li>Create a new method <code>distance()</code> for our point struct that takes 3 arguments and returns an f64
+<li>Create a new method <code>distance()</code> for <code>Point</code> struct that returns an <code>f64</code>
 <ul>
-<li>a reference to self</li>
-<li>a reference to another point</li>
-<li>a reference to a Measure enum</li>
+<li>Arguments: <code>&amp;self</code>, <code>destination: &amp;Self</code>, <code>measure: &amp;Measure</code></li>
 </ul></li>
-<li>When the variant is Euclidean use the euclidean_distance() method</li>
-<li>When the variant is Haversine use the haversine_distance() method</li>
+<li>When <code>measure</code> is <code>Euclidean</code> use the <code>euclidean_distance()</code> method</li>
+<li>When the variant is <code>Haversine</code> use the <code>haversine_distance()</code> method</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Measure <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    Euclidean<span class="op">,</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    Haversine<span class="op">,</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Demonstrates using pattern matching an enum</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span><span class="op">,</span> measure<span class="op">:</span> <span class="op">&amp;</span>Measure) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> measure <span class="op">{</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Measure::</span>Euclidean <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>euclidean_distance(destination)<span class="op">,</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Measure::</span>Haversine <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>haversine_distance(destination)<span class="op">,</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The haversine method is defined as:</p>
+<details>
+<summary>
+Code for <code>haversine_distance()</code>
+</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> haversine_distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> radius <span class="op">=</span> <span class="dv">6_371_008.7714</span><span class="op">;</span> <span class="co">// Earth's mean radius in meters</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta1 <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 1</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta2 <span class="op">=</span> destination<span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_theta <span class="op">=</span> (destination<span class="op">.</span>y <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>y)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Latitude</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_lambda <span class="op">=</span> (destination<span class="op">.</span>x <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>x)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Longitude</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> a <span class="op">=</span> (delta_theta <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> theta1<span class="op">.</span>cos() <span class="op">*</span> theta2<span class="op">.</span>cos() <span class="op">*</span> (delta_lambda <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2f64</span> <span class="op">*</span> a<span class="op">.</span>sqrt()<span class="op">.</span>asin() <span class="op">*</span> radius</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Demonstrates using pattern matching an enum</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span><span class="op">,</span> measure<span class="op">:</span> <span class="op">&amp;</span>Measure) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> measure <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Measure::</span>Euclidean <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>euclidean_distance(destination)<span class="op">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Measure::</span>Haversine <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>haversine_distance(destination)<span class="op">,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
+</details></section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

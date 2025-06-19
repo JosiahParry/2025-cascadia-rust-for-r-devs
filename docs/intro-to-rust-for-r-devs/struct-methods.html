@@ -541,12 +541,19 @@ Objectives
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ul>
-<li>Implement a <code>Point::new()</code> associated function that returns <code>Self</code> and has two arguments <code>x: f64</code> and <code>y: f64</code></li>
-<li>Define a method <code>euclidean_distance()</code> which calculates the distance between itself and a <code>destination</code> returning an <code>f64</code>
+<li>Implement a <code>Point::new()</code> associated function
 <ul>
+<li>Using arguments <code>x: f64</code> and <code>y: f64</code></li>
+<li>It should return <code>Self</code></li>
+</ul></li>
+<li>Define a method <code>euclidean_distance()</code> which calculates the distance between itself and another <code>Point</code>
+<ul>
+<li>Use arguments <code>&amp;self</code> and <code>destination: &amp;Self</code></li>
+<li>Return <code>f64</code></li>
 <li>Distance is calculated as <span class="math inline">\(\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\)</span></li>
 <li>Use <code>.powi(2)</code> to square a value and <code>x.sqrt()</code> to get the square root</li>
 </ul></li>
+<li>In <code>main.rs</code> create two <code>Point</code> structs and calculate the distance between them.</li>
 </ul>
 <details>
 <summary>
@@ -563,7 +570,14 @@ View solution
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        (x_diff <span class="op">+</span> y_diff)<span class="op">.</span>sqrt()</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="pp">Point::</span>new(<span class="dv">0.0</span><span class="op">,</span> <span class="dv">5.0</span>)<span class="op">;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="pp">Point::</span>new(<span class="op">-</span><span class="dv">10.0</span><span class="op">,</span> <span class="dv">1.5</span>)<span class="op">;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> distance <span class="op">=</span> a<span class="op">.</span>euclidean_distance(<span class="op">&amp;</span>b)<span class="op">;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Distance between a and b is {distance}"</span>)<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </section>
 <section id="bonus-exercise-2" class="level2">

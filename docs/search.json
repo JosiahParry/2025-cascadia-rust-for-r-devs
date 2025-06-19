@@ -612,7 +612,7 @@
     "href": "intro-to-rust-for-r-devs/struct-methods.html#exercise",
     "title": "14  Struct Methods",
     "section": "Exercise",
-    "text": "Exercise\n\nImplement a Point::new() associated function that returns Self and has two arguments x: f64 and y: f64\nDefine a method euclidean_distance() which calculates the distance between itself and a destination returning an f64\n\nDistance is calculated as \\(\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\\)\nUse .powi(2) to square a value and x.sqrt() to get the square root\n\n\n\n\nView solution\n\nimpl Point {\n    fn new(x: f64, y: f64) -&gt; Self {\n        Self { x, y }\n    }\n\n    fn euclidean_distance(&self, destination: &Self) -&gt; f64 {\n        let x_diff = (self.x - destination.x).powi(2);\n        let y_diff = (self.y - destination.y).powi(2);\n\n        (x_diff + y_diff).sqrt()\n    }\n}",
+    "text": "Exercise\n\nImplement a Point::new() associated function\n\nUsing arguments x: f64 and y: f64\nIt should return Self\n\nDefine a method euclidean_distance() which calculates the distance between itself and another Point\n\nUse arguments &self and destination: &Self\nReturn f64\nDistance is calculated as \\(\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\\)\nUse .powi(2) to square a value and x.sqrt() to get the square root\n\nIn main.rs create two Point structs and calculate the distance between them.\n\n\n\nView solution\n\nimpl Point {\n    fn new(x: f64, y: f64) -&gt; Self {\n        Self { x, y }\n    }\n\n    fn euclidean_distance(&self, destination: &Self) -&gt; f64 {\n        let x_diff = (self.x - destination.x).powi(2);\n        let y_diff = (self.y - destination.y).powi(2);\n\n        (x_diff + y_diff).sqrt()\n    }\n}\n\nfn main() {\n    let a = Point::new(0.0, 5.0);\n    let b = Point::new(-10.0, 1.5);\n    let distance = a.euclidean_distance(&b);\n    println!(\"Distance between a and b is {distance}\");\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
@@ -634,7 +634,7 @@
     "href": "intro-to-rust-for-r-devs/enums.html",
     "title": "15  Enum(eration)s",
     "section": "",
-    "text": "Enums in R",
+    "text": "Enums in R\nOftentimes a variable can only take on a small number of values. This is when an enumeration (enum) would be useful.\nenums are values that can only take on a select few variants. They are defined using the enum keyword.\nWe use enums all the time in R and almost exclusively as function arguments.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
@@ -645,7 +645,7 @@
     "href": "intro-to-rust-for-r-devs/enums.html#enums-in-r",
     "title": "15  Enum(eration)s",
     "section": "",
-    "text": "for example the R function stats::cor() has the argument method = c(\"pearson\", \"kendall\", \"spearman\").\n\nmethod can only be pearson kendall or spearman otherwise an error happens\n\nthis is an informal way of specifying an enumeration\n\ni’ve wrtten about this in more detail in R which may be interesting for y’all\n\nhttps://josiahparry.com/posts/2023-11-10-enums-in-r/\n\n\n\n\nExample:\nwe can define an enum called Shape\nenum Shape {\n    Triangle,\n    Rectangle,\n    Pentagon,\n    Hexagon,\n}",
+    "text": "The tidyverse design style guide has a great section on enums. See enumerate options.\nargs(cor)\nfunction(\n  x, y = NULL, use = \"everything\",\n  method = c(\"pearson\", \"kendall\", \"spearman\") # 👈🏼 enum!\n)\n\n\nI’ve written about this in more detail in my blog post Enums in R: towards type safe R\n\nExample\nFor example, it may make sense to create an enum that specifies a possible shape.\nenum Shape {\n    Triangle,\n    Rectangle,\n    Pentagon,\n    Hexagon,\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
@@ -656,7 +656,7 @@
     "href": "intro-to-rust-for-r-devs/enums.html#variant-specific-behavior",
     "title": "15  Enum(eration)s",
     "section": "Variant-specific behavior",
-    "text": "Variant-specific behavior\n\nchoose a variant by EnumName::Variant This means that Shape can take on only one of those 4 variants\nseems kind of confusing at first, how do you actually use this?\nwe perform pattern matching on the enum and perform some action based on the variant\nuse the keyword match to perform an action based on the value\nwe list each variant and define the action that happens using format Enum::Variant =&gt; action\nnote the “fat arrow”\n\nmatch my_shape {\n    Shape::Triangle =&gt; todo!(),\n    Shape::Rectangle =&gt; todo!(),\n    Shape::Pentagon =&gt; todo!(),\n    Shape::Hexagon =&gt; todo!(),\n}\n\n\n\n\n\n\ntodo!() is a placeholder that can be used to make the compiler happy\n\n\n\n\nExample\n\nwe print the number of vertices for each shape\n\nlet my_shape = Shape::Triangle;\n\nmatch my_shape {\n    Shape::Triangle =&gt; println!(\"A triangle has 3 vertices\"),\n    Shape::Rectangle =&gt; println!(\"A rectangle has 4 vertices\"),\n    Shape::Pentagon =&gt; println!(\"A pentagon has 5 vertices\"),\n    Shape::Hexagon =&gt; println!(\"A hexagon has 6 vertices\"),\n}\n\nsometimes we only want to customize behavior on only a subset of variants\nwe can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”\n\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons);\n    _ =&gt; println!(\"Every other polygon is mid\");\n}\nEnums can have methods too just like a struct using impl keyword\nimpl Shape {\n    fn is_bestagon(&self) -&gt; bool {\n        match self {\n            Self::Hexagon =&gt; true,\n            _ =&gt; false\n        }\n    }\n}",
+    "text": "Variant-specific behavior\nThe Shape enum can take on only one of those 4 variants. An enum is created using the format EnumName::Variant.\nHow do we actually determine behavior based on a variant? This is done using pattern matching.\nThe keyword match lets us perform an action based on an enum’s variant. It works by listing each variant and the behavior to that happens when that variant is matched.\nThe pattern match format uses the syntax Enum::Variant =&gt; action. When using match each variant much be enumerated:\n\n\n=&gt; is often referred to as “fat arrow.” But if you say “chompky” I’ll also get it.\nmatch my_shape {\n    Shape::Triangle =&gt; todo!(),\n    Shape::Rectangle =&gt; todo!(),\n    Shape::Pentagon =&gt; todo!(),\n    Shape::Hexagon =&gt; todo!(),\n}\n\n\n\n\n\n\ntodo!() is a placeholder that can be used to make the compiler happy\n\n\n\n\nExample\nFor example we may want to print the number of verticies of a shape:\nlet my_shape = Shape::Triangle;\n\nmatch my_shape {\n    Shape::Triangle =&gt; println!(\"A triangle has 3 vertices\"),\n    Shape::Rectangle =&gt; println!(\"A rectangle has 4 vertices\"),\n    Shape::Pentagon =&gt; println!(\"A pentagon has 5 vertices\"),\n    Shape::Hexagon =&gt; println!(\"A hexagon has 6 vertices\"),\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
@@ -667,7 +667,7 @@
     "href": "intro-to-rust-for-r-devs/enums.html#exercise-1",
     "title": "15  Enum(eration)s",
     "section": "Exercise 1",
-    "text": "Exercise 1\n\nrecreate the shape enum\ncreate a method called n_vertices() which returns a usize\ncreate two different variants of the Shape enum and print their number of vertices",
+    "text": "Exercise 1\n\nCreate an enum called Measure with two variants Euclidean and Haversine\nCreate a method called ndim() which returns 2 for Euclidean and 3 for Haversine\n\n\n\nView solution\n\nenum Measure {\n    Euclidean,\n    Haversine,\n}\n\nimpl Measure {\n    fn ndim(&self) -&gt; i32 {\n        match self {\n            Self::Euclidean =&gt; 2,\n            Self::Haversine =&gt; 3\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
@@ -678,7 +678,7 @@
     "href": "intro-to-rust-for-r-devs/enums.html#exercise-2",
     "title": "15  Enum(eration)s",
     "section": "Exercise 2",
-    "text": "Exercise 2\n\nCreate an enum called Measure with two variants Euclidean and Haversine\nCreate a new method distance() for our point struct that takes 3 arguments and returns an f64\n\na reference to self\na reference to another point\na reference to a Measure enum\n\nWhen the variant is Euclidean use the euclidean_distance() method\nWhen the variant is Haversine use the haversine_distance() method\n\nenum Measure {\n    Euclidean,\n    Haversine,\n}\n\nimpl Point {\n    // Demonstrates using pattern matching an enum\n    fn distance(&self, destination: &Self, measure: &Measure) -&gt; f64 {\n        match measure {\n            Measure::Euclidean =&gt; self.euclidean_distance(destination),\n            Measure::Haversine =&gt; self.haversine_distance(destination),\n        }\n    }\n}",
+    "text": "Exercise 2\n\nCreate a new method distance() for Point struct that returns an f64\n\nArguments: &self, destination: &Self, measure: &Measure\n\nWhen measure is Euclidean use the euclidean_distance() method\nWhen the variant is Haversine use the haversine_distance() method\n\nThe haversine method is defined as:\n\n\nCode for haversine_distance()\n\nimpl Point {\n    fn haversine_distance(&self, destination: &Self) -&gt; f64 {\n        let radius = 6_371_008.7714; // Earth's mean radius in meters\n        let theta1 = self.y.to_radians(); // Latitude of point 1\n        let theta2 = destination.y.to_radians(); // Latitude of point 2\n        let delta_theta = (destination.y - self.y).to_radians(); // Delta Latitude\n        let delta_lambda = (destination.x - self.x).to_radians(); // Delta Longitude\n\n        let a = (delta_theta / 2f64).sin().powi(2)\n            + theta1.cos() * theta2.cos() * (delta_lambda / 2f64).sin().powi(2);\n\n        2f64 * a.sqrt().asin() * radius\n    }\n}\n\n\n\nView solution\n\n\nimpl Point {\n    // Demonstrates using pattern matching an enum\n    fn distance(&self, destination: &Self, measure: &Measure) -&gt; f64 {\n        match measure {\n            Measure::Euclidean =&gt; self.euclidean_distance(destination),\n            Measure::Haversine =&gt; self.haversine_distance(destination),\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
@@ -2224,6 +2224,28 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#wildcard-matching",
+    "href": "intro-to-rust-for-r-devs/enums.html#wildcard-matching",
+    "title": "15  Enum(eration)s",
+    "section": "Wildcard matching",
+    "text": "Wildcard matching\nSometimes we want to customize behavior on only a subset of variants. We can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”.\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons\");\n    _ =&gt; println!(\"Every other polygon is mid\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#enums-can-impl-too",
+    "href": "intro-to-rust-for-r-devs/enums.html#enums-can-impl-too",
+    "title": "15  Enum(eration)s",
+    "section": "Enums can impl, too",
+    "text": "Enums can impl, too\nEnums can have methods too just like a struct using impl keyword\nimpl Shape {\n    fn is_bestagon(&self) -&gt; bool {\n        match self {\n            Self::Hexagon =&gt; true,\n            _ =&gt; false\n        }\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
     ]
   }
 ]

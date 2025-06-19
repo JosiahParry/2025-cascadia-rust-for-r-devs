@@ -104,10 +104,16 @@ impl Person {
 
 ## Exercise
 
-- Implement a `Point::new()` associated function that returns `Self` and has two arguments `x: f64` and `y: f64`
-- Define a method `euclidean_distance()` which calculates the distance between itself and a `destination` returning an `f64`
+- Implement a `Point::new()` associated function
+  - Using arguments `x: f64` and `y: f64`
+  - It should return `Self`
+- Define a method `euclidean_distance()` which calculates the distance between itself and another `Point`
+  - Use arguments `&self` and `destination: &Self`
+  - Return `f64`
   - Distance is calculated as $\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$
   - Use `.powi(2)` to square a value and `x.sqrt()` to get the square root
+- In `main.rs` create two `Point` structs and calculate the distance between them.
+
 
 <details>
     <summary>View solution</summary>
@@ -124,6 +130,13 @@ impl Point {
 
         (x_diff + y_diff).sqrt()
     }
+}
+
+fn main() {
+    let a = Point::new(0.0, 5.0);
+    let b = Point::new(-10.0, 1.5);
+    let distance = a.euclidean_distance(&b);
+    println!("Distance between a and b is {distance}");
 }
 ```
 </details>
