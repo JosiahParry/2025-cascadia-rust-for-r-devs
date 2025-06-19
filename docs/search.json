@@ -689,7 +689,7 @@
     "href": "intro-to-rust-for-r-devs/options.html",
     "title": "16  Some() or None?",
     "section": "",
-    "text": "Danger! .unwrap() & .expect()\nOption is defined as:\nwe can match on these. When we have a some value we can use the inner value when we dont we can perform some fallback operation",
+    "text": "Option\nRust doesn’t have the concept of a NULL type. Null values are quite dangerous and have their own category of errors and security issues.\nRust makes it impossible to have a null value by formalizing the concept of missingness through the Option&lt;&gt;\nAn Option is a special enum that has two possible values:\nWhen a value is missing, the option’s variant is None. When the option contains some value, the value is contained inside of the Some(T) variant.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
@@ -699,8 +699,8 @@
     "objectID": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
     "href": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
     "title": "16  Some() or None?",
-    "section": "",
-    "text": "sometimes dealing with options is a headache, particularly when we’re in the early stages of developing\nto get the inner value of an Option&lt;T&gt; without checking we can use .unwrap() or .expect()\nthese both give you the inner value. If the value is not found then the program panics.\n\nthis is very bad\n\nTODO panic screenshot\n.expect() takes a message so that when a panic is encountered the message is more informative.",
+    "section": "Danger! .unwrap() & .expect()",
+    "text": "Danger! .unwrap() & .expect()\nSometimes dealing with options is a headache, particularly when we’re in the early stages of developing.\nWe can use .unwrap() or .expect() to grab the inner value of an option without matching.\nThis is dangerous!! because we are ignoring the possibility of a None. Unwrapping on a None leads to a panic. Panics cause your program to abort.\nthread 'main' panicked at src/main.rs:4:41:\ncalled `Option::unwrap()` on a `None` value",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
@@ -711,7 +711,7 @@
     "href": "intro-to-rust-for-r-devs/options.html#exercise",
     "title": "16  Some() or None?",
     "section": "Exercise",
-    "text": "Exercise\n\nmodify the distance() method to take an Option&lt;Measure&gt;\nwhen None use euclidean distance, otherwise use the provided distance measure\n\n\n\nThe exercise does not involve .unwrap() because it’s a bad habbit. Let’s try and form good habbits from the outset if possible.\nimpl Point {\n    fn distance(&self, destination: &Self, measure: Option&lt;&Measure&gt;) -&gt; f64 {\n        match measure {\n            Some(m) =&gt; match m {\n                Measure::Euclidean =&gt; self.euclidean_distance(destination),\n                Measure::Haversine =&gt; self.haversine_distance(destination),\n            },\n            None =&gt; self.euclidean_distance(destination),\n        }\n    }\n}",
+    "text": "Exercise\n\nModify the distance() method to take an Option&lt;&Measure&gt;\nWhen None use euclidean distance, otherwise use the provided distance measure\n\n\n\nThe exercise does not involve .unwrap() because it’s a bad habbit. Let’s try and form good habbits from the outset if possible.\n\n\nView solution\n\nimpl Point {\n    fn distance(&self, destination: &Self, measure: Option&lt;&Measure&gt;) -&gt; f64 {\n        match measure {\n            Some(m) =&gt; match m {\n                Measure::Euclidean =&gt; self.euclidean_distance(destination),\n                Measure::Haversine =&gt; self.haversine_distance(destination),\n            },\n            None =&gt; self.euclidean_distance(destination),\n        }\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
@@ -2246,6 +2246,28 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/options.html#option",
+    "href": "intro-to-rust-for-r-devs/options.html#option",
+    "title": "16  Some() or None?",
+    "section": "",
+    "text": "enum Option {\n    Some(T),\n    None\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/options.html#accessing-some-value",
+    "href": "intro-to-rust-for-r-devs/options.html#accessing-some-value",
+    "title": "16  Some() or None?",
+    "section": "Accessing Some() value",
+    "text": "Accessing Some() value\nSince Option&lt;T&gt; are “just” an enum, we can match on the variants to access the values.\n// create an Option&lt;Measure&gt; that contains a value\nlet measure = Some(Measure::Euclidean);\n\nmatch measure {\n    Some(v) =&gt; println!(\"The measure is not missing!\"),\n    None =&gt; println!(\"Oh no! The measure is missing\"),\n}\nWe put a placeholder value inside of Some(v) to create a binding to the inner value. It’s like a function argument, it can be called whatever you want it to be.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
     ]
   }
 ]

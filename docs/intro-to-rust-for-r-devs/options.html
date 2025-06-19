@@ -403,7 +403,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#danger-.unwrap-.expect" id="toc-danger-.unwrap-.expect" class="nav-link active" data-scroll-target="#danger-.unwrap-.expect">Danger! <code>.unwrap()</code> &amp; <code>.expect()</code></a></li>
+  <li><a href="#option" id="toc-option" class="nav-link active" data-scroll-target="#option"><code>Option</code></a></li>
+  <li><a href="#accessing-some-value" id="toc-accessing-some-value" class="nav-link" data-scroll-target="#accessing-some-value">Accessing <code>Some()</code> value</a></li>
+  <li><a href="#danger-.unwrap-.expect" id="toc-danger-.unwrap-.expect" class="nav-link" data-scroll-target="#danger-.unwrap-.expect">Danger! <code>.unwrap()</code> &amp; <code>.expect()</code></a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/options.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -440,65 +442,65 @@ Objective
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>Understand how to handle missingness</li>
-<li>Use <code>Option&lt;T&gt;</code> in an applied case</li>
-</ul>
+<p>Understand how missingness is handled in Rust with <code>Option&lt;T&gt;</code>. - Understand how to handle missingness - Use <code>Option&lt;T&gt;</code> in an applied case</p>
 </div>
 </div>
-<ul>
-<li>rust doesn’t have the concept of a null</li>
-<li>null are dangerous and lead to a whole category of errors and security flaws</li>
-<li>Rust has a concept of an <code>Option&lt;&gt;</code></li>
-<li>options are just enums</li>
-<li>options have two possible values:
-<ul>
-<li><code>Some(T)</code></li>
-<li><code>None</code></li>
-</ul></li>
-<li>Some is used to indicate the presence of a value</li>
-<li>None is used to indicate the absence of a value</li>
-</ul>
-<p>Option is defined as:</p>
+<p>Rust doesn’t have the concept of a <code>NULL</code> type. Null values are quite dangerous and have their own category of errors and security issues.</p>
+<p>Rust makes it impossible to have a null value by formalizing the concept of missingness through the <code>Option&lt;&gt;</code></p>
+<section id="option" class="level2">
+<h2 class="anchored" data-anchor-id="option"><code>Option</code></h2>
+<p>An Option is a special <code>enum</code> that has two possible values:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> <span class="dt">Option</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Some</span>(T)<span class="op">,</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cn">None</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>we can match on these. When we have a some value we can use the inner value when we dont we can perform some fallback operation</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When a value is missing, the option’s variant is <code>None</code>. When the option contains <em>some value</em>, the value is contained <em>inside of</em> the <code>Some(T)</code> variant.</p>
+</section>
+<section id="accessing-some-value" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-some-value">Accessing <code>Some()</code> value</h2>
+<p>Since <code>Option&lt;T&gt;</code> are “just” an enum, we can match on the variants to access the values.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// create an Option&lt;Measure&gt; that contains a value</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> measure <span class="op">=</span> <span class="cn">Some</span>(<span class="pp">Measure::</span>Euclidean)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> measure <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Some</span>(v) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"The measure is not missing!"</span>)<span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">None</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Oh no! The measure is missing"</span>)<span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We put a placeholder value inside of <code>Some(v)</code> to create a binding to the inner value. It’s like a function argument, it can be called whatever you want it to be.</p>
+</section>
 <section id="danger-.unwrap-.expect" class="level2">
 <h2 class="anchored" data-anchor-id="danger-.unwrap-.expect">Danger! <code>.unwrap()</code> &amp; <code>.expect()</code></h2>
-<ul>
-<li>sometimes dealing with options is a headache, particularly when we’re in the early stages of developing</li>
-<li>to get the inner value of an <code>Option&lt;T&gt;</code> without checking we can use <code>.unwrap()</code> or <code>.expect()</code></li>
-<li>these both give you the inner value. If the value is not found then the program panics.
-<ul>
-<li>this is <em>very</em> bad</li>
-</ul></li>
-<li>TODO panic screenshot</li>
-<li><code>.expect()</code> takes a message so that when a panic is encountered the message is more informative.</li>
-</ul>
+<p>Sometimes dealing with options is a headache, particularly when we’re in the early stages of developing.</p>
+<p>We can use <code>.unwrap()</code> or <code>.expect()</code> to grab the inner value of an option <em>without matching</em>.</p>
+<p>This is <strong>dangerous!!</strong> because we are ignoring the possibility of a <code>None</code>. Unwrapping on a <code>None</code> leads to a <strong>panic</strong>. Panics cause your program to abort.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>thread <span class="ot">'mai</span>n<span class="ch">'</span> panicked at src<span class="op">/</span>main<span class="op">.</span>rs<span class="op">:</span><span class="dv">4</span><span class="op">:</span><span class="dv">41</span><span class="op">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>called `<span class="pp">Option::</span>unwrap()` on a `None` value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ul>
-<li>modify the <code>distance()</code> method to take an <code>Option&lt;Measure&gt;</code></li>
-<li>when <code>None</code> use euclidean distance, otherwise use the provided distance measure</li>
+<li>Modify the <code>distance()</code> method to take an <code>Option&lt;&amp;Measure&gt;</code></li>
+<li>When <code>None</code> use euclidean distance, otherwise use the provided distance measure</li>
 </ul>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>The exercise does not involve <code>.unwrap()</code> because it’s a bad habbit. Let’s try and form good habbits from the outset if possible.</p>
-</div></div><div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span><span class="op">,</span> measure<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;&amp;</span>Measure<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> measure <span class="op">{</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Some</span>(m) <span class="op">=&gt;</span> <span class="cf">match</span> m <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                <span class="pp">Measure::</span>Euclidean <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>euclidean_distance(destination)<span class="op">,</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                <span class="pp">Measure::</span>Haversine <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>haversine_distance(destination)<span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="op">},</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="cn">None</span> <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>euclidean_distance(destination)<span class="op">,</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div><details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span><span class="op">,</span> measure<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;&amp;</span>Measure<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> measure <span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Some</span>(m) <span class="op">=&gt;</span> <span class="cf">match</span> m <span class="op">{</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                <span class="pp">Measure::</span>Euclidean <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>euclidean_distance(destination)<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="pp">Measure::</span>Haversine <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>haversine_distance(destination)<span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="op">},</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="cn">None</span> <span class="op">=&gt;</span> <span class="kw">self</span><span class="op">.</span>euclidean_distance(destination)<span class="op">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
 
 </section>

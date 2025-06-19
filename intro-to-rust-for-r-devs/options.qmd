@@ -2,21 +2,20 @@
 
 ::: callout-tip
 ## Objective
+
+Understand how missingness is handled in Rust with `Option<T>`.
 - Understand how to handle missingness
 - Use `Option<T>` in an applied case
 :::
 
-- rust doesn't have the concept of a null
-- null are dangerous and lead to a whole category of errors and security flaws
-- Rust has a concept of an `Option<>`
-- options are just enums
-- options have two possible values:
-    - `Some(T)`
-    - `None`
-- Some is used to indicate the presence of a value
-- None is used to indicate the absence of a value
+Rust doesn't have the concept of a `NULL` type. Null values are quite dangerous and have their own category of errors and security issues.
 
-Option is defined as:
+Rust makes it impossible to have a null value by formalizing the concept of missingness through the `Option<>`
+
+## `Option`
+
+An Option is a special `enum` that has two possible values:
+
 ```rust
 enum Option {
     Some(T),
@@ -24,31 +23,50 @@ enum Option {
 }
 ```
 
-we can match on these. When we have a some value we can use the inner value when we dont we can perform some fallback operation
+When a value is missing, the option's variant is `None`. When the option contains _some value_, the value is contained _inside of_ the `Some(T)` variant.
+
+
+## Accessing `Some()` value
+
+Since `Option<T>` are "just" an enum, we can match on the variants to access the values.
 
 ```rust
+// create an Option<Measure> that contains a value
+let measure = Some(Measure::Euclidean);
 
+match measure {
+    Some(v) => println!("The measure is not missing!"),
+    None => println!("Oh no! The measure is missing"),
+}
 ```
+
+We put a placeholder value inside of `Some(v)` to create a binding to the inner value. It's like a function argument, it can be called whatever you want it to be.
 
 ## Danger! `.unwrap()` & `.expect()`
 
-- sometimes dealing with options is a headache, particularly when we're in the early stages of developing
-- to get the inner value of an `Option<T>` without checking we can use `.unwrap()` or `.expect()`
-- these both give you the inner value. If the value is not found then the program panics.
-    - this is _very_ bad
-- TODO panic screenshot
-- `.expect()` takes a message so that when a panic is encountered the message is more informative.
+Sometimes dealing with options is a headache, particularly when we're in the early stages of developing.
+
+We can use `.unwrap()` or `.expect()` to grab the inner value of an option _without matching_.
+
+This is **dangerous!!** because we are ignoring the possibility of a `None`. Unwrapping on a `None` leads to a **panic**. Panics cause your program to abort.
+
+```rust
+thread 'main' panicked at src/main.rs:4:41:
+called `Option::unwrap()` on a `None` value
+```
 
 
 ## Exercise
 
-- modify the `distance()` method to take an `Option<Measure>`
-- when `None` use euclidean distance, otherwise use the provided distance measure
+- Modify the `distance()` method to take an `Option<&Measure>`
+- When `None` use euclidean distance, otherwise use the provided distance measure
 
 ::: aside
 The exercise does not involve `.unwrap()` because it's a bad habbit. Let's try and form good habbits from the outset if possible.
 :::
 
+<details>
+<summary>View solution</summary>
 ```rust
 impl Point {
     fn distance(&self, destination: &Self, measure: Option<&Measure>) -> f64 {
@@ -61,4 +79,5 @@ impl Point {
         }
     }
 }
-````
+```
+</details>
