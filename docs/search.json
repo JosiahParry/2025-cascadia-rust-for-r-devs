@@ -579,7 +579,7 @@
     "href": "intro-to-rust-for-r-devs/structs.html",
     "title": "13  Defining Struct(ure)s",
     "section": "",
-    "text": "Exercise\nYou can define a type as being a collection of other types by using the struct keyword.\nBy convention structs are named using PascalCase, as opposed to fns which are named using snake_case convention.\nAdding behavior to struct is possible through attributes:\nThe Debug trait allows debug printing of the type Point via dbg! or println!(\"{p:?}).\nFields of a struct can be accessed directly, or by reference. If a field is accessed by reference, the struct cannot be moved.\nUnpacking a struct entirely is possible",
+    "text": "Deriving behavior\nYou can define a type as being a collection of other types by using the struct keyword.\nstructs are named using PascalCase, as opposed to fns which are named using snake_case convention. Structs are constructed using a “literal” syntax. Where we write the name of the struct followed by curlys and the fields like so:\nBy default, new structs do not get any special behavior. Meaning they cannot be printed using println!():\nRust contains a special type called a trait. They’re akin to S3 generics. They are a a collection of methods that can be implemented by foreign types.\nIn this case, Debug is a trait that allows for debug printing using println!(). Our new type does not implement this by default. However, we can derive this behavior because everything inside of the struct does.\nTo derive behavior we use the #[derive()] attribute.\nThe Debug trait allows debug printing of the type Person via dbg!() or println!(\"{p:?}).",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
@@ -589,8 +589,8 @@
     "objectID": "intro-to-rust-for-r-devs/structs.html#exercise",
     "href": "intro-to-rust-for-r-devs/structs.html#exercise",
     "title": "13  Defining Struct(ure)s",
-    "section": "",
-    "text": "Define a struct called Point which has two fields x, and y\nCreate a new Point struct\nDestructure the point",
+    "section": "Exercise",
+    "text": "Exercise\n\nDefine a struct called Point which has two fields x, and y that are f64\nDerive Debug and Clone\nCreate a new Point struct\nDebug print the new point\nDestructure the point into x and y\n\n\n\nView solution\n\nstruct Point {\n    x: f64,\n    y: f64\n}\n\nfn main() {\n    let point = Point { x: 3.0, y: 0.14 };\n    println!(\"The point is {:?}\");\n    let Point { x, y } = point;\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
@@ -2147,6 +2147,39 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/structs.html#deriving-behavior",
+    "href": "intro-to-rust-for-r-devs/structs.html#deriving-behavior",
+    "title": "13  Defining Struct(ure)s",
+    "section": "",
+    "text": "#[derive(Debug, Clone)]\nstruct Person {\n    name: String,\n    age: i32\n}\n\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    println!(\"{me:?}\");\n}\nPerson { name: \"Josiah\", age: 29 }",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/structs.html#accessing-fields",
+    "href": "intro-to-rust-for-r-devs/structs.html#accessing-fields",
+    "title": "13  Defining Struct(ure)s",
+    "section": "Accessing Fields",
+    "text": "Accessing Fields\nFields of a struct can be accessed directly, or by reference. Field can be accessed using var.field_name.\nIf a field is accessed by reference, the struct cannot be moved. The same rules of borrowing apply to a struct. You can borrow a field as much as you want but you can only move it once. Otherwise, the entire struct cannot be used.\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    let name = me.name;\n    println!(\"{me:?}\");\n}\nerror[E0382]: borrow of partially moved value: `me`\n  --&gt; src/main.rs:10:15\n   |\n9  |     let name = me.name;\n   |                ------- value partially moved here\n10 |     println!(\"{me:?}\");\n   |               ^^^^^^ value borrowed here after partial move",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/structs.html#destructuring",
+    "href": "intro-to-rust-for-r-devs/structs.html#destructuring",
+    "title": "13  Defining Struct(ure)s",
+    "section": "Destructuring",
+    "text": "Destructuring\nIt is possible to destructure a struct during assignment creating many variables at one time.\nTo destructure during assignment you use the syntax let StructName { field, field } = variable;\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    let Person { name, age } = me;\n    println!(\"{name} is {age} years old\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
     ]
   }
 ]

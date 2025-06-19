@@ -403,7 +403,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link active" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#deriving-behavior" id="toc-deriving-behavior" class="nav-link active" data-scroll-target="#deriving-behavior">Deriving behavior</a></li>
+  <li><a href="#accessing-fields" id="toc-accessing-fields" class="nav-link" data-scroll-target="#accessing-fields">Accessing Fields</a></li>
+  <li><a href="#destructuring" id="toc-destructuring" class="nav-link" data-scroll-target="#destructuring">Destructuring</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/structs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -439,60 +442,107 @@ Objective
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>Understand how to define a type as a <code>struct</code></li>
-<li>adding behavior on plain old data through <code>derive</code>-macros</li>
-</ul>
+<p>Create new <code>struct</code> types and destructure them. Additionally, add behavior through <code>derive</code>-macros.</p>
 </div>
 </div>
 <p>You can define a type as being a collection of other types by using the <code>struct</code> keyword.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> PlainOldPoint <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">:</span> <span class="dt">f64</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Person <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    age<span class="op">:</span> <span class="dt">i32</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>By convention <code>struct</code>s are named using PascalCase, as opposed to <code>fn</code>s which are named using snake_case convention.</p>
-<p>Adding behavior to struct is possible through attributes:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Point <span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">:</span> <span class="dt">f64</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>Debug</code> trait allows debug printing of the type <code>Point</code> via <code>dbg!</code> or <code>println!("{p:?})</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> origin <span class="op">=</span> Point <span class="op">{</span> x<span class="op">:</span> <span class="dv">0.0</span><span class="op">,</span> y<span class="op">:</span> <span class="dv">0</span><span class="op">.</span> <span class="op">};</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{origin:?}"</span>)<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Fields of a <code>struct</code> can be accessed directly, or by reference. If a field is accessed by reference, the <code>struct</code> cannot be moved.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span>    </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> origin <span class="op">=</span> Point <span class="op">{</span> x<span class="op">:</span> <span class="dv">0.0</span><span class="op">,</span> y<span class="op">:</span> <span class="dv">0</span><span class="op">.</span> <span class="op">};</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> origin_y <span class="op">=</span> <span class="op">&amp;</span>origin<span class="op">.</span>y<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">dbg!</span>(origin)<span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">dbg!</span>(origin_y)<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>error[E0505]<span class="op">:</span> cannot <span class="kw">move</span> out of `origin` because it is borrowed</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">--&gt;</span> src<span class="op">/</span>bin<span class="op">/</span>move_field<span class="op">.</span>rs<span class="op">:</span><span class="dv">10</span><span class="op">:</span><span class="dv">5</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>  <span class="op">|</span>     <span class="kw">let</span> origin <span class="op">=</span> Point <span class="op">{</span> x<span class="op">:</span> <span class="dv">0.0</span><span class="op">,</span> y<span class="op">:</span> <span class="dv">0</span><span class="op">.</span> <span class="op">};</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span>         <span class="op">------</span> binding `origin` declared here</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>  <span class="op">|</span>     <span class="kw">let</span> origin_y <span class="op">=</span> <span class="op">&amp;</span>origin<span class="op">.</span>y<span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span>                    <span class="op">---------</span> borrow of `origin<span class="op">.</span>y` occurs here</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">|</span>     <span class="pp">dbg!</span>(origin)<span class="op">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span>     <span class="op">^^^^^^^^^^^^</span> <span class="kw">move</span> out of `origin` occurs here</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="op">|</span>     <span class="pp">dbg!</span>(origin_y)<span class="op">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span>          <span class="op">--------</span> borrow later used here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Unpacking a struct entirely is possible</p>
+<p><code>struct</code>s are named using PascalCase, as opposed to <code>fn</code>s which are named using snake_case convention. Structs are constructed using a “literal” syntax. Where we write the name of the struct followed by curlys and the fields like so:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By default, new structs do not get any special behavior. Meaning they cannot be printed using <code>println!()</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Person <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    age<span class="op">:</span> <span class="dt">i32</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{me:?}"</span>)<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>error[E0277]: `Person` doesn't implement `Debug`
+ --&gt; src/main.rs:8:15
+  |
+8 |     println!("{me:?}");
+  |               ^^^^^^ `Person` cannot be formatted using `{:?}`
+  |
+  = help: the trait `Debug` is not implemented for `Person`
+  = note: add `#[derive(Debug)]` to `Person` or manually `impl Debug for Person`
+  = note: this error originates in the macro `$crate::format_args_nl` which comes from the expansion of the macro `println` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Person` with `#[derive(Debug)]`
+  |
+1 + #[derive(Debug)]
+2 | struct Person {</code></pre>
+<section id="deriving-behavior" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-behavior">Deriving behavior</h2>
+<p>Rust contains a special type called a <strong>trait</strong>. They’re akin to S3 generics. They are a a collection of methods that can be implemented by foreign types.</p>
+<p>In this case, <code>Debug</code> is a trait that allows for debug printing using <code>println!()</code>. Our new type does not implement this by default. However, we can <strong>derive</strong> this behavior because everything inside of the struct <em>does</em>.</p>
+<p>To derive behavior we use the <code>#[derive()]</code> <strong>attribute</strong>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Person <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    age<span class="op">:</span> <span class="dt">i32</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>Debug</code> trait allows debug printing of the type <code>Person</code> via <code>dbg!()</code> or <code>println!("{p:?})</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> origin <span class="op">=</span> Point <span class="op">{</span>x<span class="op">:</span> <span class="dv">0f64</span><span class="op">,</span> y<span class="op">:</span> <span class="dv">0_f64</span> <span class="op">};</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> Point <span class="op">{</span>x<span class="op">,</span> y<span class="op">}</span> <span class="op">=</span> origin<span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"({x}, {y})"</span>)<span class="op">;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{me:?}"</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Person { name: "Josiah", age: 29 }</code></pre>
+</section>
+<section id="accessing-fields" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-fields">Accessing Fields</h2>
+<p>Fields of a <code>struct</code> can be accessed directly, or by reference. Field can be accessed using <code>var.field_name</code>.</p>
+<p>If a field is accessed by reference, the <code>struct</code> cannot be moved. The same rules of borrowing apply to a struct. You can borrow a field as much as you want but you can only move it once. Otherwise, the entire struct cannot be used.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> name <span class="op">=</span> me<span class="op">.</span>name<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{me:?}"</span>)<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>error[E0382]<span class="op">:</span> borrow of partially moved value<span class="op">:</span> `me`</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">--&gt;</span> src<span class="op">/</span>main<span class="op">.</span>rs<span class="op">:</span><span class="dv">10</span><span class="op">:</span><span class="dv">15</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>  <span class="op">|</span>     <span class="kw">let</span> name <span class="op">=</span> me<span class="op">.</span>name<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span>                <span class="op">-------</span> value partially moved here</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">|</span>     <span class="pp">println!</span>(<span class="st">"{me:?}"</span>)<span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>   <span class="op">|</span>               <span class="op">^^^^^^</span> value borrowed here after partial <span class="kw">move</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="destructuring" class="level2">
+<h2 class="anchored" data-anchor-id="destructuring">Destructuring</h2>
+<p>It is possible to <strong>destructure</strong> a struct during assignment creating many variables at one time.</p>
+<p>To destructure during assignment you use the syntax <code>let StructName { field, field } = variable;</code></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> Person <span class="op">{</span> name<span class="op">,</span> age <span class="op">}</span> <span class="op">=</span> me<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{name} is {age} years old"</span>)<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ul>
-<li>Define a struct called <code>Point</code> which has two fields <code>x</code>, and <code>y</code></li>
+<li>Define a struct called <code>Point</code> which has two fields <code>x</code>, and <code>y</code> that are <code>f64</code></li>
+<li>Derive <code>Debug</code> and <code>Clone</code></li>
 <li>Create a new <code>Point</code> struct</li>
-<li>Destructure the point</li>
+<li>Debug print the new point</li>
+<li>Destructure the point into x and y</li>
 </ul>
+<details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Point <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">:</span> <span class="dt">f64</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> point <span class="op">=</span> Point <span class="op">{</span> x<span class="op">:</span> <span class="dv">3.0</span><span class="op">,</span> y<span class="op">:</span> <span class="dv">0.14</span> <span class="op">};</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"The point is {:?}"</span>)<span class="op">;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> Point <span class="op">{</span> x<span class="op">,</span> y <span class="op">}</span> <span class="op">=</span> point<span class="op">;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
 
 </section>
