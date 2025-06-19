@@ -2088,7 +2088,7 @@
     "href": "building-rust-based-r-pkgs/vectorize-decode.html",
     "title": "36  Vectorize decode()",
     "section": "",
-    "text": "from_values()",
+    "text": "Exercise\nYour objective for this exercise is to vectorize gh_decode() and return a data.frame. To do this:",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Vectorize `decode()`</span>"
@@ -2097,12 +2097,12 @@
   {
     "objectID": "building-rust-based-r-pkgs/vibe-check.html",
     "href": "building-rust-based-r-pkgs/vibe-check.html",
-    "title": "38  Vibe check",
+    "title": "37  Vibe check",
     "section": "",
-    "text": "At this point, we may or may not have spare time - what we do next is up to you all",
+    "text": "At this point, we may or may not have spare time. What we do next is up to you all:\n\nWe can spend time doing Q&A\nSpend the rest of the time creating gh_decode_bbox()\nDiscuss submitting an extendr-package to CRAN",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>38</span>  <span class='chapter-title'>Vibe check</span>"
+      "<span class='chapter-number'>37</span>  <span class='chapter-title'>Vibe check</span>"
     ]
   },
   {
@@ -2268,6 +2268,17 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize-decode.html#exercise",
+    "href": "building-rust-based-r-pkgs/vectorize-decode.html#exercise",
+    "title": "36  Vectorize decode()",
+    "section": "",
+    "text": "Create 4 empty vectors to store x, y, x_error, and y_error\nIterate through each geohash and attempt to decode it\nFor each successful decoding insert the x, y, and error values into their corresponding vectors\nWhen an error is encountered, insert NA values into the vectors\nCreate double vectors for each variable using Doubles::from_values()\nCreate a data.frame using data_frame!()\n\n\n\nView solution\n\nfn gh_decode(geohash: Strings) -&gt; Robj {\n    let mut x_res = Vec::new();\n    let mut y_res = Vec::new();\n    let mut x_error = Vec::new();\n    let mut y_error = Vec::new();\n\n    for gh in geohash.into_iter() {\n        let resi = decode(gh);\n        match resi {\n            Ok((Coord { x, y }, xe, ye)) =&gt; {\n                x_res.push(Rfloat::from(x));\n                y_res.push(Rfloat::from(y));\n                x_error.push(Rfloat::from(xe));\n                y_error.push(Rfloat::from(ye));\n            }\n            Err(_) =&gt; {\n                x_res.push(Rfloat::na());\n                y_res.push(Rfloat::na());\n                x_error.push(Rfloat::na());\n                y_error.push(Rfloat::na());\n            }\n        }\n    }\n\n    data_frame!(\n        x = Doubles::from_values(x_res),\n        y = Doubles::from_values(y_res),\n        x_error = Doubles::from_values(x_error),\n        y_error = Doubles::from_values(y_error)\n    )\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Vectorize `decode()`</span>"
     ]
   }
 ]

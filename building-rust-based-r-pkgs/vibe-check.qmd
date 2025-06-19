@@ -1,5 +1,8 @@
 # Vibe check
 
 
-At this point, we may or may not have spare time
-- what we do next is up to you all
+At this point, we may or may not have spare time. What we do next is up to you all:
+
+- We can spend time doing Q&A
+- Spend the rest of the time creating `gh_decode_bbox()`
+- Discuss submitting an extendr-package to CRAN
