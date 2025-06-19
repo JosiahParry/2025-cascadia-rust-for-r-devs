@@ -121,7 +121,7 @@ fn main() {
 
 - Define a struct called `Point` which has two fields `x`, and `y` that are `f64`
 - Derive `Debug` and `Clone`
-- Create a new `Point` struct
+- In `main()` create a new `Point` struct
 - Debug print the new point
 - Destructure the point into x and y
 
@@ -130,6 +130,7 @@ fn main() {
     <summary>View solution</summary>
 
 ```rust
+#[derive(Debug, Clone)]
 struct Point {
     x: f64,
     y: f64

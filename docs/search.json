@@ -590,7 +590,7 @@
     "href": "intro-to-rust-for-r-devs/structs.html#exercise",
     "title": "13  Defining Struct(ure)s",
     "section": "Exercise",
-    "text": "Exercise\n\nDefine a struct called Point which has two fields x, and y that are f64\nDerive Debug and Clone\nCreate a new Point struct\nDebug print the new point\nDestructure the point into x and y\n\n\n\nView solution\n\nstruct Point {\n    x: f64,\n    y: f64\n}\n\nfn main() {\n    let point = Point { x: 3.0, y: 0.14 };\n    println!(\"The point is {:?}\");\n    let Point { x, y } = point;\n}",
+    "text": "Exercise\n\nDefine a struct called Point which has two fields x, and y that are f64\nDerive Debug and Clone\nIn main() create a new Point struct\nDebug print the new point\nDestructure the point into x and y\n\n\n\nView solution\n\n#[derive(Debug, Clone)]\nstruct Point {\n    x: f64,\n    y: f64\n}\n\nfn main() {\n    let point = Point { x: 3.0, y: 0.14 };\n    println!(\"The point is {:?}\");\n    let Point { x, y } = point;\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
@@ -601,7 +601,7 @@
     "href": "intro-to-rust-for-r-devs/struct-methods.html",
     "title": "14  Struct Methods",
     "section": "",
-    "text": "Exercise",
+    "text": "Associated Functions\nTypically methods used on instantiations of a variable such as:\nSometimes it makes sense to use an associated function. These are functions that are called from the type itself e.g. Type::function(). They’re typically used for constructors. For example\nThey’re created using an impl block.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
@@ -611,8 +611,8 @@
     "objectID": "intro-to-rust-for-r-devs/struct-methods.html#exercise",
     "href": "intro-to-rust-for-r-devs/struct-methods.html#exercise",
     "title": "14  Struct Methods",
-    "section": "",
-    "text": "Define a new method\n\nimpl Struct {\n  fn new(x: f64, y: f64) -&gt; Self {\n    Self { x, y }\n  }\n}\n\ndefine a distance method that calculates the euclidean distance between a point and a reference to another\n\nimpl Point {\n    fn euclidean_distance(&self, destination: &Self) -&gt; f64 {\n        ((self.x - destination.x).powi(2) + (self.y - destination.y).powi(2)).sqrt()\n    }\n}",
+    "section": "Exercise",
+    "text": "Exercise\n\nImplement a Point::new() associated function that returns Self and has two arguments x: f64 and y: f64\nDefine a method euclidean_distance() which calculates the distance between itself and a destination returning an f64\n\nDistance is calculated as \\(\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\\)\nUse .powi(2) to square a value and x.sqrt() to get the square root\n\n\n\n\nView solution\n\nimpl Point {\n    fn new(x: f64, y: f64) -&gt; Self {\n        Self { x, y }\n    }\n\n    fn euclidean_distance(&self, destination: &Self) -&gt; f64 {\n        let x_diff = (self.x - destination.x).powi(2);\n        let y_diff = (self.y - destination.y).powi(2);\n\n        (x_diff + y_diff).sqrt()\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
@@ -623,7 +623,7 @@
     "href": "intro-to-rust-for-r-devs/struct-methods.html#bonus-exercise-2",
     "title": "14  Struct Methods",
     "section": "Bonus: Exercise 2",
-    "text": "Bonus: Exercise 2\nHaversine distance is a fast way of calculating distances on a sphere. It is not the most accurate method for all cases, but it’s good enough for many common applications like calculating distances between cities!\nIt is defined by the following equation:\nThe Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.\n\\[a = \\sin^2\\left(\\frac{\\Delta\\phi}{2}\\right) + \\cos\\phi_1 \\cdot \\cos\\phi_2 \\cdot \\sin^2\\left(\\frac{\\Delta\\lambda}{2}\\right)\\]\n\\[c = 2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\]\n\\[d = R \\cdot c\\]\nWhere:\n\n\\(\\phi\\) represents latitude (in radians) (use .to_radians())\n\\(\\lambda\\) represents longitude (in radians) (use .to_radians())\n\\(R\\) is the Earth’s radius (you can use 6_371_008_7714f64 meters as a mean radius)\n\\(\\Delta\\phi\\) is the difference in latitude between the two points (\\(\\phi_2 - \\phi_1\\))\n\\(\\Delta\\lambda\\) is the difference in longitude between the two points (\\(\\lambda_2 - \\lambda_1\\))\n\\(\\text{atan2}(y, x)\\) is the arctangent of \\(y/x\\), using the signs of both arguments to determine the correct quadrant.\n\nHints for Implementation:\n\nRemember to convert your latitude and longitude values from degrees to radians using the .to_radians() method on f64.\nThe c part of the formula, \\(2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\), can also be implemented using 2 * a.sqrt().asin() in Rust, which is a common simplification when a is within the valid domain for asin.\n\n\nSolution\nimpl Point {\n    fn haversine_distance(&self, destination: &Self) -&gt; f64 {\n        let radius = 6_371_008.7714; // Earth's mean radius in meters\n        let theta1 = self.y.to_radians(); // Latitude of point 1\n        let theta2 = destination.y.to_radians(); // Latitude of point 2\n        let delta_theta = (destination.y - self.y).to_radians(); // Delta Latitude\n        let delta_lambda = (destination.x - self.x).to_radians(); // Delta Longitude\n\n        let a = (delta_theta / 2f64).sin().powi(2)\n            + theta1.cos() * theta2.cos() * (delta_lambda / 2f64).sin().powi(2);\n\n        2f64 * a.sqrt().asin() * radius\n    }\n}",
+    "text": "Bonus: Exercise 2\nEuclidean distance is useful only on a rectangle. What about on a sphere? Haversine distance is used to calculate the distance on a sphere. The Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.\nIt is defined by the following (messy) equation:\n\\[a = \\sin^2\\left(\\frac{\\Delta\\phi}{2}\\right) + \\cos\\phi_1 \\cdot \\cos\\phi_2 \\cdot \\sin^2\\left(\\frac{\\Delta\\lambda}{2}\\right)\\]\n\\[c = 2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\]\n\\[d = R \\cdot c\\]\nWhere:\n\n\\(\\phi\\) represents latitude (in radians) (use .to_radians())\n\\(\\lambda\\) represents longitude (in radians) (use .to_radians())\n\\(R\\) is the Earth’s radius (you can use 6_371_008_7714f64 meters as a mean radius)\n\\(\\Delta\\phi\\) is the difference in latitude between the two points (\\(\\phi_2 - \\phi_1\\))\n\\(\\Delta\\lambda\\) is the difference in longitude between the two points (\\(\\lambda_2 - \\lambda_1\\))\n\\(\\text{atan2}(y, x)\\) is the arctangent of \\(y/x\\), using the signs of both arguments to determine the correct quadrant.\n\nHints for Implementation:\n\nRemember to convert your latitude and longitude values from degrees to radians using the .to_radians() method on f64.\nThe c part of the formula, \\(2 \\cdot \\text{atan2}(\\sqrt{a}, \\sqrt{1-a})\\), can also be implemented using 2 * a.sqrt().asin() in Rust, which is a common simplification when a is within the valid domain for asin.\n\n\n\nView solution\n\nimpl Point {\n    fn haversine_distance(&self, destination: &Self) -&gt; f64 {\n        let radius = 6_371_008.7714; // Earth's mean radius in meters\n        let theta1 = self.y.to_radians(); // Latitude of point 1\n        let theta2 = destination.y.to_radians(); // Latitude of point 2\n        let delta_theta = (destination.y - self.y).to_radians(); // Delta Latitude\n        let delta_lambda = (destination.x - self.x).to_radians(); // Delta Longitude\n\n        let a = (delta_theta / 2f64).sin().powi(2)\n            + theta1.cos() * theta2.cos() * (delta_lambda / 2f64).sin().powi(2);\n\n        2f64 * a.sqrt().asin() * radius\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
@@ -2180,6 +2180,50 @@
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#associated-functions",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#associated-functions",
+    "title": "14  Struct Methods",
+    "section": "",
+    "text": "let me = Person { name: \"Josiah\".to_string(), age: 29 };\nlet birth_year = me.year_of_birth();\n\nlet me = Person::new(\"Josiah\".to_string(), 29);",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#implement-methods",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#implement-methods",
+    "title": "14  Struct Methods",
+    "section": "implement methods",
+    "text": "implement methods\nimpl is short for implement. We can implement methods for structs using the following syntax:\nimpl TypeName {\n    fn method() {\n        todo!()\n    }\n}\nAssociated functions are methods that do not reference the type itself. To create a new() constructor function that returns the type we can set the return type to Self:\nimpl Person {\n    fn new(name: String, age: i32) -&gt; Self {\n        Person { name, age }\n    }\n}\nThis gives us the ability to use Person::new()",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#self-references",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#self-references",
+    "title": "14  Struct Methods",
+    "section": "Self references",
+    "text": "Self references\nHowever, it often makes sense to call methods from an instantiation itself.\nWe can do this by setting the first argument to &self which provides a reference to the struct the method is called on.\nimpl Person {\n    fn greet(&self) {\n        println!(\"Hello, my name is {} and I am {} years old.\", self.name, self.age);\n    }\n}\nUsing a &self reference means you cannot move the inner fields, only borrow them.\nWe can also have arguments that refer to other instantiations of the same type via &Self or Self. For example to compare ages of people:\nimpl Person {\n    fn is_older_than(&self, other_person: &Self) -&gt; bool {\n        self.age &gt; other_person.age\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#mutable-self",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#mutable-self",
+    "title": "14  Struct Methods",
+    "section": "Mutable self",
+    "text": "Mutable self\nOften it makes sense to modify the fields of a struct. This is when a mutable reference is handy via &mut self.\nFor example we can implement methods to rename() and celebrate_birthday():\nimpl Person {\n    fn rename(&mut self, new_name: &str) {\n        self.name = new_name.to_string();\n    }\n\n    fn celebrate_birthday(&mut self) {\n        self.age += 1;\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
     ]
   }
 ]

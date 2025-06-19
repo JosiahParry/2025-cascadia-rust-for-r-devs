@@ -2,43 +2,141 @@
 
 ::: callout-tip
 ## Objectives
+
+Learn how to implement methods for stucts. Be able to create associated functions and understand the difference between `Self`, `&self`, and `&mut self`
+
+<!--
 - Learn about `impl`-blocks
 - Understand the difference between methods that take `self`, `&self`, and `&mut self`!
 - Use and appreciate the `Self` type alias
 
+-->
+
 :::
 
-## Exercise
+## Associated Functions
 
-- Define a new method
+Typically methods used on instantiations of a variable such as:
 
 ```rust
-impl Struct {
-  fn new(x: f64, y: f64) -> Self {
-    Self { x, y }
-  }
-}
+let me = Person { name: "Josiah".to_string(), age: 29 };
+let birth_year = me.year_of_birth();
 ```
 
-- define a distance method that calculates the euclidean distance between a point and a reference to another
+Sometimes it makes sense to use an **associated function**. These are functions that are called from the type itself e.g. `Type::function()`. They're typically used for *constructors*. For example
 
 ```rust
-impl Point {
-    fn euclidean_distance(&self, destination: &Self) -> f64 {
-        ((self.x - destination.x).powi(2) + (self.y - destination.y).powi(2)).sqrt()
+let me = Person::new("Josiah".to_string(), 29);
+```
+
+They're created using an `impl` block.
+
+## `impl`ement methods
+
+`impl` is short for **implement**. We can implement methods for structs using the following syntax:
+
+```rust
+impl TypeName {
+    fn method() {
+        todo!()
     }
 }
 ```
 
+Associated functions are methods that do not reference the type itself. To create a `new()` constructor function that returns the type we can set the return type to `Self`:
+
+```rust
+impl Person {
+    fn new(name: String, age: i32) -> Self {
+        Person { name, age }
+    }
+}
+```
+
+This gives us the ability to use `Person::new()`
+
+## Self references
+
+However, it often makes sense to call methods _from_ an instantiation itself.
+
+We can do this by setting the first argument to `&self` which provides a **reference** to the struct the method is called on.
+
+```rust
+impl Person {
+    fn greet(&self) {
+        println!("Hello, my name is {} and I am {} years old.", self.name, self.age);
+    }
+}
+```
+
+Using a `&self` reference means you cannot _move_ the inner fields, only borrow them.
+
+
+We can also have arguments that refer to other instantiations of the same type via `&Self` or `Self`. For example to compare ages of people:
+
+```rust
+impl Person {
+    fn is_older_than(&self, other_person: &Self) -> bool {
+        self.age > other_person.age
+    }
+}
+```
+
+## Mutable self
+
+Often it makes sense to modify the fields of a struct. This is when a _mutable reference_ is handy via `&mut self`.
+
+For example we can implement methods to `rename()` and `celebrate_birthday()`:
+
+```rust
+impl Person {
+    fn rename(&mut self, new_name: &str) {
+        self.name = new_name.to_string();
+    }
+
+    fn celebrate_birthday(&mut self) {
+        self.age += 1;
+    }
+}
+```
+
+
+
+## Exercise
+
+- Implement a `Point::new()` associated function that returns `Self` and has two arguments `x: f64` and `y: f64`
+- Define a method `euclidean_distance()` which calculates the distance between itself and a `destination` returning an `f64`
+  - Distance is calculated as $\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$
+  - Use `.powi(2)` to square a value and `x.sqrt()` to get the square root
+
+<details>
+    <summary>View solution</summary>
+
+```rust
+impl Point {
+    fn new(x: f64, y: f64) -> Self {
+        Self { x, y }
+    }
+
+    fn euclidean_distance(&self, destination: &Self) -> f64 {
+        let x_diff = (self.x - destination.x).powi(2);
+        let y_diff = (self.y - destination.y).powi(2);
+
+        (x_diff + y_diff).sqrt()
+    }
+}
+```
+</details>
+
+
+
 ## Bonus: Exercise 2
 
 
+Euclidean distance is useful only on a rectangle. What about on a sphere? Haversine distance is used to calculate the distance on a sphere. The Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.
 
-Haversine distance is a fast way of calculating distances on a sphere. It is not the most accurate method for all cases, but it's good enough for many common applications like calculating distances between cities!
+It is defined by the following (messy) equation:
 
-It is defined by the following equation:
-
-The Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.
 
 $$a = \sin^2\left(\frac{\Delta\phi}{2}\right) + \cos\phi_1 \cdot \cos\phi_2 \cdot \sin^2\left(\frac{\Delta\lambda}{2}\right)$$
 
@@ -62,7 +160,8 @@ Where:
 * The `c` part of the formula, $2 \cdot \text{atan2}(\sqrt{a}, \sqrt{1-a})$, can also be implemented using `2 * a.sqrt().asin()` in Rust, which is a common simplification when `a` is within the valid domain for `asin`.
 
 
-### Solution
+<details>
+    <summary>View solution</summary>
 
 ```rust
 impl Point {
@@ -81,3 +180,5 @@ impl Point {
 }
 
 ```
+
+</details>

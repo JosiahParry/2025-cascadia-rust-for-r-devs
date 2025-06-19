@@ -432,11 +432,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link active" data-scroll-target="#exercise">Exercise</a></li>
-  <li><a href="#bonus-exercise-2" id="toc-bonus-exercise-2" class="nav-link" data-scroll-target="#bonus-exercise-2">Bonus: Exercise 2</a>
-  <ul class="collapse">
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
-  </ul></li>
+  <li><a href="#associated-functions" id="toc-associated-functions" class="nav-link active" data-scroll-target="#associated-functions">Associated Functions</a></li>
+  <li><a href="#implement-methods" id="toc-implement-methods" class="nav-link" data-scroll-target="#implement-methods"><code>impl</code>ement methods</a></li>
+  <li><a href="#self-references" id="toc-self-references" class="nav-link" data-scroll-target="#self-references">Self references</a></li>
+  <li><a href="#mutable-self" id="toc-mutable-self" class="nav-link" data-scroll-target="#mutable-self">Mutable self</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#bonus-exercise-2" id="toc-bonus-exercise-2" class="nav-link" data-scroll-target="#bonus-exercise-2">Bonus: Exercise 2</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/intro-to-rust-for-r-devs/struct-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -472,37 +473,103 @@ Objectives
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>Learn about <code>impl</code>-blocks</li>
-<li>Understand the difference between methods that take <code>self</code>, <code>&amp;self</code>, and <code>&amp;mut self</code>!</li>
-<li>Use and appreciate the <code>Self</code> type alias</li>
-</ul>
+<p>Learn how to implement methods for stucts. Be able to create associated functions and understand the difference between <code>Self</code>, <code>&amp;self</code>, and <code>&amp;mut self</code></p>
+<!--
+- Learn about `impl`-blocks
+- Understand the difference between methods that take `self`, `&self`, and `&mut self`!
+- Use and appreciate the `Self` type alias
+
+-->
 </div>
 </div>
+<section id="associated-functions" class="level2">
+<h2 class="anchored" data-anchor-id="associated-functions">Associated Functions</h2>
+<p>Typically methods used on instantiations of a variable such as:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> birth_year <span class="op">=</span> me<span class="op">.</span>year_of_birth()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sometimes it makes sense to use an <strong>associated function</strong>. These are functions that are called from the type itself e.g.&nbsp;<code>Type::function()</code>. They’re typically used for <em>constructors</em>. For example</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> me <span class="op">=</span> <span class="pp">Person::</span>new(<span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> <span class="dv">29</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>They’re created using an <code>impl</code> block.</p>
+</section>
+<section id="implement-methods" class="level2">
+<h2 class="anchored" data-anchor-id="implement-methods"><code>impl</code>ement methods</h2>
+<p><code>impl</code> is short for <strong>implement</strong>. We can implement methods for structs using the following syntax:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> TypeName <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> method() <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">todo!</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Associated functions are methods that do not reference the type itself. To create a <code>new()</code> constructor function that returns the type we can set the return type to <code>Self</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> new(name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span> age<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        Person <span class="op">{</span> name<span class="op">,</span> age <span class="op">}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This gives us the ability to use <code>Person::new()</code></p>
+</section>
+<section id="self-references" class="level2">
+<h2 class="anchored" data-anchor-id="self-references">Self references</h2>
+<p>However, it often makes sense to call methods <em>from</em> an instantiation itself.</p>
+<p>We can do this by setting the first argument to <code>&amp;self</code> which provides a <strong>reference</strong> to the struct the method is called on.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> greet(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Hello, my name is {} and I am {} years old."</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>name<span class="op">,</span> <span class="kw">self</span><span class="op">.</span>age)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Using a <code>&amp;self</code> reference means you cannot <em>move</em> the inner fields, only borrow them.</p>
+<p>We can also have arguments that refer to other instantiations of the same type via <code>&amp;Self</code> or <code>Self</code>. For example to compare ages of people:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> is_older_than(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> other_person<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>age <span class="op">&gt;</span> other_person<span class="op">.</span>age</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mutable-self" class="level2">
+<h2 class="anchored" data-anchor-id="mutable-self">Mutable self</h2>
+<p>Often it makes sense to modify the fields of a struct. This is when a <em>mutable reference</em> is handy via <code>&amp;mut self</code>.</p>
+<p>For example we can implement methods to <code>rename()</code> and <code>celebrate_birthday()</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> rename(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span><span class="op">,</span> new_name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>name <span class="op">=</span> new_name<span class="op">.</span>to_string()<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> celebrate_birthday(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>age <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ul>
-<li>Define a new method</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Struct <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fn</span> new(x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Self</span> <span class="op">{</span> x<span class="op">,</span> y <span class="op">}</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li>Implement a <code>Point::new()</code> associated function that returns <code>Self</code> and has two arguments <code>x: f64</code> and <code>y: f64</code></li>
+<li>Define a method <code>euclidean_distance()</code> which calculates the distance between itself and a <code>destination</code> returning an <code>f64</code>
 <ul>
-<li>define a distance method that calculates the euclidean distance between a point and a reference to another</li>
+<li>Distance is calculated as <span class="math inline">\(\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\)</span></li>
+<li>Use <code>.powi(2)</code> to square a value and <code>x.sqrt()</code> to get the square root</li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> euclidean_distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ((<span class="kw">self</span><span class="op">.</span>x <span class="op">-</span> destination<span class="op">.</span>x)<span class="op">.</span>powi(<span class="dv">2</span>) <span class="op">+</span> (<span class="kw">self</span><span class="op">.</span>y <span class="op">-</span> destination<span class="op">.</span>y)<span class="op">.</span>powi(<span class="dv">2</span>))<span class="op">.</span>sqrt()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> new(x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Self</span> <span class="op">{</span> x<span class="op">,</span> y <span class="op">}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> euclidean_distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> x_diff <span class="op">=</span> (<span class="kw">self</span><span class="op">.</span>x <span class="op">-</span> destination<span class="op">.</span>x)<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> y_diff <span class="op">=</span> (<span class="kw">self</span><span class="op">.</span>y <span class="op">-</span> destination<span class="op">.</span>y)<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        (x_diff <span class="op">+</span> y_diff)<span class="op">.</span>sqrt()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </section>
 <section id="bonus-exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-exercise-2">Bonus: Exercise 2</h2>
-<p>Haversine distance is a fast way of calculating distances on a sphere. It is not the most accurate method for all cases, but it’s good enough for many common applications like calculating distances between cities!</p>
-<p>It is defined by the following equation:</p>
-<p>The Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.</p>
+<p>Euclidean distance is useful only on a rectangle. What about on a sphere? Haversine distance is used to calculate the distance on a sphere. The Haversine formula computes the distance between two points on a sphere given their longitudes and latitudes.</p>
+<p>It is defined by the following (messy) equation:</p>
 <p><span class="math display">\[a = \sin^2\left(\frac{\Delta\phi}{2}\right) + \cos\phi_1 \cdot \cos\phi_2 \cdot \sin^2\left(\frac{\Delta\lambda}{2}\right)\]</span></p>
 <p><span class="math display">\[c = 2 \cdot \text{atan2}(\sqrt{a}, \sqrt{1-a})\]</span></p>
 <p><span class="math display">\[d = R \cdot c\]</span></p>
@@ -520,25 +587,27 @@ Objectives
 <li>Remember to convert your latitude and longitude values from degrees to <strong>radians</strong> using the <code>.to_radians()</code> method on <code>f64</code>.</li>
 <li>The <code>c</code> part of the formula, <span class="math inline">\(2 \cdot \text{atan2}(\sqrt{a}, \sqrt{1-a})\)</span>, can also be implemented using <code>2 * a.sqrt().asin()</code> in Rust, which is a common simplification when <code>a</code> is within the valid domain for <code>asin</code>.</li>
 </ul>
-<section id="solution" class="level3">
-<h3 class="anchored" data-anchor-id="solution">Solution</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> haversine_distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> radius <span class="op">=</span> <span class="dv">6_371_008.7714</span><span class="op">;</span> <span class="co">// Earth's mean radius in meters</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta1 <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 1</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta2 <span class="op">=</span> destination<span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 2</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_theta <span class="op">=</span> (destination<span class="op">.</span>y <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>y)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Latitude</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_lambda <span class="op">=</span> (destination<span class="op">.</span>x <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>x)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Longitude</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> a <span class="op">=</span> (delta_theta <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> theta1<span class="op">.</span>cos() <span class="op">*</span> theta2<span class="op">.</span>cos() <span class="op">*</span> (delta_lambda <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2f64</span> <span class="op">*</span> a<span class="op">.</span>sqrt()<span class="op">.</span>asin() <span class="op">*</span> radius</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+View solution
+</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Point <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> haversine_distance(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> destination<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> radius <span class="op">=</span> <span class="dv">6_371_008.7714</span><span class="op">;</span> <span class="co">// Earth's mean radius in meters</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta1 <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 1</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> theta2 <span class="op">=</span> destination<span class="op">.</span>y<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Latitude of point 2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_theta <span class="op">=</span> (destination<span class="op">.</span>y <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>y)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Latitude</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> delta_lambda <span class="op">=</span> (destination<span class="op">.</span>x <span class="op">-</span> <span class="kw">self</span><span class="op">.</span>x)<span class="op">.</span>to_radians()<span class="op">;</span> <span class="co">// Delta Longitude</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> a <span class="op">=</span> (delta_theta <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> theta1<span class="op">.</span>cos() <span class="op">*</span> theta2<span class="op">.</span>cos() <span class="op">*</span> (delta_lambda <span class="op">/</span> <span class="dv">2f64</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2f64</span> <span class="op">*</span> a<span class="op">.</span>sqrt()<span class="op">.</span>asin() <span class="op">*</span> radius</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
