@@ -389,13 +389,12 @@ fn main() {
 * Values *outside* of the for loop are accessible inside of it.
 * Values created *inside* of the for loop cannot be accessed outside of it.
 
-
 . . .
-
 
 ::: columns
 
 ::: column
+
 :::{.callout-tip title = "This does compile" icon=false}
 ```rust
 fn main() {
@@ -434,7 +433,9 @@ fn main() {
 
 :::
 
-## Exercise
+:::
+
+# Exercise
 
 # Mutability
 
@@ -481,3 +482,109 @@ fn main() {
 ```
 
 # Exercise
+
+# Mutable Vectors
+
+::: callout-tip
+## Objective
+Learn how to create and modify vectors with mutable operations.
+:::
+
+## Empty vectors
+
+- Vectors are growable
+- Must be `mut`(able) to grow or modify
+- `Vec::new()` creates an empty vector.
+- `.push()` adds an element to the end of a vector.
+
+. . .
+
+```rust
+fn main() {
+    let mut names = Vec::new();
+    names.push("Alice");
+    names.push("Bob");
+    println!("{:?}", names);
+}
+```
+
+
+## Clearing vectors
+
+You can remove all elements from a vector using `.clear()`:
+
+```rust
+fn main() {
+    let mut nums = vec![1, 2, 3];
+    nums.clear();
+    println!("{:?}", nums); // prints []
+}
+```
+
+## Sorting vectors
+
+Use `.sort()` to sort a vector. Important to note that not all types can be sorted.
+
+```rust
+fn main() {
+    let mut x = vec![11, 3, 7, 10, 1];
+    println!("x before sorting: {x:?}");
+    x.sort();
+    println!("x after sorting:  {x:?}");
+}
+```
+```
+x before sorting: [11, 3, 7, 10, 1]
+x after sorting:  [1, 3, 7, 10, 11]
+```
+
+## Combining vectors
+
+- `.extend()` adds the contents of another vector.
+- The original vector must be `mut`.
+- The second vector is **moved** into the first.
+- `b` can no longer be used.
+
+. . .
+
+```rust
+fn main() {
+    let mut a = vec![1, 2];
+    let b = vec![3, 4];
+    // note that we don't assign.
+    // Instead, `a` is modified in place
+    a.extend(b);
+    println!("{:?}", a); // prints [1, 2, 3, 4]
+}
+```
+
+# Exercise
+
+
+# Functions
+
+::: callout-tip
+Learn how to define and use your own functions in Rust.
+:::
+
+
+## Functions
+
+- Declared using `fn` keyword
+- Last object in body is returned
+- `return` is _only_ for early returns
+- Arguments are typed
+
+. . .
+
+```rust
+fn name_of_function(arg1: ArgType) -> ReturnType {
+    // function body
+    my_return_object
+}
+```
+
+#
+
+
+![is-odd npm](/images/is-odd.png){width=70%}
