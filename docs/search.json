@@ -10,16 +10,6 @@
     ]
   },
   {
-    "objectID": "index.html#setting-up",
-    "href": "index.html#setting-up",
-    "title": "Rust for R Developers",
-    "section": "",
-    "text": "R 4.5\nPositron\nRust\nRust analyzer VS Code extension\nEven Better TOML VS Code extension\n{rextendr}",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get set up</span>"
-    ]
-  },
-  {
     "objectID": "index.html#install-r",
     "href": "index.html#install-r",
     "title": "Rust for R Developers",
@@ -179,6 +169,72 @@
     ]
   },
   {
+    "objectID": "intro-to-rust-for-r-devs/types.html#integers",
+    "href": "intro-to-rust-for-r-devs/types.html#integers",
+    "title": "3  Basic Types",
+    "section": "",
+    "text": "Signed Integers: i8, i16, i32, i64, i128\nUnsigned Integers: u8, u16, u32, u64, u128\n\n\n\n\n\n\n\nIn R, an integer vector is comprised of i32 values.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#floating-point",
+    "href": "intro-to-rust-for-r-devs/types.html#floating-point",
+    "title": "3  Basic Types",
+    "section": "Floating point",
+    "text": "Floating point\nIn many cases where we need to do math we will use a floating point number. Floating points are signed and allow for decimal values.\nThere are two types: f32 and f64.\n\n\n\n\n\n\nIn R, a double vector is comprised of f64 values.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#strong-typing",
+    "href": "intro-to-rust-for-r-devs/types.html#strong-typing",
+    "title": "3  Basic Types",
+    "section": "Strong typing",
+    "text": "Strong typing\nRust will infer a value’s type exceptionally well! However, we may want to specify the type manually as well. We can do this 2 primary ways:\n\nIn assignment using : for example let x: f64 = 10;\nOr by specifying the suffix e.g. 10f64 or 10_i32\n\n\n\n\n\n\n\nYou can use _ as a visual separator when specifying numbers in Rust. The following are all identical values:\nlet x: i32 = 1000;\nlet x = 1000i32;\nlet x = 1_000_i32;",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#type-casting",
+    "href": "intro-to-rust-for-r-devs/types.html#type-casting",
+    "title": "3  Basic Types",
+    "section": "Type casting",
+    "text": "Type casting\nIn Rust, math expressions can only be performed between like-types. You cannot add 2.0 + 3_f64. To accomplish this we must cast to the same types.\nPrimitive types can be cast into one another using the as keyword. To add an f64 to an i32 we should ensure they’re the same type.\nfn add2(x: f64, y: i32) -&gt; f64 {\n   x + y as f64\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#unit-type",
+    "href": "intro-to-rust-for-r-devs/types.html#unit-type",
+    "title": "3  Basic Types",
+    "section": "Unit type",
+    "text": "Unit type\nIn Rust there is no concept of NULL. Instead there is the unit type which is represented as ().\n\n\nThe unit type is technically a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory.\nFunctions that do not return anything technically return ().",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/types.html#exercise",
+    "href": "intro-to-rust-for-r-devs/types.html#exercise",
+    "title": "3  Basic Types",
+    "section": "Exercise",
+    "text": "Exercise\nModify src/main.rs to add two or more incompatible types.\n\nDefine a variable x to be an f64 value\nDefine y to be an i32 value\nAdd them up and store them in the variable z\nUse println!() to print the value of z\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = 3.14;\n    let y = 47_i32;\n    let z = x + y as f64;\n    println!(\" The vlaue of z is {z}\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
+    ]
+  },
+  {
     "objectID": "intro-to-rust-for-r-devs/fizz-buzz.html",
     "href": "intro-to-rust-for-r-devs/fizz-buzz.html",
     "title": "4  Control Flow",
@@ -260,7 +316,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html#vectors",
     "title": "5  Arrays and Vectors",
     "section": "Vectors",
-    "text": "Vectors\nVectors are like growable arrays. They are much more common in everyday Rust code. To create an array with known values, use the vec![] macro. Like an array, they must all be the same type.\nfn main() {\n    let v = vec![1, 2, 3, 4, 5];\n    println!(\"Vector: {:?}\", v);\n}\nThe type of a vector is specified using Vec&lt;T&gt; where T is shorthand for any type.\nAn empty vector can be created using Vec::new() or vec![]. If creating an empty vector, the type must be inferred or made explicit. Vectors also have methods. Two handy ones are .len() and .is_empty() (equivalent of .len() == 0)\n\n\n\n\n\n\nCannot compile\n\n\n\nfn main() {\n    let x = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}\n\n\nThis cannot compile because the type of x is not known. Rust can infer the type if the vector is used elsewhere where the type is known. To make it compile we must specify the type.\nfn main() {\n    let x: Vec&lt;f64&gt; = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}",
+    "text": "Vectors\nVectors are like growable arrays. They are much more common in everyday Rust code. To create a vector with known values, use the vec![] macro. Like an array, they must all be the same type.\nfn main() {\n    let v = vec![1, 2, 3, 4, 5];\n    println!(\"Vector: {:?}\", v);\n}\nThe type of a vector is specified using Vec&lt;T&gt; where T is shorthand for any type.\nAn empty vector can be created using Vec::new() or vec![]. If creating an empty vector, the type must be inferred or made explicit. Vectors also have methods. Two handy ones are .len() and .is_empty() (equivalent of .len() == 0)\n\n\n\n\n\n\nCannot compile\n\n\n\nfn main() {\n    let x = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}\n\n\nThis cannot compile because the type of x is not known. Rust can infer the type if the vector is used elsewhere where the type is known. To make it compile we must specify the type.\nfn main() {\n    let x: Vec&lt;f64&gt; = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -327,6 +383,17 @@
     "title": "7  Mutability",
     "section": "",
     "text": "Example\nIn R everything is immutable (except environments). Immutable objects cannot be altered.\nIn Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the mut keyword.\nBy requiring mut, the compiler ensures that accidental mutations are caught at compile time.\nRevisiting our loop from earlier:",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/mutability.html#example",
+    "href": "intro-to-rust-for-r-devs/mutability.html#example",
+    "title": "7  Mutability",
+    "section": "",
+    "text": "fn main() {\n    // create a vector\n    let numbers = vec![1, 2, 3];\n    // create a mutable value\n    let mut doubled = 0;\n\n    // iterate through numbers to update doubled\n    for n in numbers {\n        doubled = n * 2;\n        println!(\"{} doubled is {}\", n, doubled);\n    }\n\n    // ✅ compiles because `doubled` was declared\n    // _outside_ of the inner loop scope\n    println!(\"Last doubled: {}\", doubled);\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
@@ -421,22 +488,22 @@
     ]
   },
   {
-    "objectID": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
-    "href": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#cloning",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#cloning",
     "title": "10  Ownership",
-    "section": "Borrowing",
-    "text": "Borrowing\nWhile variables may only be used once, they can be borrowed infinitely (until they go out of scope). A variable can be used by reference when the & symbol is placed in front of it—e.g. arg: &Vec&lt;f64&gt;.\nfn main() {\n    let x = vec![1.0, 2.0, 3.0];\n    let avg = mean(&x); // 👈 borrowing `x`\n    println!(\"x is still usable: {:?}\", x);\n}\nIf you borrow a variable you cannot mutate it or move it.",
+    "section": "Cloning",
+    "text": "Cloning\nThe simplest but least efficient way to reuse a variable is to clone it. This is what R does.\n\n\n\n\n\n\nRemember: when in doubt, clone it out!\n\n\n\nAlmost everything in Rust can be cloned by using the .clone() method.\n\n\n\n\n\n\nCannot compile\n\n\n\nlet x  = v![0.0, 3.14, 10.1, 44.8];\n\nlet avg1 = mean(x); // ⬅️ x moved here!\nlet avg2 = mean(x); // ❌ compiler error\n\n\nIf we first clone x before using mean() we can use x again.\nlet x  = v![0.0, 3.14, 10.1, 44.8];\n\nlet avg1 = mean(x.clone()); // ⬅️ x cloned here!\nlet avg2 = mean(x); // ✅ compiler happy",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
     ]
   },
   {
-    "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
-    "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#borrowing",
     "title": "10  Ownership",
-    "section": "Exercise 1",
-    "text": "Exercise 1\n\nCalculate the mean of the same Vec&lt;f64&gt; twice\nPrint the vector at the end\n\n\n\nView solution\n\nfn mean(x: Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    for xi in x {\n        total += xi;\n    }\n    total / x.len() as f64\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let result = mean(x.clone());\n    let result2 = mean(x.clone())\n    println!(\"The vector is still {:?}\", x);\n}",
+    "section": "Borrowing",
+    "text": "Borrowing\nWhile variables may only be used once, they can be borrowed infinitely (until they go out of scope). A variable can be used by reference when the & symbol is placed in front of it—e.g. arg: &Vec&lt;f64&gt;.\nfn main() {\n    let x = vec![1.0, 2.0, 3.0];\n    let avg = mean(&x); // 👈 borrowing `x`\n    println!(\"x is still usable: {:?}\", x);\n}\nIf you borrow a variable you cannot mutate it or move it.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
@@ -454,11 +521,33 @@
     ]
   },
   {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-1",
+    "title": "10  Ownership",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nCalculate the mean of the same Vec&lt;f64&gt; twice\nPrint the vector at the end\n\n\n\nView solution\n\nfn mean(x: Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    for xi in x {\n        total += xi;\n    }\n    total / x.len() as f64\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let result = mean(x.clone());\n    let result2 = mean(x.clone())\n    println!(\"The vector is still {:?}\", x);\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
+    ]
+  },
+  {
     "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-2",
     "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-2",
     "title": "10  Ownership",
     "section": "Exercise 2",
     "text": "Exercise 2\n\nRewrite the mean() function to accept a reference to a Vec&lt;f64&gt; instead of taking ownership\nThen call it with a borrowed vector.\n\n\n\nView solution\n\nfn mean(x: &Vec&lt;f64&gt;) -&gt; f64 {\n    let mut total = 0.0;\n    for xi in x {\n        total += xi;\n    }\n    total / x.len() as f64\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let result = mean(&x);\n    println!(\"The mean of x is {result}\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-3",
+    "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-3",
+    "title": "10  Ownership",
+    "section": "Exercise 3",
+    "text": "Exercise 3\n\nRewrite mean() to accept a slice (&[f64]) instead of a Vec&lt;f64&gt; reference.\nCreate an array of f64 values called y\nCalculate the mean on both x and y\nPrint both averages\n\n\n\nView solution\n\nfn mean(x: &[f64]) -&gt; f64 {\n    let mut total = 0.0;\n    for xi in x {\n        total += xi;\n    }\n    total / x.len() as f64\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let y = [0.0, 9.5, 3.3, 11.78, 3.14159];\n    println!(\"The mean of x is {}.\\nThe mean of y is {}\", mean(&x), mean(&y));\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
@@ -498,6 +587,17 @@
     ]
   },
   {
+    "objectID": "intro-to-rust-for-r-devs/iterators.html#enumerated-iterators",
+    "href": "intro-to-rust-for-r-devs/iterators.html#enumerated-iterators",
+    "title": "11  Iterators",
+    "section": "Enumerated iterators",
+    "text": "Enumerated iterators\nOften it is quite nice to have the index associated with each item in an iterator. To do so, we can use .enumerate() after calling either .iter() or .into_iter(). This modifies each element to be a tuple with (i, xi).\n\n\n\n\n\n\nThe .enumerate() method returns the type usize which is a special type of unsigned integer. You can cast them to integers or floats using i as i32, for example.\n\n\n\nRust is 0 indexed so the first value of the enumeration is going to be 0.\nFor example:\nfn is_even(x: i32) -&gt; bool {\n    x % 2 == 0\n}\n\nfn main() {\n    let x = vec![2, 4, 8];\n\n    for (i, xi) in x.iter().enumerate() {\n        if is_even(i as i32) {\n            println!(\"i is even with value {xi}\");\n        }\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
+    ]
+  },
+  {
     "objectID": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/iterators.html#exercise-1",
     "title": "11  Iterators",
@@ -531,22 +631,44 @@
     ]
   },
   {
-    "objectID": "intro-to-rust-for-r-devs/iter-map.html#mapping-over-iterators",
-    "href": "intro-to-rust-for-r-devs/iter-map.html#mapping-over-iterators",
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#using-.map",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#using-.map",
     "title": "12  Mapping over Iterators",
     "section": "",
-    "text": "each item in the iterator must end up being the same type\nin R when we use map it automatically returns the result as a vector\nin rust, we can map over the iterator many times\nwe have to explicitly collect the result into our own type\n\nuse the .collect() method\n\ntypically this is a Vec&lt;T&gt; that we want to collect to.\nwe can specify the type explicitly by using let x: Vec&lt;f64&gt; = x.iter().map().collect()\n.map() transforms each item of an iterator by applying a closure (anonymous function)\nClosures are small functions you can define inline, e.g. |x| x + 1\nakin to purrr::map(x, ~ .x + 1) or .purrr::map(x, \\(.x) .x + 1)\nmapping only modifies the iterator\nwe need to collect() the values into another container if we want them\n\n\nExample\nTODO!",
+    "text": "// providing explicit type annotation in one\n// value so the compiler knows its f64 and not f32\nlet x = vec![5.9_f64, 6.8, 4.5, 7.3, 6.2];\n\nx.iter().map(|xi| xi.powi(2))",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
     ]
   },
   {
-    "objectID": "intro-to-rust-for-r-devs/iter-map.html#collecting-iterators",
-    "href": "intro-to-rust-for-r-devs/iter-map.html#collecting-iterators",
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#closures",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#closures",
     "title": "12  Mapping over Iterators",
-    "section": "Collecting iterators",
-    "text": "Collecting iterators\n\n.collect() gathers the results of an iterator into a collection (like a vector)\nwe need to specify the type of what we’re collecting into.\nin our case we’re always going to collect into a vector\ntwo ways of specifying\n\nwe can specify the resultant type in the assignment with let x: Vec&lt;i32&gt; but this is not as flexible to changing code\nTurbofish ::&lt;Type&gt;() is used to explicitly specify types when needed\n\nits a bit more awkward at first, but it is more flexible and doesn’t require modification whenever the inner type changes\nadditionall we can use rust’s iference using _\n\n\n\n\nExamples\n\n\n\n\n\n\nExplicit typing\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented: Vec&lt;_&gt; = nums.iter()\n        .map(|x| x + 1)\n        .collect();\n\n    println!(\"{:?}\", incremented);\n}\n\n\nInference w/ turbofish\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented = nums.iter()\n        .map(|x| x + 1)\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    println!(\"{:?}\", incremented);\n}",
+    "section": "Closures",
+    "text": "Closures\nIn the above example we used a closure to modify each element of the iterator. Closures are Rust’s version of an anonymous function.\nA closure takes the structure |arg| expression. They can also be multiple lines by wrapping the expression in a braces:\nx\n    .iter()\n    .map(|xi| {\n        let squared = xi.powi(2);\n        xi.sqrt()\n    })\nSince iterators only contain one item, the closure only has one argument. However, you can use destructuring in the closure. For example if using .enumerate() we want to access i we can do so:\nx\n    .iter()\n    .enumerate()\n    .map(|(i, xi)| {\n        // do stuff here\n    })",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#collecting-results",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#collecting-results",
+    "title": "12  Mapping over Iterators",
+    "section": "Collecting results",
+    "text": "Collecting results\nIn R when we use map() the results are always returned as a vector. In Rust, we have to explcitly collect the iterator into our own type using .collect().\nTypically iterators are collected into a Vec&lt;T&gt;. Rust cant always infer the type that you want to collect into so we must tell the compiler what type we want.\nWe can do this during assignment:\nlet x_squared: Vec&lt;f64&gt; = x.iter().map(|xi| xi.powi(2)).collect();",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/iter-map.html#turbofish",
+    "href": "intro-to-rust-for-r-devs/iter-map.html#turbofish",
+    "title": "12  Mapping over Iterators",
+    "section": "Turbofish 🐠💨",
+    "text": "Turbofish 🐠💨\nAlternatively, we can use “turbofish” syntax. We can specify the type directly in the .collect() function. .collect() is a generic method. And in the words of the Rust standard library documentation (emphasis mine)\n\n“Because collect() is so general, it can cause problems with type inference. As such, collect() is one of the few times you’ll see the syntax affectionately known as the ‘turbofish’: ::&lt;&gt;. This helps the inference algorithm understand specifically which collection you’re trying to collect into.”\n\nTurbofish takes the structure of .collect::&lt;TYPE&gt;().\n\nExamples\n\n\n\n\n\n\nExplicit typing\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented: Vec&lt;_&gt; = nums.iter()\n        .map(|x| x + 1)\n        .collect();\n\n    println!(\"{:?}\", incremented);\n}\n\n\nInference w/ turbofish\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented = nums.iter()\n        .map(|x| x + 1)\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    println!(\"{:?}\", incremented);\n}\n\n\n\nTurbofish is a bit more awkward at first, but it is more flexible and doesn’t require modification whenever the inner type changes.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
@@ -586,6 +708,39 @@
     ]
   },
   {
+    "objectID": "intro-to-rust-for-r-devs/structs.html#deriving-behavior",
+    "href": "intro-to-rust-for-r-devs/structs.html#deriving-behavior",
+    "title": "13  Defining Struct(ure)s",
+    "section": "",
+    "text": "#[derive(Debug, Clone)]\nstruct Person {\n    name: String,\n    age: i32\n}\n\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    println!(\"{me:?}\");\n}\nPerson { name: \"Josiah\", age: 29 }",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/structs.html#accessing-fields",
+    "href": "intro-to-rust-for-r-devs/structs.html#accessing-fields",
+    "title": "13  Defining Struct(ure)s",
+    "section": "Accessing Fields",
+    "text": "Accessing Fields\nFields of a struct can be accessed directly, or by reference. Field can be accessed using var.field_name.\nIf a field is accessed and moved, the struct cannot be moved. The same rules of borrowing apply to a struct. You can borrow a field as much as you want but you can only move it once. Otherwise, the entire struct cannot be used.\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    let name = me.name;\n    println!(\"{me:?}\");\n}\nerror[E0382]: borrow of partially moved value: `me`\n  --&gt; src/main.rs:10:15\n   |\n9  |     let name = me.name;\n   |                ------- value partially moved here\n10 |     println!(\"{me:?}\");\n   |               ^^^^^^ value borrowed here after partial move",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/structs.html#destructuring",
+    "href": "intro-to-rust-for-r-devs/structs.html#destructuring",
+    "title": "13  Defining Struct(ure)s",
+    "section": "Destructuring",
+    "text": "Destructuring\nIt is possible to destructure a struct during assignment creating many variables at one time.\nTo destructure during assignment you use the syntax let StructName { field, field } = variable;\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    let Person { name, age } = me;\n    println!(\"{name} is {age} years old\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
+    ]
+  },
+  {
     "objectID": "intro-to-rust-for-r-devs/structs.html#exercise",
     "href": "intro-to-rust-for-r-devs/structs.html#exercise",
     "title": "13  Defining Struct(ure)s",
@@ -601,7 +756,51 @@
     "href": "intro-to-rust-for-r-devs/struct-methods.html",
     "title": "14  Struct Methods",
     "section": "",
-    "text": "Associated Functions\nTypically methods used on instantiations of a variable such as:\nSometimes it makes sense to use an associated function. These are functions that are called from the type itself e.g. Type::function(). They’re typically used for constructors. For example\nThey’re created using an impl block.",
+    "text": "Associated Functions\nTypically methods are used on instantiations of a variable such as:\nSometimes it makes sense to use an associated function. These are functions that are called from the type itself e.g. Type::function(). They’re typically used for constructors. For example\nThey’re created using an impl block.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#associated-functions",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#associated-functions",
+    "title": "14  Struct Methods",
+    "section": "",
+    "text": "let me = Person { name: \"Josiah\".to_string(), age: 29 };\nlet birth_year = me.year_of_birth();\n\nlet me = Person::new(\"Josiah\".to_string(), 29);",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#implement-methods",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#implement-methods",
+    "title": "14  Struct Methods",
+    "section": "implement methods",
+    "text": "implement methods\nimpl is short for implement. We can implement methods for structs using the following syntax:\nimpl TypeName {\n    fn method() {\n        todo!()\n    }\n}\nAssociated functions are methods that do not reference the type itself. To create a new() constructor function that returns the type we can set the return type to Self:\nimpl Person {\n    fn new(name: String, age: i32) -&gt; Self {\n        Person { name, age }\n    }\n}\nThis gives us the ability to use Person::new()",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#self-references",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#self-references",
+    "title": "14  Struct Methods",
+    "section": "Self references",
+    "text": "Self references\nHowever, it often makes sense to call methods from an instantiation itself.\nWe can do this by setting the first argument to &self which provides a reference to the struct the method is called on.\nimpl Person {\n    fn greet(&self) {\n        println!(\"Hello, my name is {} and I am {} years old.\", self.name, self.age);\n    }\n}\nUsing a &self reference means you cannot move the inner fields, only borrow them.\nWe can also have arguments that refer to other instantiations of the same type via &Self or Self. For example to compare ages of people:\nimpl Person {\n    fn is_older_than(&self, other_person: &Self) -&gt; bool {\n        self.age &gt; other_person.age\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#mutable-self",
+    "href": "intro-to-rust-for-r-devs/struct-methods.html#mutable-self",
+    "title": "14  Struct Methods",
+    "section": "Mutable self",
+    "text": "Mutable self\nOften it makes sense to modify the fields of a struct. This is when a mutable reference is handy via &mut self.\nFor example we can implement methods to rename() and celebrate_birthday():\nimpl Person {\n    fn rename(&mut self, new_name: &str) {\n        self.name = new_name.to_string();\n    }\n\n    fn celebrate_birthday(&mut self) {\n        self.age += 1;\n    }\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
@@ -663,6 +862,28 @@
     ]
   },
   {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#wildcard-matching",
+    "href": "intro-to-rust-for-r-devs/enums.html#wildcard-matching",
+    "title": "15  Enum(eration)s",
+    "section": "Wildcard matching",
+    "text": "Wildcard matching\nSometimes we want to customize behavior on only a subset of variants. We can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”.\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons\");\n    _ =&gt; println!(\"Every other polygon is mid\");\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/enums.html#enums-can-impl-too",
+    "href": "intro-to-rust-for-r-devs/enums.html#enums-can-impl-too",
+    "title": "15  Enum(eration)s",
+    "section": "Enums can impl, too",
+    "text": "Enums can impl, too\nEnums can have methods too just like a struct using impl keyword\nimpl Shape {\n    fn is_bestagon(&self) -&gt; bool {\n        match self {\n            Self::Hexagon =&gt; true,\n            _ =&gt; false\n        }\n    }\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
+    ]
+  },
+  {
     "objectID": "intro-to-rust-for-r-devs/enums.html#exercise-1",
     "href": "intro-to-rust-for-r-devs/enums.html#exercise-1",
     "title": "15  Enum(eration)s",
@@ -696,6 +917,28 @@
     ]
   },
   {
+    "objectID": "intro-to-rust-for-r-devs/options.html#option",
+    "href": "intro-to-rust-for-r-devs/options.html#option",
+    "title": "16  Some() or None?",
+    "section": "",
+    "text": "enum Option {\n    Some(T),\n    None\n}",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+    ]
+  },
+  {
+    "objectID": "intro-to-rust-for-r-devs/options.html#accessing-some-value",
+    "href": "intro-to-rust-for-r-devs/options.html#accessing-some-value",
+    "title": "16  Some() or None?",
+    "section": "Accessing Some() value",
+    "text": "Accessing Some() value\nSince Option&lt;T&gt; are “just” an enum, we can match on the variants to access the values.\n// create an Option&lt;Measure&gt; that contains a value\nlet measure = Some(Measure::Euclidean);\n\nmatch measure {\n    Some(v) =&gt; println!(\"The measure is not missing!\"),\n    None =&gt; println!(\"Oh no! The measure is missing\"),\n}\nWe put a placeholder value inside of Some(v) to create a binding to the inner value. It’s like a function argument, it can be called whatever you want it to be.",
+    "crumbs": [
+      "Intro to Rust for R Developers",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
+    ]
+  },
+  {
     "objectID": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
     "href": "intro-to-rust-for-r-devs/options.html#danger-.unwrap-.expect",
     "title": "16  Some() or None?",
@@ -718,503 +961,6 @@
     ]
   },
   {
-    "objectID": "intro-to-rust-for-r-devs/parallelize.html",
-    "href": "intro-to-rust-for-r-devs/parallelize.html",
-    "title": "18  Parallelizing",
-    "section": "",
-    "text": "TODO: before this we do combining iterators with .zip() and then go over destructuring into tuples there\n\nthis is a stretch exercise\nBrief intro to rayon\npar_iter()\ninto_par_iter()\nwith_min_len()\nObjective is to calculate the pairwise distances between two vectors of points super fast\nwe want to use .zip() to combine the two vectors\nthis would require using rand to create a vector of random numbers",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Parallelizing</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html",
-    "href": "building-rust-based-r-pkgs/index.html",
-    "title": "Building Rust based R Packages",
-    "section": "",
-    "text": "Objective\nIn this workshop we will create a Rust-based R package to perform geohashing using extendr.\nThe first few sections of the workshop may be a litte “lesson” intensive and the latter portion light on it.",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#objective",
-    "href": "building-rust-based-r-pkgs/index.html#objective",
-    "title": "Building Rust based R Packages",
-    "section": "",
-    "text": "Learn how to create Rust based R packages using extendr\nBegin to feel comfortable working with data between R & Rust\nCreate an R package to perform geohashing based on the Rust crate called geohash",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#general-overview",
-    "href": "building-rust-based-r-pkgs/index.html#general-overview",
-    "title": "Building Rust based R Packages",
-    "section": "General Overview",
-    "text": "General Overview\n\nWhat is FFI\nWhat is extendr\n\nwebR support\n\nR’s C API\nextendr-ffi & extendr-api",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#what-is-a-geohash",
-    "href": "building-rust-based-r-pkgs/index.html#what-is-a-geohash",
-    "title": "Building Rust based R Packages",
-    "section": "What is a geohash?",
-    "text": "What is a geohash?\n\nnot everyone is a geospatial nerd but i am\ni have 2 videos on this exact concept\na third video that goes through making this package that inspired this workshop\nSuper quick review of what a geohash is",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#hello-world",
-    "href": "building-rust-based-r-pkgs/index.html#hello-world",
-    "title": "Building Rust based R Packages",
-    "section": "Hello, World!",
-    "text": "Hello, World!\n\nCreating a new package usethis::create_package(rstudio = FALSE)\nAdd extendr rextendr::use_extendr()\npackage structure\n\nprevious workshop used a binary crate, we will be building a library crate\n\nrextendr::document()\ndevtools::load_all()\nhello_world()\nreview the contents\n#[extendr] attribute macro\nrprintln!()",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#rextendr-dx",
-    "href": "building-rust-based-r-pkgs/index.html#rextendr-dx",
-    "title": "Building Rust based R Packages",
-    "section": "rextendr DX",
-    "text": "rextendr DX\n\nshow the VS Code settings\nrunning cargo check",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#adding-dependencies",
-    "href": "building-rust-based-r-pkgs/index.html#adding-dependencies",
-    "title": "Building Rust based R Packages",
-    "section": "Adding dependencies",
-    "text": "Adding dependencies\n\nadd geohash dependency\nrextendr::use_crate()\nimport structs and functions\nimport Coord and encode()",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#a-new-r-function",
-    "href": "building-rust-based-r-pkgs/index.html#a-new-r-function",
-    "title": "Building Rust based R Packages",
-    "section": "A new R function",
-    "text": "A new R function\n\ncreate a basic function gh_encode() that takes an x: f64 and a y: f64 value and prints the coordinate\nnext exercise add 3rd argument for length which is [1:12] it’s usize",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#throwing-r-errors",
-    "href": "building-rust-based-r-pkgs/index.html#throwing-r-errors",
-    "title": "Building Rust based R Packages",
-    "section": "Throwing R errors",
-    "text": "Throwing R errors\n\nlet’s add validation with throw_r_error()\ncheck that the goehash length is appropriate range\nif not, throw and error",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#calling-rust-from-r",
-    "href": "building-rust-based-r-pkgs/index.html#calling-rust-from-r",
-    "title": "Building Rust based R Packages",
-    "section": "Calling Rust From R",
-    "text": "Calling Rust From R\n\nadd #[extendr] macro to the function\n\nthis does magic behind the hood to make it callable from R\n\nthe function must be added to extendr_module! {} for it to be available\nrun rextendr::document() for the new changes to take place\ndevtools::load_all() to make the function available",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#encoding-a-geohash",
-    "href": "building-rust-based-r-pkgs/index.html#encoding-a-geohash",
-    "title": "Building Rust based R Packages",
-    "section": "Encoding a geohash",
-    "text": "Encoding a geohash\n\nlets finish up our first function which will geohash a single coordinate by calling encode()\nencode() returns a Result&lt;String&gt;\na Result&lt;&gt; is a special type of Option&lt;&gt;\nwe will talk about handling errors gracefully in R later when we cover NA handling\nfor now we will .unwrap() the result right away\nadd the return type as String\n\nextendr will handle converting this into a character vector",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#vectorize-geohash-encoding",
-    "href": "building-rust-based-r-pkgs/index.html#vectorize-geohash-encoding",
-    "title": "Building Rust based R Packages",
-    "section": "Vectorize geohash encoding",
-    "text": "Vectorize geohash encoding\n\nmodify gh_encode() to take a Vec&lt;f64&gt; for both x and y\nWe will iterate through these together\nreview .zip() to merge iterators\nfor each element in the iterator we encode the geohash\ncollect to strings\nrextendr::document()\ndevtools::load_all()\n\ntest in R\nx &lt;- rnorm(100, -180, 180)\ny &lt;- rnorm(100, -90, 90)\ngh_len &lt;- 7\n\ngh_encode(x, y, gh_len)\n\nWhat about handling errors and NAs?\nGonna need to address type mapping first",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#type-mapping",
-    "href": "building-rust-based-r-pkgs/index.html#type-mapping",
-    "title": "Building Rust based R Packages",
-    "section": "Type Mapping",
-    "text": "Type Mapping\n\nvecs are fine for basic stuff.\nR types are more complex and have support for NULL and NA values\nScalar types\nVector types\nNULL in R\nRobj\nRust has the unit type (). We can tu",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#rs-type-system",
-    "href": "building-rust-based-r-pkgs/index.html#rs-type-system",
-    "title": "Building Rust based R Packages",
-    "section": "R’s type system",
-    "text": "R’s type system\n\nEverything is an SEXP\nBriefly discuss representations\nI thought really hard on whether or not to discuss this. Initially i thought i wouldnt, but i think it is actually really helpful to understand the fundamental data structures in R. It helps make the mental leaps much easier.\nSo we’re going to spend a few minutes discussing internal representations in R",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#robj-sexp",
-    "href": "building-rust-based-r-pkgs/index.html#robj-sexp",
-    "title": "Building Rust based R Packages",
-    "section": "Robj & SEXP",
-    "text": "Robj & SEXP\n\nin extendr, everything can be represented as an Robj\nRobj is an opaque type: we do not know what type it is, we just know its an Robj\na helpful catch-all\nwe can turn any extendr type into an Robj using the .into_robj() method",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#scalars",
-    "href": "building-rust-based-r-pkgs/index.html#scalars",
-    "title": "Building Rust based R Packages",
-    "section": "Scalars",
-    "text": "Scalars\n\nNA aware types that correspond to R’s type system\nevery scalar has na() method\n\n\nDoubles\n\ninternally represented by f64\naccess the inner f64 value using .inner()\nConvert f64 to an Rfloat using Rfloat::from(x)",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#strings",
-    "href": "building-rust-based-r-pkgs/index.html#strings",
-    "title": "Building Rust based R Packages",
-    "section": "Strings",
-    "text": "Strings\n\nA bit of a nightmare\nCreate Rstr from a String in Rust using Rstr::from(x)",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#using-extendr-types",
-    "href": "building-rust-based-r-pkgs/index.html#using-extendr-types",
-    "title": "Building Rust based R Packages",
-    "section": "Using extendr types",
-    "text": "Using extendr types\n\nrewrite gh_encode() to use Doubles and Strings\nwe can leave length as usize for now as it will always be scalar.\nto access the inner value of an Rfloat use .inner()",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#error-handling-in-rust",
-    "href": "building-rust-based-r-pkgs/index.html#error-handling-in-rust",
-    "title": "Building Rust based R Packages",
-    "section": "Error handling in Rust",
-    "text": "Error handling in Rust\n\n“And I think Result can be explained fairly quickly in the following way: Rust does not have exceptions. Errors are data. If a function is falliable, it returns Result, which is a fork between the successful value, and the error-as-data. We may ignore the error-branch entirely with .unwrap.” -Mossa\n\n\nHandle errors gracefully on the R side by returning a NULL or NA value when it is appropriate\ndescribe Result&lt;&gt; which is an enum.\nlet’s match on the result from encode()\n\nwhen Ok(gh) use Rstr::from(gh)\nwhen Err(e) use Rstr::na() to record a missing value\n\nwhen we try to encode data that is not in long lat we will get an error—e.g. if its in meter that wont work\nfor the exercise feed some bad data to the function to see it return an NA",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#na-handling",
-    "href": "building-rust-based-r-pkgs/index.html#na-handling",
-    "title": "Building Rust based R Packages",
-    "section": "NA handling",
-    "text": "NA handling\n\nnow what about when the coordinates are NA?\nhow do we handle that?\nwe can check Rfloat::is_na()\n\nif either Rfloat::is_na() return Rstr::na()\nelse, do the geohash\n\ntest with NA values",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#geohash-neighbor",
-    "href": "building-rust-based-r-pkgs/index.html#geohash-neighbor",
-    "title": "Building Rust based R Packages",
-    "section": "Geohash Neighbor",
-    "text": "Geohash Neighbor\n\nA geohash is a square grid\neach location has up to 6 neighbors\nto find a specific neighbor we can use the neighbor() function\nthis function takes an enum for direction",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#enums-in-r",
-    "href": "building-rust-based-r-pkgs/index.html#enums-in-r",
-    "title": "Building Rust based R Packages",
-    "section": "Enums in R",
-    "text": "Enums in R\n\nfirst step, lets make a utility function to take a String and convert this to the enum\n\ngh_neighbor &lt;- function(gh, neighbor = c(\"N\",\"NE\",\"E\",\"SE\",\"S\",\"SW\",\"W\",\"NW\")) {\n  arg.match(neighbor)\n  # function body\n}",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#custom-enum-handling",
-    "href": "building-rust-based-r-pkgs/index.html#custom-enum-handling",
-    "title": "Building Rust based R Packages",
-    "section": "Custom Enum handling",
-    "text": "Custom Enum handling\n\nmatch statements can be used on strings too\nthere will be a catch all part of the match\nin the function\n\nfn as_direction(direction: String) -&gt; Direction {\n    match direction.to_lowercase().as_str() {\n        \"n\" =&gt; Direction:N,\n        \"ne\" =&gt; Direction:NE,\n        \"e\" =&gt; Direction:E,\n        \"se\" =&gt; Direction:SE,\n        \"s\" =&gt; Direction:S,\n        \"sw\" =&gt; Direction:SW,\n        \"w\" =&gt; Direction:W,\n        \"nw\" =&gt; Direction:NW,\n        _ =&gt; throw_r_error(\"Invalid geohash neighbor direction\")\n    }\n}",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#single-neighbor-function",
-    "href": "building-rust-based-r-pkgs/index.html#single-neighbor-function",
-    "title": "Building Rust based R Packages",
-    "section": "Single Neighbor function",
-    "text": "Single Neighbor function\nExercise\n\nCreate a function gh_decode()\nreturns Option&lt;String&gt;\ntakes 2 args:\n\ngeohash: String\ndirection: String\n\ncast the direction to the Direction enum\npass into the neighbor() function\nIf there is an error in the result, return None\nIf successful return Some(geohash)\ndocument and run the function in R to see the result\ntest with bad data",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#vectorize-the-neighbor-function",
-    "href": "building-rust-based-r-pkgs/index.html#vectorize-the-neighbor-function",
-    "title": "Building Rust based R Packages",
-    "section": "Vectorize the neighbor function",
-    "text": "Vectorize the neighbor function\n\nModify gh_decode() to take geohash: Strings\nReturns Strings\nUse .into_iter().map().collect::&lt;String&gt;() to return a vector of neighbors\nHandle NA values for geohash, return an Rstr::na()\nHandle errors return Rstr::na()\nOtherwise return Rstr::from()\nCollect into Strings",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#decoding-a-geohash",
-    "href": "building-rust-based-r-pkgs/index.html#decoding-a-geohash",
-    "title": "Building Rust based R Packages",
-    "section": "Decoding a geohash",
-    "text": "Decoding a geohash\n\na geohash isn’t a coordinate, but rather a bounding box\nthe decode() function decodes into a center point and error in two directions\nThe signature is pub fn decode(hash_str: &str) -&gt; Result&lt;(Coord, f64, f64), GeohashError&gt;\nthe Coord is a “generic” struct it has fields x & y and the x & y error\nmost natural way to work with this in R would be to create a data frame\nHow can we create a data frame in extendr?\nthere’s a few ways. We’re going to go ahead and create one from scratch",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#what-is-there-to-a-data.frame",
-    "href": "building-rust-based-r-pkgs/index.html#what-is-there-to-a-data.frame",
-    "title": "Building Rust based R Packages",
-    "section": "What is there to a data.frame?",
-    "text": "What is there to a data.frame?\n\ndata.frames are just lists masquerading as a rectangle\n\n\nnamed vectors\nstructs are record based not column based (this is kinda the whole thing about apache arrow)\nHow can we handle this?\nusing an iterator isn’t the most logical for this. Instead, we can use a for loop\nwe can allocate our own vectors and then fill them in a for loop",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#tuples",
-    "href": "building-rust-based-r-pkgs/index.html#tuples",
-    "title": "Building Rust based R Packages",
-    "section": "Tuples",
-    "text": "Tuples\n\nThe decode function returns a tuple which we haven’t yet covered.\ntuples are the heterogenous collection type in Rust\nif you’ve used tuples in python they’re pretty much the same\nelements in the tuple are not named\ngenerally good for holding only a handful of items, otherwise just define a struct\nwe access elements from the tuple via .0, .1, .2\nWe can perform destructuring assignment of tuples too which will be handy",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#creating-vectors",
-    "href": "building-rust-based-r-pkgs/index.html#creating-vectors",
-    "title": "Building Rust based R Packages",
-    "section": "Creating vectors",
-    "text": "Creating vectors\n\nDoubles, Strings, and Logicals are wrappers around R types\nWe can collect into these types or we can create them\nWe can allocate empty vectors using associated method Doubles::new(usize)\n\nBut filling these is actually somewhat slow due to the FFI boundary\n\nAssociated method Doubles::from_values() to collect values into a vector\n\nStore Vec&lt;Rfloat&gt;\nCollect from the vector",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#creating-data.frames",
-    "href": "building-rust-based-r-pkgs/index.html#creating-data.frames",
-    "title": "Building Rust based R Packages",
-    "section": "Creating data.frames",
-    "text": "Creating data.frames\n\nThere are two primary ways of creating data.frames in extendr\nI recommend using the data_frame!() macro\nthis returns an untyped R object: Robj\n\n\n\nExercise\n\ncreate 4 empty vectors to store:\n\nx, y, x_error, y_error\n\nCreate a for loop on the geohash note you have to call .into_iter() explicitly\n\n\nfn gh_decode(geohash: Strings) -&gt; Robj {\n    let mut x_res = Vec::new();\n    let mut y_res = Vec::new();\n    let mut x_error = Vec::new();\n    let mut y_error = Vec::new();\n\n    for gh in geohash.into_iter() {\n        let resi = decode(gh);\n        match resi {\n            Ok((Coord { x, y }, xe, ye)) =&gt; {\n                x_res.push(Rfloat::from(x));\n                y_res.push(Rfloat::from(y));\n                x_error.push(Rfloat::from(xe));\n                y_error.push(Rfloat::from(ye));\n            }\n            Err(_) =&gt; {\n                x_res.push(Rfloat::na());\n                y_res.push(Rfloat::na());\n                x_error.push(Rfloat::na());\n                y_error.push(Rfloat::na());\n            }\n        }\n    }\n\n    data_frame!(\n        x = Doubles::from_values(x_res),\n        y = Doubles::from_values(y_res),\n        x_error = Doubles::from_values(x_error),\n        y_error = Doubles::from_values(y_error)\n    )\n}",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#geohash-neighbors",
-    "href": "building-rust-based-r-pkgs/index.html#geohash-neighbors",
-    "title": "Building Rust based R Packages",
-    "section": "Geohash Neighbors",
-    "text": "Geohash Neighbors\n\nWe already made a vectorized functioon to find neighbors in a single direction.\nbut there is also a function neighbors() that returns a struct Neighbors that has the geohash for all neighbors\nThis would be a nice function to have access to in R\nhow should we do this?\nwe can take a similar approach we did for gh_decode()\nBut that’s a lot of boiler plate!\nThere’s another approach to this\nIntoDataFrameRow trait which we can derive",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#traits",
-    "href": "building-rust-based-r-pkgs/index.html#traits",
-    "title": "Building Rust based R Packages",
-    "section": "Traits",
-    "text": "Traits\n\nin the previous workhop we used the #[derive()] attribute to be able to have debug printing\nwhat is a trait?\nare similar to object oriented programming\nthey define behaviors that a type can perform\nthey are how we share behavior across rust libraries\nthey’re common methods that can be implemented for any type you own\nmany traits can be “derived” this means you can get them on your type “for free” without doing work",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#deriving-intodataframerow-for-neighbors",
-    "href": "building-rust-based-r-pkgs/index.html#deriving-intodataframerow-for-neighbors",
-    "title": "Building Rust based R Packages",
-    "section": "Deriving IntoDataFrameRow for Neighbors",
-    "text": "Deriving IntoDataFrameRow for Neighbors\n\nlets try deriving it\nlol oops! That sucks! we cant implement traits for types we don’t own.\nthis is called the “orphan rule”",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#work-around-create-your-own-struct",
-    "href": "building-rust-based-r-pkgs/index.html#work-around-create-your-own-struct",
-    "title": "Building Rust based R Packages",
-    "section": "Work-around: create your own struct",
-    "text": "Work-around: create your own struct\n\none way to handle this is to create your own struct that you can implement traits on\nwe can create our own struct GHNeighbors\nSince we own GHNeighbors we can derive IntoDataFrameRow for it\nbut how do we go from Neighbors to GHNeighbors?\nwe can implement a trait From",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#from-trait",
-    "href": "building-rust-based-r-pkgs/index.html#from-trait",
-    "title": "Building Rust based R Packages",
-    "section": "From trait",
-    "text": "From trait\n\npart of the standard library\nthis provides a 0-cost abstraction\nlets us go from T to U without incurring any runtime cost\nuse the impl keyword to implement a trait\nimpl Trait for OurType\nThe From trait requires us to specify a type:\nimpl From&lt;ForeignType&gt; for OurType\n\n\nExample\nimpl From&lt;Coord&lt;f64&gt;&gt; for Point {\n    fn from(value: Coord&lt;f64&gt;) -&gt; Self {\n        Point {\n            x: Rfloat::from(value.x),\n            y: Rfloat::from(value.y),\n        }\n    }\n}\nThis lets us do something like:\nlet coord = Coord::zero();\nlet p = Point::from(coord);\nPro-tip if you write:\nimpl From&lt;T&gt; for U {\n    // have cursor here and type `cmd + .`\n}\n\nThis opens the “Quick fix”\npress “implement missing members” which fills the template:\n\nimpl From&lt;T&gt; for U {\n    fn from(value: T) -&gt; Self {\n        // construct Self / U struct here\n        todo!()\n    }\n}",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#default-trait",
-    "href": "building-rust-based-r-pkgs/index.html#default-trait",
-    "title": "Building Rust based R Packages",
-    "section": "Default trait",
-    "text": "Default trait\n\nwhat happens when we run into an error finding the neighbors?\nwe want to be able to return a row of NAs\nrather than constructing the whole thing from struct each time we want to use a full row of NA\nwe can actually instead, implement a default value\nnote often the default trait can be derived\n\n\nExample\nimpl Default for Point {\n    fn default() -&gt; Self {\n        Self {\n            x: Rfloat::na(),\n            y: Rfloat::na(),\n        }\n    }\n}\n\n\nExercise\nImplement the Default trait for GHNeighbors\nimpl Default for GHNeighbors {\n    fn default() -&gt; Self {\n        Self {\n            sw: Rstr::na(),\n            s: Rstr::na(),\n            se: Rstr::na(),\n            w: Rstr::na(),\n            e: Rstr::na(),\n            nw: Rstr::na(),\n            n: Rstr::na(),\n            ne: Rstr::na(),\n        }\n    }\n}\nThis lets us write GHNeighbors::default()",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#put-it-all-together",
-    "href": "building-rust-based-r-pkgs/index.html#put-it-all-together",
-    "title": "Building Rust based R Packages",
-    "section": "Put it all together",
-    "text": "Put it all together\n\nlets combine the use of our implementations of From, Default, and IntoDataFrameRow row to write gh_neighbors()\n\n\nExercise\n#[extendr]\nfn gh_neighbors(geohashes: Strings) -&gt; Robj {\n    let all_rows = geohashes\n        .into_iter()\n        .map(|gh| match neighbors(gh.as_str()) {\n            Ok(nbs) =&gt; GHNeighbors::from(nbs),\n            Err(_) =&gt; GHNeighbors::default(),\n        })\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    all_rows.into_dataframe().unwrap().into_robj()\n}",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#you-help-me-choose-what-to-do-next",
-    "href": "building-rust-based-r-pkgs/index.html#you-help-me-choose-what-to-do-next",
-    "title": "Building Rust based R Packages",
-    "section": "You help me choose what to do next",
-    "text": "You help me choose what to do next\n\nQ&A?\nThe last function but independently?\nCRAN compatibility?",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#all-on-your-own-now",
-    "href": "building-rust-based-r-pkgs/index.html#all-on-your-own-now",
-    "title": "Building Rust based R Packages",
-    "section": "All on your own now",
-    "text": "All on your own now\n\nthe decode_bbox() function",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#cran-compatibility",
-    "href": "building-rust-based-r-pkgs/index.html#cran-compatibility",
-    "title": "Building Rust based R Packages",
-    "section": "CRAN Compatibility",
-    "text": "CRAN Compatibility\n\nvendoring\nMSRV",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#using-github-actions",
-    "href": "building-rust-based-r-pkgs/index.html#using-github-actions",
-    "title": "Building Rust based R Packages",
-    "section": "Using GitHub Actions",
-    "text": "Using GitHub Actions\n\nR CMD check\nCRAN checks",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/index.html#thank-you",
-    "href": "building-rust-based-r-pkgs/index.html#thank-you",
-    "title": "Building Rust based R Packages",
-    "section": "Thank you",
-    "text": "Thank you\n\nJoin our Discord\n\n\n\n\nView solution",
-    "crumbs": [
-      "Building Rust based R Packages"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/objective.html",
-    "href": "building-rust-based-r-pkgs/objective.html",
-    "title": "19  Workshop Scope",
-    "section": "",
-    "text": "What is geohashing?\nThere’s no better way to learn than by doing.\nIn this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called {geohashrs}. The {geohashrs} R package will provide R bindings to the geohash crate.\nThroughout the workshop we will touch on:\nAs much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Workshop Scope</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/extendr-dx.html",
-    "href": "building-rust-based-r-pkgs/extendr-dx.html",
-    "title": "22  Developer Experience",
-    "section": "",
-    "text": "Viewing Problems\nThe use_extendr() function creates will create (or update) the settings.json file in Positron & VS Code. This lets the rust-analyzer find the Rust package. Rust files are automatically linted and checked for errors.\nThe rust-analyzer is always running and identifies errors and warnings as you write them.\nYou can diagnose and identify issues in your Rust code by using the problems tab.\nOr, alternatively, you can run cargo check from the terminal to get diagnostics that way. This is my preference, personally.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Developer Experience</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/encode.html",
-    "href": "building-rust-based-r-pkgs/encode.html",
-    "title": "25  Encoding a geohash",
-    "section": "",
-    "text": "encode()\nIn the previous exercise we printed the Coord struct. Now, lets continue the function by calling the encode() function from Rust.\nThe geohash::encode() function has the following signature:\nInstead of returning a String we get a Result&lt;&gt;. In Rust, errors are data and should be handled.\nFor now, we’re going to ignore the possibility that an error may ever occur (we’re perfect anyways, right? 💅). Results are actually a special type of enum with the structure of\nEach variant of a result holds some data. If the Result was okay (meaning no error), it contains the expected type. Otherwise, it returns the specified error type.\nIn Rust, we can .unwrap() or .expect(\"Expectation message\") both Option&lt;T&gt; and Result&lt;T&gt;. So, for this case, we will do just that.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Encoding a geohash</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/vectorize.html",
-    "href": "building-rust-based-r-pkgs/vectorize.html",
-    "title": "27  Vectorizing",
-    "section": "",
-    "text": "Combining iterators with .zip()\nR users expect vectorized functions. In a high-level language like R “vectorized” simply means implementing the underlying loop in a compiled language like C/++ or Rust.\nIn the previous workshop we used .iter() and .into_iter() to iterate through single vectors. In this case we need to iterate through two vectors. How can we accomplish this?\nIt is possible to combine iterators in Rust using .zip().\nWe can combine iterators using the following syntax:\n.zip() modifies each element of the iterator to be a tuple with two elements.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Vectorizing</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/r-type-system.html",
-    "href": "building-rust-based-r-pkgs/r-type-system.html",
-    "title": "28  R’s Type System",
-    "section": "",
-    "text": "Vector SEXP types\nIn R, everything is an SEXP.\nTo extendr, an SEXP is an Robj—it can be anything.\nThere are a subset of SEXP types that we actually care about—the vector kinds. For the sake of simplicity, we’ll only talk about the numeric vector types.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>R's Type System</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/using-extendr-types.html",
-    "href": "building-rust-based-r-pkgs/using-extendr-types.html",
-    "title": "29  Collecting extendr types",
-    "section": "",
-    "text": "Example\nWe’ve been using .collect() to create vectors of a return type. However, these are not native R types. Using Vec&lt;T&gt; requires allocating a new (R) vector and filling the values.\nInstead, we can collect into the wrapper types. To do so, the iterator must be a scalar type—e.g. Rfloat, Rint, or Rstr.\nRather than .collect::&lt;Vec&lt;_&gt;&gt;() we specify the wrapper type we want.\nUsing the previous parallel sum, we can instead return Doubles using the turbo-fish syntax",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Collecting extendr types</span>"
-    ]
-  },
-  {
     "objectID": "building-rust-based-r-pkgs/ffi.html",
     "href": "building-rust-based-r-pkgs/ffi.html",
     "title": "17  Foreign Function Interfaces (FFI)",
@@ -1234,17 +980,6 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>What is extendr?</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/extendr.html#extendr-ffi",
-    "href": "building-rust-based-r-pkgs/extendr.html#extendr-ffi",
-    "title": "21  What is extendr?",
-    "section": "",
-    "text": "extendr-ffi is a crate that does the translation between R and Rust.\nR has many functions and types that are defined in C\nextendr-ffi provides Rust-compatible type definitions for the low-level C API\nwe will never have to touch this\nbut everything is built upon this layer",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>What is extendr?</span>"
     ]
   },
   {
@@ -1281,11 +1016,33 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/objective.html",
+    "href": "building-rust-based-r-pkgs/objective.html",
+    "title": "19  Workshop Scope",
+    "section": "",
+    "text": "What is geohashing?\nThere’s no better way to learn than by doing.\nIn this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called {geohashrs}. The {geohashrs} R package will provide R bindings to the geohash crate.\nThroughout the workshop we will touch on:\nAs much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Workshop Scope</span>"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
     "href": "building-rust-based-r-pkgs/objective.html#what-is-geohashing",
     "title": "19  Workshop Scope",
     "section": "",
     "text": "Geohashes are a way to encode a location on earth as a string of 1 - 12 characters.\nThe more shared characters there are between two geohashes, the closes in physical space the geohashes are.\nUsed to find approximately near locations.\nUsed frequently in databases and web development to quickly query results.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Workshop Scope</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/objective.html#the-r-package",
+    "href": "building-rust-based-r-pkgs/objective.html#the-r-package",
+    "title": "19  Workshop Scope",
+    "section": "The R package",
+    "text": "The R package\nThe R package we will create will help us:\n\nencode geohashes\nfind geohash neighbors\ndecoded geohash to x & y plus error terms\ndecode geohash into a bounding box",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Workshop Scope</span>"
@@ -1303,14 +1060,14 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/hello-world.html#rextendr-developer-functions",
-    "href": "building-rust-based-r-pkgs/hello-world.html#rextendr-developer-functions",
-    "title": "22  Hello, world!",
+    "objectID": "building-rust-based-r-pkgs/hello-world.html#developer-functions",
+    "href": "building-rust-based-r-pkgs/hello-world.html#developer-functions",
+    "title": "20  Hello, world!",
     "section": "",
-    "text": "rextendr::use_extendr() - create the Rust infrastructure\nrextendr::document() - document and update Rust function definitions",
+    "text": "I don’t use RStudio anymore so I set create_package(rstudio = FALSE) to not have Rproj.user created.\n\nusethis::create_package() creates an R package\nrextendr::use_extendr() creates the Rust infrastructure\nrextendr::document() document and update Rust function definitions",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Hello, world!</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Hello, world!</span>"
     ]
   },
   {
@@ -1336,72 +1093,6 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/export-to-r.html",
-    "href": "building-rust-based-r-pkgs/export-to-r.html",
-    "title": "27  Calling Rust from R",
-    "section": "",
-    "text": "View solution",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Calling Rust from R</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/decode.html",
-    "href": "building-rust-based-r-pkgs/decode.html",
-    "title": "35  Decode a geohash",
-    "section": "",
-    "text": "What’s data.frame?\nNaturally, if we have encoded a geohash, we should be able to decode the geohash as well. The challenge is that encoding takes an (x, y) pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.\nThe decode() function has the signature:\nThe return is a tuple with 3 values the coordinate, the x error, and y error.\nHow would a user want to access this information and data? Probably as a data.frame.\nA data.frame is a list masquerading as a rectangle. A data.frame consists of:\nTypically, I’d suggest we use a struct to represent the result of decode(), but this is not compatible with what a data.frame actually is.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Decode a geohash</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/vectorize-neighbor.html",
-    "href": "building-rust-based-r-pkgs/vectorize-neighbor.html",
-    "title": "34  Vectorize gh_neighbor()",
-    "section": "",
-    "text": "Exercise 1\nWe’ll now focus on vectorizing the gh_neighbor() function using the same approach we took for gh_encode().\nThe objective of this exercise is to vectorize the gh_neighbor() function. You an do this by:",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Vectorize `gh_neighbor()`</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/type-mapping-p1.html",
-    "href": "building-rust-based-r-pkgs/type-mapping-p1.html",
-    "title": "30  Type Mapping",
-    "section": "",
-    "text": "View solution",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Type Mapping</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/rust-deps.html",
-    "href": "building-rust-based-r-pkgs/rust-deps.html",
-    "title": "23  Adding dependencies",
-    "section": "",
-    "text": "Cargo.toml\nDependencies in Rust are managed by the Cargo.toml file. R will let you use packages that are on your machine even if you do not explicitly declare them as dependencies. Rust will not. You must declare dependencies.\nThe Cargo.toml is akin to the DESCRIPTION file. Dependencies are set via the [dependencies] table.\nWe can add dependencies manually, using cargo add crate-name, or via rextendr::use_crate(\"cratename\").",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Adding dependencies</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/na-handling.html",
-    "href": "building-rust-based-r-pkgs/na-handling.html",
-    "title": "31  Handle NAs gracefully",
-    "section": "",
-    "text": "Example\nWe’ve been using xi.inner() to access the f64 value of an Rfloat. This is an infallible method. It always provides the inner value of the Rfloat. However, we may want to handle NA values differently.\nTo handle NA values explicitly (rather than hoping our encode() function returns an error), we can check for the pressence of NA in both xi and yi. We can then match on the boolean value and choose what to do!\nmatch isn’t only for enums! When we match on booleans, there are only two variants: true or false. We can also perform nested match statements!\nHere we perform a nested match statement on the Result from parsing a string slice to an integer.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
-    ]
-  },
-  {
     "objectID": "building-rust-based-r-pkgs/extendr-structure.html",
     "href": "building-rust-based-r-pkgs/extendr-structure.html",
     "title": "21  Package structure",
@@ -1410,50 +1101,6 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Package structure</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/extendr-structure.html#using-compiled-code",
-    "href": "building-rust-based-r-pkgs/extendr-structure.html#using-compiled-code",
-    "title": "22  Package structure",
-    "section": "",
-    "text": "compiled code has to be placed in the src/ directory\n\n.\n├── Makevars\n├── Makevars.in\n├── Makevars.win.in\n└── rust\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── src\n\ninside of src/ there is a directory called rust\n\nthis contains a rust library crate\nprevious workshop we create a binary crate—something that can be run right away\nlibraries are typically included into other libraries or binaries and compiled together\nin our case, we are building a shared object / dll that is linked to by R\n\nVarious Makevars files are used to compile the R package and link to the generated rust library that we develop.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Package structure</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
-    "href": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
-    "title": "21  Package structure",
-    "section": "Rust libraries",
-    "text": "Rust libraries\nRust library crates have lib.rs instead of main.rs. There is no entrypoint that gets executed. Instead, we define functions, structs, enums, etc. that are used by the R package.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Package structure</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/objective.html#the-r-package",
-    "href": "building-rust-based-r-pkgs/objective.html#the-r-package",
-    "title": "19  Workshop Scope",
-    "section": "The R package",
-    "text": "The R package\nThe R package we will create will help us:\n\nencode geohashes\ndecoded geohash to x & y plus error terms\ndecode geohash into a bounding box\nfind geohash neighbors",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Workshop Scope</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/hello-world.html#developer-functions",
-    "href": "building-rust-based-r-pkgs/hello-world.html#developer-functions",
-    "title": "20  Hello, world!",
-    "section": "",
-    "text": "I don’t use RStudio anymore so I set create_package(rstudio = FALSE) to not have Rproj.user created.\n\nusethis::create_package() creates an R package\nrextendr::use_extendr() creates the Rust infrastructure\nrextendr::document() document and update Rust function definitions",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Hello, world!</span>"
     ]
   },
   {
@@ -1468,6 +1115,28 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
+    "href": "building-rust-based-r-pkgs/extendr-structure.html#rust-libraries",
+    "title": "21  Package structure",
+    "section": "Rust libraries",
+    "text": "Rust libraries\nRust library crates have lib.rs instead of main.rs. There is no entrypoint that gets executed. Instead, we define functions, structs, enums, etc. that are used by the R package.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Package structure</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/extendr-dx.html",
+    "href": "building-rust-based-r-pkgs/extendr-dx.html",
+    "title": "22  Developer Experience",
+    "section": "",
+    "text": "Viewing Problems\nThe use_extendr() function creates will create (or update) the settings.json file in Positron & VS Code. This lets the rust-analyzer find the Rust package. Rust files are automatically linted and checked for errors.\nThe rust-analyzer is always running and identifies errors and warnings as you write them.\nYou can diagnose and identify issues in your Rust code by using the problems tab.\nOr, alternatively, you can run cargo check from the terminal to get diagnostics that way. This is my preference, personally.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Developer Experience</span>"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/extendr-dx.html#viewing-problems",
     "href": "building-rust-based-r-pkgs/extendr-dx.html#viewing-problems",
     "title": "22  Developer Experience",
@@ -1476,17 +1145,6 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>Developer Experience</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/extendr-dx.html#cargo-check-keyboard-shortcut",
-    "href": "building-rust-based-r-pkgs/extendr-dx.html#cargo-check-keyboard-shortcut",
-    "title": "23  Developer Experience",
-    "section": "",
-    "text": "I have a user task and keybinding to run cargo check in extendr packages that I find quite nice.\nOpen the command pallete using cmd + shift + p and find Tasks: Open User Tasks and add this task.\n{\n    \"label\": \"Check extendr package\",\n    \"type\": \"shell\",\n    \"command\": \"cargo check --all-features --manifest-path=src/rust/Cargo.toml\",\n}\nYou can bind this task to a keyboard shortcut. I use shift + cmd + enter and the condition that the directory is an R package and the open editor is a rust file.\n{\n    \"key\": \"shift+cmd+enter\",\n    \"command\": \"workbench.action.tasks.runTask\",\n    \"args\": \"Check extendr package\",\n    \"when\": \"isRPackage && editorLangId == 'rust'\",\n}",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Developer Experience</span>"
     ]
   },
   {
@@ -1501,6 +1159,17 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/rust-deps.html",
+    "href": "building-rust-based-r-pkgs/rust-deps.html",
+    "title": "23  Adding dependencies",
+    "section": "",
+    "text": "Cargo.toml\nDependencies in Rust are managed by the Cargo.toml file. R will let you use packages that are on your machine even if you do not explicitly declare them as dependencies. Rust will not. You must declare dependencies.\nThe Cargo.toml is akin to the DESCRIPTION file. Dependencies are set via the [dependencies] table.\nWe can add dependencies manually, using cargo add crate-name, or via rextendr::use_crate(\"cratename\").",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Adding dependencies</span>"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/rust-deps.html#cargo.toml",
     "href": "building-rust-based-r-pkgs/rust-deps.html#cargo.toml",
     "title": "23  Adding dependencies",
@@ -1512,14 +1181,14 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/rust-deps.html#importing-items-from-dependenceis",
-    "href": "building-rust-based-r-pkgs/rust-deps.html#importing-items-from-dependenceis",
-    "title": "24  Adding dependencies",
-    "section": "Importing items from dependenceis",
-    "text": "Importing items from dependenceis\nWhen dependencies are added to a crate, the items from the dependency are accessed via namespace similar to R. If we look at lib.rs we see at the top\nuse extendr_api::prelude::*;\nThis has the format of crate_name::module::item. The * is a wildcard for importing everything from the module.\nThe prelude is a common module name. It re-exports the commonly used items from a crate all together so you do not have to manually list them.\nMultiple items can be imported using {} for example:\nuse crate_name::{StructName, function_name};",
+    "objectID": "building-rust-based-r-pkgs/rust-deps.html#importing-items-from-dependencies",
+    "href": "building-rust-based-r-pkgs/rust-deps.html#importing-items-from-dependencies",
+    "title": "23  Adding dependencies",
+    "section": "Importing items from dependencies",
+    "text": "Importing items from dependencies\nWhen dependencies are added to a crate, the items from the dependency are accessed via namespace similar to R. If we look at lib.rs we see at the top\nuse extendr_api::prelude::*;\nThis has the format of crate_name::module::item. The * is a wildcard for importing everything from the module.\nThe prelude is a common module name. It re-exports the commonly used items from a crate all together so you do not have to manually list them.\nMultiple items can be imported using {} for example:\nuse crate_name::{StructName, function_name};",
     "crumbs": [
       "Building Rust based R Packages",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Adding dependencies</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Adding dependencies</span>"
     ]
   },
   {
@@ -1528,17 +1197,6 @@
     "title": "23  Adding dependencies",
     "section": "Exercise",
     "text": "Exercise\n\nAdd the geohash crate as a dependency\nImport the Coord struct and the encode function from geohash in lib.rs\n\n\n\nView solution\n\nFrom the R terminal run:\nrextendr::use_crate(\"geohash\")\nThis will add the geohash dependency.\nOpen src/rust/lib.rs and add the following below use extendr_api::prelude::*;\nuse geohash::{Coord, encode};",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Adding dependencies</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/rust-deps.html#importing-items-from-dependencies",
-    "href": "building-rust-based-r-pkgs/rust-deps.html#importing-items-from-dependencies",
-    "title": "23  Adding dependencies",
-    "section": "Importing items from dependencies",
-    "text": "Importing items from dependencies\nWhen dependencies are added to a crate, the items from the dependency are accessed via namespace similar to R. If we look at lib.rs we see at the top\nuse extendr_api::prelude::*;\nThis has the format of crate_name::module::item. The * is a wildcard for importing everything from the module.\nThe prelude is a common module name. It re-exports the commonly used items from a crate all together so you do not have to manually list them.\nMultiple items can be imported using {} for example:\nuse crate_name::{StructName, function_name};",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>Adding dependencies</span>"
@@ -1589,6 +1247,17 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/encode.html",
+    "href": "building-rust-based-r-pkgs/encode.html",
+    "title": "25  Encoding a geohash",
+    "section": "",
+    "text": "encode()\nIn the previous exercise we printed the Coord struct. Now, lets continue the function by calling the encode() function from Rust.\nThe geohash::encode() function has the following signature:\nInstead of returning a String we get a Result&lt;&gt;. In Rust, errors are data and should be handled.\nFor now, we’re going to ignore the possibility that an error may ever occur (we’re perfect anyways, right? 💅). Results are actually a special type of enum with the structure of\nEach variant of a result holds some data. If the Result was okay (meaning no error), it contains the expected type. Otherwise, it returns the specified error type.\nIn Rust, we can .unwrap() or .expect(\"Expectation message\") both Option&lt;T&gt; and Result&lt;T&gt;. So, for this case, we will do just that.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Encoding a geohash</span>"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/encode.html#encode",
     "href": "building-rust-based-r-pkgs/encode.html#encode",
     "title": "25  Encoding a geohash",
@@ -1630,6 +1299,17 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>26</span>  <span class='chapter-title'>Throwing errors</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize.html",
+    "href": "building-rust-based-r-pkgs/vectorize.html",
+    "title": "27  Vectorizing",
+    "section": "",
+    "text": "Combining iterators with .zip()\nR users expect vectorized functions. In a high-level language like R “vectorized” simply means implementing the underlying loop in a compiled language like C/++ or Rust.\nIn the previous workshop we used .iter() and .into_iter() to iterate through single vectors. In this case we need to iterate through two vectors. How can we accomplish this?\nIt is possible to combine iterators in Rust using .zip().\nWe can combine iterators using the following syntax:\n.zip() modifies each element of the iterator to be a tuple with two elements.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Vectorizing</span>"
     ]
   },
   {
@@ -1677,6 +1357,17 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/r-type-system.html",
+    "href": "building-rust-based-r-pkgs/r-type-system.html",
+    "title": "28  R’s Type System",
+    "section": "",
+    "text": "Vector SEXP types\nIn R, everything is an SEXP.\nTo extendr, an SEXP is an Robj—it can be anything.\nThere are a subset of SEXP types that we actually care about—the vector kinds. For the sake of simplicity, we’ll only talk about the numeric vector types.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>R's Type System</span>"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/r-type-system.html#vector-sexp-types",
     "href": "building-rust-based-r-pkgs/r-type-system.html#vector-sexp-types",
     "title": "28  R’s Type System",
@@ -1718,6 +1409,17 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>28</span>  <span class='chapter-title'>R's Type System</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/using-extendr-types.html",
+    "href": "building-rust-based-r-pkgs/using-extendr-types.html",
+    "title": "29  Collecting extendr types",
+    "section": "",
+    "text": "Example\nWe’ve been using .collect() to create vectors of a return type. However, these are not native R types. Using Vec&lt;T&gt; requires allocating a new (R) vector and filling the values.\nInstead, we can collect into the wrapper types. To do so, the iterator must be a scalar type—e.g. Rfloat, Rint, or Rstr.\nRather than .collect::&lt;Vec&lt;_&gt;&gt;() we specify the wrapper type we want.\nUsing the previous parallel sum, we can instead return Doubles using the turbo-fish syntax",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Collecting extendr types</span>"
     ]
   },
   {
@@ -1798,6 +1500,17 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/na-handling.html",
+    "href": "building-rust-based-r-pkgs/na-handling.html",
+    "title": "31  Handle NAs gracefully",
+    "section": "",
+    "text": "Example\nWe’ve been using xi.inner() to access the f64 value of an Rfloat. This is an infallible method. It always provides the inner value of the Rfloat. However, we may want to handle NA values differently.\nTo handle NA values explicitly (rather than hoping our encode() function returns an error), we can check for the pressence of NA in both xi and yi. We can then match on the boolean value and choose what to do!\nmatch isn’t only for enums! When we match on booleans, there are only two variants: true or false. We can also perform nested match statements!\nHere we perform a nested match statement on the Result from parsing a string slice to an integer.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Handle NAs gracefully</span>"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/na-handling.html#example",
     "href": "building-rust-based-r-pkgs/na-handling.html#example",
     "title": "31  Handle NAs gracefully",
@@ -1842,17 +1555,6 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/enums.html#exercise",
-    "href": "building-rust-based-r-pkgs/enums.html#exercise",
-    "title": "32  Translating Enums",
-    "section": "Exercise",
-    "text": "Exercise\n\nCreate a function as_direction() that converts a String to a Direction\nOptionally, convert the String to lowercase using .to_lowercase() first for a more robust check\n\n\n\nView solution\n\nfn as_direction(direction: String) -&gt; Direction {\n    match direction.to_lowercase().as_str() {\n        \"n\" =&gt; Direction::N,\n        \"ne\" =&gt; Direction::NE,\n        \"e\" =&gt; Direction::E,\n        \"se\" =&gt; Direction::SE,\n        \"s\" =&gt; Direction::S,\n        \"sw\" =&gt; Direction::SW,\n        \"w\" =&gt; Direction::W,\n        \"nw\" =&gt; Direction::NW,\n        _ =&gt; throw_r_error(\"Invalid geohash neighbor direction\"),\n    }\n}",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Translating Enums</span>"
-    ]
-  },
-  {
     "objectID": "building-rust-based-r-pkgs/enums.html#example",
     "href": "building-rust-based-r-pkgs/enums.html#example",
     "title": "32  Translating Enums",
@@ -1864,22 +1566,22 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/enums.html#cannot-compile",
-    "href": "building-rust-based-r-pkgs/enums.html#cannot-compile",
-    "title": "33  Translating Enums",
-    "section": "Cannot compile",
-    "text": "Cannot compile\nfn as_shape(x: String) -&gt; Shape {\n    match x {\n        \"triangle\" =&gt; Shape::Triangle,\n        \"square\" =&gt; Shape::Square,\n        \"pentagon\" =&gt; Shape::Pentagon,\n        \"hexagon\" =&gt; Shape::Hexagon,\n        _ =&gt; throw_r_error(\"Unrecognized shape provided\"),\n    }\n}",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Translating Enums</span>"
-    ]
-  },
-  {
     "objectID": "building-rust-based-r-pkgs/enums.html#string-vs-str",
     "href": "building-rust-based-r-pkgs/enums.html#string-vs-str",
     "title": "32  Translating Enums",
     "section": "String vs &str",
     "text": "String vs &str\nI’ve tried to hide this for a while now! But strings in Rust are a bit weird.\nThe type String can be thought of as an owned container for a string. Whereas when we write a string like \"hello, world!\" this is creates a temporary reference to a value as a &str (note the &). Since the two are distinctly different types to Rust, they cannot be compared directly.\nInstead we must convert our String to a &str. We can do this using .as_str() method on a string.\nfn as_shape(x: String) -&gt; Shape {\n    match x.as_str() {\n        \"triangle\" =&gt; Shape::Triangle,\n        \"square\" =&gt; Shape::Square,\n        \"pentagon\" =&gt; Shape::Pentagon,\n        \"hexagon\" =&gt; Shape::Hexagon,\n        _ =&gt; throw_r_error(\"Unrecognized shape provided\"),\n    }\n}",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Translating Enums</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/enums.html#exercise",
+    "href": "building-rust-based-r-pkgs/enums.html#exercise",
+    "title": "32  Translating Enums",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate a function as_direction() that converts a String to a Direction\nOptionally, convert the String to lowercase using .to_lowercase() first for a more robust check\n\n\n\nView solution\n\nfn as_direction(direction: String) -&gt; Direction {\n    match direction.to_lowercase().as_str() {\n        \"n\" =&gt; Direction::N,\n        \"ne\" =&gt; Direction::NE,\n        \"e\" =&gt; Direction::E,\n        \"se\" =&gt; Direction::SE,\n        \"s\" =&gt; Direction::S,\n        \"sw\" =&gt; Direction::SW,\n        \"w\" =&gt; Direction::W,\n        \"nw\" =&gt; Direction::NW,\n        _ =&gt; throw_r_error(\"Invalid geohash neighbor direction\"),\n    }\n}",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>32</span>  <span class='chapter-title'>Translating Enums</span>"
@@ -1908,6 +1610,17 @@
     ]
   },
   {
+    "objectID": "building-rust-based-r-pkgs/vectorize-neighbor.html",
+    "href": "building-rust-based-r-pkgs/vectorize-neighbor.html",
+    "title": "34  Vectorize gh_neighbor()",
+    "section": "",
+    "text": "Exercise 1\nWe’ll now focus on vectorizing the gh_neighbor() function using the same approach we took for gh_encode().\nThe objective of this exercise is to vectorize the gh_neighbor() function. You an do this by:",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Vectorize `gh_neighbor()`</span>"
+    ]
+  },
+  {
     "objectID": "building-rust-based-r-pkgs/vectorize-neighbor.html#exercise-1",
     "href": "building-rust-based-r-pkgs/vectorize-neighbor.html#exercise-1",
     "title": "34  Vectorize gh_neighbor()",
@@ -1930,25 +1643,14 @@
     ]
   },
   {
-    "objectID": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
-    "href": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
+    "objectID": "building-rust-based-r-pkgs/decode.html",
+    "href": "building-rust-based-r-pkgs/decode.html",
     "title": "35  Decode a geohash",
-    "section": "data_frame!() macro",
-    "text": "data_frame!() macro\nA data.frame doesn’t have a type safe representation in extendr (at this point). Constructing them is a bit awkward too. To help with this, there is a data_frame!() macro. It is a thin wrapper to data.frame() in R.\nIt returns an Robj which is an opaque type. We can use this to create a data.frame from any wrapper-vector compatible types. For example\n\nExample\n#[extendr]\nfn xyz(x: Doubles, y: Doubles, z: Doubles) -&gt; Robj {\n    data_frame!(x = x, y = y, z = z)\n}\nxyz(rnorm(5), rnorm(5), rnorm(5))\n#&gt;            x          y          z\n#&gt; 1 -0.2688881  0.2349470  1.3468095\n#&gt; 2 -1.1228202  2.3786258  0.2405386\n#&gt; 3  1.6705694  1.4699630 -0.1370552\n#&gt; 4  3.1485605  0.6131987  0.9025077\n#&gt; 5  0.1374142 -1.5969236 -0.6165083",
+    "section": "",
+    "text": "What’s data.frame?\nNaturally, if we have encoded a geohash, we should be able to decode the geohash as well. The challenge is that encoding takes an (x, y) pair into a bounding box. And we cannot go back to the original point, but instead we can get the center of the box with an error amount in x and y directions.\nThe decode() function has the signature:\nThe return is a tuple with 3 values the coordinate, the x error, and y error.\nHow would a user want to access this information and data? Probably as a data.frame.\nA data.frame is a list masquerading as a rectangle. A data.frame consists of:\nTypically, I’d suggest we use a struct to represent the result of decode(), but this is not compatible with what a data.frame actually is.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>35</span>  <span class='chapter-title'>Decode a geohash</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/decode.html#whats-a-data.frame",
-    "href": "building-rust-based-r-pkgs/decode.html#whats-a-data.frame",
-    "title": "36  Decode a geohash",
-    "section": "",
-    "text": "It is not vector nor row, But list, in constume, pretending to be square.",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Decode a geohash</span>"
     ]
   },
   {
@@ -1957,6 +1659,17 @@
     "title": "35  Decode a geohash",
     "section": "",
     "text": "It is not vector nor row, but list, in constume, pretending to be square.\n\n\n\nvectors of equal length\ncolumn names\nrow names\nthe data.frame class",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Decode a geohash</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
+    "href": "building-rust-based-r-pkgs/decode.html#data_frame-macro",
+    "title": "35  Decode a geohash",
+    "section": "data_frame!() macro",
+    "text": "data_frame!() macro\nA data.frame doesn’t have a type safe representation in extendr (at this point). Constructing them is a bit awkward too. To help with this, there is a data_frame!() macro. It is a thin wrapper to data.frame() in R.\nIt returns an Robj which is an opaque type. We can use this to create a data.frame from any wrapper-vector compatible types. For example\n\nExample\n#[extendr]\nfn xyz(x: Doubles, y: Doubles, z: Doubles) -&gt; Robj {\n    data_frame!(x = x, y = y, z = z)\n}\nxyz(rnorm(5), rnorm(5), rnorm(5))\n#&gt;            x          y          z\n#&gt; 1 -0.2688881  0.2349470  1.3468095\n#&gt; 2 -1.1228202  2.3786258  0.2405386\n#&gt; 3  1.6705694  1.4699630 -0.1370552\n#&gt; 4  3.1485605  0.6131987  0.9025077\n#&gt; 5  0.1374142 -1.5969236 -0.6165083",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>35</span>  <span class='chapter-title'>Decode a geohash</span>"
@@ -1974,121 +1687,33 @@
     ]
   },
   {
-    "objectID": "intro-to-rust-for-r-devs/types.html#integers",
-    "href": "intro-to-rust-for-r-devs/types.html#integers",
-    "title": "3  Basic Types",
-    "section": "",
-    "text": "Signed Integers: i8, i16, i32, i64, i128\nUnsigned Integers: u8, u16, u32, u64, u128\n\n\n\n\n\n\n\nIn R, an integer vector is comprised of i32 values.",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/types.html#floating-point",
-    "href": "intro-to-rust-for-r-devs/types.html#floating-point",
-    "title": "3  Basic Types",
-    "section": "Floating point",
-    "text": "Floating point\nIn many cases where we need to do math we will use a floating point number. Floating points are signed and allow for decimal values.\nThere are two types: f32 and f64.\n\n\n\n\n\n\nIn R, a double vector is comprised of f64 values.",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/types.html#strong-typing",
-    "href": "intro-to-rust-for-r-devs/types.html#strong-typing",
-    "title": "3  Basic Types",
-    "section": "Strong typing",
-    "text": "Strong typing\nRust will infer a value’s type exceptionally well! However, we may want to specify the type manually as well. We can do this 2 primary ways:\n\nIn assignment using : for example let x: f64 = 10;\nOr by specifying the suffix e.g. 10f64 or 10_i32\n\n\n\n\n\n\n\nYou can use _ as a visual separator when specifying numbers in Rust. The following are all identical values:\nlet x: i32 = 1000;\nlet x = 1000i32;\nlet x = 1_000_i32;",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/types.html#type-casting",
-    "href": "intro-to-rust-for-r-devs/types.html#type-casting",
-    "title": "3  Basic Types",
-    "section": "Type casting",
-    "text": "Type casting\nIn Rust, math expressions can only be performed between like-types. You cannot add 2.0 + 3_f64. To accomplish this we must cast to the same types.\nPrimitive types can be cast into one another using the as keyword. To add an f64 to an i32 we should ensure they’re the same type.\nfn add2(x: f64, y: i32) -&gt; f64 {\n   x + y as f64\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/types.html#unit-type",
-    "href": "intro-to-rust-for-r-devs/types.html#unit-type",
-    "title": "3  Basic Types",
-    "section": "Unit type",
-    "text": "Unit type\nIn Rust there is no concept of NULL. Instead there is the unit type which is represented as ().\n\n\nThe unit type is technically a tuple without any fields. If the internet is to be believed it is called “unit” becaue it can only have one value and is related to the “singleton” or unit set in set theory.\nFunctions that do not return anything technically return ().",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/types.html#exercise",
-    "href": "intro-to-rust-for-r-devs/types.html#exercise",
-    "title": "3  Basic Types",
-    "section": "Exercise",
-    "text": "Exercise\nModify src/main.rs to add two or more incompatible types.\n\nDefine a variable x to be an f64 value\nDefine y to be an i32 value\nAdd them up and store them in the variable z\nUse println!() to print the value of z\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = 3.14;\n    let y = 47_i32;\n    let z = x + y as f64;\n    println!(\" The vlaue of z is {z}\");\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/mutability.html#example",
-    "href": "intro-to-rust-for-r-devs/mutability.html#example",
-    "title": "7  Mutability",
-    "section": "",
-    "text": "fn main() {\n    // create a vector\n    let numbers = vec![1, 2, 3];\n    // create a mutable value\n    let mut doubled = 0;\n\n    // iterate through numbers to update doubled\n    for n in numbers {\n        doubled = n * 2;\n        println!(\"{} doubled is {}\", n, doubled);\n    }\n\n    // ✅ compiles because `doubled` was declared\n    // _outside_ of the inner loop scope\n    println!(\"Last doubled: {}\", doubled);\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Mutability</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/references-slices.html#cloning",
-    "href": "intro-to-rust-for-r-devs/references-slices.html#cloning",
-    "title": "10  Ownership",
-    "section": "Cloning",
-    "text": "Cloning\nThe simplest but least efficient way to reuse a variable is to clone it. This is what R does.\n\n\n\n\n\n\nRemember: when in doubt, clone it out!\n\n\n\nAlmost everything in Rust can be cloned by using the .clone() method.\n\n\n\n\n\n\nCannot compile\n\n\n\nlet x  = v![0.0, 3.14, 10.1, 44.8];\n\nlet avg1 = mean(x); // ⬅️ x moved here!\nlet avg2 = mean(x); // ❌ compiler error\n\n\nIf we first clone x before using mean() we can use x again.\nlet x  = v![0.0, 3.14, 10.1, 44.8];\n\nlet avg1 = mean(x.clone()); // ⬅️ x cloned here!\nlet avg2 = mean(x); // ✅ compiler happy",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/references-slices.html#exercise-3",
-    "href": "intro-to-rust-for-r-devs/references-slices.html#exercise-3",
-    "title": "10  Ownership",
-    "section": "Exercise 3",
-    "text": "Exercise 3\n\nRewrite mean() to accept a slice (&[f64]) instead of a Vec&lt;f64&gt; reference.\nCreate an array of f64 values called y\nCalculate the mean on both x and y\nPrint both averages\n\n\n\nView solution\n\nfn mean(x: &[f64]) -&gt; f64 {\n    let mut total = 0.0;\n    for xi in x {\n        total += xi;\n    }\n    total / x.len() as f64\n}\n\nfn main() {\n    let x = vec![1.0, 2.0, 3.0, 4.0, 5.0];\n    let y = [0.0, 9.5, 3.3, 11.78, 3.14159];\n    println!(\"The mean of x is {}.\\nThe mean of y is {}\", mean(&x), mean(&y));\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Ownership</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/iterators.html#enumerated-iterators",
-    "href": "intro-to-rust-for-r-devs/iterators.html#enumerated-iterators",
-    "title": "11  Iterators",
-    "section": "Enumerated iterators",
-    "text": "Enumerated iterators\nOften it is quite nice to have the index associated with each item in an iterator. To do so, we can use .enumerate() after calling either .iter() or .into_iter(). This modifies each element to be a tuple with (i, xi).\n\n\n\n\n\n\nThe .enumerate() method returns the type usize which is a special type of unsigned integer. You can cast them to integers or floats using i as i32, for example.\n\n\n\nRust is 0 indexed so the first value of the enumeration is going to be 0.\nFor example:\nfn is_even(x: i32) -&gt; bool {\n    x % 2 == 0\n}\n\nfn main() {\n    let x = vec![2, 4, 8];\n\n    for (i, xi) in x.iter().enumerate() {\n        if is_even(i as i32) {\n            println!(\"i is even with value {xi}\");\n        }\n    }\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Iterators</span>"
-    ]
-  },
-  {
     "objectID": "building-rust-based-r-pkgs/vectorize-decode.html",
     "href": "building-rust-based-r-pkgs/vectorize-decode.html",
     "title": "36  Vectorize decode()",
     "section": "",
-    "text": "Exercise\nYour objective for this exercise is to vectorize gh_decode() and return a data.frame. To do this:",
+    "text": "Example\nIn addition to collecting an interator into a wrapper type—e.g. Doubles or Strings we can create a vector of scalar types—Vec&lt;Rfloat&gt; and create Doubles from that using the associated function Doubles::from_values(my_vec)\nUsing Doubles::from_values() is a flexible way to use Rust’s vectors and quickly translate them to R ones.",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Vectorize `decode()`</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize-decode.html#example",
+    "href": "building-rust-based-r-pkgs/vectorize-decode.html#example",
+    "title": "36  Vectorize decode()",
+    "section": "",
+    "text": "// instantiate empty vector\nlet mut my_vec = Vec::new();\n\n// iterate through something and push into the vector\nfor xi in x {\n    my_vec.push(Rfloat::from(xi));\n}\n\n// Create a double vector from the vector\nlet res = Doubles::from_values(my_vec);",
+    "crumbs": [
+      "Building Rust based R Packages",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Vectorize `decode()`</span>"
+    ]
+  },
+  {
+    "objectID": "building-rust-based-r-pkgs/vectorize-decode.html#exercise",
+    "href": "building-rust-based-r-pkgs/vectorize-decode.html#exercise",
+    "title": "36  Vectorize decode()",
+    "section": "Exercise",
+    "text": "Exercise\nYour objective for this exercise is to vectorize gh_decode() and return a data.frame. To do this:\n\nCreate 4 empty vectors to store x, y, x_error, and y_error\nIterate through each geohash and attempt to decode it\nFor each successful decoding insert the x, y, and error values into their corresponding vectors\nWhen an error is encountered, insert NA values into the vectors\nCreate double vectors for each variable using Doubles::from_values()\nCreate a data.frame using data_frame!()\n\n\n\nView solution\n\nfn gh_decode(geohash: Strings) -&gt; Robj {\n    let mut x_res = Vec::new();\n    let mut y_res = Vec::new();\n    let mut x_error = Vec::new();\n    let mut y_error = Vec::new();\n\n    for gh in geohash.into_iter() {\n        let resi = decode(gh);\n        match resi {\n            Ok((Coord { x, y }, xe, ye)) =&gt; {\n                x_res.push(Rfloat::from(x));\n                y_res.push(Rfloat::from(y));\n                x_error.push(Rfloat::from(xe));\n                y_error.push(Rfloat::from(ye));\n            }\n            Err(_) =&gt; {\n                x_res.push(Rfloat::na());\n                y_res.push(Rfloat::na());\n                x_error.push(Rfloat::na());\n                y_error.push(Rfloat::na());\n            }\n        }\n    }\n\n    data_frame!(\n        x = Doubles::from_values(x_res),\n        y = Doubles::from_values(y_res),\n        x_error = Doubles::from_values(x_error),\n        y_error = Doubles::from_values(y_error)\n    )\n}",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Vectorize `decode()`</span>"
@@ -2103,182 +1728,6 @@
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>37</span>  <span class='chapter-title'>Vibe check</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/iter-map.html#using-.map",
-    "href": "intro-to-rust-for-r-devs/iter-map.html#using-.map",
-    "title": "12  Mapping over Iterators",
-    "section": "",
-    "text": "// providing explicit type annotation in one\n// value so the compiler knows its f64 and not f32\nlet x = vec![5.9_f64, 6.8, 4.5, 7.3, 6.2];\n\nx.iter().map(|xi| xi.powi(2))",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/iter-map.html#closures",
-    "href": "intro-to-rust-for-r-devs/iter-map.html#closures",
-    "title": "12  Mapping over Iterators",
-    "section": "Closures",
-    "text": "Closures\nIn the above example we used a closure to modify each element of the iterator. Closures are Rust’s version of an anonymous function.\n\n\nThese closures, too, are not subsettable.\nA closure takes the structure |arg| expression. They can also be multiple lines by wrapping the expression in a braces:\nx\n    .iter()\n    .map(|xi| {\n        let squared = xi.powi(2);\n        xi.sqrt()\n    })\nSince iterators only contain one item, the closure only has one argument. However, you can use destructuring in the closure. For example if using .enumerate() we want to access i we can do so:\nx\n    .iter()\n    .enumerate()\n    .map(|(i, xi)| {\n        // do stuff here\n    })",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/iter-map.html#collecting-results",
-    "href": "intro-to-rust-for-r-devs/iter-map.html#collecting-results",
-    "title": "12  Mapping over Iterators",
-    "section": "Collecting results",
-    "text": "Collecting results\nIn R when we use map() the results are always returned as a vector. In Rust, we have to explcitly collect the iterator into our own type using .collect().\nTypically iterators are collected into a Vec&lt;T&gt;. Rust cant always infer the type that you want to collect into so we must tell the compiler what type we want.\nWe can do this during assignment:\nlet x_squared: Vec&lt;f64&gt; = x.iter().map(|xi| xi.powi(2)).collect();",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/iter-map.html#turbofish",
-    "href": "intro-to-rust-for-r-devs/iter-map.html#turbofish",
-    "title": "12  Mapping over Iterators",
-    "section": "Turbofish 🐠💨",
-    "text": "Turbofish 🐠💨\nAlternatively, we can use “turbofish” syntax. We can specify the type directly in the .collect() function. .collect() is a generic method. And in the words of the Rust standard library documentation (emphasis mine)\n\n“Because collect() is so general, it can cause problems with type inference. As such, collect() is one of the few times you’ll see the syntax affectionately known as the ‘turbofish’: ::&lt;&gt;. This helps the inference algorithm understand specifically which collection you’re trying to collect into.”\n\nTurbofish takes the structure of .collect::&lt;TYPE&gt;().\n\nExamples\n\n\n\n\n\n\nExplicit typing\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented: Vec&lt;_&gt; = nums.iter()\n        .map(|x| x + 1)\n        .collect();\n\n    println!(\"{:?}\", incremented);\n}\n\n\nInference w/ turbofish\nfn main() {\n    let nums = vec![1, 2, 3];\n\n    // Add 1 to each element\n    let incremented = nums.iter()\n        .map(|x| x + 1)\n        .collect::&lt;Vec&lt;_&gt;&gt;();\n\n    println!(\"{:?}\", incremented);\n}\n\n\n\nTurbofish is a bit more awkward at first, but it is more flexible and doesn’t require modification whenever the inner type changes.",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mapping over Iterators</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/structs.html#deriving-behavior",
-    "href": "intro-to-rust-for-r-devs/structs.html#deriving-behavior",
-    "title": "13  Defining Struct(ure)s",
-    "section": "",
-    "text": "#[derive(Debug, Clone)]\nstruct Person {\n    name: String,\n    age: i32\n}\n\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    println!(\"{me:?}\");\n}\nPerson { name: \"Josiah\", age: 29 }",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/structs.html#accessing-fields",
-    "href": "intro-to-rust-for-r-devs/structs.html#accessing-fields",
-    "title": "13  Defining Struct(ure)s",
-    "section": "Accessing Fields",
-    "text": "Accessing Fields\nFields of a struct can be accessed directly, or by reference. Field can be accessed using var.field_name.\nIf a field is accessed by reference, the struct cannot be moved. The same rules of borrowing apply to a struct. You can borrow a field as much as you want but you can only move it once. Otherwise, the entire struct cannot be used.\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    let name = me.name;\n    println!(\"{me:?}\");\n}\nerror[E0382]: borrow of partially moved value: `me`\n  --&gt; src/main.rs:10:15\n   |\n9  |     let name = me.name;\n   |                ------- value partially moved here\n10 |     println!(\"{me:?}\");\n   |               ^^^^^^ value borrowed here after partial move",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/structs.html#destructuring",
-    "href": "intro-to-rust-for-r-devs/structs.html#destructuring",
-    "title": "13  Defining Struct(ure)s",
-    "section": "Destructuring",
-    "text": "Destructuring\nIt is possible to destructure a struct during assignment creating many variables at one time.\nTo destructure during assignment you use the syntax let StructName { field, field } = variable;\nfn main() {\n    let me = Person { name: \"Josiah\".to_string(), age: 29 };\n    let Person { name, age } = me;\n    println!(\"{name} is {age} years old\");\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Defining Struct(ure)s</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#associated-functions",
-    "href": "intro-to-rust-for-r-devs/struct-methods.html#associated-functions",
-    "title": "14  Struct Methods",
-    "section": "",
-    "text": "let me = Person { name: \"Josiah\".to_string(), age: 29 };\nlet birth_year = me.year_of_birth();\n\nlet me = Person::new(\"Josiah\".to_string(), 29);",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#implement-methods",
-    "href": "intro-to-rust-for-r-devs/struct-methods.html#implement-methods",
-    "title": "14  Struct Methods",
-    "section": "implement methods",
-    "text": "implement methods\nimpl is short for implement. We can implement methods for structs using the following syntax:\nimpl TypeName {\n    fn method() {\n        todo!()\n    }\n}\nAssociated functions are methods that do not reference the type itself. To create a new() constructor function that returns the type we can set the return type to Self:\nimpl Person {\n    fn new(name: String, age: i32) -&gt; Self {\n        Person { name, age }\n    }\n}\nThis gives us the ability to use Person::new()",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#self-references",
-    "href": "intro-to-rust-for-r-devs/struct-methods.html#self-references",
-    "title": "14  Struct Methods",
-    "section": "Self references",
-    "text": "Self references\nHowever, it often makes sense to call methods from an instantiation itself.\nWe can do this by setting the first argument to &self which provides a reference to the struct the method is called on.\nimpl Person {\n    fn greet(&self) {\n        println!(\"Hello, my name is {} and I am {} years old.\", self.name, self.age);\n    }\n}\nUsing a &self reference means you cannot move the inner fields, only borrow them.\nWe can also have arguments that refer to other instantiations of the same type via &Self or Self. For example to compare ages of people:\nimpl Person {\n    fn is_older_than(&self, other_person: &Self) -&gt; bool {\n        self.age &gt; other_person.age\n    }\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/struct-methods.html#mutable-self",
-    "href": "intro-to-rust-for-r-devs/struct-methods.html#mutable-self",
-    "title": "14  Struct Methods",
-    "section": "Mutable self",
-    "text": "Mutable self\nOften it makes sense to modify the fields of a struct. This is when a mutable reference is handy via &mut self.\nFor example we can implement methods to rename() and celebrate_birthday():\nimpl Person {\n    fn rename(&mut self, new_name: &str) {\n        self.name = new_name.to_string();\n    }\n\n    fn celebrate_birthday(&mut self) {\n        self.age += 1;\n    }\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Struct Methods</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/enums.html#wildcard-matching",
-    "href": "intro-to-rust-for-r-devs/enums.html#wildcard-matching",
-    "title": "15  Enum(eration)s",
-    "section": "Wildcard matching",
-    "text": "Wildcard matching\nSometimes we want to customize behavior on only a subset of variants. We can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”.\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons\");\n    _ =&gt; println!(\"Every other polygon is mid\");\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/enums.html#enums-can-impl-too",
-    "href": "intro-to-rust-for-r-devs/enums.html#enums-can-impl-too",
-    "title": "15  Enum(eration)s",
-    "section": "Enums can impl, too",
-    "text": "Enums can impl, too\nEnums can have methods too just like a struct using impl keyword\nimpl Shape {\n    fn is_bestagon(&self) -&gt; bool {\n        match self {\n            Self::Hexagon =&gt; true,\n            _ =&gt; false\n        }\n    }\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/options.html#option",
-    "href": "intro-to-rust-for-r-devs/options.html#option",
-    "title": "16  Some() or None?",
-    "section": "",
-    "text": "enum Option {\n    Some(T),\n    None\n}",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
-    ]
-  },
-  {
-    "objectID": "intro-to-rust-for-r-devs/options.html#accessing-some-value",
-    "href": "intro-to-rust-for-r-devs/options.html#accessing-some-value",
-    "title": "16  Some() or None?",
-    "section": "Accessing Some() value",
-    "text": "Accessing Some() value\nSince Option&lt;T&gt; are “just” an enum, we can match on the variants to access the values.\n// create an Option&lt;Measure&gt; that contains a value\nlet measure = Some(Measure::Euclidean);\n\nmatch measure {\n    Some(v) =&gt; println!(\"The measure is not missing!\"),\n    None =&gt; println!(\"Oh no! The measure is missing\"),\n}\nWe put a placeholder value inside of Some(v) to create a binding to the inner value. It’s like a function argument, it can be called whatever you want it to be.",
-    "crumbs": [
-      "Intro to Rust for R Developers",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>`Some()` or `None`?</span>"
-    ]
-  },
-  {
-    "objectID": "building-rust-based-r-pkgs/vectorize-decode.html#exercise",
-    "href": "building-rust-based-r-pkgs/vectorize-decode.html#exercise",
-    "title": "36  Vectorize decode()",
-    "section": "",
-    "text": "Create 4 empty vectors to store x, y, x_error, and y_error\nIterate through each geohash and attempt to decode it\nFor each successful decoding insert the x, y, and error values into their corresponding vectors\nWhen an error is encountered, insert NA values into the vectors\nCreate double vectors for each variable using Doubles::from_values()\nCreate a data.frame using data_frame!()\n\n\n\nView solution\n\nfn gh_decode(geohash: Strings) -&gt; Robj {\n    let mut x_res = Vec::new();\n    let mut y_res = Vec::new();\n    let mut x_error = Vec::new();\n    let mut y_error = Vec::new();\n\n    for gh in geohash.into_iter() {\n        let resi = decode(gh);\n        match resi {\n            Ok((Coord { x, y }, xe, ye)) =&gt; {\n                x_res.push(Rfloat::from(x));\n                y_res.push(Rfloat::from(y));\n                x_error.push(Rfloat::from(xe));\n                y_error.push(Rfloat::from(ye));\n            }\n            Err(_) =&gt; {\n                x_res.push(Rfloat::na());\n                y_res.push(Rfloat::na());\n                x_error.push(Rfloat::na());\n                y_error.push(Rfloat::na());\n            }\n        }\n    }\n\n    data_frame!(\n        x = Doubles::from_values(x_res),\n        y = Doubles::from_values(y_res),\n        x_error = Doubles::from_values(x_error),\n        y_error = Doubles::from_values(y_error)\n    )\n}",
-    "crumbs": [
-      "Building Rust based R Packages",
-      "<span class='chapter-number'>36</span>  <span class='chapter-title'>Vectorize `decode()`</span>"
     ]
   }
 ]

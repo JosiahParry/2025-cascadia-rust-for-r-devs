@@ -1300,6 +1300,7 @@ x after sorting:  [1, 3, 7, 10, 11]</code></pre>
 
 </section>
 
+<section>
 <section id="defining-structures" class="title-slide slide level1 center">
 <h1>Defining Struct(ure)s</h1>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -1315,6 +1316,417 @@ x after sorting:  [1, 3, 7, 10, 11]</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="structs" class="slide level2">
+<h2>Structs</h2>
+<ul>
+<li class="fragment">Defined using <code>struct</code> keyword</li>
+<li class="fragment">Use pascal case</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb40-1"><a href=""></a><span class="kw">struct</span> Person <span class="op">{</span></span>
+<span id="cb40-2"><a href=""></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb40-3"><a href=""></a>    age<span class="op">:</span> <span class="dt">i32</span></span>
+<span id="cb40-4"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="structs-1" class="slide level2">
+<h2>Structs</h2>
+<ul>
+<li class="fragment">Constructed using a “literal” syntax</li>
+<li class="fragment">No special behavior and cannot be printed</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb41-1"><a href=""></a><span class="kw">struct</span> Person <span class="op">{</span></span>
+<span id="cb41-2"><a href=""></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb41-3"><a href=""></a>    age<span class="op">:</span> <span class="dt">i32</span></span>
+<span id="cb41-4"><a href=""></a><span class="op">}</span></span>
+<span id="cb41-5"><a href=""></a></span>
+<span id="cb41-6"><a href=""></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb41-7"><a href=""></a>    <span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb41-8"><a href=""></a>    <span class="pp">println!</span>(<span class="st">"{me:?}"</span>)<span class="op">;</span></span>
+<span id="cb41-9"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>error[E0277]: `Person` doesn't implement `Debug`
+ --&gt; src/main.rs:8:15
+  |
+8 |     println!("{me:?}");
+  |               ^^^^^^ `Person` cannot be formatted using `{:?}`</code></pre>
+</section>
+<section id="deriving-behavior" class="slide level2">
+<h2>Deriving behavior</h2>
+<ul>
+<li class="fragment">Rust has <strong>traits</strong> akin to <code>S3</code> generics</li>
+<li class="fragment">Define methods that can be implemented by foreign types</li>
+<li class="fragment"><code>Debug</code> is a trait allowing for printing</li>
+<li class="fragment">Use <code>#[derive()]</code> to inherit</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb43-1"><a href=""></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
+<span id="cb43-2"><a href=""></a><span class="kw">struct</span> Person <span class="op">{</span></span>
+<span id="cb43-3"><a href=""></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb43-4"><a href=""></a>    age<span class="op">:</span> <span class="dt">i32</span></span>
+<span id="cb43-5"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-3" class="slide level2">
+<h2>Example</h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb44-1"><a href=""></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
+<span id="cb44-2"><a href=""></a><span class="kw">struct</span> Person <span class="op">{</span></span>
+<span id="cb44-3"><a href=""></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb44-4"><a href=""></a>    age<span class="op">:</span> <span class="dt">i32</span></span>
+<span id="cb44-5"><a href=""></a><span class="op">}</span></span>
+<span id="cb44-6"><a href=""></a></span>
+<span id="cb44-7"><a href=""></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb44-8"><a href=""></a>    <span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb44-9"><a href=""></a>    <span class="pp">println!</span>(<span class="st">"{me:?}"</span>)<span class="op">;</span></span>
+<span id="cb44-10"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Person { name: "Josiah", age: 29 }</code></pre>
+</section>
+<section id="accessing-fields" class="slide level2">
+<h2>Accessing fields</h2>
+<ul>
+<li class="fragment">Fields are accessed via <code>var.field_name</code></li>
+<li class="fragment">Same rules of borrowing apply to fields</li>
+<li class="fragment">Once a field has been moved the struct cannot</li>
+</ul>
+<div class="fragment">
+<pre><code>fn main() {
+    let me = Person { name: "Josiah".to_string(), age: 29 };
+    let name = me.name;
+    println!("{me:?}");
+}</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb47-1"><a href=""></a>error[E0382]<span class="op">:</span> borrow of partially moved value<span class="op">:</span> `me`</span>
+<span id="cb47-2"><a href=""></a>  <span class="op">--&gt;</span> src<span class="op">/</span>main<span class="op">.</span>rs<span class="op">:</span><span class="dv">10</span><span class="op">:</span><span class="dv">15</span></span>
+<span id="cb47-3"><a href=""></a>   <span class="op">|</span></span>
+<span id="cb47-4"><a href=""></a><span class="dv">9</span>  <span class="op">|</span>     <span class="kw">let</span> name <span class="op">=</span> me<span class="op">.</span>name<span class="op">;</span></span>
+<span id="cb47-5"><a href=""></a>   <span class="op">|</span>                <span class="op">-------</span> value partially moved here</span>
+<span id="cb47-6"><a href=""></a><span class="dv">10</span> <span class="op">|</span>     <span class="pp">println!</span>(<span class="st">"{me:?}"</span>)<span class="op">;</span></span>
+<span id="cb47-7"><a href=""></a>   <span class="op">|</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="destructuring" class="slide level2">
+<h2>Destructuring</h2>
+<ul>
+<li class="fragment">Structs can be <strong>destructured</strong></li>
+<li class="fragment">Each field becomes a variable</li>
+<li class="fragment">Syntax: <code>let StructName { field, field } = variable;</code></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb48"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb48-1"><a href=""></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb48-2"><a href=""></a>    <span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb48-3"><a href=""></a>    <span class="kw">let</span> Person <span class="op">{</span> name<span class="op">,</span> age <span class="op">}</span> <span class="op">=</span> me<span class="op">;</span></span>
+<span id="cb48-4"><a href=""></a>    <span class="pp">println!</span>(<span class="st">"{name} is {age} years old"</span>)<span class="op">;</span></span>
+<span id="cb48-5"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="exercise-8" class="title-slide slide level1 center">
+<h1>Exercise</h1>
+
+</section>
+
+<section>
+<section id="struct-methods" class="title-slide slide level1 center">
+<h1>Struct Methods</h1>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Objectives</strong></p>
+</div>
+<div class="callout-content">
+<p>Learn how to implement methods for stucts. Be able to create associated functions and understand the difference between <code>Self</code>, <code>&amp;self</code>, and <code>&amp;mut self</code></p>
+</div>
+</div>
+</div>
+</section>
+<section id="associatd-functions" class="slide level2">
+<h2>Associatd functions</h2>
+<ul>
+<li class="fragment">Methods are typically made on instantiations of a variable</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb49"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb49-1"><a href=""></a><span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
+<span id="cb49-2"><a href=""></a><span class="kw">let</span> birth_year <span class="op">=</span> me<span class="op">.</span>year_of_birth()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment">Sometimes a type has an <strong>associated function</strong> which is called from the type
+<ul>
+<li class="fragment">e.g.&nbsp;<code>Type::function()</code></li>
+<li class="fragment">Great for constructors</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb50-1"><a href=""></a><span class="kw">let</span> me <span class="op">=</span> <span class="pp">Person::</span>new(<span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> <span class="dv">29</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="implementing-methods" class="slide level2">
+<h2><code>impl</code>ementing methods</h2>
+<ul>
+<li class="fragment"><code>impl</code> is short for <strong>implement</strong></li>
+<li class="fragment">Implement methods using the syntax:</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb51"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb51-1"><a href=""></a><span class="kw">impl</span> TypeName <span class="op">{</span></span>
+<span id="cb51-2"><a href=""></a>    <span class="kw">fn</span> method() <span class="op">{</span></span>
+<span id="cb51-3"><a href=""></a>        <span class="pp">todo!</span>()</span>
+<span id="cb51-4"><a href=""></a>    <span class="op">}</span></span>
+<span id="cb51-5"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="associated-functions" class="slide level2">
+<h2>Associated functions</h2>
+<ul>
+<li class="fragment">Associated functions do not reference the type itself</li>
+<li class="fragment">Methods can return <code>Self</code> which refers to the type of the struct</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb52"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb52-1"><a href=""></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb52-2"><a href=""></a>    <span class="kw">fn</span> new(name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span> age<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb52-3"><a href=""></a>        Person <span class="op">{</span> name<span class="op">,</span> age <span class="op">}</span></span>
+<span id="cb52-4"><a href=""></a>    <span class="op">}</span></span>
+<span id="cb52-5"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment">Lets us call <code>Person::new()</code></li>
+</ul>
+</div>
+</section>
+<section id="self-references" class="slide level2">
+<h2>Self references</h2>
+<ul>
+<li class="fragment">Most often methods are called <em>from</em> the instantiation</li>
+<li class="fragment">Use argument <code>&amp;self</code> creates a <strong>refernce</strong></li>
+<li class="fragment"><code>&amp;self</code> is a reference so inner fields cannot be moved</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb53-1"><a href=""></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb53-2"><a href=""></a>    <span class="kw">fn</span> greet(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb53-3"><a href=""></a>        <span class="pp">println!</span>(<span class="st">"Hello, my name is {} and I am {} years old."</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>name<span class="op">,</span> <span class="kw">self</span><span class="op">.</span>age)<span class="op">;</span></span>
+<span id="cb53-4"><a href=""></a>    <span class="op">}</span></span>
+<span id="cb53-5"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="references-to-other-variables" class="slide level2">
+<h2>References to other variables</h2>
+<ul>
+<li class="fragment">Refer to the type that the method is implemented on using <code>&amp;self</code></li>
+<li class="fragment">Refer to <em>other</em> instantiations using <code>&amp;Self</code> or <code>Self</code></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb54"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb54-1"><a href=""></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb54-2"><a href=""></a>    <span class="kw">fn</span> is_older_than(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> other_person<span class="op">:</span> <span class="op">&amp;</span><span class="dt">Self</span>) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
+<span id="cb54-3"><a href=""></a>        <span class="kw">self</span><span class="op">.</span>age <span class="op">&gt;</span> other_person<span class="op">.</span>age</span>
+<span id="cb54-4"><a href=""></a>    <span class="op">}</span></span>
+<span id="cb54-5"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mutable-self" class="slide level2">
+<h2>Mutable self</h2>
+<ul>
+<li class="fragment">It can be useful to modify a struct</li>
+<li class="fragment">Requires a <strong>mutable reference</strong></li>
+<li class="fragment">Uses <code>&amp;mut self</code></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb55"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb55-1"><a href=""></a><span class="kw">impl</span> Person <span class="op">{</span></span>
+<span id="cb55-2"><a href=""></a>    <span class="kw">fn</span> rename(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span><span class="op">,</span> new_name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb55-3"><a href=""></a>        <span class="kw">self</span><span class="op">.</span>name <span class="op">=</span> new_name<span class="op">.</span>to_string()<span class="op">;</span></span>
+<span id="cb55-4"><a href=""></a>    <span class="op">}</span></span>
+<span id="cb55-5"><a href=""></a></span>
+<span id="cb55-6"><a href=""></a>    <span class="kw">fn</span> celebrate_birthday(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb55-7"><a href=""></a>        <span class="kw">self</span><span class="op">.</span>age <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb55-8"><a href=""></a>    <span class="op">}</span></span>
+<span id="cb55-9"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="exercise-9" class="title-slide slide level1 center">
+<h1>Exercise</h1>
+
+</section>
+
+<section id="enumerations" class="title-slide slide level1 center">
+<h1>Enum(eration)s</h1>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Objective</strong></p>
+</div>
+<div class="callout-content">
+<p>Understand what <code>enum</code>s are and when you may want to use one.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<section id="enums" class="title-slide slide level1 center">
+<h1>Enums</h1>
+<ul>
+<li class="fragment">Often a variable can only be a limited number of values</li>
+<li class="fragment">Enumerations, or <code>enum</code> can only one of a number of <strong>variants</strong></li>
+</ul>
+</section>
+<section id="enums-in-r" class="slide level2">
+<h2>Enums in R</h2>
+<p>We use enums <em>all the time</em> in R and almost exclusively as function arguments.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">args</span>(cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="cf">function</span>(</span>
+<span id="cb57-2"><a href=""></a>  x, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">use =</span> <span class="st">"everything"</span>,</span>
+<span id="cb57-3"><a href=""></a>  <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>, <span class="st">"kendall"</span>, <span class="st">"spearman"</span>) <span class="co"># 👈🏼 enum!</span></span>
+<span id="cb57-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-4" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li class="fragment">Enumerate all shapes we will use</li>
+</ul>
+<div class="sourceCode" id="cb58"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb58-1"><a href=""></a><span class="kw">enum</span> Shape <span class="op">{</span></span>
+<span id="cb58-2"><a href=""></a>    Triangle<span class="op">,</span></span>
+<span id="cb58-3"><a href=""></a>    Rectangle<span class="op">,</span></span>
+<span id="cb58-4"><a href=""></a>    Pentagon<span class="op">,</span></span>
+<span id="cb58-5"><a href=""></a>    Hexagon<span class="op">,</span></span>
+<span id="cb58-6"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="variant-specific-behavior" class="slide level2">
+<h2>Variant-specific behavior</h2>
+<ul>
+<li class="fragment">Shape can only be <em>one</em> variant</li>
+<li class="fragment">Create an enum using <code>EnumName::Variant</code></li>
+<li class="fragment">We vary behavior based on the variant</li>
+<li class="fragment">Use <strong>pattern matching</strong></li>
+</ul>
+</section>
+<section id="enum-matching" class="slide level2">
+<h2>Enum matching</h2>
+<ul>
+<li class="fragment">The keyword <code>match</code> creates branching logic for each variant</li>
+<li class="fragment">Each variant must have an <strong>arm</strong> of the statement</li>
+<li class="fragment">Ecah arm uses syntax <code>Enum::Variant =&gt; action</code></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb59"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb59-1"><a href=""></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
+<span id="cb59-2"><a href=""></a>    <span class="pp">Shape::</span>Triangle <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb59-3"><a href=""></a>    <span class="pp">Shape::</span>Rectangle <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb59-4"><a href=""></a>    <span class="pp">Shape::</span>Pentagon <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb59-5"><a href=""></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">todo!</span>()<span class="op">,</span></span>
+<span id="cb59-6"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-5" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li class="fragment">Print the number of vertices per shape</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb60"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb60-1"><a href=""></a><span class="kw">let</span> my_shape <span class="op">=</span> <span class="pp">Shape::</span>Triangle<span class="op">;</span></span>
+<span id="cb60-2"><a href=""></a></span>
+<span id="cb60-3"><a href=""></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
+<span id="cb60-4"><a href=""></a>    <span class="pp">Shape::</span>Triangle <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A triangle has 3 vertices"</span>)<span class="op">,</span></span>
+<span id="cb60-5"><a href=""></a>    <span class="pp">Shape::</span>Rectangle <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A rectangle has 4 vertices"</span>)<span class="op">,</span></span>
+<span id="cb60-6"><a href=""></a>    <span class="pp">Shape::</span>Pentagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A pentagon has 5 vertices"</span>)<span class="op">,</span></span>
+<span id="cb60-7"><a href=""></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"A hexagon has 6 vertices"</span>)<span class="op">,</span></span>
+<span id="cb60-8"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="wild-card-matching" class="slide level2">
+<h2>Wild card matching</h2>
+<ul>
+<li class="fragment">Different behavior for a subset of variants</li>
+<li class="fragment"><code>_</code> is a catch all</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb61"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb61-1"><a href=""></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
+<span id="cb61-2"><a href=""></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Hexagons are the bestagons"</span>)<span class="op">;</span></span>
+<span id="cb61-3"><a href=""></a>    _ <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Every other polygon is mid"</span>)<span class="op">;</span></span>
+<span id="cb61-4"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="enums-can-impl-too" class="slide level2">
+<h2>Enums can <code>impl</code>, too</h2>
+<ul>
+<li class="fragment">Enums can have methods too using <code>impl</code></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb62"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb62-1"><a href=""></a><span class="kw">impl</span> Shape <span class="op">{</span></span>
+<span id="cb62-2"><a href=""></a>    <span class="kw">fn</span> is_bestagon(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
+<span id="cb62-3"><a href=""></a>        <span class="cf">match</span> <span class="kw">self</span> <span class="op">{</span></span>
+<span id="cb62-4"><a href=""></a>            <span class="dt">Self</span><span class="pp">::</span>Hexagon <span class="op">=&gt;</span> <span class="cn">true</span><span class="op">,</span></span>
+<span id="cb62-5"><a href=""></a>            _ <span class="op">=&gt;</span> <span class="cn">false</span></span>
+<span id="cb62-6"><a href=""></a>        <span class="op">}</span></span>
+<span id="cb62-7"><a href=""></a>    <span class="op">}</span></span>
+<span id="cb62-8"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="exercises-4" class="title-slide slide level1 center">
+<h1>Exercises</h1>
+
+</section>
+
+<section>
+<section id="some-or-none" class="title-slide slide level1 center">
+<h1><code>Some()</code> or <code>None</code>?</h1>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Objective</strong></p>
+</div>
+<div class="callout-content">
+<p>Understand how missingness is handled in Rust with <code>Option&lt;T&gt;</code>. - Understand how to handle missingness - Use <code>Option&lt;T&gt;</code> in an applied case</p>
+</div>
+</div>
+</div>
+</section>
+<section id="options" class="slide level2">
+<h2>Options</h2>
+<ul>
+<li class="fragment">No <code>NULL</code> type in Rust</li>
+<li class="fragment">Missingness is typified and must be handled</li>
+<li class="fragment">Defined as an <code>enum</code> called <code>Option</code>.</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb63"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb63-1"><a href=""></a><span class="kw">enum</span> <span class="dt">Option</span> <span class="op">{</span></span>
+<span id="cb63-2"><a href=""></a>    <span class="cn">Some</span>(T)<span class="op">,</span></span>
+<span id="cb63-3"><a href=""></a>    <span class="cn">None</span></span>
+<span id="cb63-4"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="accessing-some-value" class="slide level2">
+<h2>Accessing <code>Some()</code> value</h2>
+<ul>
+<li class="fragment">Options are enums and can be matched</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb64"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb64-1"><a href=""></a><span class="co">// create an Option&lt;Measure&gt; that contains a value</span></span>
+<span id="cb64-2"><a href=""></a><span class="kw">let</span> measure <span class="op">=</span> <span class="cn">Some</span>(<span class="pp">Measure::</span>Euclidean)<span class="op">;</span></span>
+<span id="cb64-3"><a href=""></a></span>
+<span id="cb64-4"><a href=""></a><span class="cf">match</span> measure <span class="op">{</span></span>
+<span id="cb64-5"><a href=""></a>    <span class="cn">Some</span>(v) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"The measure is not missing!"</span>)<span class="op">,</span></span>
+<span id="cb64-6"><a href=""></a>    <span class="cn">None</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Oh no! The measure is missing"</span>)<span class="op">,</span></span>
+<span id="cb64-7"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="danger-.unwrap-.expect" class="slide level2">
+<h2>Danger! <code>.unwrap()</code> &amp; <code>.expect()</code></h2>
+<ul>
+<li class="fragment">We can ignore safety</li>
+<li class="fragment"><code>.unwrap()</code> and <code>.expect("msg")</code> grab inner value <em>without</em> matching</li>
+<li class="fragment">We ignore <code>None</code> which can lead to a <strong>panic</strong></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb65"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb65-1"><a href=""></a>thread <span class="ot">'mai</span>n<span class="ch">'</span> panicked at src<span class="op">/</span>main<span class="op">.</span>rs<span class="op">:</span><span class="dv">4</span><span class="op">:</span><span class="dv">41</span><span class="op">:</span></span>
+<span id="cb65-2"><a href=""></a>called `<span class="pp">Option::</span>unwrap()` on a `None` value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="exercise-10" class="title-slide slide level1 center">
+<h1>Exercise</h1>
+
+</section>
+
+<section id="thanks" class="title-slide slide level1 center">
+<h1>Thanks!</h1>
+<p>Have a good lunch and see you for the next workshop :)</p>
 
 </section>
     </div>

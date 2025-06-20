@@ -950,3 +950,420 @@ fn main() {
 
 Create new `struct` types and destructure them. Additionally, add behavior through `derive`-macros.
 :::
+
+## Structs
+
+- Defined using `struct` keyword
+- Use pascal case
+
+. . .
+
+
+```rust
+struct Person {
+    name: String,
+    age: i32
+}
+```
+
+## Structs
+
+- Constructed using a "literal" syntax
+- No special behavior and cannot be printed
+
+```rust
+struct Person {
+    name: String,
+    age: i32
+}
+
+fn main() {
+    let me = Person { name: "Josiah".to_string(), age: 29 };
+    println!("{me:?}");
+}
+```
+```
+error[E0277]: `Person` doesn't implement `Debug`
+ --> src/main.rs:8:15
+  |
+8 |     println!("{me:?}");
+  |               ^^^^^^ `Person` cannot be formatted using `{:?}`
+```
+
+
+## Deriving behavior
+
+- Rust has **traits** akin to `S3` generics
+- Define methods that can be implemented by foreign types
+- `Debug` is a trait allowing for printing
+- Use `#[derive()]` to inherit
+
+```rust
+#[derive(Debug, Clone)]
+struct Person {
+    name: String,
+    age: i32
+}
+```
+
+## Example
+
+
+```rust
+#[derive(Debug, Clone)]
+struct Person {
+    name: String,
+    age: i32
+}
+
+fn main() {
+    let me = Person { name: "Josiah".to_string(), age: 29 };
+    println!("{me:?}");
+}
+```
+```
+Person { name: "Josiah", age: 29 }
+```
+
+## Accessing fields
+
+- Fields are accessed via `var.field_name`
+- Same rules of borrowing apply to fields
+- Once a field has been moved the struct cannot
+
+. . .
+
+```
+fn main() {
+    let me = Person { name: "Josiah".to_string(), age: 29 };
+    let name = me.name;
+    println!("{me:?}");
+}
+```
+```rust
+error[E0382]: borrow of partially moved value: `me`
+  --> src/main.rs:10:15
+   |
+9  |     let name = me.name;
+   |                ------- value partially moved here
+10 |     println!("{me:?}");
+   |
+```
+
+
+## Destructuring
+
+- Structs can be **destructured**
+- Each field becomes a variable
+- Syntax: `let StructName { field, field } = variable;`
+
+. . .
+
+```rust
+fn main() {
+    let me = Person { name: "Josiah".to_string(), age: 29 };
+    let Person { name, age } = me;
+    println!("{name} is {age} years old");
+}
+```
+
+
+# Exercise
+
+# Struct Methods
+
+::: callout-tip
+## Objectives
+
+Learn how to implement methods for stucts. Be able to create associated functions and understand the difference between `Self`, `&self`, and `&mut self`
+
+:::
+
+
+## Associatd functions
+
+- Methods are typically made on instantiations of a variable
+
+. . .
+
+```rust
+let me = Person { name: "Josiah".to_string(), age: 29 };
+let birth_year = me.year_of_birth();
+```
+
+- Sometimes a type has an **associated function** which is called from the type
+  - e.g. `Type::function()`
+  - Great for constructors
+
+. . .
+
+```rust
+let me = Person::new("Josiah".to_string(), 29);
+```
+
+## `impl`ementing methods
+
+- `impl` is short for **implement**
+- Implement methods using the syntax:
+
+. . .
+
+```rust
+impl TypeName {
+    fn method() {
+        todo!()
+    }
+}
+```
+
+## Associated functions
+
+- Associated functions do not reference the type itself
+- Methods can return `Self` which refers to the type of the struct
+
+. . .
+
+
+```rust
+impl Person {
+    fn new(name: String, age: i32) -> Self {
+        Person { name, age }
+    }
+}
+```
+
+- Lets us call `Person::new()`
+
+
+## Self references
+
+- Most often methods are called _from_ the instantiation
+- Use argument `&self` creates a **refernce**
+- `&self` is a reference so inner fields cannot be moved
+
+```rust
+impl Person {
+    fn greet(&self) {
+        println!("Hello, my name is {} and I am {} years old.", self.name, self.age);
+    }
+}
+```
+
+## References to other variables
+
+- Refer to the type that the method is implemented on using `&self`
+- Refer to _other_ instantiations using `&Self` or `Self`
+
+. . .
+
+```rust
+impl Person {
+    fn is_older_than(&self, other_person: &Self) -> bool {
+        self.age > other_person.age
+    }
+}
+```
+
+## Mutable self
+
+- It can be useful to modify a struct
+- Requires a **mutable reference**
+- Uses `&mut self`
+
+. . .
+
+```rust
+impl Person {
+    fn rename(&mut self, new_name: &str) {
+        self.name = new_name.to_string();
+    }
+
+    fn celebrate_birthday(&mut self) {
+        self.age += 1;
+    }
+}
+```
+
+# Exercise
+
+# Enum(eration)s
+
+::: callout-tip
+## Objective
+
+Understand what `enum`s are and when you may want to use one.
+
+:::
+
+
+# Enums
+
+- Often a variable can only be a limited number of values
+- Enumerations, or `enum` can only one of a number of **variants**
+
+## Enums in R
+
+We use enums _all the time_ in R and almost exclusively as function arguments.
+
+```r
+args(cor)
+```
+```r
+function(
+  x, y = NULL, use = "everything",
+  method = c("pearson", "kendall", "spearman") # 👈🏼 enum!
+)
+```
+
+## Example
+
+- Enumerate all shapes we will use
+
+```rust
+enum Shape {
+    Triangle,
+    Rectangle,
+    Pentagon,
+    Hexagon,
+}
+```
+
+## Variant-specific behavior
+
+- Shape can only be _one_ variant
+- Create an enum using `EnumName::Variant`
+- We vary behavior based on the variant
+- Use **pattern matching**
+
+## Enum matching
+
+- The keyword `match` creates branching logic for each variant
+- Each variant must have an **arm** of the statement
+- Ecah arm uses syntax `Enum::Variant => action`
+
+. . .
+
+```rust
+match my_shape {
+    Shape::Triangle => todo!(),
+    Shape::Rectangle => todo!(),
+    Shape::Pentagon => todo!(),
+    Shape::Hexagon => todo!(),
+}
+```
+
+## Example
+
+- Print the number of vertices per shape
+
+. . .
+
+```rust
+let my_shape = Shape::Triangle;
+
+match my_shape {
+    Shape::Triangle => println!("A triangle has 3 vertices"),
+    Shape::Rectangle => println!("A rectangle has 4 vertices"),
+    Shape::Pentagon => println!("A pentagon has 5 vertices"),
+    Shape::Hexagon => println!("A hexagon has 6 vertices"),
+}
+```
+
+## Wild card matching
+
+- Different behavior for a subset of variants
+- `_` is a catch all
+
+. . .
+
+```rust
+match my_shape {
+    Shape::Hexagon => println!("Hexagons are the bestagons");
+    _ => println!("Every other polygon is mid");
+}
+```
+
+## Enums can `impl`, too
+
+- Enums can have methods too using `impl`
+
+
+. . .
+
+```rust
+impl Shape {
+    fn is_bestagon(&self) -> bool {
+        match self {
+            Self::Hexagon => true,
+            _ => false
+        }
+    }
+}
+```
+
+# Exercises
+
+# `Some()` or `None`?
+
+::: callout-tip
+## Objective
+
+Understand how missingness is handled in Rust with `Option<T>`.
+- Understand how to handle missingness
+- Use `Option<T>` in an applied case
+:::
+
+
+## Options
+
+- No `NULL` type in Rust
+- Missingness is typified and must be handled
+- Defined as an `enum` called `Option`.
+
+. . .
+
+
+```rust
+enum Option {
+    Some(T),
+    None
+}
+```
+
+
+## Accessing `Some()` value
+
+- Options are enums and can be matched
+
+. . .
+
+```rust
+// create an Option<Measure> that contains a value
+let measure = Some(Measure::Euclidean);
+
+match measure {
+    Some(v) => println!("The measure is not missing!"),
+    None => println!("Oh no! The measure is missing"),
+}
+```
+
+## Danger! `.unwrap()` & `.expect()`
+
+- We can ignore safety
+- `.unwrap()` and `.expect("msg")` grab inner value _without_ matching
+- We ignore `None` which can lead to a **panic**
+
+. . .
+
+
+
+```rust
+thread 'main' panicked at src/main.rs:4:41:
+called `Option::unwrap()` on a `None` value
+```
+
+
+# Exercise
+
+# Thanks!
+Have a good lunch and see you for the next workshop :)

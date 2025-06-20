@@ -8,6 +8,24 @@ Create a vectorized `gh_decode()` function utilizing much of what we have learne
 :::
 
 
+In addition to collecting an interator into a wrapper type—e.g. `Doubles` or `Strings` we can create a vector of scalar types—`Vec<Rfloat>` and create `Doubles` from that using the associated function `Doubles::from_values(my_vec)`
+
+Using `Doubles::from_values()` is a flexible way to use Rust's vectors and quickly translate them to R ones.
+
+## Example
+
+```rust
+// instantiate empty vector
+let mut my_vec = Vec::new();
+
+// iterate through something and push into the vector
+for xi in x {
+    my_vec.push(Rfloat::from(xi));
+}
+
+// Create a double vector from the vector
+let res = Doubles::from_values(my_vec);
+```
 
 ## Exercise
 

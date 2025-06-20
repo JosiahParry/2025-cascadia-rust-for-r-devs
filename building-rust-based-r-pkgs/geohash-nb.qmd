@@ -9,7 +9,6 @@ Create an R function that finds a directional neighbor for a geohash.
 
 We now know how to take a string in R and convert it into an `enum` and what a `&str` is.
 
-
 We're going to begin building up a `gh_neighbor()` function which takes two arguments:
 
 ```rust

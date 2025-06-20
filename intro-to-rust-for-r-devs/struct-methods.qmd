@@ -5,18 +5,12 @@
 
 Learn how to implement methods for stucts. Be able to create associated functions and understand the difference between `Self`, `&self`, and `&mut self`
 
-<!--
-- Learn about `impl`-blocks
-- Understand the difference between methods that take `self`, `&self`, and `&mut self`!
-- Use and appreciate the `Self` type alias
-
--->
 
 :::
 
 ## Associated Functions
 
-Typically methods used on instantiations of a variable such as:
+Typically methods are used on instantiations of a variable such as:
 
 ```rust
 let me = Person { name: "Josiah".to_string(), age: 29 };

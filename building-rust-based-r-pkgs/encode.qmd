@@ -8,7 +8,7 @@ Modify `gh_encode()` so that it returns a geohash.
 
 In the previous exercise we printed the `Coord` struct. Now, lets continue the function by calling the `encode()` function from Rust.
 
-## encode()
+## `encode()`
 
 The `geohash::encode()` function has the following signature:
 

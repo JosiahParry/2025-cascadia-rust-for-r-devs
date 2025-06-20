@@ -474,17 +474,11 @@ Objectives
 </div>
 <div class="callout-body-container callout-body">
 <p>Learn how to implement methods for stucts. Be able to create associated functions and understand the difference between <code>Self</code>, <code>&amp;self</code>, and <code>&amp;mut self</code></p>
-<!--
-- Learn about `impl`-blocks
-- Understand the difference between methods that take `self`, `&self`, and `&mut self`!
-- Use and appreciate the `Self` type alias
-
--->
 </div>
 </div>
 <section id="associated-functions" class="level2">
 <h2 class="anchored" data-anchor-id="associated-functions">Associated Functions</h2>
-<p>Typically methods used on instantiations of a variable such as:</p>
+<p>Typically methods are used on instantiations of a variable such as:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> me <span class="op">=</span> Person <span class="op">{</span> name<span class="op">:</span> <span class="st">"Josiah"</span><span class="op">.</span>to_string()<span class="op">,</span> age<span class="op">:</span> <span class="dv">29</span> <span class="op">};</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> birth_year <span class="op">=</span> me<span class="op">.</span>year_of_birth()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Sometimes it makes sense to use an <strong>associated function</strong>. These are functions that are called from the type itself e.g.&nbsp;<code>Type::function()</code>. They’re typically used for <em>constructors</em>. For example</p>

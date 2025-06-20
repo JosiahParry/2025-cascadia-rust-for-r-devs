@@ -34,6 +34,6 @@ As much as this is about Rust, we are also working within the confines of R and 
 The R package we will create will help us:
 
 - encode geohashes
+- find geohash neighbors
 - decoded geohash to x & y plus error terms
 - decode geohash into a bounding box
-- find geohash neighbors

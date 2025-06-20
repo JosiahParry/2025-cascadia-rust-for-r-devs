@@ -403,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#encode" id="toc-encode" class="nav-link active" data-scroll-target="#encode">encode()</a></li>
+  <li><a href="#encode" id="toc-encode" class="nav-link active" data-scroll-target="#encode"><code>encode()</code></a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/edit/main/building-rust-based-r-pkgs/encode.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JosiahParry/2025-cascadia-rust-for-r-devs/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -445,7 +445,7 @@ Objective
 </div>
 <p>In the previous exercise we printed the <code>Coord</code> struct. Now, lets continue the function by calling the <code>encode()</code> function from Rust.</p>
 <section id="encode" class="level2">
-<h2 class="anchored" data-anchor-id="encode">encode()</h2>
+<h2 class="anchored" data-anchor-id="encode"><code>encode()</code></h2>
 <p>The <code>geohash::encode()</code> function has the following signature:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> encode(c<span class="op">:</span> Coord<span class="op">,</span> len<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> GeohashError<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Instead of returning a <code>String</code> we get a <code>Result&lt;&gt;</code>. In Rust, errors are data and should be handled.</p>
