@@ -35,7 +35,7 @@ The type of an array is specified as `[type; length]`.
 
 ## Vectors
 
-Vectors are like growable arrays. They are much more common in everyday Rust code. To create an array with known values, use the `vec![]` macro. Like an array, they must all be the same type.
+Vectors are like growable arrays. They are much more common in everyday Rust code. To create a vector with known values, use the `vec![]` macro. Like an array, they must all be the same type.
 
 ```rust
 fn main() {

@@ -1,0 +1,483 @@
+---
+title: "Intro to Rust for R Developers"
+format:
+  revealjs:
+    incremental: true
+---
+
+# Welcome!
+
+
+# All installed?
+
+- ✅ Positron
+- ✅ Rust
+- ✅ Rust Analyzer
+
+## Bathroom breaks
+
+- There will be 2 breaks at ~ each hour
+- Please use the restroom during exercises if need be
+
+## Exercises
+
+- Red 🟥 "I need help"
+- Green 🟩 "I'm done and ready to go!"
+
+## Workshop Objective
+
+- Zero to hero!
+- Write basic Rust code with iteration
+- Prepare for making R packages with Rust
+
+# Why Rust?
+
+- R is **interpreted**
+- Rust is **compiled** like C, C++, Fortran, Go
+- C++ speed with advantages
+
+## Rust advantages
+
+- Memory safe (no garbage collector)
+- Friendly compiler errors
+- Developer-oriented tooling:
+- Low effort, high reward
+
+
+# Hello, world!
+
+
+## `cargo`
+
+- Rust's package manager
+- Installed with Rust
+- Manages dependencies
+- Helps set up projects
+
+## Rust crates
+
+- Rust uses "crates"
+- Two types:
+  - Binary—e.g. cli tools and web servers
+  - Library—used by other Rust tools
+
+## Your first crate!
+
+Use `cargo new {name of crate}`
+
+```bash
+# create a new crate
+cargo new intro-to-rust
+
+cd intro-to-rust
+```
+
+## Crate anatomy
+
+```bash
+intro-to-rust/
+├── Cargo.toml      # Metadata & dependencies (like DESCRIPTION)
+├── Cargo.lock      # Dependency versions (like renv.lock)
+└── src/
+    └── main.rs     # Entry point — like main.R
+```
+
+## `main.rs`
+
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+- Functions are declared using the `fn` keyword
+- The `main()` function is the entrypoint of the program (and required)
+- Blocks of code are delimted using curly braces (like R & C)
+- Statements end with `;`
+- `println!()` is a macro (notice the `!`) which is used to print to `stdout`
+
+## `println!()`
+
+* Macros have a `!`, like `println!()`.
+* Think of it like `print()` in R, but explicit.
+* It supports format strings:
+
+. . .
+
+:::{layout-ncol=2}
+#### Using placeholder
+```rust
+let name = "Josiah";
+println!("Hello, {}!", name);
+```
+
+#### Direct interpolation
+```rust
+let name = "Josiah";
+println!("Hello, {name}!");
+```
+
+:::
+
+
+# Exercise
+
+
+# Basic Types
+
+::: callout-tip
+## Objective
+
+Familiarize yourself with basic types in Rust and when they may be used.
+
+:::
+
+
+## Basic Types
+
+- Everything in R is a **vector**
+- Vectors are **collections** of scalars
+- Scalars are the building block of everything in Rust
+- Rust has explicit _collections_
+
+## Integers
+
+- Either **signed** or **unsigned**
+- Signed can be _negative_
+- Unsigned are strictly positive
+- Signed Integers: `i8`, `i16`, `i32`, `i64`, `i128`
+- Unsigned Integers: `u8`, `u16`, `u32`, `u64`, `u128`
+
+
+. . .
+
+::: callout-note
+In R, an integer vector is comprised of `i32` values.
+:::
+
+
+
+
+:::{.notes}
+The letter prefix is the type of primitive. The following number indicates how many bits can be used to store the values.
+:::
+
+
+## Floating Point
+
+- **Signed** with decimal values
+- Two types: `f32` and `f64`
+
+. . .
+
+::: callout-note
+In R, a double vector is comprised of `f64` values.
+:::
+
+
+## Strong typing
+
+- Rust _infers__ types very well
+- Oftern we need to specify the type
+- In assignment via `let x: f64 = 10;`
+- Using a suffix e.g. `10f64` or `10_i32`
+
+::: callout-tip
+Use `_` as a visual separator when specifying numbers in Rust.
+:::
+
+## Type casting
+
+- Must use like-types
+- **Cannot** do `2_i32 + 3.14`
+- Must _cast_ to a similar type using `as`
+
+. . .
+
+```rust
+fn add2(x: f64, y: i32) -> f64 {
+   x + y as f64
+}
+```
+
+## Unit type
+
+- No such thing as `NULL`
+- `()` is the **unit** type
+- Functions  that do not return anything return `()`
+
+## Exercise
+
+# Control Flow
+
+::: callout-tip
+## Objective
+
+Understand control flow and numeric operators in Rust. You will create the FizzBuzz program using Rust!
+
+:::
+
+
+## Numeric operators
+
+- `+` addition
+- `-` subtraction
+- `/` division
+- `%` remainder
+
+## Logical Operators:
+
+- Logical operators are quite similar to R.
+- _Not_ vectorized
+- Uses `bool` can only be `true` or `false`
+
+- `==` check equality
+- `!=` check inequality
+- `!` negate a logical value
+- `&&` logical AND comparison
+- `||` logical OR comparison
+
+
+## Control flow
+
+- `if`, `else`, and `else if` is similar to R
+- Branches use `{}`
+
+```rust
+if x == y {
+  // do something
+} else {
+  // do something else
+}
+```
+
+## Exercise
+
+
+# Arrays and Vectors
+
+::: callout-tip
+
+## Objective
+
+Learn how to store multiple values of the same type in arrays and vectors. Understand the difference between arrays and vectors.
+:::
+
+
+## Arrays
+
+- Fixed size
+- Contain the same type
+- Very fast
+- Very inflexible
+
+. . .
+
+```rust
+fn main() {
+    let arr = [10, 20, 30, 40];
+    println!("Array: {:?}", arr);
+}
+```
+
+## Debug syntax
+
+- The `{:?}` syntax is used for a [**Debug**](https://doc.rust-lang.org/std/fmt/trait.Debug.html) representation of a variable.
+- Using `{}` is used for [**Displaying**](https://doc.rust-lang.org/std/fmt/trait.Display.html) data
+- Usually `{:?}` works whereas `{}` doesn't always
+
+## Arrays
+
+* Arrays use square brackets: `[1, 2, 3]`
+* Their size is known at compile time
+* You can't add or remove elements
+* Mostly used when performance is critical and size is known
+- Type is specified as `[type; length]`
+
+## Vectors
+
+- Growable arrays
+- Much more flexible
+- Must be the same type
+- Construct using `vec![]`
+
+. . .
+
+```rust
+fn main() {
+    let v = vec![1, 2, 3, 4, 5];
+    println!("Vector: {:?}", v);
+}
+```
+
+
+## Vectors
+
+- Specify type of a vector using `Vec<T>`
+- Empty vectors with `Vec::new()`
+- Empty vectors must have explicit type (or inferred)
+
+. . .
+
+::: callout-important
+## Cannot compile
+```rust
+fn main() {
+    let x = Vec::new();
+    println!("x is empty: {}", x.is_empty();
+}
+```
+:::
+
+
+## Array / Vector methods
+
+- `x.len()` how many elements in the vector
+- `.is_empty()`
+
+. . .
+
+```rust
+fn main() {
+    let x: Vec<f64> = Vec::new();
+    println!("x is empty: {}", x.is_empty();
+}
+````
+
+
+## Exercise
+
+# `for`-loops
+
+::: callout-tip
+
+## Objective
+
+Be able to iterate over a collection of values. Apply logic inside of the for loop.
+
+:::
+
+## `for` loop syntax
+
+- Used to iterate through a **collection**
+
+. . .
+
+```rust
+for value in collection {
+    // do something with value
+}
+```
+
+
+## `for` loop syntax
+
+- Each iteration takes on the value of the name provided to `in`
+
+```rust
+fn main() {
+    let nums = vec![1, 2, 3];
+    for n in nums {
+        println!("n is: {}", n);
+    }
+}
+```
+
+
+## Scope
+
+* Values *outside* of the for loop are accessible inside of it.
+* Values created *inside* of the for loop cannot be accessed outside of it.
+
+
+. . .
+
+
+::: columns
+
+::: column
+:::{.callout-tip title = "This does compile" icon=false}
+```rust
+fn main() {
+    let greeting = "Hi";
+    let names = vec!["Alice", "Bob"];
+
+    for name in names {
+        println!("{greeting}, {name}!");
+    }
+}
+```
+:::
+
+:::
+
+::: column
+
+::: callout-important
+#### This does not compile!
+
+
+```rust
+fn main() {
+    let numbers = vec![1, 2, 3];
+
+    for n in numbers {
+        let doubled = n * 2;
+        println!("{n} doubled is {doubled}");
+    }
+
+    // ❌ `doubled` doesn't exist here
+    // println!("Last doubled: {}", doubled);
+}
+```
+:::
+
+:::
+
+## Exercise
+
+# Mutability
+
+::: callout-tip
+Understand the difference between immutable and mutable variables.
+:::
+
+## Mutability
+
+- R everything is **immutable** (except environments)
+- Immutable objects cannot be altered
+- Rust variables are immutable by default
+- Use `mut` to make them mutable
+- Can override value use `var = new_val` _without_ `let`
+
+. . .
+
+```rust
+let mut x = 5;
+x = 6; // ✅ works because x is mutable
+```
+
+## Example
+
+Revisiting our loop from earlier:
+
+```rust
+fn main() {
+    // create a vector
+    let numbers = vec![1, 2, 3];
+    // create a mutable value
+    let mut doubled = 0;
+
+    // iterate through numbers to update doubled
+    for n in numbers {
+        doubled = n * 2;
+        println!("{} doubled is {}", n, doubled);
+    }
+
+    // ✅ compiles because `doubled` was declared
+    // _outside_ of the inner loop scope
+    println!("Last doubled: {}", doubled);
+}
+```
+
+# Exercise

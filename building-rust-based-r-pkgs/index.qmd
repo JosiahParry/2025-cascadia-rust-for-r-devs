@@ -2,6 +2,7 @@
 title: Building Rust based R Packages
 ---
 
+<!--
 ## Objective {.unnumbered}
 
 
@@ -566,3 +567,5 @@ fn gh_neighbors(geohashes: Strings) -> Robj {
 <details>
     <summary>View solution</summary>
 </details>
+
+ -->
