@@ -30,8 +30,11 @@ More often than not, using `{:?}` will be your best option.
 * You can't add or remove elements.
 * Mostly used when performance is critical and size is known.
 
-The type of an array is specified as `[type; length]`.
+The type of an array is specified as `[type; length]`, e.g.
 
+```rust
+let arr: [i32; 4] = [10, 20, 30, 40];
+```
 
 ## Vectors
 
@@ -46,7 +49,7 @@ fn main() {
 
 The type of a vector is specified using `Vec<T>` where `T` is shorthand for any type.
 
-An empty vector can be created using `Vec::new()` or `vec![]`. If creating an empty vector, the type must be inferred or made explicit. Vectors also have **methods**. Two handy ones are `.len()` and `.is_empty()` (equivalent of `.len() == 0`)
+An empty vector can be created using `Vec::new()` or `vec![]`. If creating an empty vector, the type must be inferred or made explicit. Vectors also have **methods**. Two handy ones are `.len()` for length, and `.is_empty()` (equivalent of `.len() == 0`)
 
 
 
@@ -55,7 +58,7 @@ An empty vector can be created using `Vec::new()` or `vec![]`. If creating an em
 ```rust
 fn main() {
     let x = Vec::new();
-    println!("x is empty: {}", x.is_empty();
+    println!("x is empty: {}", x.is_empty());
 }
 ```
 :::
@@ -65,7 +68,7 @@ This cannot compile because the type of `x` is not known. Rust can infer the typ
 ```rust
 fn main() {
     let x: Vec<f64> = Vec::new();
-    println!("x is empty: {}", x.is_empty();
+    println!("x is empty: {}", x.is_empty());
 }
 ````
 
@@ -89,6 +92,9 @@ fn main() {
 
     let v = vec![10, 20, 30, 40, 50];
     println!("Vector: {:?}", v);
+
+    // Bonus:
+    let v = vec![42_i32; 0];
 }
 ```
 

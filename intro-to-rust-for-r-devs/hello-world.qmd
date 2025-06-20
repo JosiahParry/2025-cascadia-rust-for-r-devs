@@ -109,7 +109,7 @@ println!("Hello, {name}!");
 - Run the hello world program using `cargo run`
 - Create a variable called `name` inside of the `main()` function with your name
 - Print `Hello, {name}!` using `println!()`
-
+- To run it navigate to your terminal and then enter `cargo run`.
 
 ### Solution
 
@@ -124,7 +124,5 @@ fn main() {
     println!("Hello, {name}!");
 }
 ```
-
-To run it navigate to your terminal and then run `cargo run`.
 
 </details>

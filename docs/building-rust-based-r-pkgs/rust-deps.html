@@ -488,7 +488,7 @@ View solution
 <p>From the R terminal run:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rextendr<span class="sc">::</span><span class="fu">use_crate</span>(<span class="st">"geohash"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will add the geohash dependency.</p>
-<p>Open <code>src/rust/lib.rs</code> and add the following below <code>use extendr_api::prelude::*;</code></p>
+<p>Open <code>src/rust/src/lib.rs</code> and add the following below <code>use extendr_api::prelude::*;</code></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">geohash::</span><span class="op">{</span>Coord<span class="op">,</span> encode<span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 

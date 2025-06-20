@@ -151,7 +151,7 @@
     "href": "intro-to-rust-for-r-devs/hello-world.html#exercise",
     "title": "2  Hello, World!",
     "section": "Exercise",
-    "text": "Exercise\n\nIn your terminal, create a new rust crate called intro-to-rust\nOpen the new Rust crate’s folder in Positron\nRun the hello world program using cargo run\nCreate a variable called name inside of the main() function with your name\nPrint Hello, {name}! using println!()\n\n\nSolution\n\n\nView solution\n\nIn src/main.rs\nfn main() {\n    let name = \"Josiah\";\n    println!(\"Hello, {name}!\");\n}\nTo run it navigate to your terminal and then run cargo run.",
+    "text": "Exercise\n\nIn your terminal, create a new rust crate called intro-to-rust\nOpen the new Rust crate’s folder in Positron\nRun the hello world program using cargo run\nCreate a variable called name inside of the main() function with your name\nPrint Hello, {name}! using println!()\nTo run it navigate to your terminal and then enter cargo run.\n\n\nSolution\n\n\nView solution\n\nIn src/main.rs\nfn main() {\n    let name = \"Josiah\";\n    println!(\"Hello, {name}!\");\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Hello, World!</span>"
@@ -173,7 +173,7 @@
     "href": "intro-to-rust-for-r-devs/types.html#integers",
     "title": "3  Basic Types",
     "section": "",
-    "text": "Signed Integers: i8, i16, i32, i64, i128\nUnsigned Integers: u8, u16, u32, u64, u128\n\n\n\n\n\n\n\nIn R, an integer vector is comprised of i32 values.",
+    "text": "Signed Integers: i8, i16, i32, i64, i128\nUnsigned Integers: u8, u16, u32, u64, u128\n\n\n\n\n\n\n\nIn R, an integer vector is comprised of i32 values.\n\n\n\n\ni32::MAX // 2147483647\nu32::MAX // 4294967295",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
@@ -228,7 +228,7 @@
     "href": "intro-to-rust-for-r-devs/types.html#exercise",
     "title": "3  Basic Types",
     "section": "Exercise",
-    "text": "Exercise\nModify src/main.rs to add two or more incompatible types.\n\nDefine a variable x to be an f64 value\nDefine y to be an i32 value\nAdd them up and store them in the variable z\nUse println!() to print the value of z\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = 3.14;\n    let y = 47_i32;\n    let z = x + y as f64;\n    println!(\" The vlaue of z is {z}\");\n}",
+    "text": "Exercise\nModify src/main.rs to add two or more incompatible types.\n\nDefine a variable x to be an f64 value\nDefine y to be an i32 value\nAdd them up and store them in the variable z\nUse println!() to print the value of z\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let x = 3.14;\n    let y = 47_i32;\n    let z = x + y as f64;\n    println!(\" The value of z is {z}\");\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Basic Types</span>"
@@ -294,7 +294,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html",
     "title": "5  Arrays and Vectors",
     "section": "",
-    "text": "Arrays\nArrays in Rust are fixed in size and hold values of the same type. Since the size is known ahead of time, it makes them fast but inflexible.\nThe type of an array is specified as [type; length].",
+    "text": "Arrays\nArrays in Rust are fixed in size and hold values of the same type. Since the size is known ahead of time, it makes them fast but inflexible.\nThe type of an array is specified as [type; length], e.g.",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -305,7 +305,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html#arrays",
     "title": "5  Arrays and Vectors",
     "section": "",
-    "text": "fn main() {\n    let arr = [10, 20, 30, 40];\n    println!(\"Array: {:?}\", arr);\n}\n\n\n\n\n\n\nThe {:?} syntax is used for a Debug representation of a variable. Using {} is used for Displaying data.\nMore often than not, using {:?} will be your best option.\n\n\n\n\nArrays use square brackets: [1, 2, 3]\nTheir size is known at compile time.\nYou can’t add or remove elements.\nMostly used when performance is critical and size is known.",
+    "text": "fn main() {\n    let arr = [10, 20, 30, 40];\n    println!(\"Array: {:?}\", arr);\n}\n\n\n\n\n\n\nThe {:?} syntax is used for a Debug representation of a variable. Using {} is used for Displaying data.\nMore often than not, using {:?} will be your best option.\n\n\n\n\nArrays use square brackets: [1, 2, 3]\nTheir size is known at compile time.\nYou can’t add or remove elements.\nMostly used when performance is critical and size is known.\n\n\nlet arr: [i32; 4] = [10, 20, 30, 40];",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -316,7 +316,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html#vectors",
     "title": "5  Arrays and Vectors",
     "section": "Vectors",
-    "text": "Vectors\nVectors are like growable arrays. They are much more common in everyday Rust code. To create a vector with known values, use the vec![] macro. Like an array, they must all be the same type.\nfn main() {\n    let v = vec![1, 2, 3, 4, 5];\n    println!(\"Vector: {:?}\", v);\n}\nThe type of a vector is specified using Vec&lt;T&gt; where T is shorthand for any type.\nAn empty vector can be created using Vec::new() or vec![]. If creating an empty vector, the type must be inferred or made explicit. Vectors also have methods. Two handy ones are .len() and .is_empty() (equivalent of .len() == 0)\n\n\n\n\n\n\nCannot compile\n\n\n\nfn main() {\n    let x = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}\n\n\nThis cannot compile because the type of x is not known. Rust can infer the type if the vector is used elsewhere where the type is known. To make it compile we must specify the type.\nfn main() {\n    let x: Vec&lt;f64&gt; = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty();\n}",
+    "text": "Vectors\nVectors are like growable arrays. They are much more common in everyday Rust code. To create a vector with known values, use the vec![] macro. Like an array, they must all be the same type.\nfn main() {\n    let v = vec![1, 2, 3, 4, 5];\n    println!(\"Vector: {:?}\", v);\n}\nThe type of a vector is specified using Vec&lt;T&gt; where T is shorthand for any type.\nAn empty vector can be created using Vec::new() or vec![]. If creating an empty vector, the type must be inferred or made explicit. Vectors also have methods. Two handy ones are .len() for length, and .is_empty() (equivalent of .len() == 0)\n\n\n\n\n\n\nCannot compile\n\n\n\nfn main() {\n    let x = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty());\n}\n\n\nThis cannot compile because the type of x is not known. Rust can infer the type if the vector is used elsewhere where the type is known. To make it compile we must specify the type.\nfn main() {\n    let x: Vec&lt;f64&gt; = Vec::new();\n    println!(\"x is empty: {}\", x.is_empty());\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -327,7 +327,7 @@
     "href": "intro-to-rust-for-r-devs/collections.html#exercise",
     "title": "5  Arrays and Vectors",
     "section": "Exercise",
-    "text": "Exercise\n\nCreate an array of 4 integers and print it.\nCreate a vector with 5 numbers and print it using {:?}.\nCompare the length of the array and the vector.\nBonus: create an empty i32 vector.\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let arr = [1, 2, 3, 4];\n    println!(\"Array: {:?}\", arr);\n\n    let v = vec![10, 20, 30, 40, 50];\n    println!(\"Vector: {:?}\", v);\n}",
+    "text": "Exercise\n\nCreate an array of 4 integers and print it.\nCreate a vector with 5 numbers and print it using {:?}.\nCompare the length of the array and the vector.\nBonus: create an empty i32 vector.\n\n\nSolution\n\n\nView solution\n\nfn main() {\n    let arr = [1, 2, 3, 4];\n    println!(\"Array: {:?}\", arr);\n\n    let v = vec![10, 20, 30, 40, 50];\n    println!(\"Vector: {:?}\", v);\n\n    // Bonus:\n    let v = vec![42_i32; 0];\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Arrays and Vectors</span>"
@@ -866,7 +866,7 @@
     "href": "intro-to-rust-for-r-devs/enums.html#wildcard-matching",
     "title": "15  Enum(eration)s",
     "section": "Wildcard matching",
-    "text": "Wildcard matching\nSometimes we want to customize behavior on only a subset of variants. We can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”.\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons\");\n    _ =&gt; println!(\"Every other polygon is mid\");\n}",
+    "text": "Wildcard matching\nSometimes we want to customize behavior on only a subset of variants. We can use a catch all in the match statement _ =&gt; use the underscore to signify “everything else”.\nmatch my_shape {\n    Shape::Hexagon =&gt; println!(\"Hexagons are the bestagons\"),\n    _ =&gt; println!(\"Every other polygon is mid\"),\n}",
     "crumbs": [
       "Intro to Rust for R Developers",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Enum(eration)s</span>"
@@ -1020,7 +1020,7 @@
     "href": "building-rust-based-r-pkgs/objective.html",
     "title": "19  Workshop Scope",
     "section": "",
-    "text": "What is geohashing?\nThere’s no better way to learn than by doing.\nIn this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called {geohashrs}. The {geohashrs} R package will provide R bindings to the geohash crate.\nThroughout the workshop we will touch on:\nAs much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.",
+    "text": "What is geohashing?\nThere’s no better way to learn than by doing.\nIn this workhop we will learn how to use extendr and create Rust-powered R package by creating a new package called {geohashrs}. The {geohashrs} R package will provide R bindings to the geohash crate.\nThroughout the workshop we will touch on:\nAs much as this is about Rust, we are also working within the confines of R and thus, the two are inextricably linked.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Workshop Scope</span>"
@@ -1108,7 +1108,7 @@
     "href": "building-rust-based-r-pkgs/extendr-structure.html#compiled-code",
     "title": "21  Package structure",
     "section": "",
-    "text": ".\n├── Makevars\n├── Makevars.in\n├── Makevars.win.in\n└── rust\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── src\n\nrust/ is library crate that is linked to by R\nMakevars files builds the Rust library and links it to R",
+    "text": ".\n├── Makevars\n├── Makevars.in\n├── Makevars.win.in\n└── rust\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── src\n\nrust/ is a library crate that is linked to by R\nMakevars files builds the Rust library and links it to R",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Package structure</span>"
@@ -1196,7 +1196,7 @@
     "href": "building-rust-based-r-pkgs/rust-deps.html#exercise",
     "title": "23  Adding dependencies",
     "section": "Exercise",
-    "text": "Exercise\n\nAdd the geohash crate as a dependency\nImport the Coord struct and the encode function from geohash in lib.rs\n\n\n\nView solution\n\nFrom the R terminal run:\nrextendr::use_crate(\"geohash\")\nThis will add the geohash dependency.\nOpen src/rust/lib.rs and add the following below use extendr_api::prelude::*;\nuse geohash::{Coord, encode};",
+    "text": "Exercise\n\nAdd the geohash crate as a dependency\nImport the Coord struct and the encode function from geohash in lib.rs\n\n\n\nView solution\n\nFrom the R terminal run:\nrextendr::use_crate(\"geohash\")\nThis will add the geohash dependency.\nOpen src/rust/src/lib.rs and add the following below use extendr_api::prelude::*;\nuse geohash::{Coord, encode};",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>Adding dependencies</span>"
@@ -1240,7 +1240,7 @@
     "href": "building-rust-based-r-pkgs/first-fn.html#exercise",
     "title": "24  Your first function",
     "section": "Exercise",
-    "text": "Exercise\n\nDelete hello_world() from your package\nCreate a new function gh_encode() that takes x: f64 and y: f64 without a return type\nConstruct a Coord struct\nUse rprintln!() to print the debug representation of the Coord\nAdd the gh_encode function to extendr_module! and rextendr::document() your package\nRun gh_encode() from R\n\n\n\n\n\n\n\nUse rprintln!() instead of println!() to print to the R console.\n\n\n\n\n\nView solution\n\nIn src/rust/lib.rs\nuse extendr_api::prelude::*;\n\n#[extendr]\nfn gh_encode(x: f64, y: f64) {\n    let coord = Coord { x, y };\n    rprintln!(\"{coord:?}\");\n}\n\nextendr_module! {\n    mod geohashrs;\n    fn gh_encode;\n}\nAfter modifying lib.rs run `\nrextendr::document()\ndevtools::load_all()\n\ngh_encode(3.0, 0.14)",
+    "text": "Exercise\n\nDelete hello_world() from your package\nCreate a new function gh_encode() that takes x: f64 and y: f64 without a return type\nConstruct a Coord struct\nUse rprintln!() to print the debug representation of the Coord\nAdd the gh_encode function to extendr_module! and rextendr::document() your package\nRun gh_encode() from R\n\n\n\n\n\n\n\nUse rprintln!() instead of println!() to print to the R console.\n\n\n\n\n\nView solution\n\nIn src/rust/src/lib.rs\nuse extendr_api::prelude::*;\n\n#[extendr]\nfn gh_encode(x: f64, y: f64) {\n    let coord = Coord { x, y };\n    rprintln!(\"{coord:?}\");\n}\n\nextendr_module! {\n    mod geohashrs;\n    fn gh_encode;\n}\nAfter modifying lib.rs run `\nrextendr::document()\ndevtools::load_all()\n\ngh_encode(3.0, 0.14)",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>Your first function</span>"
@@ -1251,7 +1251,7 @@
     "href": "building-rust-based-r-pkgs/encode.html",
     "title": "25  Encoding a geohash",
     "section": "",
-    "text": "encode()\nIn the previous exercise we printed the Coord struct. Now, lets continue the function by calling the encode() function from Rust.\nThe geohash::encode() function has the following signature:\nInstead of returning a String we get a Result&lt;&gt;. In Rust, errors are data and should be handled.\nFor now, we’re going to ignore the possibility that an error may ever occur (we’re perfect anyways, right? 💅). Results are actually a special type of enum with the structure of\nEach variant of a result holds some data. If the Result was okay (meaning no error), it contains the expected type. Otherwise, it returns the specified error type.\nIn Rust, we can .unwrap() or .expect(\"Expectation message\") both Option&lt;T&gt; and Result&lt;T&gt;. So, for this case, we will do just that.",
+    "text": "encode()\nIn the previous exercise we printed the Coord struct. Now, let’s continue the function by calling the encode() function from Rust.\nThe geohash::encode() function has the following signature:\nInstead of returning a String we get a Result&lt;&gt;. In Rust, errors are data and should be handled.\nFor now, we’re going to ignore the possibility that an error may ever occur (we’re perfect anyways, right? 💅). Results are actually a special type of enum with the structure of\nEach variant of a result holds some data. If the Result was okay (meaning no error), it contains the expected type. Otherwise, it returns the specified error type.\nIn Rust, we can .unwrap() or .expect(\"error message when expectation is unmet\") both Option&lt;T&gt; and Result&lt;T&gt;. So, for this case, we will do just that.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>Encoding a geohash</span>"
@@ -1273,7 +1273,7 @@
     "href": "building-rust-based-r-pkgs/encode.html#exercise",
     "title": "25  Encoding a geohash",
     "section": "Exercise",
-    "text": "Exercise\n\nAdd an argument length: usize to gh_encode()\nSpecify the return type to be String\nUse geohash::encode() on the constructed Coord with the specified length\nUnwrap the result and return the inner String\n\n\n\nView solution\n\nModify your src/lib.rs file to have:\n#[extendr]\nfn gh_encode(x: f64, y: f64, length: usize) -&gt; String {\n    let coord = Coord { x, y };\n    encode(coord, length).unwrap()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nRun gh_encode(3.0, 0.14, 10L) with your new function.",
+    "text": "Exercise\n\nAdd an argument length: usize to gh_encode()\nSpecify the return type to be String\nUse geohash::encode() on the constructed Coord with the specified length\nUnwrap the result and return the inner String\n\n\n\nView solution\n\nModify your src/rust/src/lib.rs file to have:\n#[extendr]\nfn gh_encode(x: f64, y: f64, length: usize) -&gt; String {\n    let coord = Coord { x, y };\n    encode(coord, length).unwrap()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nRun gh_encode(3.0, 0.14, 10L) with your new function.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>Encoding a geohash</span>"
@@ -1328,7 +1328,7 @@
     "href": "building-rust-based-r-pkgs/vectorize.html#tuples",
     "title": "27  Vectorizing",
     "section": "Tuples",
-    "text": "Tuples\nTuples are the fundamental heterogenous data type for Rust. They’re much like tuples in Python.\nlet my_tuple = (1.0, \"One\");\nEach element of the tuple can be accessed as if they were fields in a struct. To access the first element of the tuple we can use my_tuple.0 and the second with my_tuple.1.\nTuples can be destructured in assignment too!\nlet my_tuple = (1.0, \"One\");\nlet (one_one, one_two) = my_tuple;",
+    "text": "Tuples\nTuples are the fundamental heterogeneous data type for Rust. They’re much like tuples in Python.\nlet my_tuple = (1.0, \"One\");\nEach element of the tuple can be accessed as if they were fields in a struct. To access the first element of the tuple we can use my_tuple.0 and the second with my_tuple.1.\nTuples can be destructured in assignment too!\nlet my_tuple = (1.0, \"One\");\nlet (one_one, one_two) = my_tuple;",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Vectorizing</span>"
@@ -1350,7 +1350,7 @@
     "href": "building-rust-based-r-pkgs/vectorize.html#exercise",
     "title": "27  Vectorizing",
     "section": "Exercise",
-    "text": "Exercise\n\nModify x and y to be Vec&lt;f64&gt;\nChange the return type to be Vec&lt;String&gt;\nCreate a zipped iterator for x and y\nMap through the iterator and:\n\ndestructure the tuple in the closure (as in the above example)\nCreate a Coord struct in each iteration\nencode() the coordinate\nunwrap the result\n\nCollect the iterator into a Vec&lt;String&gt;\nTest this in R\n\n\n\n\n\n\n\nGenerating random points\n\n\n\nTo help you test this function, I recommend using the following code:\nn &lt;- 10\nx &lt;- runif(n, -180, 180)\ny &lt;- runif(n, -90, 90)\n\ngh_encode(x, y, 10L)\n\n\n\n\nView solution\n\n#[extendr]\nfn gh_encode(x: Vec&lt;f64&gt;, y: Vec&lt;f64&gt;, length: usize) -&gt; Vec&lt;String&gt; {\n\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    x\n        .into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| {\n            let coord = Coord { x: xi, y: yi };\n            encode(coord, length)\n                .expect(\"Failed to encode the geohash\")\n        })\n        .collect::&lt;Vec&lt;_&gt;()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nn &lt;- 10\nx &lt;- runif(n, -180, 180)\ny &lt;- runif(n, -90, 90)\n\ngh_encode(x, y, 10L)",
+    "text": "Exercise\n\nModify x and y to be &[f64]\nChange the return type to be Vec&lt;String&gt;\nCreate a zipped iterator for x and y\nMap through the iterator and:\n\ndestructure the tuple in the closure (as in the above example)\nCreate a Coord struct in each iteration\nencode() the coordinate\nunwrap the result\n\nCollect the iterator into a Vec&lt;String&gt;\nTest this in R\n\n\n\n\n\n\n\nGenerating random points\n\n\n\nTo help you test this function, I recommend using the following code:\nn &lt;- 10\nx &lt;- runif(n, -180, 180)\ny &lt;- runif(n, -90, 90)\n\ngh_encode(x, y, 10L)\n\n\n\n\nView solution\n\n#[extendr]\nfn gh_encode(x: &[f64], y: &[f64], length: usize) -&gt; Vec&lt;String&gt; {\n\n    if length == 0 || length &gt; 12 {\n        throw_r_error(\"`length` must be between 1 and 12\");\n    }\n\n    x\n        .into_iter()\n        .zip(y.into_iter())\n        .map(|(xi, yi)| {\n            let coord = Coord { x: xi, y: yi };\n            encode(coord, length)\n                .expect(\"Failed to encode the geohash\")\n        })\n        .collect::&lt;Vec&lt;_&gt;()\n}\nRun rextendr::document() and devtools::load_all() to register the changes to your function.\nn &lt;- 10\nx &lt;- runif(n, -180, 180)\ny &lt;- runif(n, -90, 90)\n\ngh_encode(x, y, 10L)",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Vectorizing</span>"
@@ -1482,7 +1482,7 @@
     "href": "building-rust-based-r-pkgs/error-handling.html#ux-for-errors",
     "title": "30  Handling Errors",
     "section": "UX for Errors",
-    "text": "UX for Errors\nThis is a philisophical conversation, really.\nI’m of the mind that, for vectorized functions, we do not give up on everything if an error has occured. Instead, return NULL or NA wherever an error may have occurred.",
+    "text": "UX for Errors\nThis is a philosophical conversation, really.\nI’m of the mind that, for vectorized functions, we do not give up on everything if an error has occured. Instead, return NULL or NA wherever an error may have occurred.",
     "crumbs": [
       "Building Rust based R Packages",
       "<span class='chapter-number'>30</span>  <span class='chapter-title'>Handling Errors</span>"

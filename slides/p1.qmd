@@ -177,10 +177,12 @@ In R, a double vector is comprised of `f64` values.
 
 ## Strong typing
 
-- Rust _infers__ types very well
+- Rust _infers_ types very well
 - Oftern we need to specify the type
 - In assignment via `let x: f64 = 10;`
 - Using a suffix e.g. `10f64` or `10_i32`
+
+. . .
 
 ::: callout-tip
 Use `_` as a visual separator when specifying numbers in Rust.
@@ -213,7 +215,7 @@ fn add2(x: f64, y: i32) -> f64 {
 ::: callout-tip
 ## Objective
 
-Understand control flow and numeric operators in Rust. You will create the FizzBuzz program using Rust!
+Understand control flow and numeric operators in Rust. You will create the `FizzBuzz` program using Rust!
 
 :::
 
@@ -324,7 +326,7 @@ fn main() {
 ```rust
 fn main() {
     let x = Vec::new();
-    println!("x is empty: {}", x.is_empty();
+    println!("x is empty: {}", x.is_empty());
 }
 ```
 :::
@@ -340,7 +342,7 @@ fn main() {
 ```rust
 fn main() {
     let x: Vec<f64> = Vec::new();
-    println!("x is empty: {}", x.is_empty();
+    println!("x is empty: {}", x.is_empty());
 }
 ````
 

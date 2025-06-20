@@ -62,7 +62,7 @@ Use `rprintln!()` instead of `println!()` to print to the R console.
 <details>
     <summary>View solution</summary>
 
-In `src/rust/lib.rs`
+In `src/rust/src/lib.rs`
 
 ```rust
 use extendr_api::prelude::*;

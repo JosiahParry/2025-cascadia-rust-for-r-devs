@@ -446,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In R everything is immutable (except environments). Immutable objects <em>cannot be altered</em>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Instead, when they are modified, they are copied. This is called copy-on-write (often referred to as <strong>cow</strong>).</p>
+<p>Instead, when they are modified, they are copied. This is called copy-on-write (often referred to as <strong>cow</strong> semantics).</p>
 </div></div><p>In Rust, variables are immutable by default. This means once a value is assigned to a variable, it cannot be changed. To make a variable mutable, you must explicitly use the <code>mut</code> keyword.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">6</span><span class="op">;</span> <span class="co">// ✅ works because x is mutable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

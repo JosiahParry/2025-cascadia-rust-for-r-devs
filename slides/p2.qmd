@@ -69,8 +69,8 @@ Learn the different components of the extendr ecosystem.
 `extendr` is a project that focuses on _extending_ R with Rust. It is comprised of:
 
 - [rextendr](https://extendr.github.io/rextendr/)
-- [extendr-ffi](https://extendr.github.io/extendr/extendr_ffi)
 - [extendr-api](https://extendr.github.io/extendr/extendr_api)
+- [extendr-ffi](https://extendr.github.io/extendr/extendr_ffi)
 - [extendr-engine](https://extendr.github.io/extendr/extendr_engine)
 
 
@@ -124,7 +124,7 @@ Throughout the workshop we will touch on:
 
 ## Geohashes
 
-![](/images/geohash.png)
+[epxlorer](https://geohash.softeng.co/)
 
 
 ## Geohash
@@ -207,6 +207,9 @@ Understand the directory structure of extendr-based R packages.
 ## Compiled Code
 
 - Compiled code is stored in `src/`
+
+. . .
+
 ```
 .
 ├── Makevars
@@ -218,13 +221,17 @@ Understand the directory structure of extendr-based R packages.
     ├── src
 ```
 
-- `rust/` is **library** crate that is linked to by R
+. . .
+
+- `rust/` is a **library** crate that is linked to by R
 - `Makevars` files builds the Rust library and links it to R
 
 ## Developer experience
 
 - `use_extendr()` creates / updates `settings.json`
 - enables Rust analyzer to work in R package structure
+
+. . .
 
 ```json
 {
@@ -445,7 +452,7 @@ x.into_iter().zip(y.into_iter())
 
 ## Tuples
 
-- Heterogenous data type for Rust
+- Heterogeneous data type for Rust
 - Fields are access by index
   - e.g. `my_tuple.0` and `my_tuple.1`
 

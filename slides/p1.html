@@ -426,11 +426,12 @@
 <section id="strong-typing" class="slide level2">
 <h2>Strong typing</h2>
 <ul>
-<li class="fragment">Rust _infers__ types very well</li>
+<li class="fragment">Rust <em>infers</em> types very well</li>
 <li class="fragment">Oftern we need to specify the type</li>
 <li class="fragment">In assignment via <code>let x: f64 = 10;</code></li>
 <li class="fragment">Using a suffix e.g.&nbsp;<code>10f64</code> or <code>10_i32</code></li>
 </ul>
+<div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -441,6 +442,7 @@
 </div>
 <div class="callout-content">
 <p>Use <code>_</code> as a visual separator when specifying numbers in Rust.</p>
+</div>
 </div>
 </div>
 </div>
@@ -481,7 +483,7 @@
 <p><strong>Objective</strong></p>
 </div>
 <div class="callout-content">
-<p>Understand control flow and numeric operators in Rust. You will create the FizzBuzz program using Rust!</p>
+<p>Understand control flow and numeric operators in Rust. You will create the <code>FizzBuzz</code> program using Rust!</p>
 </div>
 </div>
 </div>
@@ -607,7 +609,7 @@
 <div class="callout-content">
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href=""></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb10-2"><a href=""></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
-<span id="cb10-3"><a href=""></a>    <span class="pp">println!</span>(<span class="st">"x is empty: {}"</span><span class="op">,</span> x<span class="op">.</span>is_empty()<span class="op">;</span></span>
+<span id="cb10-3"><a href=""></a>    <span class="pp">println!</span>(<span class="st">"x is empty: {}"</span><span class="op">,</span> x<span class="op">.</span>is_empty())<span class="op">;</span></span>
 <span id="cb10-4"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -623,7 +625,7 @@
 <div class="fragment">
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href=""></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb11-2"><a href=""></a>    <span class="kw">let</span> x<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
-<span id="cb11-3"><a href=""></a>    <span class="pp">println!</span>(<span class="st">"x is empty: {}"</span><span class="op">,</span> x<span class="op">.</span>is_empty()<span class="op">;</span></span>
+<span id="cb11-3"><a href=""></a>    <span class="pp">println!</span>(<span class="st">"x is empty: {}"</span><span class="op">,</span> x<span class="op">.</span>is_empty())<span class="op">;</span></span>
 <span id="cb11-4"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>

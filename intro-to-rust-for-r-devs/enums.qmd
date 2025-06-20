@@ -97,8 +97,8 @@ Sometimes we want to customize behavior on only a subset of variants. We can use
 
 ```rust
 match my_shape {
-    Shape::Hexagon => println!("Hexagons are the bestagons");
-    _ => println!("Every other polygon is mid");
+    Shape::Hexagon => println!("Hexagons are the bestagons"),
+    _ => println!("Every other polygon is mid"),
 }
 ```
 

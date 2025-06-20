@@ -3,7 +3,7 @@
 ::: callout-tip
 ## Objective
 
-Understand control flow and numeric operators in Rust. You will create the FizzBuzz program using Rust!
+Understand control flow and numeric operators in Rust. You will create the `FizzBuzz` program using Rust!
 
 :::
 
@@ -47,7 +47,7 @@ The key difference is that the use of parentheses is not necessary for the condi
 
 ## Exercise
 
-This exercise you will create the famous FizzBuzz program.
+This exercise you will create the famous `FizzBuzz` program.
 
 For this, create a variable `i`. The rules are:
 

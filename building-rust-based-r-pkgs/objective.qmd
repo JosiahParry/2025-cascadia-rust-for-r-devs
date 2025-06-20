@@ -17,7 +17,7 @@ Throughout the workshop we will touch on:
 - Rust concepts
 - Techniques for bridging the two
 
-As much as this is about Rust, we are also working within the confines of R and thus, he two are inextricably linked.
+As much as this is about Rust, we are also working within the confines of R and thus, the two are inextricably linked.
 
 ## What is geohashing?
 

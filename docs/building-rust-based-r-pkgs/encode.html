@@ -443,7 +443,7 @@ Objective
 <p>Modify <code>gh_encode()</code> so that it returns a geohash.</p>
 </div>
 </div>
-<p>In the previous exercise we printed the <code>Coord</code> struct. Now, lets continue the function by calling the <code>encode()</code> function from Rust.</p>
+<p>In the previous exercise we printed the <code>Coord</code> struct. Now, let’s continue the function by calling the <code>encode()</code> function from Rust.</p>
 <section id="encode" class="level2">
 <h2 class="anchored" data-anchor-id="encode"><code>encode()</code></h2>
 <p>The <code>geohash::encode()</code> function has the following signature:</p>
@@ -455,7 +455,7 @@ Objective
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Err</span>(E)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Each variant of a result holds some data. If the <code>Result</code> was okay (meaning no error), it contains the expected type. Otherwise, it returns the specified error type.</p>
-<p>In Rust, we can <code>.unwrap()</code> or <code>.expect("Expectation message")</code> both <code>Option&lt;T&gt;</code> and <code>Result&lt;T&gt;</code>. So, for this case, we will do just that.</p>
+<p>In Rust, we can <code>.unwrap()</code> or <code>.expect("error message when expectation is unmet")</code> both <code>Option&lt;T&gt;</code> and <code>Result&lt;T&gt;</code>. So, for this case, we will do just that.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -469,7 +469,7 @@ Objective
 <summary>
 View solution
 </summary>
-<p>Modify your <code>src/lib.rs</code> file to have:</p>
+<p>Modify your <code>src/rust/src/lib.rs</code> file to have:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>extendr<span class="at">]</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> gh_encode(x<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> length<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> coord <span class="op">=</span> Coord <span class="op">{</span> x<span class="op">,</span> y <span class="op">};</span></span>

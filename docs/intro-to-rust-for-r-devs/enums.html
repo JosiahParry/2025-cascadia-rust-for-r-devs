@@ -522,8 +522,8 @@ Objective
 <h2 class="anchored" data-anchor-id="wildcard-matching">Wildcard matching</h2>
 <p>Sometimes we want to customize behavior on only a subset of variants. We can use a catch all in the match statement <code>_ =&gt;</code> use the underscore to signify “everything else”.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> my_shape <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Hexagons are the bestagons"</span>)<span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Every other polygon is mid"</span>)<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Shape::</span>Hexagon <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Hexagons are the bestagons"</span>)<span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Every other polygon is mid"</span>)<span class="op">,</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="enums-can-impl-too" class="level2">

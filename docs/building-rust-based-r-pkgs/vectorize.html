@@ -456,7 +456,7 @@ Objective
 </section>
 <section id="tuples" class="level2">
 <h2 class="anchored" data-anchor-id="tuples">Tuples</h2>
-<p>Tuples are the fundamental heterogenous data type for Rust. They’re much like tuples in Python.</p>
+<p>Tuples are the fundamental heterogeneous data type for Rust. They’re much like tuples in Python.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> my_tuple <span class="op">=</span> (<span class="dv">1.0</span><span class="op">,</span> <span class="st">"One"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Each element of the tuple can be accessed as if they were fields in a struct. To access the first element of the tuple we can use <code>my_tuple.0</code> and the second with <code>my_tuple.1</code>.</p>
 <p>Tuples can be destructured in assignment too!</p>
@@ -480,7 +480,7 @@ Objective
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ul>
-<li>Modify <code>x</code> and <code>y</code> to be <code>Vec&lt;f64&gt;</code></li>
+<li>Modify <code>x</code> and <code>y</code> to be <code>&amp;[f64]</code></li>
 <li>Change the return type to be <code>Vec&lt;String&gt;</code></li>
 <li>Create a zipped iterator for <code>x</code> and <code>y</code></li>
 <li>Map through the iterator and:
@@ -516,7 +516,7 @@ Generating random points
 View solution
 </summary>
 <div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>extendr<span class="at">]</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> gh_encode(x<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;,</span> y<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;,</span> length<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> gh_encode(x<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">f64</span>]<span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">f64</span>]<span class="op">,</span> length<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> length <span class="op">==</span> <span class="dv">0</span> <span class="op">||</span> length <span class="op">&gt;</span> <span class="dv">12</span> <span class="op">{</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        throw_r_error(<span class="st">"`length` must be between 1 and 12"</span>)<span class="op">;</span></span>

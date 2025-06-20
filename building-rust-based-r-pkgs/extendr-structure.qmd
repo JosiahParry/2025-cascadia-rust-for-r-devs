@@ -39,7 +39,7 @@ R packages that have compile code must store the source in `src/`. The `src/` di
     ├── src
 ```
 
-- `rust/` is **library** crate that is linked to by R
+- `rust/` is a **library** crate that is linked to by R
 - `Makevars` files builds the Rust library and links it to R
 
 ## Rust libraries
