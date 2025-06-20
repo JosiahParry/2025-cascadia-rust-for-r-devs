@@ -586,5 +586,367 @@ fn name_of_function(arg1: ArgType) -> ReturnType {
 
 #
 
+![](/images/is-odd.png){width=70%}
 
-![is-odd npm](/images/is-odd.png){width=70%}
+
+## Example
+
+::: columns
+
+::: column
+```rust
+fn is_even(x: i32) -> bool {
+    x % 2 == 0
+}
+```
+
+:::
+
+
+
+::: column
+```rust
+fn is_odd(x: i32) -> bool {
+    !is_even(x)
+}
+```
+:::
+:::
+
+# Exercise
+
+
+# Ownership
+
+::: callout-tip
+## Objective
+
+Understand the how Rust ensures memory safety through the borrow checker and be able to avoid issues by borrowing, using a slice, or cloning.
+:::
+
+
+# Borrow checker
+
+- Rust's memory safety net
+- Enforces **ownership**
+
+# Variables can be used only once
+
+## Moves
+
+- Variable **moved** when used by a function or method
+
+. . .
+
+```rust
+fn main() {
+    let x = vec![1.0, 2.0, 3.0];
+    let y = x; // ⬅️ ownership moved
+    println!("{:?}", x); // ❌ error: value used after move
+}
+```
+
+- `x` was moved and cannot be used again
+
+## Cloning
+
+- Simple but inefficient way to reuse a variable
+- Uses `.clone()` method
+- Almost everything can be cloned
+. . .
+
+::: callout-tip
+Remember: when in doubt, clone it out!
+:::
+
+
+## Example
+
+
+::: callout-important
+
+#### Cannot compile
+
+```rust
+let x  = v![0.0, 3.14, 10.1, 44.8];
+
+let avg1 = mean(x); // ⬅️ x moved here!
+let avg2 = mean(x); // ❌ compiler error
+```
+:::
+
+. . .
+
+::: callout-tip
+
+#### Can compile
+
+```rust
+let x  = v![0.0, 3.14, 10.1, 44.8];
+
+let avg1 = mean(x.clone()); // ⬅️ x cloned here!
+let avg2 = mean(x); // ✅ compiler happy
+```
+:::
+
+## Borrowing
+
+- Variables can be **borrowed** infinitely
+- Variables can be used by **reference**
+- Create a reference (borrow) with `&`
+
+. . .
+
+```rust
+fn main() {
+    let x = vec![1.0, 2.0, 3.0];
+    let avg = mean(&x); // 👈 borrowing `x`
+    println!("x is still usable: {:?}", x);
+}
+```
+
+## Slices
+
+- A special type of borrowing
+- A **contiguous** section of the same type
+- Recognized by `&[T]`
+- They have **known length** (e.g. has `.len()`)
+- Can be provided by more than one type
+
+## Example: slices
+
+`[f64; N]` and a `Vec<f64>` can be a `&[f64]`
+
+. . .
+
+```rust
+let x = [0.0, 20.0, 742.3];
+let y = vec![1.0, 2.0, 3.0];
+
+let avg_x = mean(&x)
+let avg_y = mean(&y);
+```
+
+## Slices
+
+- Are more flexible
+- Lightweight
+- In general prefer:
+  1. slice
+  2. reference
+  3. owned
+
+# Exercises
+
+# Iterators
+
+::: callout-tip
+
+## Objective
+
+- Understand what an iterator is and how to create one.
+- Learn the difference between `.iter()` and `.into_iter()`.
+- Use basic iterator methods like `.sum()`, `.min()`, `.max()`, and `.enumerate()`.
+
+:::
+
+
+## Iterators
+
+- Alternative way to iterate through a collection
+- Often simpler when modifying a `Vec<T>`
+- Produce a sequence of items that can be accessed or modified
+
+## Consuming iterators
+
+- `for` loops _consume_ the vector
+- `for` loops create an iterator
+- `.into_iter()` creates a consuming iterator
+- `for xi in x` is identical to `for xi in x.into_iter()`
+
+. . .
+
+```rust
+fn main() {
+    let nums = vec![3, 6, 9];
+
+    for n in nums.into_iter() {
+        println!("Value: {n}");
+    }
+
+    // nums has been moved ❌
+    // println!("nums: {:?}", nums);
+}
+```
+
+## Borrowing iterators
+
+- `.iter()` borrows the collection
+- Each item is a `reference()`
+
+. . .
+
+
+```rust
+fn main() {
+    let nums = vec![3, 6, 9];
+
+    for n in nums.iter() {
+        println!("Reference to value: {}", n);
+    }
+    // nums is still usable ✅
+    println!("nums: {:?}", nums);
+}
+```
+
+## Basic Iterator Methods
+
+- `.sum()` — Add all the values together.
+- `.min()` — Find the smallest value.
+- `.max()` — Find the largest value.
+- `.enumerate()` — Pairs each value with its index.
+
+. . .
+
+```rust
+fn main() {
+    let nums = vec![2, 4, 8];
+
+    let total: i32 = nums.iter().sum(); // requires type annotation
+    println!("Sum is: {}", total);
+}
+```
+
+## Enumerated iterators
+
+- Provide an index via `.enumerate()`
+- Called after `.iter()`
+- Each element is a **tuple** with `(i, xi)`
+
+. . .
+
+```rust
+fn is_even(x: i32) -> bool {
+    x % 2 == 0
+}
+
+fn main() {
+    let x = vec![2, 4, 8];
+
+    for (i, xi) in x.iter().enumerate() {
+        if is_even(i as i32) {
+            println!("i is even with value {xi}");
+        }
+    }
+}
+```
+
+# Exercises
+
+
+# Mapping over Iterators
+
+::: callout-tip
+## Objective
+- Understand how to transform iterator values using `.map()`
+- Learn how to use closures (anonymous functions) in Rust
+- Collect iterator results back into a collection using `.collect()`
+- Use turbofish 🐠💨 syntax for type annotations when needed
+:::
+
+
+# Mapping over iterators
+
+- R we use `purrr::map()` or `apply()`
+- Rust we can use `.iter().map()`
+
+## Using `.map()`
+
+- use `.map()` to modify an iterator
+- returns another iterator
+
+. . .
+
+```rust
+let x = vec![5.9f64, 6.8, 4.5, 7.3, 6.2];
+
+x.iter().map(|xi| xi.powi(2))
+```
+
+## Closures
+
+- Use a **closure** to modify each element
+- Rust's anonymous function
+- Format `|arg| expression`
+
+. . .
+
+```rust
+x
+    .iter()
+    .map(|xi| {
+        let squared = xi.powi(2);
+        xi.sqrt()
+    })
+```
+
+## Closures with enumerated iterators
+
+- The enumerated tuple can be **destructured**
+
+. . .
+
+```rust
+x
+    .iter()
+    .enumerate()
+    .map(|(i, xi)| {
+        // do stuff here
+    })
+```
+
+## Collecting results
+
+- `purrr::map()` returns a vector
+- In Rust we have to **collect** the iterator via `.collect()`
+- `.collect()` creates another collection
+- Typically a `Vec<T>`
+- Need to specify the type
+
+. . .
+
+
+```rust
+let x_squared: Vec<f64> = x.iter().map(|xi| xi.powi(2)).collect();
+```
+
+## Turbofish 🐠💨
+
+> "Because `collect()` is so general, it **can cause problems with type inference**. As such, `collect()` is one of the few times you’ll see the syntax affectionately known as the ‘turbofish’: `::<>`. This helps the inference algorithm understand specifically which collection you’re trying to collect into."
+
+## Turbofish 🐠💨 Example
+
+
+```rust
+fn main() {
+    let nums = vec![1, 2, 3];
+
+    // Add 1 to each element
+    let incremented = nums.iter()
+        .map(|x| x + 1)
+        .collect::<Vec<_>>();
+
+    println!("{:?}", incremented);
+}
+```
+
+# Exercises
+
+
+# Defining Struct(ure)s
+
+::: callout-tip
+## Objective
+
+Create new `struct` types and destructure them. Additionally, add behavior through `derive`-macros.
+:::

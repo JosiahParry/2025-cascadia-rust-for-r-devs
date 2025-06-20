@@ -54,10 +54,10 @@ fn main() {
 
 Once you have an iterator, there are a number of methods that can be used. Some of the helpful ones are:
 
-* `.sum()` — Add all the values together.
-* `.min()` — Find the smallest value.
-* `.max()` — Find the largest value.
-* `.enumerate()` — Pairs each value with its index.
+- `.sum()` — Add all the values together.
+- `.min()` — Find the smallest value.
+- `.max()` — Find the largest value.
+- `.enumerate()` — Pairs each value with its index.
 
 
 ::: aside

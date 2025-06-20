@@ -31,10 +31,6 @@ Using `.map()` returns another iterator. We can chain operations over iterators 
 
 In the above example we used a **closure** to modify each element of the iterator. Closures are Rust's version of an anonymous function.
 
-::: aside
-These closures, too, are not subsettable.
-:::
-
 A closure takes the structure `|arg| expression`. They can also be multiple lines by wrapping the expression in a braces:
 
 ```rust
