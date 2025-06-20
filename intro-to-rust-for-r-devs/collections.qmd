@@ -55,7 +55,7 @@ An empty vector can be created using `Vec::new()` or `vec![]`. If creating an em
 ```rust
 fn main() {
     let x = Vec::new();
-    println!("x is empty: {}", x.is_empty();
+    println!("x is empty: {}", x.is_empty());
 }
 ```
 :::
@@ -65,7 +65,7 @@ This cannot compile because the type of `x` is not known. Rust can infer the typ
 ```rust
 fn main() {
     let x: Vec<f64> = Vec::new();
-    println!("x is empty: {}", x.is_empty();
+    println!("x is empty: {}", x.is_empty());
 }
 ````
 
